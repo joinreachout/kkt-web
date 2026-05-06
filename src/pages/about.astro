@@ -31,6 +31,63 @@ const teamWithBios = await Promise.all(
         things wrong is real and the value of shipping is measurable.
       </p>
 
+      <section class="beliefs">
+        <h2 class="h2-section">What we believe.</h2>
+
+        <ol class="beliefs-list">
+          <li>
+            <div class="belief-num">01</div>
+            <div>
+              <h3 class="belief-title">Outcomes set the bar.</h3>
+              <p>
+                AI earns its place by moving margin, cash, availability,
+                customer value, or productivity — or it doesn&rsquo;t ship.
+                If the case isn&rsquo;t there, we say so.
+              </p>
+            </div>
+          </li>
+          <li>
+            <div class="belief-num">02</div>
+            <div>
+              <h3 class="belief-title">PMO is the rigor.</h3>
+              <p>
+                Scope, sequencing, ownership, shipping under constraint.
+                Without that discipline, deliverables become decks. With
+                it, systems run.
+              </p>
+            </div>
+          </li>
+          <li>
+            <div class="belief-num">03</div>
+            <div>
+              <h3 class="belief-title">Senior counterpart, always.</h3>
+              <p>
+                We work alongside your team, not over it. A senior
+                internal owner with authority and time is a precondition,
+                not a bonus. If the room is empty when we leave, the
+                project will fail.
+              </p>
+            </div>
+          </li>
+          <li>
+            <div class="belief-num">04</div>
+            <div>
+              <h3 class="belief-title">Until the system runs without us.</h3>
+              <p>
+                The exit criterion is built in from week one. Engagements
+                end; the product keeps operating. Counterparts inherit the
+                system, not the dependency.
+              </p>
+            </div>
+          </li>
+        </ol>
+
+        <p class="beliefs-tail">
+          The other side of this is what we say no to.
+          <a href="/not-for-you">When NOT to work with us →</a>
+        </p>
+      </section>
+
       <section class="who">
         <h2 class="h2-section">The team.</h2>
 
@@ -100,6 +157,59 @@ const teamWithBios = await Promise.all(
     max-width: 60ch;
     margin-bottom: 56px;
   }
+
+  .beliefs {
+    margin-bottom: 64px;
+    border-top: 1px solid var(--border);
+    padding-top: 40px;
+  }
+  .beliefs h2 { margin-bottom: 28px; }
+  .beliefs-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px;
+    display: grid;
+    gap: 16px;
+    max-width: 760px;
+  }
+  .beliefs-list li {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 16px;
+    padding: 22px 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+  }
+  .belief-num {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--accent-text);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    line-height: 1.4;
+  }
+  .belief-title {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 20px;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+  .beliefs-list p { font-size: 15px; max-width: 60ch; }
+  .beliefs-tail {
+    font-size: 14px;
+    color: var(--text-muted);
+    max-width: 60ch;
+  }
+  .beliefs-tail a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 6px;
+  }
+  .beliefs-tail a:hover { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--accent); }
 
   .who { margin-bottom: 56px; }
   .who h2 { margin-bottom: 28px; }
