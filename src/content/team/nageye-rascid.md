@@ -7,6 +7,6 @@ links:
   linkedin: "https://www.linkedin.com/in/nageyerascid/"
 ---
 
-20+ years of leadership at Cisco Meraki, Snowflake, and Microsoft. Advises
-on big data, machine learning, and cloud architecture for digital
-transformation programs.
+Twenty years across Cisco Meraki, Snowflake, and Microsoft. Cloud
+architecture, big data, and machine learning at the scale where
+decisions cost real money.

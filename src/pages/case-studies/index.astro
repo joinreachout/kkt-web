@@ -10,7 +10,44 @@ const cases = [
     region: 'Kyrgyzstan',
     summary:
       'Optimus operating across 600+ stations. $500M revenue. Pricing, margin steering, station-level operations.',
-    status: 'Live',
+    status: 'Featured',
+    featured: true,
+  },
+  {
+    href: '/case-studies/click-and-grow',
+    client: 'Click & Grow',
+    industry: 'B2C — smart indoor gardens',
+    region: 'Eastern Europe / CIS',
+    summary:
+      'Customer analytics and ML segmentation to find where the high-value segments actually were, then act on them.',
+    status: 'Delivered',
+  },
+  {
+    href: '/case-studies/gte',
+    client: 'GTE',
+    industry: 'Industrial — compressors',
+    region: 'EU',
+    summary:
+      'Reporting platform across finance and manufacturing, plus ML prototypes for compressor anomaly detection and energy optimisation.',
+    status: 'Delivered',
+  },
+  {
+    href: '/case-studies/kricon',
+    client: 'Kricon',
+    industry: 'International logistics',
+    region: 'Cross-border',
+    summary:
+      'Operational visibility across the route network — reporting infrastructure plus anomaly-detection and clustering models for ops-level signals.',
+    status: 'Delivered',
+  },
+  {
+    href: '/case-studies/csc-telecom',
+    client: 'CSC Telecom',
+    industry: 'Telecom',
+    region: 'Global',
+    summary:
+      'Customer and product analytics for a global Travel/Tourist SIM business. Each study shaped to land a specific decision rather than fill a report.',
+    status: 'Delivered',
   },
 ];
 ---
@@ -32,9 +69,9 @@ const cases = [
       <ul class="case-list">
         {cases.map((c) => (
           <li>
-            <a href={c.href} class="case-card">
+            <a href={c.href} class={`case-card ${c.featured ? 'case-card-featured' : ''}`}>
               <div class="case-meta">
-                <span class="case-status">{c.status}</span>
+                <span class={`case-status ${c.featured ? 'is-featured' : ''}`}>{c.status}</span>
                 <span class="case-sep">·</span>
                 <span>{c.industry}</span>
                 <span class="case-sep">·</span>
@@ -93,6 +130,16 @@ const cases = [
   .case-card:hover {
     border-color: var(--border-hover);
     text-decoration: none;
+  }
+  .case-card-featured {
+    padding: 32px;
+    border-top: 3px solid var(--accent);
+  }
+  .case-card-featured .case-client {
+    font-size: 32px;
+  }
+  .case-status.is-featured {
+    color: var(--accent);
   }
   .case-meta {
     font-size: 12px;

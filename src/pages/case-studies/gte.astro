@@ -1,0 +1,139 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import CTA from '~/components/CTA.astro';
+---
+
+<BaseLayout
+  title="GTE — Case study — KKT"
+  description="Operational reporting and anomaly detection for an industrial compressor manufacturer."
+>
+  <article class="prose-page">
+    <div class="container">
+      <div class="section-label">Case study — GTE</div>
+      <h1 class="h1-page">GTE — reporting and ML across compressor operations.</h1>
+
+      <section class="topline">
+        <div class="topline-row">
+          <div class="topline-label">Industry</div>
+          <div>Industrial — compressor manufacturing</div>
+        </div>
+        <div class="topline-row">
+          <div class="topline-label">Engagement</div>
+          <div>Reporting platform + ML prototypes</div>
+        </div>
+        <div class="topline-row">
+          <div class="topline-label">Scope</div>
+          <div>Finance, manufacturing, anomaly detection, energy optimisation</div>
+        </div>
+        <div class="topline-row">
+          <div class="topline-label">Status</div>
+          <div><span class="live-dot"></span> Delivered</div>
+        </div>
+      </section>
+
+      <section class="prose-block">
+        <p>
+          GTE asked us to build a comprehensive reporting tool spanning the
+          company's operations — from finance through manufacturing — and
+          to prototype machine-learning models for compressor anomaly
+          detection and energy-consumption optimisation.
+        </p>
+        <p>
+          The reporting platform unified previously fragmented sources into
+          one decision surface. The ML prototypes proved the operational
+          value of anomaly detection and gave engineering a concrete
+          roadmap for what to push into production.
+        </p>
+      </section>
+
+      <section class="stack">
+        <div class="stack-label">Tech stack</div>
+        <p>PowerBI · PostgreSQL · Airflow · DBT · TensorFlow / Sklearn · Flask · PuLP / CPLEX</p>
+      </section>
+
+      <p class="editorial-note">
+        Walkable case in editorial. Phase 1.5.
+      </p>
+    </div>
+
+    <CTA />
+  </article>
+</BaseLayout>
+
+<style>
+  .prose-page { padding-top: clamp(40px, 6vh, 72px); }
+  .section-label { margin-bottom: 18px; }
+  .h1-page {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(30px, 4.2vw, 44px);
+    line-height: 1.16;
+    margin-bottom: 36px;
+    letter-spacing: -0.01em;
+    max-width: 26ch;
+  }
+  .topline {
+    max-width: 720px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 24px 28px;
+    margin-bottom: 32px;
+  }
+  .topline-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 15px;
+  }
+  .topline-row:last-child { border-bottom: none; }
+  .topline-label {
+    color: var(--text-muted);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    align-self: center;
+  }
+  .live-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #2A8A62;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  .prose-block { max-width: 700px; margin-bottom: 32px; }
+  .prose-block p { margin-bottom: 14px; max-width: 64ch; }
+  .stack {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 18px 22px;
+    max-width: 700px;
+    margin-bottom: 32px;
+  }
+  .stack-label {
+    font-size: 11px;
+    color: var(--accent-text);
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .stack p {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+  .editorial-note {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-style: italic;
+    max-width: 60ch;
+  }
+</style>

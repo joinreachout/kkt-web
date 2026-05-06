@@ -7,5 +7,5 @@ links:
   linkedin: "https://www.linkedin.com/in/dennisnepomniashy/"
 ---
 
-Data-driven marketing and project management for software integration.
-Certified in Business IT and MCSI.
+Marketing and software-integration project management, run from the
+data. Certified in Business IT and MCSI.
