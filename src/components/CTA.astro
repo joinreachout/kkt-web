@@ -1,0 +1,51 @@
+---
+interface Props {
+  heading?: string;
+  body?: string;
+  primaryHref?: string;
+  primaryLabel?: string;
+  secondaryHref?: string;
+  secondaryLabel?: string;
+}
+const {
+  heading = 'Want to see if we can help?',
+  body = 'A diagnostic is a focused two-week look at where AI and PMO discipline can earn their place in your business. No deck. No commitment beyond the diagnostic.',
+  primaryHref = '/contact',
+  primaryLabel = 'Book a diagnostic',
+  secondaryHref = '/case-studies/',
+  secondaryLabel = 'See our work',
+} = Astro.props as Props;
+---
+
+<section class="cta-block">
+  <div class="container cta-inner">
+    <h2 class="h2-section cta-heading">{heading}</h2>
+    <p class="cta-body">{body}</p>
+    <div class="cta-actions">
+      <a href={primaryHref} class="btn-primary">{primaryLabel}</a>
+      <a href={secondaryHref} class="btn-ghost">{secondaryLabel}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-block {
+    padding-top: clamp(56px, 9vh, 96px);
+    padding-bottom: clamp(56px, 9vh, 96px);
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .cta-heading {
+    margin-bottom: 18px;
+    max-width: 22ch;
+  }
+  .cta-body {
+    max-width: 60ch;
+    margin-bottom: 28px;
+  }
+  .cta-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+</style>

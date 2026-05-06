@@ -1,0 +1,50 @@
+name: Build and deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# We push the built dist/ to the production branch; need write access on contents.
+permissions:
+  contents: write
+
+concurrency:
+  group: build-and-deploy
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        run: npm run build
+
+      - name: Verify dist
+        run: |
+          test -f dist/index.html || (echo "dist/index.html missing — build failed" && exit 1)
+          echo "Built files:"
+          find dist -maxdepth 2 -type f | sort | head -40
+
+      - name: Deploy dist/ to production branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: production
+          force_orphan: true
+          commit_message: "deploy: ${{ github.event.head_commit.message }}"
+          user_name: github-actions[bot]
+          user_email: github-actions[bot]@users.noreply.github.com

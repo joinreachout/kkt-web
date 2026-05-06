@@ -1,0 +1,88 @@
+---
+// KKT wordmark + nav. Sticky top bar.
+const navItems = [
+  { href: '/industries/retail', label: 'Retail' },
+  { href: '/industries/fuel-retail', label: 'Fuel retail' },
+  { href: '/case-studies/', label: 'Case studies' },
+  { href: '/approach', label: 'Approach' },
+  { href: '/about', label: 'About' },
+];
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="wordmark" aria-label="KKT — home">KKT</a>
+
+    <nav aria-label="Primary">
+      <ul class="nav-list">
+        {navItems.map((item) => (
+          <li><a href={item.href}>{item.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <a href="/contact" class="header-cta">Book a diagnostic</a>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+  }
+  .header-inner {
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .wordmark {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+  .wordmark:hover { text-decoration: none; color: var(--text-primary); }
+
+  .nav-list {
+    display: none;
+    list-style: none;
+    gap: 28px;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-list a {
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: color .15s ease;
+  }
+  .nav-list a:hover { color: var(--text-primary); }
+
+  .header-cta {
+    display: none;
+    font-size: 13px;
+    padding: 8px 16px;
+    background: var(--text-primary);
+    color: #FFF;
+    border-radius: 3px;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: opacity .15s ease;
+  }
+  .header-cta:hover { opacity: 0.85; text-decoration: none; }
+
+  @media (min-width: 880px) {
+    .nav-list { display: flex; }
+    .header-cta { display: inline-flex; align-items: center; }
+  }
+</style>

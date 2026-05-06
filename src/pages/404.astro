@@ -1,0 +1,91 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="404 — Not found — KKT"
+  description="That page is not here."
+  noindex={true}
+>
+  <article class="prose-page">
+    <div class="container narrow">
+      <div class="section-label">404</div>
+      <h1 class="h1-page">That page is not here.</h1>
+      <p class="lede">
+        Either it never was, or it moved. Either way, the way out is below.
+      </p>
+
+      <div class="cta-row">
+        <a href="/" class="btn-primary">Home</a>
+        <a href="/case-studies/" class="btn-ghost">See our work</a>
+      </div>
+
+      <p class="aside">
+        <span class="hint">Try the Konami code if you are bored.</span>
+      </p>
+    </div>
+  </article>
+</BaseLayout>
+
+<script>
+  // Konami code easter egg — lifted pattern from retail microsite.
+  // ↑ ↑ ↓ ↓ ← → ← → B A → confetti-free silly mode.
+  const seq = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+  let i = 0;
+  window.addEventListener('keydown', (e) => {
+    const expected = seq[i];
+    const got = e.key === ' ' ? ' ' : e.key.length === 1 ? e.key.toLowerCase() : e.key;
+    if (got === expected) {
+      i += 1;
+      if (i === seq.length) {
+        document.body.classList.add('konami');
+        i = 0;
+      }
+    } else {
+      i = got === seq[0] ? 1 : 0;
+    }
+  });
+</script>
+
+<style>
+  .prose-page { padding-top: clamp(56px, 9vh, 96px); padding-bottom: clamp(56px, 9vh, 96px); }
+  .narrow { max-width: 640px; }
+  .section-label { margin-bottom: 18px; color: var(--text-muted); }
+  .h1-page {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(36px, 5vw, 56px);
+    line-height: 1.14;
+    margin-bottom: 18px;
+    letter-spacing: -0.01em;
+    max-width: 18ch;
+  }
+  .lede {
+    font-size: clamp(17px, 2vw, 20px);
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin-bottom: 32px;
+    max-width: 50ch;
+  }
+  .cta-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 64px;
+  }
+  .aside {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+  .hint { font-family: var(--font-mono); }
+
+  /* Konami easter egg — silly mode, deliberately restrained. */
+  :global(body.konami) { animation: tilt 2.4s ease-in-out infinite; }
+  @keyframes tilt {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(0.4deg); }
+    75% { transform: rotate(-0.4deg); }
+  }
+</style>

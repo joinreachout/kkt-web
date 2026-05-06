@@ -1,0 +1,214 @@
+/* KKT main site — global styles
+ * Visual language matches retail.kittykat.tech.
+ * Cream palette + DM Sans body + Playfair Display italic for display type.
+ * No drop shadows except modals/overlays. No gradients.
+ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Surfaces */
+  --bg:            #F5F3EF;
+  --surface:       #FFFFFF;
+  --surface-alt:   #F0EDE8;
+  --card:          #FAFAF8;
+
+  /* Strokes */
+  --border:        rgba(30, 24, 16, 0.10);
+  --border-hover:  rgba(30, 24, 16, 0.20);
+
+  /* Text */
+  --text-primary:  #1A1410;
+  --text-secondary:#5C5045;
+  --text-muted:    #9C8E82;
+
+  /* Accent (warm amber) */
+  --accent:        #B8832A;
+  --accent-dim:    rgba(184, 131, 42, 0.10);
+  --accent-text:   #8A5E18;
+
+  /* Functional */
+  --max-width: 1080px;
+
+  /* Type */
+  --font-body:    'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-mono:    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+html,
+body {
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.12); border-radius: 2px; }
+
+/* Animations — lifted from retail */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up  { animation: fadeUp .38s ease both; }
+.slide-up { animation: slideUp .25s ease both; }
+
+/* Type primitives */
+h1, h2, h3, h4 {
+  color: var(--text-primary);
+  font-weight: 400;
+}
+
+h1.display,
+h2.display,
+.display {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.h1-hero {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(32px, 4.5vw, 54px);
+  line-height: 1.14;
+  letter-spacing: -0.01em;
+}
+
+.h2-section {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(26px, 4vw, 42px);
+  line-height: 1.18;
+  letter-spacing: -0.005em;
+}
+
+p {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+@media (min-width: 720px) {
+  p { font-size: 18px; }
+}
+
+a {
+  color: var(--text-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--border);
+  transition: text-decoration-color .18s ease, color .18s ease;
+}
+a:hover {
+  text-decoration-color: var(--accent);
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+
+ol, ul {
+  list-style-position: outside;
+}
+
+/* Section labels (small caps) */
+.section-label {
+  font-size: 11px;
+  color: var(--accent-text);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* Buttons */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 28px;
+  background: var(--text-primary);
+  color: #FFF;
+  border: none;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity .15s ease;
+}
+.btn-primary:hover { opacity: 0.85; text-decoration: none; }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 24px;
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: border-color .18s ease, color .18s ease;
+}
+.btn-ghost:hover {
+  border-color: var(--border-hover);
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+/* Layout helpers */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-left: clamp(20px, 4vw, 48px);
+  padding-right: clamp(20px, 4vw, 48px);
+}
+
+.section {
+  padding-top: clamp(56px, 9vh, 96px);
+  padding-bottom: clamp(56px, 9vh, 96px);
+}
+
+.divider {
+  height: 1px;
+  background: var(--border);
+  border: 0;
+  margin: 0;
+}
+
+/* Reduce-motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,142 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Hero from '~/components/Hero.astro';
+import CTA from '~/components/CTA.astro';
+
+// Trust strip variant — flip to 'A' or 'B' if Alfa Oil consent tier shifts.
+// See WORK/briefs/alfa-oil-content-brief.md.
+const trustVariant = 'C' as const;
+---
+
+<BaseLayout
+  title="KKT — AI that ships, not slides."
+  description="Senior PMO + AI delivery for mid-sized retailers and fuel networks. Tallinn, EU."
+>
+  <Hero trustVariant={trustVariant} />
+
+  <section class="section section-industries">
+    <div class="container">
+      <div class="section-label">Where we work</div>
+      <h2 class="h2-section">Two industries. One delivery model.</h2>
+      <div class="industry-grid">
+        <a href="/industries/retail" class="industry-card">
+          <div class="industry-eyebrow">Retail</div>
+          <h3 class="industry-title">Mid-sized retailers</h3>
+          <p>
+            Margin, cash, customer ownership, decision speed. Where AI and PMO
+            discipline earn their place against measurable outcomes.
+          </p>
+          <span class="industry-arrow">See the playbook →</span>
+        </a>
+
+        <a href="/industries/fuel-retail" class="industry-card">
+          <div class="industry-eyebrow">Fuel retail</div>
+          <h3 class="industry-title">Fuel networks</h3>
+          <p>
+            Optimus runs price, margin, and operations across stations. Live at
+            Alfa Oil — 600+ stations, $500M revenue, in production.
+          </p>
+          <span class="industry-arrow">See Optimus →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-featured">
+    <div class="container">
+      <div class="section-label">Featured case</div>
+      <h2 class="h2-section">Alfa Oil — Optimus operating across the network.</h2>
+      <p class="featured-body">
+        Walk through the engagement: where it started, what shipped, what it
+        moved. No vendor-deck claims — just what the system does in
+        production today.
+      </p>
+      <a href="/case-studies/alfa-oil" class="btn-ghost">Read the case</a>
+    </div>
+  </section>
+
+  <CTA />
+</BaseLayout>
+
+<style>
+  .section-industries {
+    padding-top: clamp(48px, 7vh, 80px);
+    padding-bottom: clamp(48px, 7vh, 80px);
+    border-top: 1px solid var(--border);
+  }
+  .section-industries .section-label,
+  .section-featured .section-label {
+    margin-bottom: 12px;
+  }
+  .section-industries h2 {
+    margin-bottom: 36px;
+    max-width: 22ch;
+  }
+
+  .industry-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  @media (min-width: 720px) {
+    .industry-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+  }
+
+  .industry-card {
+    display: block;
+    padding: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    text-decoration: none;
+    transition: border-color .18s ease, transform .18s ease;
+    color: inherit;
+  }
+  .industry-card:hover {
+    border-color: var(--border-hover);
+    text-decoration: none;
+  }
+  .industry-eyebrow {
+    font-size: 11px;
+    color: var(--accent-text);
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .industry-title {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 24px;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    font-weight: 400;
+  }
+  .industry-card p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+  }
+  .industry-arrow {
+    font-size: 13px;
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  .section-featured {
+    padding-top: clamp(48px, 7vh, 80px);
+    padding-bottom: clamp(48px, 7vh, 80px);
+    border-top: 1px solid var(--border);
+  }
+  .section-featured h2 {
+    margin-bottom: 18px;
+    max-width: 22ch;
+  }
+  .featured-body {
+    max-width: 60ch;
+    margin-bottom: 28px;
+  }
+</style>

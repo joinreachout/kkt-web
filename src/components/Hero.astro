@@ -1,0 +1,51 @@
+---
+import TrustStrip from './TrustStrip.astro';
+type TrustVariant = 'A' | 'B' | 'C';
+interface Props {
+  trustVariant?: TrustVariant;
+}
+const { trustVariant = 'C' } = Astro.props as Props;
+---
+
+<section class="hero">
+  <div class="container hero-inner fade-up">
+    <h1 class="h1-hero hero-title">AI that ships, not slides.</h1>
+    <p class="hero-sub">
+      Senior PMO + AI delivery for mid-sized retailers and fuel networks.
+      Tallinn, EU.
+    </p>
+
+    <div class="hero-ctas">
+      <a href="/case-studies/" class="btn-primary">See our work</a>
+      <a href="/contact" class="btn-ghost">Book a diagnostic</a>
+    </div>
+
+    <TrustStrip variant={trustVariant} />
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-top: clamp(48px, 7vh, 96px);
+    padding-bottom: clamp(56px, 9vh, 120px);
+  }
+  .hero-title {
+    max-width: 18ch;
+    margin-bottom: 18px;
+  }
+  .hero-sub {
+    font-family: var(--font-body);
+    font-style: normal;
+    font-size: clamp(17px, 2.2vw, 22px);
+    line-height: 1.5;
+    color: var(--text-secondary);
+    max-width: 56ch;
+    margin: 0 0 32px;
+    font-weight: 400;
+  }
+  .hero-ctas {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+</style>

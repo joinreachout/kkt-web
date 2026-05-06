@@ -1,0 +1,127 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import CTA from '~/components/CTA.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('insights');
+const visible = allPosts
+  .filter((p) => p.data.draft !== true)
+  .sort((a, b) => +new Date(b.data.publishedAt) - +new Date(a.data.publishedAt));
+---
+
+<BaseLayout
+  title="Insights — KKT"
+  description="Working in public. Notes from the inside of mid-sized retail and fuel-retail engagements."
+>
+  <article class="prose-page">
+    <div class="container">
+      <div class="section-label">Insights — Working in Public</div>
+      <h1 class="h1-page">Notes from inside the engagements.</h1>
+      <p class="lede">
+        Two named authors, one post a month, no marketing fluff. What we are
+        actually shipping, what is not working, and what we have changed our
+        minds about.
+      </p>
+
+      {visible.length === 0 ? (
+        <div class="empty">
+          <p>
+            First posts launch with the public site. The column will show
+            up here as they ship.
+          </p>
+        </div>
+      ) : (
+        <ul class="post-list">
+          {visible.map((post) => (
+            <li>
+              <a href={`/insights/${post.id}`} class="post-card">
+                <div class="post-meta">
+                  <span>{post.data.author}</span>
+                  <span class="post-sep">·</span>
+                  <time datetime={post.data.publishedAt}>
+                    {new Date(post.data.publishedAt).toLocaleDateString('en-GB', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                    })}
+                  </time>
+                </div>
+                <h2 class="post-title">{post.data.title}</h2>
+                {post.data.summary && <p class="post-summary">{post.data.summary}</p>}
+                <span class="post-arrow">Read →</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+
+    <CTA />
+  </article>
+</BaseLayout>
+
+<style>
+  .prose-page { padding-top: clamp(40px, 6vh, 72px); }
+  .section-label { margin-bottom: 18px; }
+  .h1-page {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(32px, 4.5vw, 48px);
+    line-height: 1.16;
+    margin-bottom: 18px;
+    letter-spacing: -0.01em;
+    max-width: 24ch;
+  }
+  .lede {
+    font-size: clamp(17px, 2vw, 20px);
+    color: var(--text-secondary);
+    line-height: 1.55;
+    max-width: 60ch;
+    margin-bottom: 40px;
+  }
+  .empty {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 32px;
+    max-width: 600px;
+  }
+  .empty p { margin: 0; max-width: 56ch; }
+
+  .post-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 14px;
+  }
+  .post-card {
+    display: block;
+    padding: 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color .18s ease;
+  }
+  .post-card:hover { border-color: var(--border-hover); text-decoration: none; }
+  .post-meta {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    letter-spacing: 0.02em;
+  }
+  .post-sep { margin: 0 6px; }
+  .post-title {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 22px;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    font-weight: 400;
+  }
+  .post-summary { margin-bottom: 12px; max-width: 60ch; font-size: 15px; }
+  .post-arrow { font-size: 13px; color: var(--text-primary); font-weight: 500; }
+</style>

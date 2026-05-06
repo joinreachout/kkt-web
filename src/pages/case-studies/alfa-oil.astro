@@ -1,0 +1,121 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import CTA from '~/components/CTA.astro';
+---
+
+<BaseLayout
+  title="Alfa Oil — Case study — KKT"
+  description="Optimus operating across the Alfa Oil network. 600+ stations. $500M revenue. In production."
+>
+  <article class="prose-page">
+    <div class="container">
+      <div class="section-label">Case study — Alfa Oil</div>
+      <h1 class="h1-page">Alfa Oil — Optimus operating across the network.</h1>
+
+      <section class="topline">
+        <div class="topline-row">
+          <div class="topline-label">Industry</div>
+          <div>Fuel retail</div>
+        </div>
+        <div class="topline-row">
+          <div class="topline-label">Region</div>
+          <div>Kyrgyzstan, Central Asia</div>
+        </div>
+        <div class="topline-row">
+          <div class="topline-label">Network</div>
+          <div>600+ stations · 11 fuel types</div>
+        </div>
+        <div class="topline-row">
+          <div class="topline-label">Revenue</div>
+          <div>$500M annual</div>
+        </div>
+        <div class="topline-row">
+          <div class="topline-label">Status</div>
+          <div><span class="live-dot"></span> Live, in production</div>
+        </div>
+      </section>
+
+      <section class="placeholder-note">
+        <p>
+          <strong>Walkable investigation in progress.</strong> Depth of the
+          published case depends on the consent tier signed with Alfa Oil
+          (see <code>WORK/briefs/alfa-oil-content-brief.md</code>). Phase 1
+          target is the full topline plus a guided walk through the
+          engagement: where it started, what shipped, what it moved.
+        </p>
+        <p>
+          For now, the topline is public. The full case is in editorial.
+        </p>
+      </section>
+    </div>
+
+    <CTA
+      heading="Run a fuel network diagnostic."
+      body="A two-week scoped look at where Optimus applies to your network. Pricing posture, margin posture, station-level operations, and what shipping looks like."
+    />
+  </article>
+</BaseLayout>
+
+<style>
+  .prose-page { padding-top: clamp(40px, 6vh, 72px); }
+  .section-label { margin-bottom: 18px; }
+  .h1-page {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(30px, 4.2vw, 44px);
+    line-height: 1.16;
+    margin-bottom: 36px;
+    letter-spacing: -0.01em;
+    max-width: 24ch;
+  }
+  .topline {
+    max-width: 720px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 24px 28px;
+    margin-bottom: 32px;
+  }
+  .topline-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 15px;
+    color: var(--text-primary);
+  }
+  .topline-row:last-child { border-bottom: none; }
+  .topline-label {
+    color: var(--text-muted);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    align-self: center;
+  }
+  .live-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #2A8A62;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  .placeholder-note {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 24px;
+    max-width: 720px;
+  }
+  .placeholder-note p { margin-bottom: 12px; max-width: 60ch; }
+  code {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    background: var(--surface-alt);
+    padding: 1px 6px;
+    border-radius: 3px;
+  }
+</style>

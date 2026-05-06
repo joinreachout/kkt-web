@@ -1,0 +1,83 @@
+---
+// Bottom-right version badge. Reads VERSION constant baked in at build,
+// fetches /version.json on mount for live deploy info (commit, branch,
+// timestamp). version.json is written by deploy.php on each pull and is
+// .gitignored so it never goes stale in source.
+const SITE_VERSION = '0.1.0';
+---
+
+<div id="version-badge" class="version-badge" data-version={SITE_VERSION}>
+  v{SITE_VERSION}
+</div>
+
+<style>
+  .version-badge {
+    position: fixed;
+    bottom: 12px;
+    right: 12px;
+    z-index: 50;
+    padding: 4px 9px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    cursor: default;
+    user-select: none;
+    transition: border-color .18s ease, color .18s ease;
+  }
+  .version-badge:hover {
+    border-color: var(--border-hover);
+    color: var(--text-secondary);
+  }
+  .version-badge[data-tooltip] {
+    position: fixed;
+  }
+  .version-badge[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 6px);
+    right: 0;
+    background: var(--text-primary);
+    color: var(--bg);
+    padding: 7px 10px;
+    border-radius: 3px;
+    font-size: 11px;
+    line-height: 1.5;
+    white-space: pre;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity .15s ease, transform .15s ease;
+  }
+  .version-badge[data-tooltip]:hover::after {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  // Fetch /version.json (written by deploy.php on each pull). If present,
+  // upgrade the badge with the deployed commit short-hash and message.
+  const badge = document.getElementById('version-badge');
+  if (badge) {
+    fetch('/version.json', { cache: 'no-store' })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data: any) => {
+        if (!data?.short) return;
+        badge.textContent = `v${badge.dataset.version} · ${data.short}`;
+        const lines = [
+          `branch: ${data.branch}`,
+          `commit: ${data.short}`,
+          data.message ? `msg: ${data.message}` : '',
+          data.deployedAt ? `deployed: ${data.deployedAt}` : '',
+        ].filter(Boolean);
+        badge.setAttribute('data-tooltip', lines.join('\n'));
+      })
+      .catch(() => {
+        /* version.json absent on local dev or fresh deploy — keep static badge */
+      });
+  }
+</script>

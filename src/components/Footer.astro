@@ -1,0 +1,147 @@
+---
+// Footer — legal name "Kitty Kat Technologies" appears here per V2 §3.1.
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <div class="footer-wordmark">KKT</div>
+      <p class="footer-tag">AI that ships, not slides.</p>
+    </div>
+
+    <div class="footer-cols">
+      <div>
+        <div class="footer-col-label">Industries</div>
+        <ul>
+          <li><a href="/industries/retail">Retail</a></li>
+          <li><a href="/industries/fuel-retail">Fuel retail</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-label">Work</div>
+        <ul>
+          <li><a href="/case-studies/">Case studies</a></li>
+          <li><a href="/solutions/optimus">Optimus</a></li>
+          <li><a href="/approach">Approach</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-label">Company</div>
+        <ul>
+          <li><a href="/about">About</a></li>
+          <li><a href="/insights">Insights</a></li>
+          <li><a href="/not-for-you">When NOT to work with us</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="container footer-legal">
+    <p>
+      &copy; {year} Kitty Kat Technologies OÜ. Tallinn, Estonia.
+    </p>
+    <p>
+      <a href="/contact">Email us</a>
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--surface-alt);
+    border-top: 1px solid var(--border);
+    padding-top: clamp(48px, 7vh, 80px);
+    padding-bottom: 28px;
+    margin-top: 48px;
+  }
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding-bottom: 40px;
+  }
+  @media (min-width: 720px) {
+    .footer-inner {
+      grid-template-columns: 1fr 2fr;
+      gap: 64px;
+    }
+  }
+
+  .footer-wordmark {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+  .footer-tag {
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--text-secondary);
+    font-size: 16px;
+    line-height: 1.4;
+    max-width: 26ch;
+  }
+
+  .footer-cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 32px;
+  }
+  .footer-col-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .footer-cols ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .footer-cols a {
+    font-size: 14px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color .15s ease;
+  }
+  .footer-cols a:hover {
+    color: var(--text-primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--border);
+  }
+
+  .footer-legal {
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer-legal p {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin: 0;
+  }
+  .footer-legal a {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-decoration: none;
+  }
+  .footer-legal a:hover {
+    color: var(--text-primary);
+  }
+</style>

@@ -1,0 +1,123 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import CTA from '~/components/CTA.astro';
+
+const stages = [
+  {
+    n: '01',
+    name: 'Strengthen the core',
+    body: 'Data, governance, decision-grade visibility. The unsexy work that makes everything after it possible.',
+  },
+  {
+    n: '02',
+    name: 'Optimize and grow',
+    body: 'AI and PMO discipline applied where they earn their place — margin, cash, availability, customer value, productivity.',
+  },
+  {
+    n: '03',
+    name: 'Expand and monetize',
+    body: 'New revenue, supplier monetization, customer ownership, strategic expansion. The stage where the system runs without us.',
+  },
+];
+---
+
+<BaseLayout
+  title="Approach — KKT"
+  description="Senior PMO + AI delivery. A staged model from strengthening the core to expanding and monetizing."
+>
+  <article class="prose-page">
+    <div class="container">
+      <div class="section-label">Approach</div>
+      <h1 class="h1-page">A delivery model, not a deck.</h1>
+      <p class="lede">
+        We work in three stages. Most clients enter at stage one or two —
+        they think they need stage three. The diagnostic tells us which
+        one is real.
+      </p>
+
+      <section class="stages">
+        {stages.map((s) => (
+          <div class="stage">
+            <div class="stage-num">{s.n}</div>
+            <h2 class="stage-name">{s.name}</h2>
+            <p>{s.body}</p>
+          </div>
+        ))}
+      </section>
+
+      <section class="pmo-note">
+        <h2 class="h2-section">PMO is the rigor.</h2>
+        <p>
+          We are not an AI vendor. We are a delivery firm with deep AI
+          capability. PMO discipline — scope, sequencing, ownership,
+          shipping under constraint — is what separates a slide-led
+          project from one that runs in production.
+        </p>
+      </section>
+    </div>
+
+    <CTA />
+  </article>
+</BaseLayout>
+
+<style>
+  .prose-page { padding-top: clamp(40px, 6vh, 72px); }
+  .section-label { margin-bottom: 18px; }
+  .h1-page {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(32px, 4.5vw, 48px);
+    line-height: 1.16;
+    margin-bottom: 18px;
+    letter-spacing: -0.01em;
+    max-width: 22ch;
+  }
+  .lede {
+    font-size: clamp(17px, 2vw, 20px);
+    color: var(--text-secondary);
+    line-height: 1.55;
+    max-width: 56ch;
+    margin-bottom: 56px;
+  }
+  .stages {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-bottom: 64px;
+  }
+  @media (min-width: 720px) {
+    .stages { grid-template-columns: repeat(3, 1fr); }
+  }
+  .stage {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 24px;
+  }
+  .stage-num {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--accent-text);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+  }
+  .stage-name {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 22px;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    font-weight: 400;
+  }
+  .stage p { font-size: 15px; }
+
+  .pmo-note {
+    max-width: 720px;
+    border-top: 1px solid var(--border);
+    padding-top: 40px;
+  }
+  .pmo-note h2 { margin-bottom: 18px; }
+  .pmo-note p { max-width: 60ch; }
+</style>

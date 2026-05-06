@@ -1,0 +1,173 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import CTA from '~/components/CTA.astro';
+import { getCollection, render } from 'astro:content';
+
+const all = await getCollection('team');
+const team = all
+  .filter((m) => m.data.active !== false)
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+
+// Render bio bodies once at build time.
+const teamWithBios = await Promise.all(
+  team.map(async (m) => {
+    const { Content } = await render(m);
+    return { ...m, Content };
+  }),
+);
+---
+
+<BaseLayout
+  title="About — KKT"
+  description="Kitty Kat Technologies — a senior PMO and AI delivery firm based in Tallinn, EU."
+>
+  <article class="prose-page">
+    <div class="container">
+      <div class="section-label">About</div>
+      <h1 class="h1-page">Kitty Kat Technologies.</h1>
+      <p class="lede">
+        A senior PMO and AI delivery firm based in Tallinn, Estonia. We work
+        with mid-sized retailers and fuel networks where the cost of getting
+        things wrong is real and the value of shipping is measurable.
+      </p>
+
+      <section class="who">
+        <h2 class="h2-section">The team.</h2>
+
+        {teamWithBios.length === 0 ? (
+          <div class="empty">
+            <p>
+              Team page in progress. Bios drop in as files under
+              <code>src/content/team/</code> — see <code>_TEMPLATE.md</code>
+              in that folder.
+            </p>
+          </div>
+        ) : (
+          <div class="team-grid">
+            {teamWithBios.map(({ data, Content }) => (
+              <div class="member">
+                {data.photo && (
+                  <img class="member-photo" src={data.photo} alt={`${data.name} portrait`} loading="lazy" />
+                )}
+                <div class="member-name">{data.name}</div>
+                <div class="member-role">{data.role}</div>
+                <div class="member-bio">
+                  <Content />
+                </div>
+                {data.links && (
+                  <div class="member-links">
+                    {data.links.email && <a href={`mailto:${data.links.email}`}>Email</a>}
+                    {data.links.linkedin && (
+                      <a href={data.links.linkedin} rel="noopener" target="_blank">LinkedIn</a>
+                    )}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
+
+      <section class="legal">
+        <h2 class="h2-section">Legal.</h2>
+        <p>
+          Registered as <strong>Kitty Kat Technologies OÜ</strong>, Tallinn,
+          Estonia. EU entity, Estonian e-residency-friendly contracts.
+        </p>
+      </section>
+    </div>
+
+    <CTA />
+  </article>
+</BaseLayout>
+
+<style>
+  .prose-page { padding-top: clamp(40px, 6vh, 72px); }
+  .section-label { margin-bottom: 18px; }
+  .h1-page {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(32px, 4.5vw, 48px);
+    line-height: 1.16;
+    margin-bottom: 18px;
+    letter-spacing: -0.01em;
+  }
+  .lede {
+    font-size: clamp(17px, 2vw, 20px);
+    color: var(--text-secondary);
+    line-height: 1.55;
+    max-width: 60ch;
+    margin-bottom: 56px;
+  }
+
+  .who { margin-bottom: 56px; }
+  .who h2 { margin-bottom: 28px; }
+
+  .empty {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 28px;
+    max-width: 600px;
+  }
+  .empty p { margin: 0; max-width: 56ch; font-size: 15px; }
+  .empty code {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    background: var(--surface-alt);
+    padding: 1px 6px;
+    border-radius: 3px;
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+  }
+  .member {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 20px;
+  }
+  .member-photo {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 14px;
+  }
+  .member-name {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 22px;
+    color: var(--text-primary);
+    line-height: 1.2;
+  }
+  .member-role {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    margin-top: 4px;
+    margin-bottom: 12px;
+  }
+  .member-bio { font-size: 14px; }
+  .member-bio :global(p) { font-size: 14px; line-height: 1.6; margin-bottom: 8px; }
+  .member-links {
+    margin-top: 12px;
+    display: flex;
+    gap: 14px;
+    font-size: 13px;
+  }
+  .member-links a { color: var(--text-secondary); }
+
+  .legal {
+    border-top: 1px solid var(--border);
+    padding-top: 36px;
+  }
+  .legal h2 { margin-bottom: 16px; }
+  .legal p { max-width: 60ch; }
+</style>

@@ -1,0 +1,90 @@
+---
+// Trust strip. Three deployable variants per V2 §3.3 / hero spec.
+// `variant` prop selects the line. Phase 1 currently runs C (full topline,
+// pending Alfa Oil consent — see WORK/briefs/alfa-oil-content-brief.md).
+// On consent change, swap the prop in index.astro — no rebuild required.
+type Variant = 'A' | 'B' | 'C';
+interface Props {
+  variant?: Variant;
+}
+const { variant = 'C' } = Astro.props as Props;
+
+const otherClients = ['Click & Grow', 'GTE', 'Kricon', 'CSC Telecom'];
+---
+
+<div class={`trust-strip variant-${variant}`}>
+  {variant === 'A' && (
+    <p class="trust-line">
+      <span class="trust-anchor">Alfa Oil</span>
+      <span class="dot">·</span>
+      {otherClients.map((c, i) => (
+        <>
+          <span>{c}</span>
+          {i < otherClients.length - 1 && <span class="dot">·</span>}
+        </>
+      ))}
+      <span class="dot">·</span>
+      <span>Tallinn, EU</span>
+    </p>
+  )}
+
+  {variant === 'B' && (
+    <p class="trust-line">
+      Live with <strong>Alfa Oil</strong> — fuel network, CE region.
+      <span class="dot">·</span>
+      {otherClients.map((c, i) => (
+        <>
+          <span>{c}</span>
+          {i < otherClients.length - 1 && <span class="dot">·</span>}
+        </>
+      ))}
+      <span class="dot">·</span>
+      <span>Tallinn, EU</span>
+    </p>
+  )}
+
+  {variant === 'C' && (
+    <p class="trust-line">
+      Live with <strong>Alfa Oil</strong> — $500M revenue, 600+ stations, Optimus operating.
+      <span class="dot">·</span>
+      {otherClients.map((c, i) => (
+        <>
+          <span>{c}</span>
+          {i < otherClients.length - 1 && <span class="dot">·</span>}
+        </>
+      ))}
+      <span class="dot">·</span>
+      <span>Tallinn, EU</span>
+    </p>
+  )}
+</div>
+
+<style>
+  .trust-strip {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    max-width: 760px;
+  }
+  .trust-line {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+  .trust-line strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+  .trust-anchor {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+  .dot {
+    color: var(--text-muted);
+    margin: 0 8px;
+  }
+  @media (min-width: 720px) {
+    .trust-line { font-size: 15px; }
+  }
+</style>

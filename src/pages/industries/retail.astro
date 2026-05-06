@@ -1,0 +1,95 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import CTA from '~/components/CTA.astro';
+---
+
+<BaseLayout
+  title="Retail — KKT"
+  description="AI and PMO delivery for mid-sized retailers. The full playbook lives at retail.kittykat.tech."
+>
+  <article class="prose-page">
+    <div class="container">
+      <div class="section-label">Industries — Retail</div>
+      <h1 class="h1-page">For mid-sized retailers.</h1>
+      <p class="lede">
+        Margin, cash, customer ownership, decision speed. We work where AI
+        and PMO discipline earn their place against measurable outcomes — not
+        where they look good in a slide.
+      </p>
+
+      <section class="callout">
+        <div class="callout-label">The retail playbook</div>
+        <h2 class="callout-title">Retail AI Canvas — 30 services across 11 domains.</h2>
+        <p class="callout-body">
+          A full open playbook of where AI and PMO discipline create measurable
+          value across a mid-sized retailer. Built from real engagements,
+          updated quarterly, with an advisor that walks you through it.
+        </p>
+        <p>
+          <a href="https://retail.kittykat.tech" class="btn-primary" rel="noopener">
+            Open the playbook →
+          </a>
+        </p>
+      </section>
+    </div>
+
+    <CTA
+      heading="Retail diagnostic, two weeks."
+      body="A focused look at where the playbook applies to your business — what to ship first, what to leave alone, what proof you need to commit."
+    />
+  </article>
+</BaseLayout>
+
+<style>
+  .prose-page {
+    padding-top: clamp(40px, 6vh, 72px);
+  }
+  .section-label { margin-bottom: 18px; }
+  .h1-page {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(32px, 4.5vw, 48px);
+    line-height: 1.16;
+    margin-bottom: 18px;
+    letter-spacing: -0.01em;
+    max-width: 22ch;
+  }
+  .lede {
+    font-size: clamp(17px, 2vw, 20px);
+    color: var(--text-secondary);
+    line-height: 1.55;
+    max-width: 56ch;
+    margin-bottom: 48px;
+  }
+  .callout {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: clamp(24px, 4vw, 36px);
+    max-width: 720px;
+    margin-bottom: 32px;
+  }
+  .callout-label {
+    font-size: 11px;
+    color: var(--accent-text);
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .callout-title {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(22px, 3vw, 30px);
+    line-height: 1.2;
+    color: var(--text-primary);
+    margin-bottom: 14px;
+    max-width: 22ch;
+  }
+  .callout-body {
+    margin-bottom: 20px;
+    max-width: 56ch;
+  }
+</style>

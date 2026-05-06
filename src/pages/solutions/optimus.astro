@@ -1,0 +1,74 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import CTA from '~/components/CTA.astro';
+---
+
+<BaseLayout
+  title="Optimus — KKT"
+  description="Optimus is our operating system for fuel retail. Live at Alfa Oil — 600+ stations, $500M revenue."
+>
+  <article class="prose-page">
+    <div class="container">
+      <div class="section-label">Solutions — Optimus</div>
+      <h1 class="h1-page">Optimus.</h1>
+      <p class="lede">
+        Operating system for fuel retail. Pricing, margin steering, and
+        station-level operations under one roof. In production at Alfa Oil
+        across 600+ stations and $500M of revenue.
+      </p>
+
+      <section class="placeholder-note">
+        <p>
+          <strong>Page in progress.</strong> Full functional description
+          ships with the canonical Optimus walkthrough — what it does, what
+          it doesn&rsquo;t, and how it earns its place. Reference content
+          lives in <code>SITE_STRATEGY_V2_INPUT.md</code> §3.5.
+        </p>
+        <p>
+          For now, see the live deployment and the case study:
+        </p>
+        <p>
+          <a href="/case-studies/alfa-oil" class="btn-primary">Alfa Oil case study →</a>
+        </p>
+      </section>
+    </div>
+
+    <CTA />
+  </article>
+</BaseLayout>
+
+<style>
+  .prose-page { padding-top: clamp(40px, 6vh, 72px); }
+  .section-label { margin-bottom: 18px; }
+  .h1-page {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(32px, 4.5vw, 48px);
+    line-height: 1.16;
+    margin-bottom: 18px;
+    letter-spacing: -0.01em;
+  }
+  .lede {
+    font-size: clamp(17px, 2vw, 20px);
+    color: var(--text-secondary);
+    line-height: 1.55;
+    max-width: 56ch;
+    margin-bottom: 40px;
+  }
+  .placeholder-note {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 24px;
+    max-width: 700px;
+  }
+  .placeholder-note p { margin-bottom: 12px; max-width: 56ch; }
+  code {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    background: var(--surface-alt);
+    padding: 1px 6px;
+    border-radius: 3px;
+  }
+</style>

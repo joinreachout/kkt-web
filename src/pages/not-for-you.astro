@@ -1,0 +1,152 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="When NOT to work with us — KKT"
+  description="We turn down work where we are not the right partner. Here is when not to call us."
+>
+  <article class="prose-page">
+    <div class="container">
+      <header class="prose-header">
+        <div class="section-label">When NOT to work with us</div>
+        <h1 class="h1-page">When NOT to work with us</h1>
+        <p class="lede">
+          We turn down work where we are not the right partner. To save your
+          time and ours, here is when not to call us.
+        </p>
+      </header>
+
+      <div class="prose">
+        <h2>You are below ~$50M in revenue</h2>
+        <p>
+          We work with mid-sized retailers and fuel networks. Below that scale,
+          the cost of our delivery model exceeds the value we can realistically
+          create for you. There are good partners for smaller companies. We are
+          not one of them.
+        </p>
+
+        <h2>You want AI strategy without delivery</h2>
+        <p>
+          We do not write decks that sit on a shelf. Every engagement we accept
+          is shaped to put something operating into your business. If you want
+          a slide-led strategy with no delivery team, we are not the fit.
+        </p>
+
+        <h2>You have no senior data lead inside the company</h2>
+        <p>
+          If we are the only people in the room who care about data quality,
+          governance, and adoption, the project will fail after we leave. We
+          need a senior counterpart inside your organisation — not a champion
+          in name, an actual one with authority and time.
+        </p>
+
+        <h2>You need a model in production in four weeks</h2>
+        <p>
+          A diagnostic in four weeks — yes. A model running in your business
+          and creating measured outcomes in four weeks — no. Anyone who
+          promises that is selling you something else. We will not.
+        </p>
+
+        <h2>You are in heavily regulated banking, public sector, or defence</h2>
+        <p>
+          These domains have their own delivery patterns and compliance bars.
+          We respect them; we do not pretend to be experts in them. There are
+          firms built specifically for that work, and you should hire one of
+          them.
+        </p>
+
+        <h2>You want a generic AI vendor</h2>
+        <p>
+          If your goal is &ldquo;deploy a chatbot&rdquo;, &ldquo;roll out
+          Copilot&rdquo;, or &ldquo;do an LLM pilot&rdquo; without a clear
+          business outcome — we are the wrong call. We do not do AI for
+          AI&rsquo;s sake. We do data, models, and AI where they earn their
+          place against margin, cash, availability, customer value, or
+          productivity.
+        </p>
+
+        <h2>You are looking for a body shop</h2>
+        <p>
+          We work alongside your team. We bring senior delivery rigor, AI
+          capability, and PMO discipline. We do not run your operations, your
+          IT department, or your data function for you. If you need
+          full-service outsourcing or staff augmentation, hire a different
+          kind of firm.
+        </p>
+
+        <hr />
+
+        <p class="closer">
+          If you read all of this and still want to talk, that is usually a
+          good sign.
+        </p>
+
+        <p class="cta-line">
+          <a href="/contact" class="btn-primary">Book a diagnostic</a>
+        </p>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .prose-page {
+    padding-top: clamp(40px, 6vh, 72px);
+    padding-bottom: clamp(56px, 9vh, 96px);
+  }
+  .prose-header {
+    max-width: 720px;
+    margin-bottom: 40px;
+  }
+  .section-label {
+    margin-bottom: 18px;
+  }
+  .h1-page {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(32px, 4.5vw, 48px);
+    line-height: 1.16;
+    margin-bottom: 18px;
+    letter-spacing: -0.01em;
+    max-width: 22ch;
+  }
+  .lede {
+    font-size: clamp(17px, 2vw, 20px);
+    color: var(--text-secondary);
+    line-height: 1.55;
+    max-width: 56ch;
+  }
+
+  .prose {
+    max-width: 680px;
+  }
+  .prose h2 {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 19px;
+    color: var(--text-primary);
+    margin-top: 36px;
+    margin-bottom: 10px;
+    letter-spacing: -0.005em;
+  }
+  .prose p {
+    margin-bottom: 14px;
+  }
+  .prose hr {
+    margin: 40px 0 28px;
+    border: none;
+    border-top: 1px solid var(--border);
+  }
+  .prose .closer {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 20px;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+  }
+  .prose .cta-line {
+    margin-top: 8px;
+  }
+</style>
