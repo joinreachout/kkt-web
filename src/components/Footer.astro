@@ -42,10 +42,12 @@ const year = new Date().getFullYear();
 
   <div class="container footer-legal">
     <p>
-      &copy; {year} Kitty Kat Technologies OÜ. Tallinn, Estonia.
+      &copy; {year} Kitty Kat Technologies OÜ &middot; Jõe 7, 10151 Tallinn, Estonia
     </p>
     <p>
-      <a href="/contact">Email us</a>
+      <a href="mailto:hello@kittykat.tech">hello@kittykat.tech</a>
+      <span class="sep">&middot;</span>
+      <a href="tel:+37255553621">+372 5555 3621</a>
     </p>
   </div>
 </footer>
@@ -143,5 +145,9 @@ const year = new Date().getFullYear();
   }
   .footer-legal a:hover {
     color: var(--text-primary);
+  }
+  .footer-legal .sep {
+    margin: 0 8px;
+    color: var(--text-muted);
   }
 </style>
