@@ -27,13 +27,20 @@ import CatMark from '~/components/CatMark.astro';
       <p class="aside">
         <span class="hint">Try the Konami code if you are bored.</span>
       </p>
+
+      <noscript>
+        <p class="aside-fallback">
+          <a href="/galaga">Or shoot down some vendor decks →</a>
+        </p>
+      </noscript>
     </div>
   </article>
 </BaseLayout>
 
 <script>
-  // Konami code easter egg — lifted pattern from retail microsite.
-  // ↑ ↑ ↓ ↓ ← → ← → B A → confetti-free silly mode.
+  // Konami code easter egg — ↑ ↑ ↓ ↓ ← → ← → B A
+  // Triggers a brief tilt + redirect to /galaga where you can shoot
+  // down vendor-buzzword decks. Pattern lifted from retail microsite.
   const seq = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
   let i = 0;
   window.addEventListener('keydown', (e) => {
@@ -44,6 +51,7 @@ import CatMark from '~/components/CatMark.astro';
       if (i === seq.length) {
         document.body.classList.add('konami');
         i = 0;
+        setTimeout(() => { window.location.href = '/galaga'; }, 600);
       }
     } else {
       i = got === seq[0] ? 1 : 0;

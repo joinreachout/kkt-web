@@ -1,0 +1,445 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Decks down — KKT"
+  description="An easter-egg arcade game. AI that ships, not slides — and you can shoot them."
+  noindex={true}
+>
+  <article class="game-page">
+    <div class="container narrow">
+      <div class="section-label">Easter egg</div>
+      <h1 class="h1-page">Decks down.</h1>
+      <p class="lede">
+        Shoot down vendor decks before they reach the bottom. Each
+        deck is a buzzword we&rsquo;d push back on at a diagnostic.
+      </p>
+
+      <div class="game-shell">
+        <canvas id="kkt-galaga" width="720" height="540" tabindex="0"
+                aria-label="Galaga-style mini-game canvas"></canvas>
+        <div class="game-controls">
+          <kbd>←</kbd> <kbd>→</kbd> move &middot; <kbd>Space</kbd> shoot &middot;
+          <kbd>P</kbd> pause &middot; <kbd>R</kbd> restart &middot; <kbd>Esc</kbd> leave
+        </div>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<script>
+  // ─── KKT-themed Galaga-lite ───────────────────────────────────────
+  // Player ship at bottom shoots up at falling vendor-buzzword "decks".
+  // Pure vanilla canvas — no deps. ~250 lines.
+
+  const canvas = document.getElementById('kkt-galaga') as HTMLCanvasElement | null;
+  if (canvas) {
+    const ctx = canvas.getContext('2d')!;
+    const W = canvas.width;
+    const H = canvas.height;
+
+    const PALETTE = {
+      bg:       '#1A1410',
+      surface:  '#2A211A',
+      cream:    '#F5F3EF',
+      muted:    '#9C8E82',
+      accent:   '#B8832A',
+      danger:   '#C94A3D',
+    };
+
+    const VENDOR_WORDS = [
+      'SYNERGY', 'LEVERAGE', 'UNLOCK', 'AI/ML', 'DIGITAL TX',
+      'GAME-CHANGING', 'CUTTING-EDGE', 'BEST-IN-CLASS', 'HYPER-PERSONALIZE',
+      'STATE-OF-THE-ART', 'SEAMLESS', 'TRANSFORM', 'DISRUPT', 'ROBUST',
+      'SCALABLE', 'EMPOWER', 'PARADIGM', 'HOLISTIC', 'BANDWIDTH',
+      'LOW-HANGING', 'BLUE-SKY', 'IDEATE', 'ECOSYSTEM', 'DEEP-DIVE',
+    ];
+
+    interface Bullet { x: number; y: number; w: number; h: number; vy: number; }
+    interface Enemy {
+      x: number; y: number; w: number; h: number;
+      vx: number; vy: number;
+      word: string; alive: boolean;
+    }
+
+    const player = {
+      x: W / 2 - 22,
+      y: H - 60,
+      w: 44,
+      h: 18,
+      speed: 6,
+      cooldown: 0,
+    };
+
+    let bullets: Bullet[] = [];
+    let enemies: Enemy[] = [];
+    let score = 0;
+    let wave = 1;
+    let lives = 3;
+    let gameState: 'playing' | 'gameover' | 'paused' | 'wavestart' = 'wavestart';
+    let waveStartAt = performance.now();
+    let particles: Array<{ x: number; y: number; vx: number; vy: number; life: number; color: string }> = [];
+
+    const HIGHSCORE_KEY = 'kkt-galaga-highscore';
+    let highScore = Number(localStorage.getItem(HIGHSCORE_KEY) || 0);
+
+    const keys: Record<string, boolean> = {};
+    let lastShotAt = 0;
+
+    // ── Wave generation ────────────────────────────────────────────
+    function spawnWave(n: number) {
+      enemies = [];
+      const count = Math.min(6 + n * 2, 16);
+      const baseSpeed = 0.4 + n * 0.12;
+      for (let i = 0; i < count; i++) {
+        const word = VENDOR_WORDS[Math.floor(Math.random() * VENDOR_WORDS.length)];
+        const w = Math.max(60, word.length * 9 + 20);
+        enemies.push({
+          x: Math.random() * (W - w),
+          y: -40 - Math.random() * 200,
+          w,
+          h: 26,
+          vx: (Math.random() < 0.5 ? -1 : 1) * (Math.random() * 0.5 + baseSpeed * 0.4),
+          vy: baseSpeed + Math.random() * 0.3,
+          word,
+          alive: true,
+        });
+      }
+    }
+
+    // ── Input ──────────────────────────────────────────────────────
+    canvas.addEventListener('keydown', (e: KeyboardEvent) => {
+      keys[e.key] = true;
+      if (e.key === ' ' || e.key === 'ArrowLeft' || e.key === 'ArrowRight' || e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+        e.preventDefault();
+      }
+      if (e.key === 'Escape') {
+        window.location.href = '/';
+      }
+      if (e.key === 'r' || e.key === 'R') {
+        resetGame();
+      }
+      if (e.key === 'p' || e.key === 'P') {
+        gameState = gameState === 'paused' ? 'playing' : 'paused';
+      }
+    });
+    canvas.addEventListener('keyup', (e: KeyboardEvent) => { keys[e.key] = false; });
+
+    // Auto-focus the canvas on load so keys work without click
+    canvas.focus();
+
+    // Refocus on click (in case user clicked away)
+    canvas.addEventListener('click', () => canvas.focus());
+
+    // ── Game logic ─────────────────────────────────────────────────
+    function resetGame() {
+      score = 0;
+      wave = 1;
+      lives = 3;
+      bullets = [];
+      particles = [];
+      player.x = W / 2 - player.w / 2;
+      gameState = 'wavestart';
+      waveStartAt = performance.now();
+      spawnWave(wave);
+    }
+
+    function spawnExplosion(x: number, y: number, color: string) {
+      for (let i = 0; i < 14; i++) {
+        const a = Math.random() * Math.PI * 2;
+        const sp = Math.random() * 3 + 1;
+        particles.push({
+          x, y,
+          vx: Math.cos(a) * sp,
+          vy: Math.sin(a) * sp,
+          life: 1,
+          color,
+        });
+      }
+    }
+
+    function update() {
+      if (gameState === 'paused' || gameState === 'gameover') return;
+
+      // Player movement
+      if (keys['ArrowLeft'] || keys['a'] || keys['A']) player.x -= player.speed;
+      if (keys['ArrowRight'] || keys['d'] || keys['D']) player.x += player.speed;
+      player.x = Math.max(0, Math.min(W - player.w, player.x));
+
+      // Shoot
+      if (keys[' '] && performance.now() - lastShotAt > 220) {
+        bullets.push({
+          x: player.x + player.w / 2 - 1.5,
+          y: player.y - 4,
+          w: 3,
+          h: 14,
+          vy: -9,
+        });
+        lastShotAt = performance.now();
+      }
+
+      // Bullets
+      for (const b of bullets) b.y += b.vy;
+      bullets = bullets.filter((b) => b.y > -20);
+
+      // Wave-start delay
+      if (gameState === 'wavestart' && performance.now() - waveStartAt > 1200) {
+        gameState = 'playing';
+      }
+
+      if (gameState === 'playing') {
+        // Enemies
+        for (const e of enemies) {
+          if (!e.alive) continue;
+          e.x += e.vx;
+          e.y += e.vy;
+          if (e.x < 0 || e.x + e.w > W) e.vx *= -1;
+
+          // Collision with player
+          if (rectsOverlap(e, player)) {
+            spawnExplosion(player.x + player.w / 2, player.y + player.h / 2, PALETTE.danger);
+            lives -= 1;
+            e.alive = false;
+            if (lives <= 0) {
+              gameState = 'gameover';
+              if (score > highScore) {
+                highScore = score;
+                localStorage.setItem(HIGHSCORE_KEY, String(highScore));
+              }
+            }
+          }
+
+          // Reached bottom
+          if (e.y > H) {
+            e.alive = false;
+            lives -= 1;
+            if (lives <= 0) {
+              gameState = 'gameover';
+              if (score > highScore) {
+                highScore = score;
+                localStorage.setItem(HIGHSCORE_KEY, String(highScore));
+              }
+            }
+          }
+        }
+
+        // Bullet vs enemy collisions
+        for (const b of bullets) {
+          for (const e of enemies) {
+            if (!e.alive) continue;
+            if (rectsOverlap(b, e)) {
+              e.alive = false;
+              b.y = -100; // mark for removal
+              score += Math.max(10, e.word.length * 2);
+              spawnExplosion(e.x + e.w / 2, e.y + e.h / 2, PALETTE.accent);
+              break;
+            }
+          }
+        }
+
+        enemies = enemies.filter((e) => e.alive);
+
+        // Wave clear
+        if (enemies.length === 0) {
+          wave += 1;
+          gameState = 'wavestart';
+          waveStartAt = performance.now();
+          spawnWave(wave);
+        }
+      }
+
+      // Particles
+      for (const p of particles) {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vx *= 0.96;
+        p.vy *= 0.96;
+        p.life -= 0.025;
+      }
+      particles = particles.filter((p) => p.life > 0);
+    }
+
+    function rectsOverlap(a: { x: number; y: number; w: number; h: number }, b: { x: number; y: number; w: number; h: number }): boolean {
+      return a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y;
+    }
+
+    // ── Render ─────────────────────────────────────────────────────
+    function render() {
+      // Background
+      ctx.fillStyle = PALETTE.bg;
+      ctx.fillRect(0, 0, W, H);
+
+      // Subtle grid texture
+      ctx.strokeStyle = 'rgba(245, 243, 239, 0.03)';
+      ctx.lineWidth = 1;
+      for (let x = 0; x < W; x += 60) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, H);
+        ctx.stroke();
+      }
+      for (let y = 0; y < H; y += 60) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(W, y);
+        ctx.stroke();
+      }
+
+      // Player
+      ctx.fillStyle = PALETTE.cream;
+      ctx.fillRect(player.x, player.y, player.w, player.h);
+      // Player notch (gun)
+      ctx.fillRect(player.x + player.w / 2 - 3, player.y - 8, 6, 8);
+
+      // Bullets
+      ctx.fillStyle = PALETTE.accent;
+      for (const b of bullets) ctx.fillRect(b.x, b.y, b.w, b.h);
+
+      // Enemies (vendor-buzzword decks)
+      ctx.font = '600 12px ui-monospace, Menlo, monospace';
+      ctx.textBaseline = 'middle';
+      ctx.textAlign = 'center';
+      for (const e of enemies) {
+        if (!e.alive) continue;
+        ctx.fillStyle = PALETTE.surface;
+        ctx.fillRect(e.x, e.y, e.w, e.h);
+        ctx.strokeStyle = PALETTE.muted;
+        ctx.lineWidth = 1;
+        ctx.strokeRect(e.x + 0.5, e.y + 0.5, e.w - 1, e.h - 1);
+        ctx.fillStyle = PALETTE.cream;
+        ctx.fillText(e.word, e.x + e.w / 2, e.y + e.h / 2);
+      }
+
+      // Particles
+      for (const p of particles) {
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = Math.max(0, p.life);
+        ctx.fillRect(p.x - 2, p.y - 2, 4, 4);
+      }
+      ctx.globalAlpha = 1;
+
+      // HUD
+      ctx.fillStyle = PALETTE.muted;
+      ctx.font = '600 11px ui-monospace, Menlo, monospace';
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'top';
+      ctx.fillText(`SCORE  ${String(score).padStart(5, '0')}`, 16, 14);
+      ctx.fillText(`HI    ${String(highScore).padStart(5, '0')}`, 16, 30);
+      ctx.textAlign = 'right';
+      ctx.fillText(`WAVE  ${String(wave).padStart(2, '0')}`, W - 16, 14);
+      ctx.fillText(`LIVES ${'•'.repeat(Math.max(0, lives))}`, W - 16, 30);
+
+      // Wave-start banner
+      if (gameState === 'wavestart') {
+        ctx.fillStyle = PALETTE.accent;
+        ctx.font = 'italic 32px "Playfair Display", serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(`Wave ${wave}`, W / 2, H / 2 - 10);
+        ctx.fillStyle = PALETTE.muted;
+        ctx.font = '600 11px ui-monospace, Menlo, monospace';
+        ctx.fillText('SHIP, NOT SLIDE', W / 2, H / 2 + 20);
+      }
+
+      // Pause overlay
+      if (gameState === 'paused') {
+        ctx.fillStyle = 'rgba(26, 20, 16, 0.7)';
+        ctx.fillRect(0, 0, W, H);
+        ctx.fillStyle = PALETTE.cream;
+        ctx.font = 'italic 32px "Playfair Display", serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('Paused.', W / 2, H / 2);
+        ctx.fillStyle = PALETTE.muted;
+        ctx.font = '600 11px ui-monospace, Menlo, monospace';
+        ctx.fillText('PRESS P TO RESUME', W / 2, H / 2 + 30);
+      }
+
+      // Game over overlay
+      if (gameState === 'gameover') {
+        ctx.fillStyle = 'rgba(26, 20, 16, 0.8)';
+        ctx.fillRect(0, 0, W, H);
+        ctx.fillStyle = PALETTE.cream;
+        ctx.font = 'italic 38px "Playfair Display", serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('Decks won.', W / 2, H / 2 - 32);
+        ctx.fillStyle = PALETTE.accent;
+        ctx.font = '600 14px ui-monospace, Menlo, monospace';
+        ctx.fillText(`SCORE  ${score}`, W / 2, H / 2 + 8);
+        ctx.fillStyle = PALETTE.muted;
+        ctx.font = '600 11px ui-monospace, Menlo, monospace';
+        ctx.fillText(`HI  ${highScore}`, W / 2, H / 2 + 30);
+        ctx.fillText('PRESS R TO RESTART · ESC TO LEAVE', W / 2, H / 2 + 60);
+      }
+    }
+
+    // ── Loop ───────────────────────────────────────────────────────
+    function loop() {
+      update();
+      render();
+      requestAnimationFrame(loop);
+    }
+
+    // Start
+    spawnWave(wave);
+    requestAnimationFrame(loop);
+  }
+</script>
+
+<style>
+  .game-page { padding-top: clamp(40px, 6vh, 72px); padding-bottom: clamp(56px, 9vh, 96px); }
+  .narrow { max-width: 760px; }
+  .section-label { margin-bottom: 18px; }
+  .h1-page {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(36px, 5vw, 56px);
+    line-height: 1.14;
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+  }
+  .lede {
+    font-size: clamp(15px, 1.7vw, 18px);
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin-bottom: 32px;
+    max-width: 56ch;
+  }
+  .game-shell {
+    background: #1A1410;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 16px;
+    display: inline-block;
+    max-width: 100%;
+  }
+  #kkt-galaga {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 720px;
+    image-rendering: pixelated;
+    background: #1A1410;
+    outline: none;
+  }
+  .game-controls {
+    margin-top: 14px;
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+  }
+  .game-controls kbd {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    background: rgba(245, 243, 239, 0.08);
+    border: 1px solid rgba(245, 243, 239, 0.16);
+    border-radius: 2px;
+    padding: 1px 5px;
+    color: var(--text-muted);
+    margin: 0 1px;
+  }
+</style>
