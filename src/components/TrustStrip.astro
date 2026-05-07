@@ -33,7 +33,9 @@ const logos = [
 
   <div class="logo-strip">
     {logos.map((l) => (
-      <img class="logo" src={l.src} alt={l.alt} loading="lazy" />
+      <div class="logo-chip">
+        <img class="logo" src={l.src} alt={l.alt} loading="lazy" />
+      </div>
     ))}
   </div>
 
@@ -64,23 +66,34 @@ const logos = [
   .logo-strip {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    gap: 36px;
+    align-items: stretch;
+    gap: 12px;
     margin-top: 22px;
     margin-bottom: 18px;
   }
-  @media (min-width: 720px) {
-    .logo-strip { gap: 48px; }
+  .logo-chip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    width: 132px;
+    height: 88px;
+    padding: 14px 18px;
+    transition: border-color .18s ease;
   }
+  .logo-chip:hover { border-color: var(--border-hover); }
   .logo {
-    height: 48px;
+    max-width: 100%;
+    max-height: 100%;
     width: auto;
-    max-width: 140px;
+    height: auto;
     object-fit: contain;
     display: block;
   }
-  @media (min-width: 720px) {
-    .logo { height: 54px; }
+  @media (max-width: 720px) {
+    .logo-chip { width: 110px; height: 76px; padding: 12px 14px; }
   }
 
   .trust-tail {
