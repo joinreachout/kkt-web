@@ -387,6 +387,12 @@ export default function Advisor() {
                       ))}
                     </div>
                   )}
+                  {m.role === 'assistant' && m.reasoningSummary && (
+                    <details className="kkt-advisor-reasoning">
+                      <summary>Why this answer?</summary>
+                      <p>{m.reasoningSummary}</p>
+                    </details>
+                  )}
                 </li>
               ))}
               {thinking && messages[messages.length - 1]?.role === 'assistant' && !messages[messages.length - 1]?.content && (

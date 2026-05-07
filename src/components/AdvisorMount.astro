@@ -239,6 +239,49 @@ import Advisor from './Advisor.tsx';
     color: var(--accent-text);
   }
 
+  .kkt-advisor-reasoning {
+    margin-top: 8px;
+    padding-top: 8px;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .kkt-advisor-reasoning summary {
+    cursor: pointer;
+    color: var(--text-muted);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 0;
+    transition: color .15s ease;
+  }
+  .kkt-advisor-reasoning summary::-webkit-details-marker { display: none; }
+  .kkt-advisor-reasoning summary::before {
+    content: '▸';
+    font-size: 10px;
+    color: var(--accent-text);
+    transition: transform .15s ease;
+    display: inline-block;
+  }
+  .kkt-advisor-reasoning[open] summary::before {
+    transform: rotate(90deg);
+  }
+  .kkt-advisor-reasoning summary:hover { color: var(--text-secondary); }
+  .kkt-advisor-reasoning p {
+    margin: 8px 0 0;
+    padding: 10px 12px;
+    background: var(--surface-alt);
+    border-left: 2px solid var(--accent);
+    border-radius: 0 3px 3px 0;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--text-secondary);
+    max-width: 56ch;
+    font-style: italic;
+  }
+
   .kkt-advisor-attachment-row {
     display: flex;
     align-items: center;
