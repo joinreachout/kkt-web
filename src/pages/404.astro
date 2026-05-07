@@ -1,67 +1,42 @@
 ---
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import CatMark from '~/components/CatMark.astro';
+import GalagaGame from '~/components/GalagaGame.astro';
 ---
 
 <BaseLayout
   title="404 — Not found — KKT"
-  description="That page is not here."
+  description="That page is not here. Have a Galaga while you find your way back."
   noindex={true}
 >
   <article class="prose-page">
     <div class="container narrow">
       <div class="cat-wrap" aria-hidden="true">
-        <CatMark size={88} />
+        <CatMark size={64} />
       </div>
       <div class="section-label">404</div>
       <h1 class="h1-page">That page is not here.</h1>
       <p class="lede">
-        Either it never was, or it moved. Either way, the way out is below.
+        Either it never was, or it moved. Either way — have a Galaga
+        while you find your way back. The vendor decks won&rsquo;t
+        ship themselves.
       </p>
 
       <div class="cta-row">
         <a href="/" class="btn-primary">Home</a>
         <a href="/case-studies/" class="btn-ghost">See our work</a>
       </div>
+    </div>
 
-      <p class="aside">
-        <span class="hint">Try the Konami code if you are bored.</span>
-      </p>
-
-      <noscript>
-        <p class="aside-fallback">
-          <a href="/galaga">Or shoot down some vendor decks →</a>
-        </p>
-      </noscript>
+    <div class="container narrow game-block">
+      <GalagaGame />
     </div>
   </article>
 </BaseLayout>
 
-<script>
-  // Konami code easter egg — ↑ ↑ ↓ ↓ ← → ← → B A
-  // Triggers a brief tilt + redirect to /galaga where you can shoot
-  // down vendor-buzzword decks. Pattern lifted from retail microsite.
-  const seq = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
-  let i = 0;
-  window.addEventListener('keydown', (e) => {
-    const expected = seq[i];
-    const got = e.key === ' ' ? ' ' : e.key.length === 1 ? e.key.toLowerCase() : e.key;
-    if (got === expected) {
-      i += 1;
-      if (i === seq.length) {
-        document.body.classList.add('konami');
-        i = 0;
-        setTimeout(() => { window.location.href = '/galaga'; }, 600);
-      }
-    } else {
-      i = got === seq[0] ? 1 : 0;
-    }
-  });
-</script>
-
 <style>
-  .prose-page { padding-top: clamp(56px, 9vh, 96px); padding-bottom: clamp(56px, 9vh, 96px); }
-  .narrow { max-width: 640px; }
+  .prose-page { padding-top: clamp(40px, 6vh, 72px); padding-bottom: clamp(56px, 9vh, 96px); }
+  .narrow { max-width: 760px; }
   .cat-wrap {
     color: var(--text-primary);
     margin-bottom: 24px;
@@ -79,30 +54,20 @@ import CatMark from '~/components/CatMark.astro';
     max-width: 18ch;
   }
   .lede {
-    font-size: clamp(17px, 2vw, 20px);
+    font-size: clamp(15px, 1.7vw, 18px);
     color: var(--text-secondary);
     line-height: 1.55;
-    margin-bottom: 32px;
-    max-width: 50ch;
+    margin-bottom: 28px;
+    max-width: 56ch;
   }
   .cta-row {
     display: flex;
     gap: 12px;
     flex-wrap: wrap;
-    margin-bottom: 64px;
+    margin-bottom: 48px;
   }
-  .aside {
-    font-size: 12px;
-    color: var(--text-muted);
-    letter-spacing: 0.06em;
-  }
-  .hint { font-family: var(--font-mono); }
-
-  /* Konami easter egg — silly mode, deliberately restrained. */
-  :global(body.konami) { animation: tilt 2.4s ease-in-out infinite; }
-  @keyframes tilt {
-    0%, 100% { transform: rotate(0deg); }
-    25% { transform: rotate(0.4deg); }
-    75% { transform: rotate(-0.4deg); }
+  .game-block {
+    text-align: center;
+    margin-top: 16px;
   }
 </style>
