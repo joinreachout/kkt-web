@@ -47,6 +47,15 @@ import RelatedCases from '~/components/RelatedCases.astro';
         </p>
       </section>
 
+      <section class="shipped">
+        <div class="shipped-label">What shipped</div>
+        <ul>
+          <li><strong>Cross-functional reporting</strong> — finance, manufacturing, and operations on a single decision surface.</li>
+          <li><strong>Compressor anomaly-detection prototype</strong> — ML over operating telemetry, ready to industrialise into the next phase.</li>
+          <li><strong>Energy-consumption optimisation pilot</strong> — model showing realistic savings ranges per compressor profile.</li>
+        </ul>
+      </section>
+
       <section class="stack">
         <div class="stack-label">Tech stack</div>
         <p>PowerBI · PostgreSQL · Airflow · DBT · TensorFlow / Sklearn · Flask · PuLP / CPLEX</p>
@@ -139,4 +148,33 @@ import RelatedCases from '~/components/RelatedCases.astro';
     font-style: italic;
     max-width: 60ch;
   }
+
+  .shipped {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 4px 4px 0;
+    padding: 22px 26px;
+    max-width: 720px;
+    margin-bottom: 32px;
+  }
+  .shipped-label {
+    font-size: 11px;
+    color: var(--accent-text);
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .shipped ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+  .shipped li {
+    font-size: 14px;
+    line-height: 1.6;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    max-width: 64ch;
+  }
+  .shipped li:last-child { padding-bottom: 0; border-bottom: none; }
+  .shipped strong { color: var(--text-primary); font-weight: 600; }
+
 </style>
