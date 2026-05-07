@@ -1,5 +1,6 @@
 ---
 // KKT wordmark + nav. Sticky top bar.
+import CatMark from './CatMark.astro';
 const navItems = [
   { href: '/industries/retail', label: 'Retail' },
   { href: '/industries/fuel-retail', label: 'Fuel retail' },
@@ -11,7 +12,10 @@ const navItems = [
 
 <header class="site-header">
   <div class="container header-inner">
-    <a href="/" class="wordmark" aria-label="KKT — home">KKT</a>
+    <a href="/" class="wordmark" aria-label="KKT — home">
+      <CatMark size={26} />
+      <span class="wordmark-text">KKT</span>
+    </a>
 
     <nav aria-label="Primary">
       <ul class="nav-list">
@@ -41,15 +45,20 @@ const navItems = [
     gap: 24px;
   }
   .wordmark {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+  .wordmark:hover { text-decoration: none; color: var(--text-primary); }
+  .wordmark-text {
     font-family: var(--font-body);
     font-size: 13px;
     font-weight: 600;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--text-primary);
-    text-decoration: none;
   }
-  .wordmark:hover { text-decoration: none; color: var(--text-primary); }
 
   .nav-list {
     display: none;
