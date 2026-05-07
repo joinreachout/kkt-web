@@ -1,6 +1,7 @@
 ---
 name: "Dennis Nepomniashy"
 role: "Data-driven Marketing"
+photo: "/team/dennis-nepomniashy.jpg"
 order: 30
 active: true
 links:

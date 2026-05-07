@@ -1,6 +1,7 @@
 ---
 name: "Nageye Ibrahim Rascid"
 role: "Cloud Expert"
+photo: "/team/nageye-rascid.jpg"
 order: 10
 active: true
 links:

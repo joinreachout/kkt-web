@@ -1,6 +1,7 @@
 ---
 name: "George Shevardenidze"
 role: "Data Scientist"
+photo: "/team/george-shevardenidze.jpg"
 order: 20
 active: true
 links:
