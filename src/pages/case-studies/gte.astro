@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import CTA from '~/components/CTA.astro';
+import RelatedCases from '~/components/RelatedCases.astro';
 ---
 
 <BaseLayout
@@ -55,6 +56,8 @@ import CTA from '~/components/CTA.astro';
         Walkable case in editorial. Phase 1.5.
       </p>
     </div>
+
+    <RelatedCases current="gte" />
 
     <CTA />
   </article>

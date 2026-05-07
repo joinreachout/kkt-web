@@ -31,6 +31,56 @@ import CTA from '~/components/CTA.astro';
           </a>
         </p>
       </section>
+
+      <section class="starts">
+        <div class="section-label">Engagement starting points</div>
+        <h2 class="h2-section">Where retail engagements typically begin.</h2>
+        <p class="starts-lede">
+          Diagnostics surface different priorities for different
+          retailers. These four show up the most often as the first
+          workstream worth shipping.
+        </p>
+
+        <div class="starts-grid">
+          <div class="start-card">
+            <h3 class="start-title">Margin recovery and assortment.</h3>
+            <p>
+              Where margin is being left on the shelf, and what to do
+              about it. Data-grounded, decision-shaped, often the
+              fastest line to measurable money in.
+            </p>
+          </div>
+          <div class="start-card">
+            <h3 class="start-title">Customer ownership.</h3>
+            <p>
+              Segmentation, lifecycle, and the operating decisions that
+              follow from knowing who actually drives the business.
+              Compounds over time.
+            </p>
+          </div>
+          <div class="start-card">
+            <h3 class="start-title">Decision cadence.</h3>
+            <p>
+              Pricing, replenishment, cash discipline as a daily
+              rhythm rather than a quarterly review. PMO discipline is
+              what makes that rhythm hold.
+            </p>
+          </div>
+          <div class="start-card">
+            <h3 class="start-title">Foundational data and reporting.</h3>
+            <p>
+              When the core is shaky, everything downstream stays
+              shaky. If the diagnostic surfaces this, we start there
+              before reaching for AI.
+            </p>
+          </div>
+        </div>
+
+        <p class="starts-tail">
+          The full playbook lives at
+          <a href="https://retail.kittykat.tech" rel="noopener">retail.kittykat.tech</a>.
+        </p>
+      </section>
     </div>
 
     <CTA
@@ -92,4 +142,51 @@ import CTA from '~/components/CTA.astro';
     margin-bottom: 20px;
     max-width: 56ch;
   }
+
+  .starts {
+    margin-top: 56px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+  }
+  .starts .section-label { margin-bottom: 14px; }
+  .starts h2 { margin-bottom: 18px; max-width: 24ch; }
+  .starts-lede {
+    max-width: 60ch;
+    margin-bottom: 32px;
+  }
+  .starts-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-bottom: 24px;
+  }
+  @media (min-width: 720px) {
+    .starts-grid { grid-template-columns: 1fr 1fr; }
+  }
+  .start-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 22px 24px;
+  }
+  .start-title {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 20px;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+  }
+  .start-card p { font-size: 15px; max-width: 50ch; }
+  .starts-tail {
+    font-size: 14px;
+    color: var(--text-muted);
+    max-width: 60ch;
+  }
+  .starts-tail a {
+    color: var(--text-primary);
+    font-weight: 500;
+    text-decoration: none;
+  }
+  .starts-tail a:hover { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--accent); }
 </style>

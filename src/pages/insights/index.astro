@@ -26,9 +26,29 @@ const visible = allPosts
       {visible.length === 0 ? (
         <div class="empty">
           <p>
-            First posts launch with the public site. The column will show
-            up here as they ship.
+            First posts ship with the public site. Two named authors,
+            one post a month — what we are actually shipping, what is
+            not working, what we have changed our minds about.
           </p>
+          <p>
+            Until the column starts, the open work lives here:
+          </p>
+          <ul class="empty-links">
+            <li>
+              <a href="https://retail.kittykat.tech" rel="noopener">
+                Retail AI Canvas — open playbook ↗
+              </a>
+              <span>30 services across 11 retail domains, updated quarterly.</span>
+            </li>
+            <li>
+              <a href="/approach">How we ship — the diagnostic and what follows</a>
+              <span>Two-week diagnostic shape and engagement model.</span>
+            </li>
+            <li>
+              <a href="/not-for-you">When NOT to work with us</a>
+              <span>The seven cases where we turn work down.</span>
+            </li>
+          </ul>
         </div>
       ) : (
         <ul class="post-list">
@@ -85,9 +105,33 @@ const visible = allPosts
     border: 1px solid var(--border);
     border-radius: 4px;
     padding: 32px;
-    max-width: 600px;
+    max-width: 720px;
   }
-  .empty p { margin: 0; max-width: 56ch; }
+  .empty p { margin: 0 0 14px; max-width: 60ch; font-size: 15px; }
+  .empty-links {
+    list-style: none;
+    padding: 0;
+    margin: 18px 0 0;
+    display: grid;
+    gap: 14px;
+    border-top: 1px solid var(--border);
+    padding-top: 18px;
+  }
+  .empty-links li {
+    display: grid;
+    gap: 4px;
+  }
+  .empty-links a {
+    color: var(--text-primary);
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 15px;
+  }
+  .empty-links a:hover { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--accent); }
+  .empty-links span {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
 
   .post-list {
     list-style: none;

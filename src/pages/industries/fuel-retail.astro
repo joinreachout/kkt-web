@@ -36,6 +36,56 @@ import CTA from '~/components/CTA.astro';
         <a href="/solutions/optimus" class="btn-primary">See Optimus →</a>
         <a href="/case-studies/alfa-oil" class="btn-ghost">Read the Alfa Oil case</a>
       </section>
+
+      <section class="starts">
+        <div class="section-label">Engagement starting points</div>
+        <h2 class="h2-section">Where fuel-network engagements typically begin.</h2>
+        <p class="starts-lede">
+          Optimus is the operating engine. Around it, we usually pick up
+          one or two of these as the first concrete shipping
+          workstream — driven by what the diagnostic surfaces.
+        </p>
+
+        <div class="starts-grid">
+          <div class="start-card">
+            <h3 class="start-title">Procurement and replenishment intelligence.</h3>
+            <p>
+              The Optimus core. Stockout forecasting, supplier
+              consolidation, working capital release. The thing the
+              head of supply opens at 8 AM.
+            </p>
+          </div>
+          <div class="start-card">
+            <h3 class="start-title">Pricing posture.</h3>
+            <p>
+              Network-level pricing decisions in a daily cadence,
+              with margin posture explicit. What happens when margin
+              becomes a controlled variable rather than an outcome.
+            </p>
+          </div>
+          <div class="start-card">
+            <h3 class="start-title">Station-level operations.</h3>
+            <p>
+              Per-station fill levels, fuel mix, conflict resolution,
+              audit trails. The visibility under the network number,
+              where most operational money is actually moved.
+            </p>
+          </div>
+          <div class="start-card">
+            <h3 class="start-title">Working capital and turnover.</h3>
+            <p>
+              $ frozen in inventory and where to release it, per
+              fuel and per region. Inventory turnover stops being a
+              quarterly review.
+            </p>
+          </div>
+        </div>
+
+        <p class="starts-tail">
+          See the full surface on
+          <a href="/solutions/optimus">Optimus</a>.
+        </p>
+      </section>
     </div>
 
     <CTA
@@ -96,4 +146,51 @@ import CTA from '~/components/CTA.astro';
     flex-wrap: wrap;
     margin-bottom: 32px;
   }
+
+  .starts {
+    margin-top: 32px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+  }
+  .starts .section-label { margin-bottom: 14px; }
+  .starts h2 { margin-bottom: 18px; max-width: 26ch; }
+  .starts-lede {
+    max-width: 60ch;
+    margin-bottom: 32px;
+  }
+  .starts-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-bottom: 24px;
+  }
+  @media (min-width: 720px) {
+    .starts-grid { grid-template-columns: 1fr 1fr; }
+  }
+  .start-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 22px 24px;
+  }
+  .start-title {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 20px;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+  }
+  .start-card p { font-size: 15px; max-width: 50ch; }
+  .starts-tail {
+    font-size: 14px;
+    color: var(--text-muted);
+    max-width: 60ch;
+  }
+  .starts-tail a {
+    color: var(--text-primary);
+    font-weight: 500;
+    text-decoration: none;
+  }
+  .starts-tail a:hover { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--accent); }
 </style>

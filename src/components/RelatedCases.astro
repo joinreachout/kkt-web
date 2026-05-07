@@ -1,0 +1,151 @@
+---
+// Renders 2-3 related cards at the bottom of a case-study page.
+// `current` = slug of the page rendering this, so it's excluded.
+type Item = {
+  href: string;
+  title: string;
+  meta: string;
+  blurb: string;
+};
+
+interface Props {
+  current: string;
+}
+const { current } = Astro.props as Props;
+
+const all: Record<string, Item> = {
+  'alfa-oil': {
+    href: '/case-studies/alfa-oil',
+    title: 'Alfa Oil',
+    meta: 'Fuel retail · Kyrgyzstan · Live',
+    blurb: 'Optimus operating across 600+ stations and $500M revenue.',
+  },
+  'click-and-grow': {
+    href: '/case-studies/click-and-grow',
+    title: 'Click & Grow',
+    meta: 'B2C smart gardens · EE / CIS',
+    blurb: 'Customer analytics and ML segmentation for targeted growth.',
+  },
+  'gte': {
+    href: '/case-studies/gte',
+    title: 'GTE',
+    meta: 'Industrial — compressors',
+    blurb: 'Reporting platform plus ML prototypes for anomaly detection.',
+  },
+  'kricon': {
+    href: '/case-studies/kricon',
+    title: 'Kricon',
+    meta: 'International logistics',
+    blurb: 'Operational visibility and ops-level signal modelling.',
+  },
+  'csc-telecom': {
+    href: '/case-studies/csc-telecom',
+    title: 'CSC Telecom',
+    meta: 'Telecom · Travel SIM',
+    blurb: 'Customer and product analytics adopted into the business.',
+  },
+  optimus: {
+    href: '/solutions/optimus',
+    title: 'Optimus',
+    meta: 'Solution',
+    blurb: 'The operating-intelligence system behind the Alfa Oil engagement.',
+  },
+};
+
+// Per-page related set. Hand-curated, not auto-derived — the editorial
+// pairing matters more than topic similarity.
+const relatedFor: Record<string, string[]> = {
+  'alfa-oil': ['optimus', 'kricon', 'click-and-grow'],
+  'click-and-grow': ['alfa-oil', 'csc-telecom'],
+  'gte': ['kricon', 'alfa-oil'],
+  'kricon': ['gte', 'alfa-oil'],
+  'csc-telecom': ['click-and-grow', 'alfa-oil'],
+};
+
+const slugs = (relatedFor[current] ?? []).filter((s) => s !== current);
+const items = slugs.map((s) => all[s]).filter(Boolean);
+---
+
+{items.length > 0 && (
+  <section class="related">
+    <div class="container">
+      <div class="section-label">Related</div>
+      <h2 class="h2-section">Adjacent work.</h2>
+      <ul class="related-grid">
+        {items.map((it) => (
+          <li>
+            <a href={it.href} class="related-card">
+              <div class="related-meta">{it.meta}</div>
+              <div class="related-title">{it.title}</div>
+              <p class="related-blurb">{it.blurb}</p>
+              <span class="related-arrow">Open →</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+)}
+
+<style>
+  .related {
+    border-top: 1px solid var(--border);
+    background: var(--surface-alt);
+    padding-top: clamp(48px, 7vh, 80px);
+    padding-bottom: clamp(48px, 7vh, 80px);
+  }
+  .related .section-label { margin-bottom: 12px; }
+  .related h2 {
+    margin-bottom: 28px;
+    max-width: 22ch;
+  }
+  .related-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  @media (min-width: 720px) {
+    .related-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  .related-card {
+    display: block;
+    padding: 22px 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color .18s ease;
+    height: 100%;
+  }
+  .related-card:hover { border-color: var(--border-hover); text-decoration: none; }
+  .related-meta {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .related-title {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 22px;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+  .related-blurb {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+    max-width: 36ch;
+  }
+  .related-arrow {
+    font-size: 13px;
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+</style>
