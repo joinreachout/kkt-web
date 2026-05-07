@@ -1,0 +1,524 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import CTA from '~/components/CTA.astro';
+
+// Versioning — bump on each substantive change. Pair with the
+// changelog entries below.
+const VERSION = '0.1';
+const PUBLISHED = '2026-05-07';
+
+const principles = [
+  {
+    n: '01',
+    name: 'Outputs are ranges, not points.',
+    body: 'Never €2,847,392 lost annually. Always €1.8M–€3.1M annually, depending on which gaps are realistically closable in 18 months. Pretending precision we do not have is the fastest way to lose a CFO.',
+  },
+  {
+    n: '02',
+    name: 'Methodology is visible on every output.',
+    body: 'Every computed figure has an expandable How we calculated this panel: source, top-quartile benchmark, user input, gap calculation, date of underlying benchmark data. Nothing in the calculator is unauditable.',
+  },
+  {
+    n: '03',
+    name: 'The calculator must sometimes return no significant gap.',
+    body: 'If a top-quartile operator inputs their numbers and still sees you are losing €X — the calculator is broken. There is at least one branch of output for operators already running at top-quartile.',
+  },
+  {
+    n: '04',
+    name: 'Sensitivity is shown.',
+    body: 'A panel names the top three inputs that drove the result and approximately how much each contributed. The user can see which assumption is doing the heavy lifting before they trust the number.',
+  },
+  {
+    n: '05',
+    name: 'Methodology is public and dated.',
+    body: 'This page. Versioned in lockstep with the calculator. Every revision visible in the changelog. This is what makes the calculator Gartner-grade rather than vendor-grade.',
+  },
+  {
+    n: '06',
+    name: 'Conservative-by-default.',
+    body: 'When a calibration choice exists between aggressive and conservative, we choose conservative. We probably underestimate reads as serious. We probably overestimate reads as sales pitch.',
+  },
+  {
+    n: '07',
+    name: 'Inputs stay in the user’s browser.',
+    body: 'No server transmission unless the user explicitly chooses to attach their results to a diagnostic booking. Stated visibly in the UI. The whole point is to be useful to a CFO who does not want their numbers leaving their machine.',
+  },
+];
+
+const sources = [
+  {
+    tier: 1,
+    name: 'Public annual reports of listed fuel retailers',
+    body: 'MOL, OMV, Couche-Tard, EG Group, Shell retail, BP retail, ENI retail. Margin per liter, convenience attach rate, working capital days — all disclosed in primary filings. We build the benchmark table from filings, not from secondary aggregators.',
+  },
+  {
+    tier: 2,
+    name: 'Industry association publications',
+    body: 'UPEI (European fuel suppliers), national fuel-retail associations across CE/EU. Annual benchmark studies. Cited by document and date.',
+  },
+  {
+    tier: 3,
+    name: 'Trade press surveys',
+    body: 'Fuels Market News, Petrol Plaza, Convenience Store News, NACS Convenience Industry Report. Survey-based but methodology disclosed and traceable.',
+  },
+  {
+    tier: 4,
+    name: 'Major consultancy whitepapers',
+    body: 'Kearney Fuel Retail Outlook, periodic BCG and McKinsey publications. Cited and linked, never repackaged as our own. We are explicit about what is ours and what is theirs.',
+  },
+  {
+    tier: 5,
+    name: 'KKT internal aggregated benchmarks',
+    body: 'From real engagements 2022–2026, anonymized, minimum n=5 per benchmark category. This is the moat layer — only KKT has it. Always disclosed as such, with sample size shown.',
+  },
+];
+
+const changelog = [
+  {
+    version: '0.1',
+    date: '2026-05-07',
+    note: 'Initial public draft. Principles + sourcing approach + risk mitigations published. Calculator UI not yet launched. Benchmark data calibration in progress; expected launch Phase 1.5 (Q3 2026).',
+  },
+];
+---
+
+<BaseLayout
+  title="Cost of Doing Nothing — methodology — KKT"
+  description="The methodology behind the KKT Cost of Doing Nothing calculator: principles, sources, versioning. Public, dated, auditable."
+>
+  <article class="prose-page">
+    <div class="container">
+      <div class="section-label">Methods</div>
+      <h1 class="h1-page">Cost of Doing Nothing — methodology.</h1>
+      <p class="lede">
+        This is the methodology behind the KKT Cost of Doing Nothing
+        calculator. The calculator is a single-page interactive tool
+        that takes 6–8 inputs from a fuel-retail operator and returns
+        a quantified, sourced, range-based estimate of the annual P&amp;L
+        gap between current operations and top-quartile peers.
+      </p>
+
+      <div class="status-banner">
+        <div class="status-row">
+          <span class="status-tag">Status</span>
+          <span class="status-value">v{VERSION} draft &middot; Calculator launches Phase 1.5</span>
+        </div>
+        <p>
+          The calculator is in benchmark-calibration. This methodology
+          page is published first — without the methodology document,
+          the calculator would be a gimmick. Per the principles below,
+          this page goes live before any number is computed.
+        </p>
+      </div>
+
+      <section class="ms-section">
+        <div class="section-label">Why this page exists first</div>
+        <h2 class="h2-section">The methodology is the trust mechanism.</h2>
+        <p>
+          The Cost of Doing Nothing tool will produce numbers that go
+          on board slides. Those numbers can be wrong. The single
+          biggest risk is a real CFO catching a math error and posting
+          it to LinkedIn — a risk we take seriously enough that we
+          publish the methodology before the tool itself ships.
+        </p>
+        <p>
+          Three commitments make this page worth the bytes it occupies:
+          every benchmark in the calculator will trace back to a
+          numbered source listed here; every output will be a range,
+          not a point; and every change to either the calculator or
+          this document will appear in the public changelog at the
+          bottom of this page.
+        </p>
+      </section>
+
+      <section class="ms-section">
+        <div class="section-label">Principles</div>
+        <h2 class="h2-section">Seven non-negotiables.</h2>
+        <p class="ms-lede">
+          If any one is missing, the calculator stops being a CFO tool
+          and starts being a vendor toy. They are the contract between
+          this page and the user.
+        </p>
+
+        <ol class="principles">
+          {principles.map((p) => (
+            <li>
+              <div class="principle-num">{p.n}</div>
+              <div>
+                <h3 class="principle-name">{p.name}</h3>
+                <p>{p.body}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section class="ms-section">
+        <div class="section-label">Sources</div>
+        <h2 class="h2-section">Where the benchmark numbers come from.</h2>
+        <p class="ms-lede">
+          Every benchmark in the calculator must be traceable to a
+          numbered source in this document. Sources are weighted in
+          the order below — primary filings beat secondary aggregators,
+          association data beats trade press, trade press beats
+          consultancy. KKT internal data sits last because it is also
+          the only data we own; we are explicit about that.
+        </p>
+
+        <ol class="sources">
+          {sources.map((s) => (
+            <li>
+              <div class="source-tier">Tier {s.tier}</div>
+              <h3 class="source-name">{s.name}</h3>
+              <p>{s.body}</p>
+            </li>
+          ))}
+        </ol>
+
+        <p class="sources-tail">
+          Each calculator output will cite specific entries — for
+          example: <em>top-quartile shrinkage in CE/EU fuel-retail
+          networks 100–500 stations: 1.4–1.7% (Sources: NACS
+          Convenience Industry Report 2024 §3.2; UPEI European Fuel
+          Retail Survey 2024 Table 7; KKT engagements 2022–2025,
+          n=8).</em>
+        </p>
+      </section>
+
+      <section class="ms-section">
+        <div class="section-label">Inputs and outputs</div>
+        <h2 class="h2-section">What the calculator will ask, what it will return.</h2>
+        <p class="ms-lede">
+          The calculator will collect 6–8 inputs (number of stations,
+          region, revenue band, non-fuel share, analytical maturity,
+          shrinkage, stockout frequency, working capital days). Half
+          are required; the rest accept "I don't know" — losing half
+          the audience to a mandatory shrinkage-rate field is
+          unacceptable.
+        </p>
+        <p>
+          The output will arrive in three blocks:
+        </p>
+        <ol class="output-blocks">
+          <li>
+            <strong>Where you sit on the staged maturity model.</strong>
+            A short narrative placement. Honest about what was
+            inferred and from what. Sometimes: "you appear to be
+            operating at top-quartile on these metrics — gap is in
+            other categories."
+          </li>
+          <li>
+            <strong>Three quantified gap scenarios.</strong>
+            Conservative / median / aggressive. Each as an annual
+            P&amp;L impact range with a realistic timeline (12 / 18 /
+            24–36 months). Each cell expands to show the methodology
+            for that specific number.
+          </li>
+          <li>
+            <strong>What would actually unlock these gaps.</strong>
+            Three to five Playbook services tagged with realistic
+            effort and timeline, linked to the relevant page. Closing
+            CTA: <em>book a diagnostic — we walk this with your real
+            data.</em>
+          </li>
+        </ol>
+      </section>
+
+      <section class="ms-section">
+        <div class="section-label">Risk mitigation</div>
+        <h2 class="h2-section">How we keep this honest.</h2>
+        <ul class="mitigations">
+          <li>
+            <strong>Pre-launch external review.</strong>
+            An external fuel-retail CFO — not a KKT consultant —
+            stress-tests 20 input combinations specifically to find
+            errors. Paid engagement, scope: find errors.
+          </li>
+          <li>
+            <strong>"Spotted an error?" channel.</strong>
+            From day one, the UI will carry a visible button to
+            report calculation issues. Every reported issue gets a
+            public response on this page.
+          </li>
+          <li>
+            <strong>Lockstep versioning.</strong>
+            The calculator and this document share a version number
+            (v1.0, v1.1, v1.2…). Every revision appears in the
+            changelog below.
+          </li>
+          <li>
+            <strong>Inputs stay local.</strong>
+            We do not transmit user inputs to our servers unless the
+            user explicitly chooses to attach their results to a
+            diagnostic booking.
+          </li>
+        </ul>
+      </section>
+
+      <section class="ms-section">
+        <div class="section-label">Changelog</div>
+        <h2 class="h2-section">Public changelog.</h2>
+        <ul class="changelog">
+          {changelog.map((c) => (
+            <li>
+              <div class="cl-meta">
+                <span class="cl-version">v{c.version}</span>
+                <span class="cl-date">{c.date}</span>
+              </div>
+              <p>{c.note}</p>
+            </li>
+          ))}
+        </ul>
+        <p class="meta-line">
+          Methodology document published {PUBLISHED}, current version
+          {' '}<strong>v{VERSION}</strong>. Maintained by KKT;
+          editorial questions to <a href="mailto:hello@kittykat.tech">hello@kittykat.tech</a>.
+        </p>
+      </section>
+    </div>
+
+    <CTA
+      heading="Want the calculator early?"
+      body="The full Cost of Doing Nothing tool launches in Phase 1.5. If you would like to be a calibration partner — running your real data through the model before it goes public — write to us."
+      primaryLabel="Email hello@kittykat.tech"
+      primaryHref="mailto:hello@kittykat.tech"
+      secondaryLabel="See our work"
+      secondaryHref="/case-studies/"
+    />
+  </article>
+</BaseLayout>
+
+<style>
+  .prose-page { padding-top: clamp(40px, 6vh, 72px); padding-bottom: clamp(56px, 9vh, 96px); }
+  .section-label { margin-bottom: 18px; }
+  .h1-page {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(32px, 4.5vw, 50px);
+    line-height: 1.16;
+    margin-bottom: 18px;
+    letter-spacing: -0.01em;
+    max-width: 24ch;
+  }
+  .lede {
+    font-size: clamp(17px, 2vw, 20px);
+    color: var(--text-secondary);
+    line-height: 1.55;
+    max-width: 64ch;
+    margin-bottom: 32px;
+  }
+
+  .status-banner {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 4px 4px 0;
+    padding: 22px 26px;
+    margin-bottom: 56px;
+    max-width: 760px;
+  }
+  .status-row {
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+    margin-bottom: 10px;
+  }
+  .status-tag {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-weight: 600;
+  }
+  .status-value {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+  .status-banner p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin: 0;
+    max-width: 56ch;
+  }
+
+  .ms-section {
+    margin-bottom: clamp(48px, 7vh, 80px);
+    border-top: 1px solid var(--border);
+    padding-top: 40px;
+  }
+  .ms-section h2 { margin-bottom: 18px; max-width: 26ch; }
+  .ms-section p { max-width: 64ch; margin-bottom: 14px; }
+  .ms-lede { color: var(--text-secondary); margin-bottom: 28px; }
+
+  .principles {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 16px;
+    max-width: 820px;
+  }
+  .principles li {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 18px;
+    padding: 22px 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+  }
+  .principle-num {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--accent-text);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    line-height: 1.4;
+  }
+  .principle-name {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 20px;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+  .principles p { font-size: 15px; max-width: 64ch; margin: 0; }
+
+  .sources {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 14px;
+    max-width: 820px;
+  }
+  .sources li {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 22px 24px;
+  }
+  .source-tier {
+    font-size: 11px;
+    color: var(--accent-text);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .source-name {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 20px;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+  }
+  .sources p { font-size: 15px; margin: 0; }
+  .sources-tail {
+    font-size: 14px;
+    color: var(--text-muted);
+    max-width: 64ch;
+    margin-top: 24px;
+  }
+  .sources-tail em { color: var(--text-secondary); }
+
+  .output-blocks {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 16px;
+    max-width: 820px;
+    counter-reset: outputs;
+  }
+  .output-blocks li {
+    counter-increment: outputs;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 22px 24px;
+    font-size: 15px;
+    line-height: 1.6;
+    position: relative;
+    padding-left: 60px;
+  }
+  .output-blocks li::before {
+    content: counter(outputs, decimal-leading-zero);
+    position: absolute;
+    left: 24px;
+    top: 22px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--accent-text);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+  .output-blocks strong { color: var(--text-primary); display: block; margin-bottom: 4px; }
+  .output-blocks em { color: var(--text-secondary); }
+
+  .mitigations {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 14px;
+    max-width: 820px;
+  }
+  .mitigations li {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 4px 4px 0;
+    padding: 18px 22px;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .mitigations strong { color: var(--text-primary); display: block; margin-bottom: 4px; }
+
+  .changelog {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px;
+    display: grid;
+    gap: 14px;
+    max-width: 820px;
+  }
+  .changelog li {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 18px 22px;
+  }
+  .cl-meta {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 8px;
+    align-items: baseline;
+  }
+  .cl-version {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .cl-date {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+  }
+  .changelog p { font-size: 14px; margin: 0; max-width: 64ch; }
+
+  .meta-line {
+    font-size: 13px;
+    color: var(--text-muted);
+    max-width: 64ch;
+  }
+  .meta-line a { color: var(--text-primary); }
+</style>
