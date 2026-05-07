@@ -10,14 +10,6 @@ interface Props {
 const { variant = 'C' } = Astro.props as Props;
 
 const otherClients = ['Click & Grow', 'GTE', 'Kricon', 'CSC Telecom'];
-
-const logos = [
-  { src: '/logos/alfa-oil.png', alt: 'Alfa Oil' },
-  { src: '/logos/click-and-grow.png', alt: 'Click & Grow' },
-  { src: '/logos/gte.png', alt: 'GTE' },
-  { src: '/logos/kricon.png', alt: 'Kricon' },
-  { src: '/logos/csc-telecom.png', alt: 'CSC Telecom' },
-];
 ---
 
 <div class={`trust-strip variant-${variant}`}>
@@ -65,12 +57,6 @@ const logos = [
       <span>Tallinn, EU</span>
     </p>
   )}
-
-  <div class="logo-strip">
-    {logos.map((l) => (
-      <img class="logo" src={l.src} alt={l.alt} loading="lazy" />
-    ))}
-  </div>
 </div>
 
 <style>
@@ -100,25 +86,5 @@ const logos = [
   }
   @media (min-width: 720px) {
     .trust-line { font-size: 15px; }
-  }
-
-  .logo-strip {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 32px;
-    margin-top: 22px;
-  }
-  .logo {
-    height: 32px;
-    width: auto;
-    max-width: 140px;
-    object-fit: contain;
-    filter: grayscale(1) opacity(0.55);
-    transition: filter .2s ease;
-  }
-  .logo:hover { filter: grayscale(0) opacity(1); }
-  @media (min-width: 720px) {
-    .logo { height: 36px; }
   }
 </style>
