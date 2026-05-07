@@ -3,6 +3,7 @@ import BaseLayout from '~/layouts/BaseLayout.astro';
 import CTA from '~/components/CTA.astro';
 import RelatedCases from '~/components/RelatedCases.astro';
 import AlfaNetworkMap from '~/components/AlfaNetworkMap.astro';
+import OptimusScreens from '~/components/OptimusScreens.astro';
 ---
 
 <BaseLayout
@@ -16,6 +17,21 @@ import AlfaNetworkMap from '~/components/AlfaNetworkMap.astro';
       <h1 class="h1-page">Alfa Oil — Optimus operating across the network.</h1>
 
       <AlfaNetworkMap />
+
+      <section class="alfa-screens-section">
+        <div class="section-label">Production views</div>
+        <h2 class="alfa-screens-title">What's actually running.</h2>
+        <p class="alfa-screens-lede">
+          Three live operator surfaces from the Alfa Oil deployment —
+          pulled from production, defocused so specific numbers and
+          station names are not legible. The shape, the workflow, and
+          the density are real.
+        </p>
+        <OptimusScreens
+          variant="grid-3"
+          picks={['procurement-advisor', 'inbound-conflicts', 'fuel-forecast']}
+        />
+      </section>
 
       <section class="topline">
         <div class="topline-row">
@@ -76,6 +92,24 @@ import AlfaNetworkMap from '~/components/AlfaNetworkMap.astro';
     letter-spacing: -0.01em;
     max-width: 24ch;
   }
+  .alfa-screens-section { margin: 32px 0 48px; }
+  .alfa-screens-section .section-label { margin-bottom: 12px; }
+  .alfa-screens-title {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(24px, 3.4vw, 32px);
+    line-height: 1.2;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    max-width: 24ch;
+  }
+  .alfa-screens-lede {
+    max-width: 60ch;
+    margin-bottom: 24px;
+    color: var(--text-secondary);
+  }
+
   .topline {
     max-width: 720px;
     background: var(--surface);

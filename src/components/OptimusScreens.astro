@@ -1,0 +1,196 @@
+---
+// Reusable screen gallery for Optimus screenshots.
+// All screens pre-blurred (Gaussian r=4) so UI shapes are recognizable
+// but specific data (numbers, station names, suppliers) is unreadable.
+//
+// Variants:
+//   - 'hero'        single big screen, captioned
+//   - 'grid-4'      2x2 grid, used on /solutions/optimus
+//   - 'grid-3'      1x3 row, used on /case-studies/alfa-oil
+//
+// Each screen has alt text describing the surface, not the data.
+
+interface Screen {
+  src: string;
+  alt: string;
+  caption: string;
+}
+
+interface Props {
+  variant: 'hero' | 'grid-4' | 'grid-3';
+  hero?: string;        // slug for hero variant
+  picks?: string[];     // slugs for grid variants
+}
+
+const { variant, hero, picks } = Astro.props as Props;
+
+const ALL: Record<string, Screen> = {
+  'procurement-advisor': {
+    src: '/screens/optimus-procurement-advisor.jpg',
+    alt: 'Optimus Procurement Advisor — Critical / Need Order / Overflow / OK status pills with 14-day stockout timeline and supplier ranking',
+    caption: 'Procurement Advisor',
+  },
+  'fuel-forecast': {
+    src: '/screens/optimus-fuel-forecast.jpg',
+    alt: 'Optimus Fuel Level Forecast — line chart of stock projection per station × fuel-type with regional filters',
+    caption: 'Fuel Level Forecast',
+  },
+  'fill-levels': {
+    src: '/screens/optimus-fill-levels.jpg',
+    alt: 'Optimus Station Fill Levels — vertical bars showing % capacity per fuel, color-coded by urgency',
+    caption: 'Station Fill Levels',
+  },
+  'inbound-conflicts': {
+    src: '/screens/optimus-inbound-conflicts.jpg',
+    alt: 'Optimus Inbound Conflicts dashboard — wagon-level distribution view, fits / will-not-fit / redirected',
+    caption: 'Inbound Conflicts',
+  },
+  'redistribute-modal': {
+    src: '/screens/optimus-redistribute-modal.jpg',
+    alt: 'Optimus Redistribute Shipment modal — wagon picker overlay for routing decisions',
+    caption: 'Redistribute Shipment',
+  },
+  'scenarios': {
+    src: '/screens/optimus-scenarios.jpg',
+    alt: 'Optimus Strategy and Scenarios — mode comparison table across Standard Safety / Cost / Cash / Balanced / Crisis',
+    caption: 'Strategy & Scenarios',
+  },
+  'release-reserve': {
+    src: '/screens/optimus-release-reserve.jpg',
+    alt: 'Optimus Release Reserve modal — allocation plan for fuel held at supplier without destination',
+    caption: 'Release Reserve',
+  },
+  'supplier-offers': {
+    src: '/screens/optimus-supplier-offers.jpg',
+    alt: 'Optimus Supplier Offers — supplier price tables, reliability scores, delivery days per route',
+    caption: 'Supplier Offers',
+  },
+  'how-it-works': {
+    src: '/screens/optimus-how-it-works.jpg',
+    alt: 'Optimus operator guide — five-step morning routine, ten-fifteen minutes',
+    caption: 'Operator guide',
+  },
+};
+
+const heroScreen = hero ? ALL[hero] : null;
+const pickedScreens = (picks ?? []).map((s) => ALL[s]).filter(Boolean);
+---
+
+{variant === 'hero' && heroScreen && (
+  <figure class="opt-hero">
+    <img src={heroScreen.src} alt={heroScreen.alt} loading="lazy" decoding="async" />
+    <figcaption>
+      <span class="opt-hero-tag">Live in production</span>
+      <span>{heroScreen.caption}</span>
+    </figcaption>
+  </figure>
+)}
+
+{variant === 'grid-4' && pickedScreens.length > 0 && (
+  <div class="opt-grid opt-grid-4">
+    {pickedScreens.map((s) => (
+      <figure class="opt-tile">
+        <img src={s.src} alt={s.alt} loading="lazy" decoding="async" />
+        <figcaption>{s.caption}</figcaption>
+      </figure>
+    ))}
+  </div>
+)}
+
+{variant === 'grid-3' && pickedScreens.length > 0 && (
+  <div class="opt-grid opt-grid-3">
+    {pickedScreens.map((s) => (
+      <figure class="opt-tile">
+        <img src={s.src} alt={s.alt} loading="lazy" decoding="async" />
+        <figcaption>{s.caption}</figcaption>
+      </figure>
+    ))}
+  </div>
+)}
+
+<style>
+  /* Hero — single big screen with corner-radius and subtle frame */
+  .opt-hero {
+    margin: 32px 0;
+    padding: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    max-width: 920px;
+    box-shadow: 0 1px 0 rgba(26, 20, 16, 0.04), 0 8px 24px rgba(26, 20, 16, 0.06);
+  }
+  .opt-hero img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .opt-hero figcaption {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 22px;
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+  .opt-hero-tag {
+    font-size: 10px;
+    color: var(--accent-text);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-weight: 600;
+    background: var(--accent-dim);
+    padding: 3px 8px;
+    border-radius: 2px;
+  }
+
+  /* Grids */
+  .opt-grid {
+    display: grid;
+    gap: 16px;
+    margin: 0;
+  }
+  .opt-grid-4 {
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 720px) {
+    .opt-grid-4 { grid-template-columns: 1fr 1fr; gap: 18px; }
+  }
+  .opt-grid-3 {
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 720px) {
+    .opt-grid-3 { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  }
+  .opt-tile {
+    margin: 0;
+    padding: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: border-color .18s ease;
+  }
+  .opt-tile:hover {
+    border-color: var(--border-hover);
+  }
+  .opt-tile img {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: var(--bg);
+  }
+  .opt-tile figcaption {
+    padding: 10px 14px;
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+  }
+</style>
