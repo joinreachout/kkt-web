@@ -10,6 +10,7 @@ interface Props {
   description?: string;
   canonical?: string;
   noindex?: boolean;
+  ogImage?: string;
 }
 
 const {
@@ -17,9 +18,11 @@ const {
   description = 'Senior PMO + AI delivery for mid-sized retailers and fuel networks. Tallinn, EU.',
   canonical,
   noindex = false,
+  ogImage = '/og.png',
 } = Astro.props as Props;
 
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site).toString();
+const ogImageUrl = new URL(ogImage, Astro.site).toString();
 ---
 
 <!doctype html>
@@ -38,10 +41,14 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site).toStri
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:site_name" content="KKT" />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
 
     <!-- Fonts: DM Sans + Playfair Display, matching retail microsite -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
