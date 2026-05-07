@@ -2,6 +2,18 @@
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import CTA from '~/components/CTA.astro';
 
+// Smaller / earlier engagements — separate bucket from the marquee five.
+// Listed for completeness, not heavyweight. Add new entries by dropping
+// a logo into public/logos/ and appending here.
+const smallerEngagements = [
+  {
+    name: 'Clubtek',
+    region: 'Thailand',
+    blurb: 'Premium audio, light, and video integration. Top-tier event and venue work.',
+    logo: '/logos/clubtek.png',
+  },
+];
+
 const cases = [
   {
     href: '/case-studies/alfa-oil',
@@ -84,6 +96,32 @@ const cases = [
           </li>
         ))}
       </ul>
+
+      {smallerEngagements.length > 0 && (
+        <section class="smaller">
+          <div class="section-label">Smaller engagements</div>
+          <h2 class="h2-section">Earlier and adjacent work.</h2>
+          <p class="smaller-lede">
+            Listed for completeness — real shipped work, but not the
+            marquee story KKT leads with on conversion-critical
+            surfaces.
+          </p>
+          <ul class="smaller-grid">
+            {smallerEngagements.map((s) => (
+              <li class="smaller-card">
+                <div class="smaller-logo">
+                  <img src={s.logo} alt={`${s.name} logo`} loading="lazy" />
+                </div>
+                <div class="smaller-meta">
+                  <div class="smaller-name">{s.name}</div>
+                  <div class="smaller-region">{s.region}</div>
+                </div>
+                <p class="smaller-blurb">{s.blurb}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
     </div>
 
     <CTA />
@@ -140,6 +178,78 @@ const cases = [
   }
   .case-status.is-featured {
     color: var(--accent);
+  }
+
+  .smaller {
+    margin-top: 56px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+  }
+  .smaller .section-label { margin-bottom: 14px; }
+  .smaller h2 { margin-bottom: 14px; max-width: 26ch; }
+  .smaller-lede {
+    max-width: 60ch;
+    margin-bottom: 28px;
+    color: var(--text-secondary);
+  }
+  .smaller-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  @media (min-width: 720px) {
+    .smaller-grid { grid-template-columns: 1fr 1fr; }
+  }
+  .smaller-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 22px 24px;
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    column-gap: 16px;
+    row-gap: 8px;
+    align-items: start;
+  }
+  .smaller-logo {
+    grid-row: 1 / span 2;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .smaller-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+  .smaller-name {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 22px;
+    color: var(--text-primary);
+    line-height: 1.2;
+  }
+  .smaller-region {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    margin-top: 2px;
+  }
+  .smaller-blurb {
+    grid-column: 1 / -1;
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin: 0;
+    max-width: 56ch;
   }
   .case-meta {
     font-size: 12px;

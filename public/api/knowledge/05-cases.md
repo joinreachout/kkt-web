@@ -60,11 +60,22 @@ the consent tier signed.
   the business.
 - **Tech:** Scikit-learn, AzureML, Flask, Azure
 
+## Smaller engagements
+
+Listed under "Smaller engagements" on /case-studies/. Real work, but
+not the marquee story KKT leads with.
+
+### Clubtek — Thailand
+
+Premium audio, light, and video integration. Top-tier event and venue
+work. KKT has done targeted analytics / data work for them.
+
 ## Note on ICP fit
 
 Alfa Oil and (arguably) Click & Grow fit the new KKT positioning
 (mid-sized retailers + fuel networks) precisely. GTE / Kricon / CSC
 Telecom are real shipped work but predate the current sharper focus.
-The advisor should be honest about that if asked: KKT has shipped
-across these sectors historically, but the firm's go-forward focus is
-mid-sized retail and fuel.
+Clubtek is also outside the focused ICP — Thai AV integrator, listed
+under smaller engagements. The advisor should be honest about that if
+asked: KKT has shipped across these sectors historically, but the
+firm's go-forward focus is mid-sized retail and fuel.
