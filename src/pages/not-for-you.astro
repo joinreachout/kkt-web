@@ -85,6 +85,13 @@ import BaseLayout from '~/layouts/BaseLayout.astro';
         <p class="cta-line">
           <a href="/contact" class="btn-primary">Book a diagnostic</a>
         </p>
+
+        <p class="advisor-nudge">
+          Still not sure if you&rsquo;re on the right side of this list?
+          <button type="button" class="advisor-inline" data-advisor-open>
+            Ask the advisor →
+          </button>
+        </p>
       </div>
     </div>
   </article>
@@ -148,5 +155,28 @@ import BaseLayout from '~/layouts/BaseLayout.astro';
   }
   .prose .cta-line {
     margin-top: 8px;
+  }
+  .advisor-nudge {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 14px;
+    color: var(--text-muted);
+    max-width: 60ch;
+  }
+  .advisor-inline {
+    background: transparent;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: var(--text-primary);
+    font-weight: 500;
+    cursor: pointer;
+    margin-left: 6px;
+  }
+  .advisor-inline:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--accent);
   }
 </style>

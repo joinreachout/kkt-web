@@ -1,5 +1,8 @@
-# Allow PHP to execute in /api/, deny everything else direct access.
-# advisor.php is the only public endpoint here.
+# Default deny for everything in /api/ — advisor.php is the only
+# public endpoint. Knowledge/system-prompt files must never be
+# web-accessible.
+
+Require all denied
 
 <Files "advisor.php">
     Require all granted

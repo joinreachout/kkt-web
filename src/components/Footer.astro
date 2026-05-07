@@ -39,6 +39,7 @@ const year = new Date().getFullYear();
           <li><a href="/insights">Insights</a></li>
           <li><a href="/not-for-you">When NOT to work with us</a></li>
           <li><a href="/contact">Contact</a></li>
+          <li><button type="button" class="footer-link-button" data-advisor-open>Ask the advisor</button></li>
         </ul>
       </div>
     </div>
@@ -134,6 +135,23 @@ const year = new Date().getFullYear();
     text-decoration: underline;
     text-underline-offset: 3px;
     text-decoration-color: var(--border);
+  }
+  .footer-link-button {
+    background: transparent;
+    border: none;
+    padding: 0;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    text-align: left;
+    transition: color .15s ease;
+  }
+  .footer-link-button:hover {
+    color: var(--text-primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--accent);
   }
 
   .footer-legal {
