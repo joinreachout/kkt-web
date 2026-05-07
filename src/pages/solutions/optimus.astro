@@ -307,6 +307,49 @@ const clusters = [
       </div>
     </section>
 
+    <section class="section section-scenarios">
+      <div class="container">
+        <div class="section-label">Strategy &amp; Scenarios</div>
+        <h2 class="h2-section">Five operating modes, one engine.</h2>
+        <p class="scen-lede">
+          Optimus runs the same forecast engine in five postures — pick
+          the one that matches the moment. The procurement
+          recommendations, working-capital pressure, and inventory
+          posture re-balance accordingly. CFO-grade comparison built
+          into the operator surface.
+        </p>
+
+        <div class="scen-grid">
+          <div class="scen-card">
+            <div class="scen-tag">Standard Safety</div>
+            <p>Default. Conservative buffers, 45-day horizon, low surprise risk.</p>
+          </div>
+          <div class="scen-card">
+            <div class="scen-tag">Cost Optimization</div>
+            <p>Push for cheapest landed price across the network. Tighter buffers, more sensitivity to supplier price shifts.</p>
+          </div>
+          <div class="scen-card">
+            <div class="scen-tag">Cash Conservation</div>
+            <p>Minimise capital lock. Lower inventory days, smaller PO sizes, accept slightly tighter operating margin.</p>
+          </div>
+          <div class="scen-card">
+            <div class="scen-tag">Balanced</div>
+            <p>Median posture between cost, cash, and risk. Useful default when conditions are stable.</p>
+          </div>
+          <div class="scen-card">
+            <div class="scen-tag">Crisis</div>
+            <p>Hold-the-line mode. Survive the immediate window, defer everything that can be deferred.</p>
+          </div>
+        </div>
+
+        <p class="scen-tail">
+          Each mode produces a different recommendation set against
+          the same operational reality — visible side-by-side. Mode
+          comparison view in the screenshot above.
+        </p>
+      </div>
+    </section>
+
     <section class="section section-deployments">
       <div class="container">
         <div class="section-label">Two live deployments</div>
@@ -420,6 +463,36 @@ const clusters = [
     flex-wrap: wrap;
     margin-bottom: 12px;
   }
+
+  .section-scenarios { background: var(--surface-alt); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .section-scenarios .section-label { margin-bottom: 12px; }
+  .section-scenarios h2 { margin-bottom: 14px; max-width: 24ch; }
+  .scen-lede { max-width: 60ch; margin-bottom: 32px; }
+  .scen-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  @media (min-width: 720px) { .scen-grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1080px) { .scen-grid { grid-template-columns: repeat(5, 1fr); gap: 12px; } }
+  .scen-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--accent);
+    border-radius: 0 0 4px 4px;
+    padding: 18px 20px;
+  }
+  .scen-tag {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+  .scen-card p { font-size: 13px; line-height: 1.5; margin: 0; }
+  .scen-tail { font-size: 13px; color: var(--text-muted); max-width: 60ch; }
 
   .section-screens .section-label { margin-bottom: 12px; }
   .section-screens h2 { margin-bottom: 14px; max-width: 24ch; }
