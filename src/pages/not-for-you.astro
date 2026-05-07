@@ -19,62 +19,109 @@ import BaseLayout from '~/layouts/BaseLayout.astro';
       </header>
 
       <div class="prose">
-        <h2>You are below ~$50M in revenue</h2>
-        <p>
-          We work with mid-sized retailers and fuel networks. Below that scale,
-          the cost of our delivery model exceeds the value we can realistically
-          create for you. There are good partners for smaller companies. We are
-          not one of them.
-        </p>
+        <div class="rule">
+          <div class="rule-num">01</div>
+          <div>
+            <h2>You are below ~$50M in revenue.</h2>
+            <p>
+              We work with mid-sized retailers and fuel networks. Below
+              that scale, the cost of our delivery model exceeds the
+              value we can realistically create for you. There are
+              good partners for smaller companies. We are not one of
+              them.
+            </p>
+          </div>
+        </div>
 
-        <h2>You want AI strategy without delivery</h2>
-        <p>
-          We do not write decks that sit on a shelf. Every engagement we accept
-          is shaped to put something operating into your business. If you want
-          a slide-led strategy with no delivery team, we are not the fit.
-        </p>
+        <div class="rule">
+          <div class="rule-num">02</div>
+          <div>
+            <h2>You want AI strategy without delivery.</h2>
+            <p>
+              We do not write decks that sit on a shelf. Every
+              engagement we accept is shaped to put something operating
+              into your business. If you want a slide-led strategy
+              with no delivery team, we are not the fit.
+            </p>
+          </div>
+        </div>
 
-        <h2>You have no senior data lead inside the company</h2>
-        <p>
-          If we are the only people in the room who care about data quality,
-          governance, and adoption, the project will fail after we leave. We
-          need a senior counterpart inside your organisation — not a champion
-          in name, an actual one with authority and time.
-        </p>
+        <div class="rule">
+          <div class="rule-num">03</div>
+          <div>
+            <h2>You have no senior data lead inside the company.</h2>
+            <p>
+              If we are the only people in the room who care about data
+              quality, governance, and adoption, the project will fail
+              after we leave. We need a senior counterpart inside your
+              organisation — not a champion in name, an actual one with
+              authority and time.
+            </p>
+          </div>
+        </div>
 
-        <h2>You need a model in production in four weeks</h2>
-        <p>
-          A diagnostic in four weeks — yes. A model running in your business
-          and creating measured outcomes in four weeks — no. Anyone who
-          promises that is selling you something else. We will not.
-        </p>
+        <div class="rule">
+          <div class="rule-num">04</div>
+          <div>
+            <h2>You need a model in production in four weeks.</h2>
+            <p>
+              A diagnostic in four weeks — yes. A model running in your
+              business and creating measured outcomes in four weeks —
+              no. Anyone who promises that is selling you something
+              else. We will not.
+            </p>
+          </div>
+        </div>
 
-        <h2>You are in heavily regulated banking, public sector, or defence</h2>
-        <p>
-          These domains have their own delivery patterns and compliance bars.
-          We respect them; we do not pretend to be experts in them. There are
-          firms built specifically for that work, and you should hire one of
-          them.
-        </p>
+        <blockquote class="rule-pull">
+          <p>
+            Anyone who promises an AI model in production in four weeks
+            is selling you something else.
+          </p>
+        </blockquote>
 
-        <h2>You want a generic AI vendor</h2>
-        <p>
-          If your goal is &ldquo;deploy a chatbot&rdquo;, &ldquo;roll out
-          Copilot&rdquo;, or &ldquo;do an LLM pilot&rdquo; without a clear
-          business outcome — we are the wrong call. We do not do AI for
-          AI&rsquo;s sake. We do data, models, and AI where they earn their
-          place against margin, cash, availability, customer value, or
-          productivity.
-        </p>
+        <div class="rule">
+          <div class="rule-num">05</div>
+          <div>
+            <h2>You are in heavily regulated banking, public sector, or defence.</h2>
+            <p>
+              These domains have their own delivery patterns and
+              compliance bars. We respect them; we do not pretend to be
+              experts in them. There are firms built specifically for
+              that work, and you should hire one of them.
+            </p>
+          </div>
+        </div>
 
-        <h2>You are looking for a body shop</h2>
-        <p>
-          We work alongside your team. We bring senior delivery rigor, AI
-          capability, and PMO discipline. We do not run your operations, your
-          IT department, or your data function for you. If you need
-          full-service outsourcing or staff augmentation, hire a different
-          kind of firm.
-        </p>
+        <div class="rule">
+          <div class="rule-num">06</div>
+          <div>
+            <h2>You want a generic AI vendor.</h2>
+            <p>
+              If your goal is &ldquo;deploy a chatbot&rdquo;,
+              &ldquo;roll out Copilot&rdquo;, or &ldquo;do an LLM
+              pilot&rdquo; without a clear business outcome — we are
+              the wrong call. We do not do AI for AI&rsquo;s sake. We
+              do data, models, and AI where they earn their place
+              against margin, cash, availability, customer value, or
+              productivity.
+            </p>
+          </div>
+        </div>
+
+        <div class="rule">
+          <div class="rule-num">07</div>
+          <div>
+            <h2>You are looking for a body shop.</h2>
+            <p>
+              We work alongside your team. We bring senior delivery
+              rigor, AI capability, and PMO discipline. We do not run
+              your operations, your IT department, or your data
+              function for you. If you need full-service outsourcing
+              or staff augmentation, hire a different kind of firm.
+            </p>
+          </div>
+        </div>
 
         <hr />
 
@@ -128,19 +175,54 @@ import BaseLayout from '~/layouts/BaseLayout.astro';
   }
 
   .prose {
-    max-width: 680px;
+    max-width: 760px;
   }
-  .prose h2 {
-    font-family: var(--font-body);
+  .rule {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 20px;
+    margin: 36px 0;
+    align-items: start;
+  }
+  .rule-num {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--accent-text);
     font-weight: 600;
-    font-size: 19px;
+    letter-spacing: 0.06em;
+    line-height: 1.4;
+    padding-top: 4px;
+  }
+  .rule h2 {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(20px, 2.4vw, 26px);
     color: var(--text-primary);
-    margin-top: 36px;
-    margin-bottom: 10px;
+    margin: 0 0 10px;
+    line-height: 1.2;
     letter-spacing: -0.005em;
   }
-  .prose p {
-    margin-bottom: 14px;
+  .rule p {
+    margin-bottom: 0;
+    max-width: 60ch;
+  }
+  .rule-pull {
+    margin: 48px 0;
+    padding: 24px 28px;
+    background: var(--surface-alt);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 4px 4px 0;
+  }
+  .rule-pull p {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(20px, 2.6vw, 26px);
+    color: var(--text-primary);
+    line-height: 1.3;
+    margin: 0;
+    max-width: 30ch;
   }
   .prose hr {
     margin: 40px 0 28px;
