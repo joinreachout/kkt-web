@@ -1,12 +1,16 @@
 ---
 // Footer — legal name "Kitty Kat Technologies" appears here per V2 §3.1.
+import CatMark from './CatMark.astro';
 const year = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
   <div class="container footer-inner">
     <div class="footer-brand">
-      <div class="footer-wordmark">KKT</div>
+      <div class="footer-wordmark-row">
+        <CatMark size={28} ariaLabel="Kitty Kat Technologies" />
+        <span class="footer-wordmark">KKT</span>
+      </div>
       <p class="footer-tag">AI that ships, not slides.</p>
     </div>
 
@@ -75,13 +79,19 @@ const year = new Date().getFullYear();
     }
   }
 
+  .footer-wordmark-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
   .footer-wordmark {
     font-size: 13px;
     font-weight: 600;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--text-primary);
-    margin-bottom: 8px;
   }
   .footer-tag {
     font-family: var(--font-display);

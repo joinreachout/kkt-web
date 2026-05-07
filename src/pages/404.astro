@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '~/layouts/BaseLayout.astro';
+import CatMark from '~/components/CatMark.astro';
 ---
 
 <BaseLayout
@@ -9,6 +10,9 @@ import BaseLayout from '~/layouts/BaseLayout.astro';
 >
   <article class="prose-page">
     <div class="container narrow">
+      <div class="cat-wrap" aria-hidden="true">
+        <CatMark size={88} />
+      </div>
       <div class="section-label">404</div>
       <h1 class="h1-page">That page is not here.</h1>
       <p class="lede">
@@ -50,6 +54,11 @@ import BaseLayout from '~/layouts/BaseLayout.astro';
 <style>
   .prose-page { padding-top: clamp(56px, 9vh, 96px); padding-bottom: clamp(56px, 9vh, 96px); }
   .narrow { max-width: 640px; }
+  .cat-wrap {
+    color: var(--text-primary);
+    margin-bottom: 24px;
+    opacity: 0.85;
+  }
   .section-label { margin-bottom: 18px; color: var(--text-muted); }
   .h1-page {
     font-family: var(--font-display);

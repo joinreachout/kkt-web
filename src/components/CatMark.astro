@@ -1,0 +1,34 @@
+---
+// Cat-silhouette mark.
+// Used on 404 (big), footer (small accent), and as the favicon source-of-truth.
+// Per V2 §3.1: cat as visual signature only — footer / favicon / Easter egg.
+// Premium silhouette, not cute mascot.
+
+interface Props {
+  size?: number;
+  variant?: 'plain' | 'plate'; // 'plate' = on dark background, like favicon
+  ariaLabel?: string;
+}
+
+const {
+  size = 32,
+  variant = 'plain',
+  ariaLabel,
+} = Astro.props as Props;
+
+const labelProps = ariaLabel ? { 'aria-label': ariaLabel, role: 'img' } : { 'aria-hidden': 'true' };
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 64 64"
+  width={size}
+  height={size}
+  {...labelProps}
+>
+  {variant === 'plate' && <rect width="64" height="64" rx="10" fill="#1A1410" />}
+  <path
+    fill={variant === 'plate' ? '#F5F3EF' : 'currentColor'}
+    d="M21.5 19.5 L18 11 L27 17.5 Q31.5 16.6 36 17.5 L46 11 L42.5 19.5 Q49.5 25 49.5 36.5 Q49.5 47 32 49 Q14.5 47 14.5 36.5 Q14.5 25 21.5 19.5 Z"
+  />
+</svg>
