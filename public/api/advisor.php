@@ -28,7 +28,7 @@ declare(strict_types=1);
 
 // ─── Config ──────────────────────────────────────────────────────────────────
 const KKT_ADVISOR_DEFAULT_MODEL      = 'claude-sonnet-4-5';
-const KKT_ADVISOR_MAX_TOKENS         = 1200;
+const KKT_ADVISOR_MAX_TOKENS         = 1500;
 const KKT_ADVISOR_TIMEOUT_SECONDS    = 60;
 const KKT_ADVISOR_MAX_MESSAGE_LENGTH = 4000;
 const KKT_ADVISOR_MAX_DOC_BYTES      = 1500000;     // 1.5 MB
