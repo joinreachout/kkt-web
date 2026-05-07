@@ -34,9 +34,52 @@ const navItems = [
         <span aria-hidden="true">✦</span>
       </button>
       <a href="/contact" class="header-cta">Book a diagnostic</a>
+      <button type="button" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
     </div>
   </div>
+
+  <div id="mobile-nav" class="mobile-nav" hidden>
+    <ul>
+      {navItems.map((item) => (
+        <li><a href={item.href}>{item.label}</a></li>
+      ))}
+      <li class="mobile-nav-cta"><a href="/contact">Book a diagnostic</a></li>
+    </ul>
+  </div>
 </header>
+
+<script>
+  // Mobile nav toggle — vanilla, no framework. Just expand/collapse the
+  // hidden #mobile-nav drawer when the hamburger button is clicked.
+  const toggle = document.querySelector<HTMLButtonElement>('.nav-toggle');
+  const drawer = document.getElementById('mobile-nav');
+  if (toggle && drawer) {
+    const close = () => {
+      toggle.setAttribute('aria-expanded', 'false');
+      drawer.hidden = true;
+      toggle.classList.remove('is-open');
+    };
+    const open = () => {
+      toggle.setAttribute('aria-expanded', 'true');
+      drawer.hidden = false;
+      toggle.classList.add('is-open');
+    };
+    toggle.addEventListener('click', () => {
+      if (drawer.hidden) open();
+      else close();
+    });
+    // Close after navigation (anchor click inside drawer)
+    drawer.querySelectorAll('a').forEach((a) => a.addEventListener('click', close));
+    // Close on Esc
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !drawer.hidden) close();
+    });
+  }
+</script>
 
 <script>
   // Open the advisor panel from any button[data-advisor-open] on the page.
@@ -167,13 +210,78 @@ const navItems = [
   }
   .header-cta:hover { opacity: 0.85; text-decoration: none; }
 
-  /* Mobile-first: show icon-only advisor trigger so it's always visible */
+  /* Mobile-first: show icon-only advisor trigger + hamburger so it's always reachable */
   .advisor-trigger-icon { display: inline-flex; }
+
+  .nav-toggle {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    cursor: pointer;
+    align-items: center;
+    transition: border-color .15s ease;
+  }
+  .nav-toggle:hover { border-color: var(--border-hover); }
+  .nav-toggle-bar {
+    display: block;
+    width: 16px;
+    height: 1.5px;
+    background: var(--text-primary);
+    transition: transform .18s ease, opacity .18s ease;
+  }
+  .nav-toggle.is-open .nav-toggle-bar:nth-child(1) {
+    transform: translateY(5.5px) rotate(45deg);
+  }
+  .nav-toggle.is-open .nav-toggle-bar:nth-child(2) {
+    opacity: 0;
+  }
+  .nav-toggle.is-open .nav-toggle-bar:nth-child(3) {
+    transform: translateY(-5.5px) rotate(-45deg);
+  }
+
+  .mobile-nav {
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .mobile-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 8px clamp(20px, 4vw, 48px);
+  }
+  .mobile-nav li {
+    border-bottom: 1px solid var(--border);
+  }
+  .mobile-nav li:last-child { border-bottom: none; }
+  .mobile-nav a {
+    display: block;
+    padding: 14px 0;
+    font-size: 15px;
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .mobile-nav a:hover { color: var(--accent-text); }
+  .mobile-nav-cta a {
+    color: var(--accent-text);
+    font-weight: 600;
+  }
 
   @media (min-width: 880px) {
     .nav-list { display: flex; }
     .advisor-trigger-full { display: inline-flex; }
     .advisor-trigger-icon { display: none; }
     .header-cta { display: inline-flex; align-items: center; }
+    .nav-toggle { display: none; }
+    .mobile-nav { display: none !important; }
   }
 </style>
