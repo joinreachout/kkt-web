@@ -1,0 +1,274 @@
+---
+// Mounts the Advisor React island once globally.
+// Lives in BaseLayout so it's available on every page via Cmd+K.
+import Advisor from './Advisor.tsx';
+---
+
+<Advisor client:load />
+
+<style is:global>
+  /* Advisor styles — global so React-rendered DOM gets them.
+     Class names prefixed kkt-advisor- to avoid collisions. */
+
+  .kkt-advisor-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(26, 20, 16, 0.45);
+    z-index: 90;
+    animation: kkt-advisor-fade .18s ease both;
+  }
+
+  .kkt-advisor-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(520px, 100vw);
+    background: var(--bg);
+    border-left: 1px solid var(--border);
+    box-shadow: -16px 0 48px rgba(0, 0, 0, 0.08);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform .26s cubic-bezier(.32, .72, .32, 1);
+    visibility: hidden;
+  }
+  .kkt-advisor-panel.is-open {
+    transform: translateX(0);
+    visibility: visible;
+  }
+
+  .kkt-advisor-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .kkt-advisor-title {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+  .kkt-advisor-eyebrow {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 22px;
+    color: var(--text-primary);
+    line-height: 1.1;
+  }
+  .kkt-advisor-status {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .kkt-advisor-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .kkt-advisor-close {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    width: 32px;
+    height: 32px;
+    border-radius: 3px;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: border-color .15s ease, color .15s ease;
+  }
+  .kkt-advisor-close:hover {
+    border-color: var(--border-hover);
+    color: var(--text-primary);
+  }
+
+  .kkt-advisor-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px;
+  }
+
+  .kkt-advisor-empty h2 {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 24px;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    line-height: 1.2;
+    max-width: 22ch;
+  }
+  .kkt-advisor-empty p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    max-width: 50ch;
+    line-height: 1.6;
+  }
+  .kkt-advisor-suggestions {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 8px;
+  }
+  .kkt-advisor-suggest {
+    width: 100%;
+    text-align: left;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 12px 14px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: border-color .15s ease, background .15s ease;
+  }
+  .kkt-advisor-suggest:hover {
+    border-color: var(--border-hover);
+    background: var(--surface-alt);
+  }
+
+  .kkt-advisor-messages {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  .kkt-advisor-msg {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .kkt-advisor-msg-role {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+  }
+  .kkt-advisor-msg.role-user .kkt-advisor-msg-role { color: var(--accent-text); }
+  .kkt-advisor-msg-content p {
+    font-size: 15px;
+    color: var(--text-primary);
+    line-height: 1.65;
+    margin: 0 0 10px;
+    max-width: 56ch;
+  }
+  .kkt-advisor-msg-content p:last-child { margin-bottom: 0; }
+  .kkt-advisor-msg.role-user .kkt-advisor-msg-content p {
+    color: var(--text-secondary);
+  }
+
+  .kkt-advisor-msg-content.thinking {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 0;
+  }
+  .kkt-advisor-msg-content.thinking .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--text-muted);
+    animation: kkt-advisor-blink 1.2s ease-in-out infinite;
+  }
+  .kkt-advisor-msg-content.thinking .dot:nth-child(2) { animation-delay: 0.2s; }
+  .kkt-advisor-msg-content.thinking .dot:nth-child(3) { animation-delay: 0.4s; }
+
+  .kkt-advisor-form {
+    border-top: 1px solid var(--border);
+    padding: 14px 16px 12px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    align-items: end;
+  }
+  .kkt-advisor-input {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 10px 12px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text-primary);
+    resize: none;
+    outline: none;
+    transition: border-color .15s ease;
+  }
+  .kkt-advisor-input:focus {
+    border-color: var(--accent);
+  }
+  .kkt-advisor-send {
+    background: var(--text-primary);
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 10px 18px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: opacity .15s ease;
+  }
+  .kkt-advisor-send:hover { opacity: 0.85; }
+  .kkt-advisor-send:disabled {
+    background: var(--border-hover);
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  .kkt-advisor-foot {
+    padding: 10px 16px 14px;
+    border-top: 1px solid var(--border);
+  }
+  .kkt-advisor-shortcut {
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .kkt-advisor-shortcut kbd {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 1px 5px;
+    color: var(--text-secondary);
+  }
+
+  @keyframes kkt-advisor-fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes kkt-advisor-blink {
+    0%, 80%, 100% { opacity: 0.2; transform: scale(0.8); }
+    40% { opacity: 1; transform: scale(1); }
+  }
+
+  @media (max-width: 720px) {
+    .kkt-advisor-panel { width: 100vw; }
+    .kkt-advisor-header { padding: 16px 18px 12px; }
+    .kkt-advisor-body { padding: 18px; }
+    .kkt-advisor-empty h2 { font-size: 22px; }
+  }
+</style>

@@ -25,9 +25,32 @@ const navItems = [
       </ul>
     </nav>
 
-    <a href="/contact" class="header-cta">Book a diagnostic</a>
+    <div class="header-actions">
+      <button type="button" class="advisor-trigger" data-advisor-open aria-label="Open advisor (Cmd+K)">
+        <span>Ask the advisor</span>
+        <span class="kbd-chip"><kbd>⌘</kbd><kbd>K</kbd></span>
+      </button>
+      <a href="/contact" class="header-cta">Book a diagnostic</a>
+    </div>
   </div>
 </header>
+
+<script>
+  // Open the advisor panel from any button[data-advisor-open] on the page.
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement | null;
+    if (!target) return;
+    const trigger = target.closest('[data-advisor-open]');
+    if (!trigger) return;
+    e.preventDefault();
+    const prefill = (trigger as HTMLElement).dataset.advisorPrefill;
+    window.dispatchEvent(
+      new CustomEvent('kkt:advisor:open', {
+        detail: prefill ? { prefill } : undefined,
+      }),
+    );
+  });
+</script>
 
 <style>
   .site-header {
@@ -76,6 +99,45 @@ const navItems = [
   }
   .nav-list a:hover { color: var(--text-primary); }
 
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .advisor-trigger {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 7px 12px;
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: border-color .15s ease, color .15s ease;
+  }
+  .advisor-trigger:hover {
+    border-color: var(--border-hover);
+    color: var(--text-primary);
+  }
+  .kbd-chip {
+    display: inline-flex;
+    gap: 2px;
+  }
+  .kbd-chip kbd {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 1px 4px;
+    color: var(--text-secondary);
+    line-height: 1;
+  }
+
   .header-cta {
     display: none;
     font-size: 13px;
@@ -92,6 +154,10 @@ const navItems = [
 
   @media (min-width: 880px) {
     .nav-list { display: flex; }
+    .advisor-trigger { display: inline-flex; }
     .header-cta { display: inline-flex; align-items: center; }
+  }
+  @media (min-width: 720px) and (max-width: 879px) {
+    .advisor-trigger { display: inline-flex; }
   }
 </style>
