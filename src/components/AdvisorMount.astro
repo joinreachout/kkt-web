@@ -193,13 +193,119 @@ import Advisor from './Advisor.tsx';
   .kkt-advisor-msg-content.thinking .dot:nth-child(2) { animation-delay: 0.2s; }
   .kkt-advisor-msg-content.thinking .dot:nth-child(3) { animation-delay: 0.4s; }
 
+  .kkt-advisor-msg-attachment {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--text-muted);
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 4px 8px;
+    width: fit-content;
+  }
+  .kkt-advisor-msg-attachment .paperclip { font-size: 11px; }
+
+  .kkt-advisor-msg-cites {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+    padding-top: 8px;
+    border-top: 1px solid var(--border);
+  }
+  .kkt-advisor-msg-cites .cite-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+  .kkt-advisor-msg-cites .cite-link {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-primary);
+    text-decoration: none;
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 3px 8px;
+    transition: border-color .15s ease, color .15s ease;
+  }
+  .kkt-advisor-msg-cites .cite-link:hover {
+    border-color: var(--accent);
+    color: var(--accent-text);
+  }
+
+  .kkt-advisor-attachment-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-top: 1px solid var(--border);
+    background: var(--surface-alt);
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+  .kkt-advisor-attachment-row .paperclip { font-size: 13px; }
+  .kkt-advisor-attachment-name {
+    color: var(--text-primary);
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .kkt-advisor-attachment-size { color: var(--text-muted); margin-left: auto; }
+  .kkt-advisor-attachment-remove {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+    padding: 0 4px;
+  }
+  .kkt-advisor-attachment-remove:hover { color: var(--text-primary); }
+
+  .kkt-advisor-doc-error {
+    padding: 10px 16px;
+    background: #FBECEC;
+    color: #8B1F1F;
+    font-size: 12px;
+    border-top: 1px solid var(--border);
+  }
+
   .kkt-advisor-form {
     border-top: 1px solid var(--border);
     padding: 14px 16px 12px;
     display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 10px;
+    grid-template-columns: auto 1fr auto;
+    gap: 8px;
     align-items: end;
+  }
+  .kkt-advisor-attach {
+    width: 38px;
+    height: 38px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+    color: var(--text-muted);
+    transition: border-color .15s ease, color .15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .kkt-advisor-attach:hover:not(:disabled) {
+    border-color: var(--border-hover);
+    color: var(--text-primary);
+  }
+  .kkt-advisor-attach:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
   }
   .kkt-advisor-input {
     width: 100%;

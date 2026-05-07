@@ -1,0 +1,13 @@
+# Allow PHP to execute in /api/, deny everything else direct access.
+# advisor.php is the only public endpoint here.
+
+<Files "advisor.php">
+    Require all granted
+</Files>
+
+# Long-running streaming response — disable Apache's default buffering hints.
+<IfModule mod_headers.c>
+    <Files "advisor.php">
+        Header set Cache-Control "no-cache, no-store, must-revalidate"
+    </Files>
+</IfModule>

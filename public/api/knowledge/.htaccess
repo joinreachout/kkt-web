@@ -1,0 +1,3 @@
+# Knowledge files are the system prompt. Deny direct web access — they
+# should only be read by advisor.php on the server side.
+Require all denied

@@ -1,23 +1,39 @@
 /**
  * Advisor — KKT main-site assistant.
  *
- * Phase A scaffold (this file): full UI, Cmd+K trigger, history, suggested
- * prompts, mock responses. No backend yet.
+ * Streaming Claude-backed (Phase B). Falls back to mock canned responses
+ * if the backend isn't available — useful in local dev and during initial
+ * deploy before ANTHROPIC_API_KEY lands on the server.
  *
- * Phase B will swap the mock turn for a fetch to /api/advisor.php which
- * streams Claude tokens. Lifted pattern from retail/api/advisor.php.
+ * Drop-doc audit (Phase D): user can attach a .txt/.md/.pdf file, the
+ * backend extracts text and includes it in the prompt. Useful for "audit
+ * this strategy doc / RFP / proposal".
  *
- * Voice: senior partner, anti-hype. If it doesn't know, it says so.
+ * Voice: warm senior partner. Anti-hype, business-first, but human —
+ * not stoic. Occasionally enthusiastic when the topic deserves it.
  */
 import { useEffect, useRef, useState } from 'react';
 
 type Role = 'user' | 'assistant';
 
+interface Attachment {
+  name: string;
+  size: number;
+  file: File;
+}
+
 interface Message {
   role: Role;
   content: string;
   id: number;
+  citedPages?: string[];
+  reasoningSummary?: string;
+  attachmentName?: string;
 }
+
+const ADVISOR_ENDPOINT = '/api/advisor.php';
+const ALLOWED_DOC_TYPES = ['.txt', '.md', '.pdf'];
+const MAX_DOC_BYTES = 1_500_000; // 1.5 MB — bigger than typical audit doc, smaller than upload limit
 
 const SUGGESTED: string[] = [
   'What is Optimus?',
@@ -31,41 +47,43 @@ interface MockReply {
   reply: string;
 }
 
+// Tone: warmer than retail's stoic senior-partner. Use plain prose,
+// occasional enthusiasm, light personal voice. Still anti-hype.
 const MOCK_REPLIES: MockReply[] = [
   {
     pattern: /optimus|fuel.*retail|red petrol|alfa/i,
     reply:
-      "Optimus is our operating-intelligence system for fuel-distribution networks. Each morning it pulls live ERP data, forecasts station × fuel-type stockout positions, surfaces inbound-delivery conflicts, and produces concrete procurement recommendations — supplier, tonnage, deadline, price. The head of supply works through it in 10–15 minutes. Critical events mirror to Telegram. Live at Alfa Oil (600+ stations, $500M revenue) and one Central Asian deployment.\n\nFull surface: /solutions/optimus.",
+      "Optimus is the operating-intelligence system we run for fuel networks. Each morning it pulls live ERP data, forecasts which station × fuel positions will hit critical, surfaces inbound delivery conflicts, and produces concrete procurement recommendations — supplier, tonnage, deadline, price. The head of supply works through it in 10–15 minutes, then walks away. Critical events mirror to Telegram independently of the web app.\n\nLive at Alfa Oil (Red Petrol) — 600+ stations, $500M revenue — and at one Central Asian network. Same engine, different scale.\n\nFull surface on /solutions/optimus.",
   },
   {
     pattern: /diagnostic|how.*start|engagement|where.*begin/i,
     reply:
-      "Two weeks. Fixed shape. Days 1–3 we set scope and access. Days 4–9 we run the investigation — interviews and data review, telling you what we're seeing as we see it. Days 10–12 we synthesise: what to ship, what to leave alone, what proof you need. Day 14 is a decision-grade readout to the senior team. If the case for an engagement isn't there, we say so.\n\nFull picture on /approach.",
+      "Two weeks. Same shape every time. Days 1–3 set scope and access. Days 4–9 are investigation — interviews and data review, with us telling you what we're seeing as we see it (not a surprise reveal at the end). Days 10–12 we synthesise: what to ship, what to leave alone, what proof you need before committing further. Day 14 is the readout, decision-grade.\n\nIf the case for engaging us isn't there, we'll say so — that's part of the deliverable. Honest answers beat a sold project.\n\nFull picture on /approach.",
   },
   {
     pattern: /not.*fit|not.*work|when.*say no|turn.*down|reject/i,
     reply:
-      'We say no when we are not the right partner. Below ~$50M in revenue our delivery model costs more than we can create. We do not write decks without delivery. We do not ship into companies with no senior internal data lead. We do not promise a model in production in four weeks. We do not work in heavily regulated banking, public sector, or defence. We are not a body shop.\n\nFull list: /not-for-you. Reading that page and still wanting to talk is a strong signal.',
+      "We turn down work where we wouldn't be the right partner. Below ~$50M revenue our delivery model costs more than we can create. We don't write decks without delivery. We can't ship into companies with no senior internal data lead — the project will fail after we leave. We won't promise a model in production in four weeks. We don't work in heavily regulated banking, public sector, or defence. We're not a body shop.\n\nThe full list lives on /not-for-you. Reading that page and still wanting to talk is one of the strongest signals we get.",
   },
   {
-    pattern: /retail|playbook|canvas/i,
+    pattern: /retail|playbook|canvas|grocery|supermarket/i,
     reply:
-      'For mid-sized retailers we ship across margin recovery, customer ownership, decision cadence, and foundational data. The full open playbook — 30 services across 11 retail domains, with an advisor that walks you through it — lives at retail.kittykat.tech. Treat it as the field guide; treat /case-studies as the receipts.',
+      "For mid-sized retailers we tend to start in one of four places: margin recovery and assortment, customer ownership and segmentation, decision cadence (pricing, replenishment, cash discipline as a daily rhythm), or foundational reporting if the diagnostic surfaces that the core is shaky.\n\nThe full open playbook — 30 services across 11 retail domains, with an advisor that walks you through it — lives at retail.kittykat.tech. Treat it as the field guide. Treat /case-studies as the receipts.",
   },
   {
-    pattern: /pricing|cost|fee|how much|hourly|day rate/i,
+    pattern: /pricing|cost|fee|how much|hourly|day rate|budget/i,
     reply:
-      "We don't publish a rate card. Engagements are scoped from the diagnostic — what to ship sets the shape, length, and price. The diagnostic itself is fixed-shape: two weeks, scoped fee. If you want to skip to the number, write us at hello@kittykat.tech with what your business is trying to move and we'll get to a directional figure quickly.",
+      "Honest answer — we don't publish a rate card. Every engagement is scoped from the diagnostic, since what to ship sets the shape, length, and price. The diagnostic itself is fixed-shape: two weeks, scoped fee.\n\nIf you want to skip to a directional number quickly, write us at hello@kittykat.tech with what your business is trying to move. We'll come back fast — usually same or next working day.",
   },
   {
-    pattern: /team|who.*you|founder|about/i,
+    pattern: /team|who.*you|founder|about|where.*based/i,
     reply:
-      'We are Kitty Kat Technologies — KKT on conversion-critical surfaces — based in Tallinn, Estonia. Three named people on the team today, with two more landing soon. Profiles on /about. We work where AI and PMO discipline earn their place against measurable outcomes.',
+      "We're Kitty Kat Technologies — KKT on day-to-day surfaces — based in Tallinn, Estonia. Three named people on the team today, with two more coming on board. We work where AI and PMO discipline earn their place against measurable outcomes.\n\nProfiles on /about. The short version: enterprise-grade engineering background (Cisco Meraki, Snowflake, Microsoft) plus deep B2B consultancy delivery experience.",
   },
 ];
 
 const FALLBACK_REPLY =
-  "Honest answer — backend isn't wired yet, so I'm running on canned responses while we test the interface. Soon this will be a Claude-backed advisor that knows the full site, can audit a doc you drop in, and shows its reasoning. For now, try one of the suggested prompts or email hello@kittykat.tech for anything specific.";
+  "Quick honesty — backend isn't connected here, so I'm running on canned responses for testing the interface. When the Claude backend lands (next deploy), I'll know the full site, can audit a doc you attach, and will show what I'm citing. For now, try one of the suggested prompts above, or write hello@kittykat.tech for anything specific.";
 
 function findMockReply(input: string): string {
   for (const m of MOCK_REPLIES) {
@@ -81,10 +99,13 @@ export default function Advisor() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [thinking, setThinking] = useState(false);
+  const [attachment, setAttachment] = useState<Attachment | null>(null);
+  const [docError, setDocError] = useState<string | null>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
 
-  // Cmd/Ctrl+K to open, Esc to close, listen even when closed.
+  // Cmd/Ctrl+K to toggle, Esc to close.
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       const isOpenShortcut = (e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k';
@@ -102,8 +123,7 @@ export default function Advisor() {
     return () => window.removeEventListener('keydown', handler);
   }, [open]);
 
-  // Custom event so any element on the site can open the panel
-  // (and optionally pre-fill the input).
+  // Custom event so any element on site can open the panel (with optional prefill).
   useEffect(() => {
     const opener = (e: Event) => {
       const ce = e as CustomEvent<{ prefill?: string }>;
@@ -116,49 +136,153 @@ export default function Advisor() {
     return () => window.removeEventListener('kkt:advisor:open', opener as EventListener);
   }, []);
 
-  // Focus input when panel opens.
   useEffect(() => {
-    if (open) {
-      setTimeout(() => inputRef.current?.focus(), 60);
-    }
+    if (open) setTimeout(() => inputRef.current?.focus(), 60);
   }, [open]);
 
-  // Auto-scroll on new message.
   useEffect(() => {
     if (listRef.current) {
       listRef.current.scrollTop = listRef.current.scrollHeight;
     }
   }, [messages, thinking]);
 
-  // Lock body scroll when panel open.
   useEffect(() => {
-    if (open) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    if (open) document.body.style.overflow = 'hidden';
+    else document.body.style.overflow = '';
     return () => {
       document.body.style.overflow = '';
     };
   }, [open]);
 
-  function send(text: string) {
-    const trimmed = text.trim();
-    if (!trimmed || thinking) return;
+  function handleFilePick(e: React.ChangeEvent<HTMLInputElement>) {
+    const f = e.target.files?.[0];
+    e.target.value = ''; // allow same-file re-pick later
+    if (!f) return;
 
-    const userMsg: Message = { role: 'user', content: trimmed, id: nextId++ };
+    const lower = f.name.toLowerCase();
+    const okType = ALLOWED_DOC_TYPES.some((ext) => lower.endsWith(ext));
+    if (!okType) {
+      setDocError(`Unsupported file type. We accept ${ALLOWED_DOC_TYPES.join(' / ')}.`);
+      return;
+    }
+    if (f.size > MAX_DOC_BYTES) {
+      setDocError(`File is too large (${Math.round(f.size / 1024)} KB). Max ${Math.round(MAX_DOC_BYTES / 1024)} KB.`);
+      return;
+    }
+    setAttachment({ name: f.name, size: f.size, file: f });
+    setDocError(null);
+  }
+
+  async function streamFromBackend(text: string, attached: Attachment | null) {
+    const userMsg: Message = {
+      role: 'user',
+      content: text,
+      id: nextId++,
+      attachmentName: attached?.name,
+    };
     setMessages((m) => [...m, userMsg]);
     setInput('');
+    setAttachment(null);
     setThinking(true);
 
-    // Mock thinking delay + canned reply. Replace with fetch in Phase B.
-    const delay = 600 + Math.random() * 700;
-    setTimeout(() => {
-      const reply = findMockReply(trimmed);
-      const assistantMsg: Message = { role: 'assistant', content: reply, id: nextId++ };
-      setMessages((m) => [...m, assistantMsg]);
+    // Placeholder assistant message we mutate as tokens arrive.
+    const assistantId = nextId++;
+    const assistantMsg: Message = { role: 'assistant', content: '', id: assistantId };
+    setMessages((m) => [...m, assistantMsg]);
+
+    let accumulated = '';
+    let backendOk = false;
+
+    try {
+      let body: BodyInit;
+      const headers: Record<string, string> = {};
+      if (attached) {
+        const fd = new FormData();
+        fd.append('message', text);
+        fd.append('doc', attached.file);
+        body = fd;
+      } else {
+        body = JSON.stringify({ message: text });
+        headers['Content-Type'] = 'application/json';
+      }
+
+      const res = await fetch(ADVISOR_ENDPOINT, { method: 'POST', headers, body });
+      if (!res.ok || !res.body) {
+        throw new Error(`Backend ${res.status}`);
+      }
+      backendOk = true;
+
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder('utf-8');
+      let buf = '';
+
+      while (true) {
+        const { value, done } = await reader.read();
+        if (done) break;
+        buf += decoder.decode(value, { stream: true });
+
+        // SSE frames terminated by \n\n
+        let pos: number;
+        while ((pos = buf.indexOf('\n\n')) !== -1) {
+          const frame = buf.slice(0, pos);
+          buf = buf.slice(pos + 2);
+          const dataLine = frame.split(/\r?\n/).find((l) => l.startsWith('data:'));
+          if (!dataLine) continue;
+          let parsed: any;
+          try {
+            parsed = JSON.parse(dataLine.replace(/^data:\s*/, ''));
+          } catch {
+            continue;
+          }
+          if (parsed.type === 'text' && typeof parsed.text === 'string') {
+            accumulated += parsed.text;
+            setMessages((m) =>
+              m.map((msg) => (msg.id === assistantId ? { ...msg, content: accumulated } : msg)),
+            );
+          } else if (parsed.type === 'done') {
+            // Parse meta block from full response (text after <<<META>>>).
+            const fullText: string = parsed.fullText ?? accumulated;
+            const metaIdx = fullText.indexOf('<<<META>>>');
+            let citedPages: string[] | undefined;
+            let reasoningSummary: string | undefined;
+            if (metaIdx >= 0) {
+              const metaJson = fullText.slice(metaIdx + 10).trim();
+              try {
+                const meta = JSON.parse(metaJson);
+                if (Array.isArray(meta.cited_pages)) citedPages = meta.cited_pages;
+                if (typeof meta.reasoning_summary === 'string') reasoningSummary = meta.reasoning_summary;
+              } catch {
+                /* meta unparseable — ignore, leave answer as-is */
+              }
+            }
+            setMessages((m) =>
+              m.map((msg) =>
+                msg.id === assistantId
+                  ? { ...msg, citedPages, reasoningSummary }
+                  : msg,
+              ),
+            );
+          }
+        }
+      }
+    } catch (err) {
+      // Backend missing / 404 / network — fall back to mock.
+      const reply = backendOk
+        ? "Connection dropped while answering. Try again — usually it just works on retry."
+        : findMockReply(text);
+      setMessages((m) =>
+        m.map((msg) => (msg.id === assistantId ? { ...msg, content: reply } : msg)),
+      );
+    } finally {
       setThinking(false);
-    }, delay);
+    }
+  }
+
+  function send(text: string) {
+    const trimmed = text.trim();
+    if ((!trimmed && !attachment) || thinking) return;
+    const messageText = trimmed || (attachment ? `Audit this document: ${attachment.name}` : '');
+    streamFromBackend(messageText, attachment);
   }
 
   function handleSubmit(e: React.FormEvent) {
@@ -167,7 +291,6 @@ export default function Advisor() {
   }
 
   function handleKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>) {
-    // Enter sends; Shift+Enter inserts a newline.
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       send(input);
@@ -176,7 +299,6 @@ export default function Advisor() {
 
   return (
     <>
-      {/* Backdrop */}
       {open && (
         <div
           className="kkt-advisor-backdrop"
@@ -185,7 +307,6 @@ export default function Advisor() {
         />
       )}
 
-      {/* Panel */}
       <aside
         className={`kkt-advisor-panel ${open ? 'is-open' : ''}`}
         role="dialog"
@@ -196,7 +317,7 @@ export default function Advisor() {
           <div className="kkt-advisor-title">
             <span className="kkt-advisor-eyebrow">Advisor</span>
             <span className="kkt-advisor-status">
-              <span className="kkt-advisor-dot" /> Mock mode
+              <span className="kkt-advisor-dot" /> Ask anything
             </span>
           </div>
           <button
@@ -212,11 +333,12 @@ export default function Advisor() {
         <div className="kkt-advisor-body" ref={listRef}>
           {messages.length === 0 ? (
             <div className="kkt-advisor-empty">
-              <h2>Ask anything about how KKT ships.</h2>
+              <h2>What's on your mind?</h2>
               <p>
-                What we do, who we work with, when we&rsquo;d say no, what a
-                diagnostic looks like. The advisor runs on canned responses
-                today — Claude backend lands soon.
+                Ask about how we ship, who we work with, when we&rsquo;d say
+                no, what a diagnostic looks like — anything across KKT or
+                the retail playbook. You can attach a strategy doc or RFP
+                and I&rsquo;ll audit it in plain language.
               </p>
               <ul className="kkt-advisor-suggestions">
                 {SUGGESTED.map((s) => (
@@ -239,16 +361,36 @@ export default function Advisor() {
                   <div className="kkt-advisor-msg-role">
                     {m.role === 'user' ? 'You' : 'KKT'}
                   </div>
-                  <div className="kkt-advisor-msg-content">
-                    {m.content.split('\n\n').map((para, i) => (
-                      <p key={i}>{para}</p>
-                    ))}
-                  </div>
+                  {m.attachmentName && (
+                    <div className="kkt-advisor-msg-attachment">
+                      <span className="paperclip" aria-hidden="true">📎</span>
+                      <span>{m.attachmentName}</span>
+                    </div>
+                  )}
+                  {m.content && (
+                    <div className="kkt-advisor-msg-content">
+                      {m.content
+                        .split(/<<<META>>>/)[0]
+                        .split('\n\n')
+                        .map((para, i) => (
+                          <p key={i}>{para}</p>
+                        ))}
+                    </div>
+                  )}
+                  {m.citedPages && m.citedPages.length > 0 && (
+                    <div className="kkt-advisor-msg-cites">
+                      <span className="cite-label">More on:</span>
+                      {m.citedPages.map((p) => (
+                        <a key={p} href={p} className="cite-link">
+                          {p}
+                        </a>
+                      ))}
+                    </div>
+                  )}
                 </li>
               ))}
-              {thinking && (
-                <li className="kkt-advisor-msg role-assistant">
-                  <div className="kkt-advisor-msg-role">KKT</div>
+              {thinking && messages[messages.length - 1]?.role === 'assistant' && !messages[messages.length - 1]?.content && (
+                <li className="kkt-advisor-msg role-assistant thinking-bubble">
                   <div className="kkt-advisor-msg-content thinking">
                     <span className="dot" />
                     <span className="dot" />
@@ -260,21 +402,59 @@ export default function Advisor() {
           )}
         </div>
 
+        {attachment && (
+          <div className="kkt-advisor-attachment-row">
+            <span className="paperclip" aria-hidden="true">📎</span>
+            <span className="kkt-advisor-attachment-name">{attachment.name}</span>
+            <span className="kkt-advisor-attachment-size">
+              {Math.round(attachment.size / 1024)} KB
+            </span>
+            <button
+              type="button"
+              className="kkt-advisor-attachment-remove"
+              onClick={() => setAttachment(null)}
+              aria-label="Remove attachment"
+            >
+              ×
+            </button>
+          </div>
+        )}
+        {docError && (
+          <div className="kkt-advisor-doc-error">{docError}</div>
+        )}
+
         <form className="kkt-advisor-form" onSubmit={handleSubmit}>
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept={ALLOWED_DOC_TYPES.join(',')}
+            onChange={handleFilePick}
+            style={{ display: 'none' }}
+          />
+          <button
+            type="button"
+            className="kkt-advisor-attach"
+            onClick={() => fileInputRef.current?.click()}
+            disabled={thinking || !!attachment}
+            aria-label="Attach a document"
+            title="Attach a document (.txt, .md, .pdf)"
+          >
+            <span aria-hidden="true">📎</span>
+          </button>
           <textarea
             ref={inputRef}
             className="kkt-advisor-input"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Type a question. Enter to send."
+            placeholder={attachment ? 'Optional question — Enter to send.' : 'Type a question. Enter to send.'}
             rows={2}
             aria-label="Question to the advisor"
           />
           <button
             type="submit"
             className="kkt-advisor-send"
-            disabled={!input.trim() || thinking}
+            disabled={(!input.trim() && !attachment) || thinking}
             aria-label="Send"
           >
             Send
