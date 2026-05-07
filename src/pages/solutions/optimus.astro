@@ -296,7 +296,21 @@ const clusters = [
         <div class="deployments">
           <div class="deployment">
             <div class="deployment-name">Alfa Oil</div>
-            <div class="deployment-meta">Kyrgyzstan · 600+ stations · $500M revenue</div>
+            <div class="deployment-meta">Kyrgyzstan · Live</div>
+            <div class="deployment-stats">
+              <div class="dep-stat">
+                <span class="dep-stat-num">600+</span>
+                <span class="dep-stat-label">stations</span>
+              </div>
+              <div class="dep-stat">
+                <span class="dep-stat-num">$500M</span>
+                <span class="dep-stat-label">revenue</span>
+              </div>
+              <div class="dep-stat">
+                <span class="dep-stat-num">11</span>
+                <span class="dep-stat-label">fuel types</span>
+              </div>
+            </div>
             <p>
               Optimus operating across the full network. Pricing posture,
               station-level operations, supplier relationships — under one
@@ -306,7 +320,21 @@ const clusters = [
           </div>
           <div class="deployment">
             <div class="deployment-name">Central Asian fuel network</div>
-            <div class="deployment-meta">10 stations · 11 fuel types · 3 regions</div>
+            <div class="deployment-meta">3 regions · Live</div>
+            <div class="deployment-stats">
+              <div class="dep-stat">
+                <span class="dep-stat-num">10</span>
+                <span class="dep-stat-label">stations</span>
+              </div>
+              <div class="dep-stat">
+                <span class="dep-stat-num">11</span>
+                <span class="dep-stat-label">fuel types</span>
+              </div>
+              <div class="dep-stat">
+                <span class="dep-stat-num">3</span>
+                <span class="dep-stat-label">regions</span>
+              </div>
+            </div>
             <p>
               The smaller end of the range. Same Optimus engine, configured
               for a tight network with multiple fuel types and regional
@@ -315,6 +343,18 @@ const clusters = [
             <span class="deployment-link muted">Case study in editorial</span>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section class="section section-pullquote-optimus">
+      <div class="container">
+        <blockquote class="pullquote-optimus">
+          <p>
+            Numbers per deployment vary by network size, fuel mix, and
+            baseline. We publish ranges from real production
+            environments, not vendor-deck promises.
+          </p>
+        </blockquote>
       </div>
     </section>
 
@@ -555,7 +595,53 @@ const clusters = [
     font-weight: 600;
     margin-bottom: 14px;
   }
-  .deployment p { font-size: 15px; margin-bottom: 16px; max-width: 56ch; }
+  .deployment-stats {
+    display: flex;
+    gap: 24px;
+    margin: 0 0 18px;
+    padding: 14px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .dep-stat { display: flex; flex-direction: column; gap: 2px; }
+  .dep-stat-num {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 28px;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .dep-stat-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+  }
+  .deployment p { font-size: 15px; margin-bottom: 16px; }
+
+  .section-pullquote-optimus {
+    padding: clamp(48px, 7vh, 88px) 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--surface-alt);
+    margin-top: 48px;
+  }
+  .pullquote-optimus {
+    margin: 0 auto;
+    max-width: 760px;
+    padding: 0;
+  }
+  .pullquote-optimus p {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(20px, 2.6vw, 28px);
+    line-height: 1.35;
+    color: var(--text-primary);
+    margin: 0;
+    max-width: 36ch;
+  }
   .deployment-link {
     font-size: 13px;
     color: var(--text-primary);
