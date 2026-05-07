@@ -44,9 +44,49 @@ import BaseLayout from '~/layouts/BaseLayout.astro';
         </div>
       </div>
 
+      <section class="next-steps">
+        <div class="section-label">What happens next</div>
+        <h2 class="next-h2">After you email.</h2>
+        <ol class="steps">
+          <li>
+            <div class="step-num">01</div>
+            <div>
+              <div class="step-name">Reply within two working days.</div>
+              <p>One of us reads your note and writes back. No SDR
+              chain, no scheduling forms.</p>
+            </div>
+          </li>
+          <li>
+            <div class="step-num">02</div>
+            <div>
+              <div class="step-name">A 30-minute call.</div>
+              <p>Senior person on our side. We hear the situation
+              honestly and tell you whether a diagnostic makes
+              sense — or whether the answer is "not us".</p>
+            </div>
+          </li>
+          <li>
+            <div class="step-num">03</div>
+            <div>
+              <div class="step-name">If a fit, scope a diagnostic.</div>
+              <p>Two weeks, fixed shape, decision-grade readout. See
+              <a href="/approach">/approach</a> for the day-by-day.</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <blockquote class="contact-pull">
+        <p>
+          If a diagnostic is not the right move, we will say so on the
+          first call. No mystery sales motion.
+        </p>
+      </blockquote>
+
       <p class="note">
-        A two-week diagnostic is the cleanest way to start. Email above with a
-        short note on your business and we will reply within two working days.
+        Not sure if you&rsquo;re a fit?
+        <a href="/not-for-you">Read /not-for-you</a> first — that
+        page filters faster than a sales call.
       </p>
     </div>
   </article>
@@ -96,9 +136,81 @@ import BaseLayout from '~/layouts/BaseLayout.astro';
     align-self: center;
   }
   .contact-row a { color: var(--text-primary); }
+  .next-steps {
+    margin-top: 48px;
+    margin-bottom: 32px;
+    padding-top: 36px;
+    border-top: 1px solid var(--border);
+  }
+  .next-steps .section-label { margin-bottom: 12px; }
+  .next-h2 {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(24px, 3.4vw, 32px);
+    line-height: 1.2;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+    letter-spacing: -0.005em;
+  }
+  .steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 14px;
+    max-width: 720px;
+  }
+  .steps li {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 18px;
+    padding: 20px 22px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+  }
+  .step-num {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--accent-text);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    line-height: 1.5;
+  }
+  .step-name {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+    font-size: 16px;
+  }
+  .steps p { font-size: 14px; line-height: 1.6; margin: 0; max-width: 56ch; }
+  .steps a { color: var(--text-primary); }
+
+  .contact-pull {
+    margin: 32px 0;
+    padding: 22px 26px;
+    background: var(--surface-alt);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 4px 4px 0;
+    max-width: 720px;
+  }
+  .contact-pull p {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(18px, 2.4vw, 22px);
+    line-height: 1.35;
+    color: var(--text-primary);
+    margin: 0;
+    max-width: 36ch;
+  }
+
   .note {
     font-size: 14px;
     color: var(--text-muted);
     max-width: 56ch;
+    margin-top: 32px;
   }
+  .note a { color: var(--text-primary); font-weight: 500; }
 </style>
