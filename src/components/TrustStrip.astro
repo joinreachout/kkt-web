@@ -9,54 +9,35 @@ interface Props {
 }
 const { variant = 'C' } = Astro.props as Props;
 
-const otherClients = ['Click & Grow', 'GTE', 'Kricon', 'CSC Telecom'];
+const logos = [
+  { src: '/logos/alfa-oil.png', alt: 'Alfa Oil' },
+  { src: '/logos/click-and-grow.png', alt: 'Click & Grow' },
+  { src: '/logos/gte.png', alt: 'GTE' },
+  { src: '/logos/kricon.png', alt: 'Kricon' },
+  { src: '/logos/csc-telecom.png', alt: 'CSC Telecom' },
+];
 ---
 
 <div class={`trust-strip variant-${variant}`}>
-  {variant === 'A' && (
-    <p class="trust-line">
-      <span class="trust-anchor">Alfa Oil</span>
-      <span class="dot">·</span>
-      {otherClients.map((c, i) => (
-        <>
-          <span>{c}</span>
-          {i < otherClients.length - 1 && <span class="dot">·</span>}
-        </>
-      ))}
-      <span class="dot">·</span>
-      <span>Tallinn, EU</span>
-    </p>
-  )}
-
   {variant === 'B' && (
     <p class="trust-line">
       Live with <strong>Alfa Oil</strong> — fuel network, CE region.
-      <span class="dot">·</span>
-      {otherClients.map((c, i) => (
-        <>
-          <span>{c}</span>
-          {i < otherClients.length - 1 && <span class="dot">·</span>}
-        </>
-      ))}
-      <span class="dot">·</span>
-      <span>Tallinn, EU</span>
     </p>
   )}
 
   {variant === 'C' && (
     <p class="trust-line">
       Live with <strong>Alfa Oil</strong> — $500M revenue, 600+ stations, Optimus operating.
-      <span class="dot">·</span>
-      {otherClients.map((c, i) => (
-        <>
-          <span>{c}</span>
-          {i < otherClients.length - 1 && <span class="dot">·</span>}
-        </>
-      ))}
-      <span class="dot">·</span>
-      <span>Tallinn, EU</span>
     </p>
   )}
+
+  <div class="logo-strip">
+    {logos.map((l) => (
+      <img class="logo" src={l.src} alt={l.alt} loading="lazy" />
+    ))}
+  </div>
+
+  <p class="trust-tail">Tallinn, EU</p>
 </div>
 
 <style>
@@ -76,15 +57,38 @@ const otherClients = ['Click & Grow', 'GTE', 'Kricon', 'CSC Telecom'];
     color: var(--text-primary);
     font-weight: 600;
   }
-  .trust-anchor {
-    color: var(--text-primary);
-    font-weight: 600;
-  }
-  .dot {
-    color: var(--text-muted);
-    margin: 0 8px;
-  }
   @media (min-width: 720px) {
     .trust-line { font-size: 15px; }
+  }
+
+  .logo-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 36px;
+    margin-top: 22px;
+    margin-bottom: 18px;
+  }
+  @media (min-width: 720px) {
+    .logo-strip { gap: 48px; }
+  }
+  .logo {
+    height: 48px;
+    width: auto;
+    max-width: 140px;
+    object-fit: contain;
+    display: block;
+  }
+  @media (min-width: 720px) {
+    .logo { height: 54px; }
+  }
+
+  .trust-tail {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 0;
   }
 </style>
