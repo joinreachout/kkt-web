@@ -11,6 +11,9 @@ interface Props {
   canonical?: string;
   noindex?: boolean;
   ogImage?: string;
+  pageType?: 'website' | 'article';
+  articleAuthor?: string;
+  articlePublished?: string; // ISO date
 }
 
 const {
@@ -19,10 +22,86 @@ const {
   canonical,
   noindex = false,
   ogImage = '/og/home.png',
+  pageType = 'website',
+  articleAuthor,
+  articlePublished,
 } = Astro.props as Props;
 
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site).toString();
 const ogImageUrl = new URL(ogImage, Astro.site).toString();
+const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
+
+// Schema.org JSON-LD. Always emits an Organization graph node + a
+// page-type node (WebPage / Article). Search engines pick from the
+// graph; we keep both nodes lightweight and accurate.
+const schemaGraph: Record<string, unknown>[] = [
+  {
+    '@type': 'Organization',
+    '@id': 'https://kittykat.tech/#org',
+    name: 'Kitty Kat Technologies',
+    alternateName: 'KKT',
+    url: 'https://kittykat.tech/',
+    logo: 'https://kittykat.tech/favicon.svg',
+    email: 'hello@kittykat.tech',
+    telephone: '+372 5555 3621',
+    sameAs: [
+      'https://www.linkedin.com/company/kittykattech/',
+    ],
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Jõe 7',
+      postalCode: '10151',
+      addressLocality: 'Tallinn',
+      addressCountry: 'EE',
+    },
+    description:
+      'Senior PMO + AI delivery for mid-sized retailers and fuel networks. Tallinn, EU.',
+    foundingLocation: 'Tallinn, Estonia',
+    knowsAbout: ['AI delivery', 'PMO', 'Fuel retail', 'Retail analytics'],
+  },
+];
+
+if (pageType === 'article') {
+  schemaGraph.push({
+    '@type': 'Article',
+    headline: title,
+    description,
+    image: ogImageUrl,
+    url: canonicalUrl,
+    author: articleAuthor
+      ? { '@type': 'Person', name: articleAuthor }
+      : { '@id': 'https://kittykat.tech/#org' },
+    publisher: { '@id': 'https://kittykat.tech/#org' },
+    datePublished: articlePublished,
+    dateModified: articlePublished,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
+  });
+} else {
+  schemaGraph.push({
+    '@type': 'WebPage',
+    '@id': canonicalUrl,
+    name: title,
+    description,
+    url: canonicalUrl,
+    isPartOf: { '@id': 'https://kittykat.tech/#org' },
+    primaryImageOfPage: { '@type': 'ImageObject', url: ogImageUrl },
+  });
+  if (isHome) {
+    // Home page acts as the WebSite root; declare it once.
+    schemaGraph.push({
+      '@type': 'WebSite',
+      '@id': 'https://kittykat.tech/#website',
+      url: 'https://kittykat.tech/',
+      name: 'KKT — AI that ships, not slides.',
+      publisher: { '@id': 'https://kittykat.tech/#org' },
+    });
+  }
+}
+
+const schemaJsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': schemaGraph,
+});
 ---
 
 <!doctype html>
@@ -60,6 +139,8 @@ const ogImageUrl = new URL(ogImage, Astro.site).toString();
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="alternate" type="application/rss+xml" title="KKT — Insights" href="/rss.xml" />
+
+    <script type="application/ld+json" set:html={schemaJsonLd}></script>
   </head>
 
   <body>

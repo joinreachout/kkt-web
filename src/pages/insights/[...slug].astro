@@ -17,6 +17,9 @@ const { Content } = await render(post);
 <BaseLayout
   title={`${post.data.title} — KKT Insights`}
   description={post.data.summary}
+  pageType="article"
+  articleAuthor={post.data.author}
+  articlePublished={post.data.publishedAt}
 >
   <article class="prose-page">
     <div class="container narrow">
