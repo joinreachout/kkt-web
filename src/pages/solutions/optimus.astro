@@ -2,21 +2,45 @@
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import CTA from '~/components/CTA.astro';
 
-const capabilities = [
-  { name: 'Auto-import (cron, ~03:30 local)', body: 'Pulls fresh stocks and orders from ERP. No manual upload.' },
-  { name: 'AI Briefing', body: 'Plain-language daily situation summary: Action Required, Good News, Savings Tip. Free-form chat answers questions from live data.' },
-  { name: 'Procurement Advisor', body: 'Concrete order recommendations with supplier, tonnage, deadline, price. Statuses CRITICAL / ORDER / OK. One-click PO creation.' },
-  { name: 'Shipments Timeline', body: '14 / 30 / 60-day forward view per station. Color-coded OK / Tight / Conflict.' },
-  { name: 'Delivery conflict resolver', body: 'Auto-Distribute reroutes overflow wagons to nearest stations with free capacity. Audit trail.' },
-  { name: 'Stockout Forecast', body: 'Days remaining until critical level per station × fuel position. Includes in-transit and split-wagon transfers.' },
-  { name: 'Fuel Level Forecast', body: 'Per-station stock projection charts with region and fuel filters.' },
-  { name: 'Reserves Panel', body: 'Fuel held at supplier without destination. Release reserve assigns to a specific station with capacity check.' },
-  { name: 'Station Fill Levels', body: 'Per-station, per-fuel % capacity and tonnage, sorted by urgency.' },
-  { name: 'Working Capital', body: '$ frozen in inventory and where to release.' },
-  { name: 'Inventory Turnover', body: 'Per-fuel turnover rate, days on hand, value at stake.' },
-  { name: 'Recommendation History', body: 'Daily snapshots — rewind to any past day to see what was advised and what happened.' },
-  { name: 'Telegram alert mirror', body: 'Critical events pushed to operator group regardless of web availability.' },
-  { name: 'Forced Order flow', body: 'Senior management override path with audit trail and ship-history fallback.' },
+const clusters = [
+  {
+    name: 'What you see on day one',
+    eyebrow: 'Visibility',
+    items: [
+      { name: 'AI Briefing', body: 'Plain-language daily summary — Action Required, Good News, Savings Tip. Free-form chat answers questions from live data.' },
+      { name: 'Stockout Forecast', body: 'Days remaining until critical level per station × fuel. Includes in-transit and split-wagon transfers.' },
+      { name: 'Fuel Level Forecast', body: 'Per-station stock projection charts with region and fuel filters.' },
+      { name: 'Station Fill Levels', body: 'Per-station, per-fuel % capacity and tonnage, sorted by urgency.' },
+    ],
+  },
+  {
+    name: 'What you act on',
+    eyebrow: 'Decision surface',
+    items: [
+      { name: 'Procurement Advisor', body: 'Concrete order recommendations with supplier, tonnage, deadline, price. Statuses CRITICAL / ORDER / OK. One-click PO creation.' },
+      { name: 'Reserves Panel', body: 'Fuel held at supplier without destination. Release reserve assigns to a specific station with capacity check.' },
+      { name: 'Delivery conflict resolver', body: 'Auto-Distribute reroutes overflow wagons to nearest stations with free capacity. Audit trail.' },
+      { name: 'Forced Order flow', body: 'Senior management override path with audit trail and ship-history fallback.' },
+    ],
+  },
+  {
+    name: 'What you track over time',
+    eyebrow: 'History & money',
+    items: [
+      { name: 'Working Capital', body: '$ frozen in inventory and where to release.' },
+      { name: 'Inventory Turnover', body: 'Per-fuel turnover rate, days on hand, value at stake.' },
+      { name: 'Recommendation History', body: 'Daily snapshots — rewind to any past day to see what was advised and what happened.' },
+      { name: 'Shipments Timeline', body: '14 / 30 / 60-day forward view per station. Color-coded OK / Tight / Conflict.' },
+    ],
+  },
+  {
+    name: 'What runs without you',
+    eyebrow: 'Autonomous',
+    items: [
+      { name: 'Auto-import (cron, ~03:30 local)', body: 'Pulls fresh stocks and orders from ERP. No manual upload.' },
+      { name: 'Telegram alert mirror', body: 'Critical events pushed to operator group regardless of web availability.' },
+    ],
+  },
 ];
 ---
 
@@ -239,15 +263,29 @@ const capabilities = [
     <section class="section section-how">
       <div class="container">
         <div class="section-label">How it works</div>
-        <h2 class="h2-section">The full functional surface.</h2>
-        <ul class="capabilities">
-          {capabilities.map((c) => (
-            <li>
-              <div class="capability-name">{c.name}</div>
-              <p>{c.body}</p>
-            </li>
+        <h2 class="h2-section">The full functional surface, in four clusters.</h2>
+        <p class="how-lede">
+          Fourteen capabilities, organised by how the operator
+          actually meets them — what you see, what you act on, what
+          you track over time, and what runs without you.
+        </p>
+
+        <div class="clusters">
+          {clusters.map((cluster) => (
+            <div class="cluster">
+              <div class="cluster-eyebrow">{cluster.eyebrow}</div>
+              <h3 class="cluster-name">{cluster.name}.</h3>
+              <ul class="cluster-items">
+                {cluster.items.map((item) => (
+                  <li>
+                    <div class="item-name">{item.name}</div>
+                    <p>{item.body}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
     </section>
 
@@ -423,32 +461,70 @@ const capabilities = [
     margin-top: 18px;
   }
 
-  .capabilities {
+  .how-lede {
+    max-width: 60ch;
+    margin-bottom: 32px;
+  }
+  .clusters {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  @media (min-width: 880px) {
+    .clusters { grid-template-columns: 1fr 1fr; gap: 22px; }
+  }
+  .cluster {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 24px 26px;
+    display: flex;
+    flex-direction: column;
+  }
+  .cluster-eyebrow {
+    font-size: 11px;
+    color: var(--accent-text);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .cluster-name {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(20px, 2.4vw, 26px);
+    color: var(--text-primary);
+    margin-bottom: 18px;
+    line-height: 1.2;
+  }
+  .cluster-items {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
   }
-  @media (min-width: 720px) {
-    .capabilities { grid-template-columns: 1fr 1fr; }
+  .cluster-items li {
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
   }
-  .capabilities li {
-    background: var(--surface);
-    padding: 18px 22px;
+  .cluster-items li:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
   }
-  .capability-name {
+  .item-name {
     font-weight: 600;
     color: var(--text-primary);
     font-size: 14px;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
-  .capabilities p { font-size: 14px; line-height: 1.55; }
+  .cluster-items p {
+    font-size: 14px;
+    line-height: 1.55;
+    margin: 0;
+  }
 
   .deployments {
     display: grid;
