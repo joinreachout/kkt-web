@@ -79,6 +79,28 @@ const cases = [
         what it changed in the business.
       </p>
 
+      <div class="cases-strip">
+        <div class="cases-stat">
+          <div class="cases-stat-num">5</div>
+          <div class="cases-stat-label">named clients</div>
+        </div>
+        <div class="cases-stat">
+          <div class="cases-stat-num">1</div>
+          <div class="cases-stat-label">live deployment at marquee scale</div>
+        </div>
+        <div class="cases-stat">
+          <div class="cases-stat-num">600+</div>
+          <div class="cases-stat-label">stations operating Optimus</div>
+        </div>
+      </div>
+
+      <blockquote class="cases-pull">
+        <p>
+          No anonymous "$500M+ retailer" framing. If we shipped for a
+          client, we name them — or we don&rsquo;t mention the work.
+        </p>
+      </blockquote>
+
       <ul class="case-list">
         {cases.map((c) => (
           <li>
@@ -149,6 +171,51 @@ const cases = [
     max-width: 56ch;
     margin-bottom: 40px;
   }
+  .cases-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 36px;
+    margin-bottom: 28px;
+    padding: 18px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .cases-stat { display: flex; flex-direction: column; gap: 2px; }
+  .cases-stat-num {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(28px, 3.6vw, 36px);
+    color: var(--accent);
+    line-height: 1;
+  }
+  .cases-stat-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    max-width: 24ch;
+  }
+
+  .cases-pull {
+    margin: 0 0 36px;
+    padding: 22px 26px;
+    background: var(--surface-alt);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 4px 4px 0;
+    max-width: 720px;
+  }
+  .cases-pull p {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(18px, 2.2vw, 22px);
+    line-height: 1.35;
+    color: var(--text-primary);
+    margin: 0;
+    max-width: 38ch;
+  }
+
   .case-list {
     list-style: none;
     padding: 0;
