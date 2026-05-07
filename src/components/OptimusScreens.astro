@@ -1,10 +1,11 @@
 ---
 // Reusable screen gallery for Optimus screenshots.
-// All screens pre-blurred (Gaussian r=4) so UI shapes are recognizable
-// but specific data (numbers, station names, suppliers) is unreadable.
+// Sharp originals (no blur) — at the small display sizes we use here
+// (max-width 720px hero, 280-380px grid tiles) the UI structure is
+// crisp but specific data text is too small to read without zooming.
 //
 // Variants:
-//   - 'hero'        single big screen, captioned
+//   - 'hero'        single screen, captioned, capped at ~720px wide
 //   - 'grid-4'      2x2 grid, used on /solutions/optimus
 //   - 'grid-3'      1x3 row, used on /case-studies/alfa-oil
 //
@@ -109,7 +110,7 @@ const pickedScreens = (picks ?? []).map((s) => ALL[s]).filter(Boolean);
 )}
 
 <style>
-  /* Hero — single big screen with corner-radius and subtle frame */
+  /* Hero — single screen with corner-radius and subtle frame */
   .opt-hero {
     margin: 32px 0;
     padding: 0;
@@ -117,7 +118,7 @@ const pickedScreens = (picks ?? []).map((s) => ALL[s]).filter(Boolean);
     border: 1px solid var(--border);
     border-radius: 6px;
     overflow: hidden;
-    max-width: 920px;
+    max-width: 720px;
     box-shadow: 0 1px 0 rgba(26, 20, 16, 0.04), 0 8px 24px rgba(26, 20, 16, 0.06);
   }
   .opt-hero img {
