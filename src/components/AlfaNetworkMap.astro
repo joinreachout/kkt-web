@@ -1,27 +1,34 @@
 ---
-// Alfa Oil network visual for /case-studies/alfa-oil.
+// Alfa Oil network visual for /case-studies/alfa-oil and home featured-case.
 // Stylized silhouette of Kyrgyzstan with 600 station dots distributed
 // across populated regions (Bishkek/Chui, Issyk-Kul, Talas, Osh,
 // Naryn, Batken). Accent dots clipped to country outline.
 //
 // Source: Wikipedia "Kyrgyzstan_adm_location_map.svg" (CC BY-SA),
-// path simplified via potrace at turdsize 100. Dots generated
-// pseudo-randomly with fixed seed (see scripts referenced in commit
-// log).
+// path simplified via potrace at turdsize 100.
+//
+// `variant="full"` (default): callout panel + map (case-study page).
+// `variant="compact"`: map only, for use as a thumbnail/inline visual.
+interface Props {
+  variant?: 'full' | 'compact';
+}
+const { variant = 'full' } = Astro.props as Props;
 ---
 
-<figure class="alfa-net" aria-label="Alfa Oil network: 600+ stations operating across Kyrgyzstan">
-  <div class="alfa-net-callout">
-    <div class="alfa-net-num">600+</div>
-    <div class="alfa-net-label">stations operating</div>
-    <div class="alfa-net-meta">
-      <span>$500M revenue</span>
-      <span class="dot">·</span>
-      <span>11 fuel types</span>
-      <span class="dot">·</span>
-      <span>Optimus live</span>
+<figure class={`alfa-net alfa-net-${variant}`} aria-label="Alfa Oil network: 600+ stations operating across Kyrgyzstan">
+  {variant === 'full' && (
+    <div class="alfa-net-callout">
+      <div class="alfa-net-num">600+</div>
+      <div class="alfa-net-label">stations operating</div>
+      <div class="alfa-net-meta">
+        <span>$500M revenue</span>
+        <span class="dot">·</span>
+        <span>11 fuel types</span>
+        <span class="dot">·</span>
+        <span>Optimus live</span>
+      </div>
     </div>
-  </div>
+  )}
 
   <svg
     class="alfa-net-svg"
@@ -652,7 +659,7 @@
 </figure>
 
 <style>
-  .alfa-net {
+  .alfa-net-full {
     margin: 0 0 32px;
     padding: 28px 32px 24px;
     background: var(--surface);
@@ -666,10 +673,16 @@
     align-items: center;
   }
   @media (min-width: 720px) {
-    .alfa-net {
+    .alfa-net-full {
       grid-template-columns: minmax(180px, 220px) 1fr;
       gap: 28px;
     }
+  }
+  .alfa-net-compact {
+    margin: 0;
+    padding: 0;
+    color: var(--text-primary);
+    display: block;
   }
 
   .alfa-net-callout {

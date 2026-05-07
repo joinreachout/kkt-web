@@ -2,6 +2,7 @@
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import Hero from '~/components/Hero.astro';
 import CTA from '~/components/CTA.astro';
+import AlfaNetworkMap from '~/components/AlfaNetworkMap.astro';
 
 // Trust strip variant — flip to 'A' or 'B' if Alfa Oil consent tier shifts.
 // See WORK/briefs/alfa-oil-content-brief.md.
@@ -26,6 +27,10 @@ const trustVariant = 'C' as const;
             Margin, cash, customer ownership, decision speed. Where AI and PMO
             discipline earn their place against measurable outcomes.
           </p>
+          <div class="industry-stat">
+            <span class="industry-stat-num">30</span>
+            <span class="industry-stat-label">services across 11 retail domains in the open playbook</span>
+          </div>
           <span class="industry-arrow">See the playbook →</span>
         </a>
 
@@ -36,9 +41,24 @@ const trustVariant = 'C' as const;
             Optimus runs price, margin, and operations across stations. Live at
             Alfa Oil — 600+ stations, $500M revenue, in production.
           </p>
+          <div class="industry-stat">
+            <span class="industry-stat-num">600+</span>
+            <span class="industry-stat-label">stations live on Optimus today</span>
+          </div>
           <span class="industry-arrow">See Optimus →</span>
         </a>
       </div>
+    </div>
+  </section>
+
+  <section class="section section-pullquote">
+    <div class="container">
+      <blockquote class="pullquote">
+        <p>
+          We are not an AI vendor with a deck. We are a delivery firm
+          with deep AI capability.
+        </p>
+      </blockquote>
     </div>
   </section>
 
@@ -46,12 +66,33 @@ const trustVariant = 'C' as const;
     <div class="container">
       <div class="section-label">Featured case</div>
       <h2 class="h2-section">Alfa Oil — Optimus operating across the network.</h2>
-      <p class="featured-body">
-        Walk through the engagement: where it started, what shipped, what it
-        moved. No vendor-deck claims — just what the system does in
-        production today.
-      </p>
-      <a href="/case-studies/alfa-oil" class="btn-ghost">Read the case</a>
+      <div class="featured-grid">
+        <div class="featured-text">
+          <p class="featured-body">
+            Walk through the engagement: where it started, what shipped,
+            what it moved. No vendor-deck claims — just what the system
+            does in production today.
+          </p>
+          <div class="featured-stats">
+            <div class="featured-stat">
+              <div class="featured-stat-num">600+</div>
+              <div class="featured-stat-label">stations</div>
+            </div>
+            <div class="featured-stat">
+              <div class="featured-stat-num">$500M</div>
+              <div class="featured-stat-label">revenue</div>
+            </div>
+            <div class="featured-stat">
+              <div class="featured-stat-num">11</div>
+              <div class="featured-stat-label">fuel types</div>
+            </div>
+          </div>
+          <a href="/case-studies/alfa-oil" class="btn-ghost">Read the case</a>
+        </div>
+        <div class="featured-visual">
+          <AlfaNetworkMap variant="compact" />
+        </div>
+      </div>
     </div>
   </section>
 
@@ -218,19 +259,105 @@ const trustVariant = 'C' as const;
     color: var(--text-primary);
     font-weight: 500;
   }
+  .industry-stat {
+    margin: 16px 0;
+    padding: 12px 0;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .industry-stat-num {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 32px;
+    color: var(--accent);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .industry-stat-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.4;
+    max-width: 28ch;
+  }
+
+  .section-pullquote {
+    padding: clamp(48px, 7vh, 88px) 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--surface-alt);
+  }
+  .pullquote {
+    margin: 0 auto;
+    max-width: 760px;
+    padding: 0;
+  }
+  .pullquote p {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(24px, 3.4vw, 38px);
+    line-height: 1.25;
+    color: var(--text-primary);
+    margin: 0;
+    max-width: 24ch;
+  }
 
   .section-featured {
     padding-top: clamp(48px, 7vh, 80px);
     padding-bottom: clamp(48px, 7vh, 80px);
-    border-top: 1px solid var(--border);
   }
   .section-featured h2 {
-    margin-bottom: 18px;
+    margin-bottom: 28px;
     max-width: 22ch;
+  }
+  .featured-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px;
+    align-items: center;
+  }
+  @media (min-width: 880px) {
+    .featured-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
   }
   .featured-body {
     max-width: 60ch;
-    margin-bottom: 28px;
+    margin-bottom: 24px;
+  }
+  .featured-stats {
+    display: flex;
+    gap: 28px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .featured-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .featured-stat-num {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 36px;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .featured-stat-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-weight: 600;
+  }
+  .featured-visual {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 20px;
   }
 
   .section-howweship {
