@@ -98,6 +98,67 @@ if (pageType === 'article') {
   }
 }
 
+// BreadcrumbList — derived from URL path. Helps Google render the
+// crumb trail in search results.
+const pathname = Astro.url.pathname.replace(/\/+$/, '');
+const segments = pathname.split('/').filter(Boolean);
+if (segments.length > 0 && pageType !== 'article') {
+  const NAMES: Record<string, string> = {
+    'case-studies': 'Case studies',
+    'industries': 'Industries',
+    'solutions': 'Solutions',
+    'methods': 'Methods',
+    'insights': 'Insights',
+    'about': 'About',
+    'approach': 'Approach',
+    'contact': 'Contact',
+    'not-for-you': 'When NOT to work with us',
+    'retail': 'Retail',
+    'fuel-retail': 'Fuel retail',
+    'optimus': 'Optimus',
+    'alfa-oil': 'Alfa Oil',
+    'click-and-grow': 'Click & Grow',
+    'gte': 'GTE',
+    'kricon': 'Kricon',
+    'csc-telecom': 'CSC Telecom',
+    'cost-of-doing-nothing': 'Cost of doing nothing',
+  };
+  const items = [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://kittykat.tech/' },
+  ];
+  let acc = 'https://kittykat.tech';
+  segments.forEach((seg, i) => {
+    acc += '/' + seg;
+    items.push({
+      '@type': 'ListItem',
+      position: i + 2,
+      name: NAMES[seg] ?? seg,
+      item: acc + '/',
+    });
+  });
+  schemaGraph.push({
+    '@type': 'BreadcrumbList',
+    itemListElement: items,
+  });
+}
+
+// Service schema for /solutions/optimus — helps Google understand
+// Optimus is a named product/service offering.
+if (pathname === '/solutions/optimus') {
+  schemaGraph.push({
+    '@type': 'Service',
+    '@id': 'https://kittykat.tech/solutions/optimus#service',
+    name: 'Optimus',
+    serviceType: 'Operating-intelligence system for fuel-distribution networks',
+    provider: { '@id': 'https://kittykat.tech/#org' },
+    url: 'https://kittykat.tech/solutions/optimus/',
+    description:
+      'Daily operating intelligence for fuel networks. Stockouts, replenishment, working capital — in 10 minutes a morning. Live at Alfa Oil (600+ stations, $500M revenue).',
+    areaServed: 'Europe and Central Asia',
+    audience: { '@type': 'BusinessAudience', audienceType: 'Fuel retail networks' },
+  });
+}
+
 const schemaJsonLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@graph': schemaGraph,
@@ -132,6 +193,11 @@ const schemaJsonLd = JSON.stringify({
     <!-- Fonts: DM Sans + Playfair Display, matching retail microsite -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"
       rel="stylesheet"

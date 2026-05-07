@@ -212,3 +212,31 @@ ol, ul {
     scroll-behavior: auto !important;
   }
 }
+
+/* Visible focus on keyboard navigation. Cream bg + amber accent gives
+ * high-contrast indication without affecting mouse-clicked state. */
+:focus { outline: none; }
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.btn-primary:focus-visible,
+.btn-ghost:focus-visible {
+  outline-offset: 3px;
+}
+
+/* Selection */
+::selection {
+  background: var(--accent-dim);
+  color: var(--text-primary);
+}
