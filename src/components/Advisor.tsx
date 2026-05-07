@@ -36,7 +36,7 @@ const ALLOWED_DOC_TYPES = ['.txt', '.md', '.pdf'];
 const MAX_DOC_BYTES = 1_500_000; // 1.5 MB — bigger than typical audit doc, smaller than upload limit
 
 const SUGGESTED: string[] = [
-  'What is Optimus?',
+  'How does KKT actually deliver?',
   'Are you a fit for a mid-sized retailer?',
   'What does a two-week diagnostic look like?',
   'Why would you turn down work?',
