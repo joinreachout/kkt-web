@@ -67,7 +67,7 @@ const trustVariant = 'C' as const;
       <div class="section-label">Featured case</div>
       <h2 class="h2-section">Alfa Oil — Optimus operating across the network.</h2>
       <div class="featured-grid">
-        <div class="featured-text">
+        <div class="featured-card featured-text">
           <p class="featured-body">
             Walk through the engagement: where it started, what shipped,
             what it moved. No vendor-deck claims — just what the system
@@ -87,9 +87,9 @@ const trustVariant = 'C' as const;
               <div class="featured-stat-label">fuel types</div>
             </div>
           </div>
-          <a href="/case-studies/alfa-oil" class="btn-ghost">Read the case</a>
+          <a href="/case-studies/alfa-oil" class="btn-ghost featured-cta">Read the case</a>
         </div>
-        <div class="featured-visual">
+        <div class="featured-card featured-visual">
           <AlfaNetworkMap variant="compact" />
         </div>
       </div>
@@ -315,23 +315,33 @@ const trustVariant = 'C' as const;
   .featured-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 28px;
-    align-items: center;
+    gap: 24px;
+    align-items: stretch;
   }
   @media (min-width: 880px) {
     .featured-grid {
       grid-template-columns: 1fr 1fr;
-      gap: 48px;
+      gap: 24px;
     }
   }
+  .featured-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+  }
+  .featured-text {
+    justify-content: space-between;
+  }
   .featured-body {
-    max-width: 60ch;
     margin-bottom: 24px;
   }
   .featured-stats {
     display: flex;
     gap: 28px;
-    margin-bottom: 24px;
+    margin-bottom: 28px;
     flex-wrap: wrap;
   }
   .featured-stat {
@@ -353,11 +363,12 @@ const trustVariant = 'C' as const;
     letter-spacing: 0.14em;
     font-weight: 600;
   }
+  .featured-cta {
+    align-self: flex-start;
+  }
   .featured-visual {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 20px;
+    justify-content: center;
+    align-items: stretch;
   }
 
   .section-howweship {
