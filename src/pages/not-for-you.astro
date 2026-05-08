@@ -125,6 +125,12 @@ import BaseLayout from '~/layouts/BaseLayout.astro';
 
         <hr />
 
+        <p class="methodology-link">
+          The other half of this rigor — how we treat numbers when we
+          do quote them — lives on <a href="/methods/cost-of-doing-nothing">/methods/cost-of-doing-nothing</a>.
+          Public, dated, sourced.
+        </p>
+
         <p class="closer">
           If you read all of this and still want to talk, that is usually a
           good sign.
@@ -239,6 +245,22 @@ import BaseLayout from '~/layouts/BaseLayout.astro';
   .prose .cta-line {
     margin-top: 8px;
   }
+  .methodology-link {
+    margin: 28px 0 0;
+    font-size: 14px;
+    color: var(--text-muted);
+    max-width: 60ch;
+  }
+  .methodology-link a {
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+  .methodology-link a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--accent);
+  }
+
   .advisor-nudge {
     margin-top: 32px;
     padding-top: 24px;

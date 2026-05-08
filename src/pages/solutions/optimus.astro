@@ -319,6 +319,16 @@ const clusters = [
           into the operator surface.
         </p>
 
+        <figure class="scen-image">
+          <img
+            src="/screens/optimus-scenarios.jpg"
+            alt="Optimus Strategy and Scenarios — side-by-side mode comparison table across Standard Safety / Cost Optimization / Cash Conservation / Balanced / Crisis"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>Mode comparison table — same inputs, five different recommendation sets, visible side-by-side.</figcaption>
+        </figure>
+
         <div class="scen-grid">
           <div class="scen-card">
             <div class="scen-tag">Standard Safety</div>
@@ -468,6 +478,29 @@ const clusters = [
   .section-scenarios .section-label { margin-bottom: 12px; }
   .section-scenarios h2 { margin-bottom: 14px; max-width: 24ch; }
   .scen-lede { max-width: 60ch; margin-bottom: 32px; }
+  .scen-image {
+    margin: 0 0 32px;
+    padding: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    max-width: 820px;
+    box-shadow: 0 1px 0 rgba(26, 20, 16, 0.04), 0 8px 24px rgba(26, 20, 16, 0.06);
+  }
+  .scen-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .scen-image figcaption {
+    padding: 12px 18px;
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--text-muted);
+  }
   .scen-grid {
     display: grid;
     grid-template-columns: 1fr;
