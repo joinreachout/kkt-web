@@ -32,6 +32,33 @@ const teamWithBios = await Promise.all(
         things wrong is real and the value of shipping is measurable.
       </p>
 
+      <div class="about-strip">
+        <div class="about-stat">
+          <div class="about-stat-num">EU</div>
+          <div class="about-stat-label">Tallinn-based, EU entity</div>
+        </div>
+        <div class="about-stat">
+          <div class="about-stat-num">600+</div>
+          <div class="about-stat-label">stations live on Optimus</div>
+        </div>
+        <div class="about-stat">
+          <div class="about-stat-num">5</div>
+          <div class="about-stat-label">named client engagements</div>
+        </div>
+        <div class="about-stat">
+          <div class="about-stat-num">2</div>
+          <div class="about-stat-label">industries we focus on now</div>
+        </div>
+      </div>
+
+      <blockquote class="about-pull">
+        <p>
+          We are not an AI vendor with a deck. We are a delivery firm
+          with deep AI capability — and the PMO discipline that makes
+          AI actually ship.
+        </p>
+      </blockquote>
+
       <section class="beliefs">
         <h2 class="h2-section">What we believe.</h2>
 
@@ -157,6 +184,51 @@ const teamWithBios = await Promise.all(
     line-height: 1.55;
     max-width: 60ch;
     margin-bottom: 56px;
+  }
+
+  .about-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 36px;
+    margin-bottom: 28px;
+    padding: 18px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .about-stat { display: flex; flex-direction: column; gap: 2px; }
+  .about-stat-num {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(28px, 3.6vw, 36px);
+    color: var(--accent);
+    line-height: 1;
+  }
+  .about-stat-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    max-width: 22ch;
+  }
+
+  .about-pull {
+    margin: 0 0 56px;
+    padding: 26px 30px;
+    background: var(--surface-alt);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 4px 4px 0;
+    max-width: 760px;
+  }
+  .about-pull p {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(20px, 2.6vw, 28px);
+    line-height: 1.3;
+    color: var(--text-primary);
+    margin: 0;
+    max-width: 38ch;
   }
 
   .beliefs {
