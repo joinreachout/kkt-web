@@ -10,6 +10,8 @@ const NOINDEX_PATHS = [
   '/galaga/',
   '/404',
   '/404.html',
+  '/tools/cost-of-doing-nothing',
+  '/tools/cost-of-doing-nothing/',
 ];
 
 export default defineConfig({

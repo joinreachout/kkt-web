@@ -110,6 +110,10 @@ const changelog = [
           the calculator would be a gimmick. Per the principles below,
           this page goes live before any number is computed.
         </p>
+        <p class="status-cta">
+          <a href="/tools/cost-of-doing-nothing">Try the v0 preview tool →</a>
+          <span class="status-warn">Placeholder benchmarks; not for board use.</span>
+        </p>
       </div>
 
       <section class="ms-section">
@@ -343,6 +347,33 @@ const changelog = [
     color: var(--text-secondary);
     margin: 0;
     max-width: 56ch;
+  }
+  .status-cta {
+    margin-top: 14px !important;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+    font-size: 13px !important;
+  }
+  .status-cta a {
+    color: var(--text-primary);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .status-cta a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--accent);
+  }
+  .status-warn {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
   }
 
   .ms-section {

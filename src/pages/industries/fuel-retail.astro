@@ -107,7 +107,11 @@ import CTA from '~/components/CTA.astro';
           with a source. Currently in benchmark calibration. The
           methodology is already public.
         </p>
-        <a href="/methods/cost-of-doing-nothing" class="cdn-link">Read the methodology →</a>
+        <p class="cdn-links">
+          <a href="/methods/cost-of-doing-nothing" class="cdn-link">Read the methodology →</a>
+          <span class="cdn-sep">·</span>
+          <a href="/tools/cost-of-doing-nothing" class="cdn-link">Try the v0 preview →</a>
+        </p>
       </section>
     </div>
 
@@ -268,6 +272,11 @@ import CTA from '~/components/CTA.astro';
     margin: 0 0 14px;
     max-width: 56ch;
   }
+  .cdn-links {
+    margin: 0;
+    font-size: 13px;
+  }
+  .cdn-sep { color: var(--text-muted); margin: 0 8px; }
   .cdn-link {
     font-size: 13px;
     color: var(--text-primary);
