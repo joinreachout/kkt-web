@@ -1,0 +1,16 @@
+# Default deny for everything in /api/ — advisor.php is the only
+# public endpoint. Knowledge/system-prompt files must never be
+# web-accessible.
+
+Require all denied
+
+<Files "advisor.php">
+    Require all granted
+</Files>
+
+# Long-running streaming response — disable Apache's default buffering hints.
+<IfModule mod_headers.c>
+    <Files "advisor.php">
+        Header set Cache-Control "no-cache, no-store, must-revalidate"
+    </Files>
+</IfModule>

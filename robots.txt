@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Disallow: /update.html
+
+Sitemap: https://kittykat.tech/sitemap-index.xml
