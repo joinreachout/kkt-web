@@ -348,7 +348,7 @@ const schemaJsonLd = JSON.stringify({
               entries.forEach(function (e) {
                 if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
               });
-            }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+            }, { rootMargin: '0px 0px -14% 0px', threshold: 0.12 });
             els.forEach(function (el) { io.observe(el); });
           }
         }
@@ -359,7 +359,7 @@ const schemaJsonLd = JSON.stringify({
           var ticking = false;
           var apply = function () {
             var y = window.scrollY || window.pageYOffset || 0;
-            hero.style.transform = y > 0 && y < 700 ? 'translateY(' + (-y * 0.12) + 'px)' : '';
+            hero.style.transform = y > 0 && y < 760 ? 'translateY(' + (-y * 0.2) + 'px)' : '';
             ticking = false;
           };
           window.addEventListener('scroll', function () {
