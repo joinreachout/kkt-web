@@ -12,6 +12,8 @@ const NOINDEX_PATHS = [
   '/404.html',
   '/tools/cost-of-doing-nothing',
   '/tools/cost-of-doing-nothing/',
+  '/security',
+  '/security/',
 ];
 
 export default defineConfig({

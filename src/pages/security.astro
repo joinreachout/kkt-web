@@ -1,0 +1,214 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import CTA from '~/components/CTA.astro';
+
+// DRAFT — noindex until Dennis confirms the items flagged below, then
+// remove `noindex` and add /security to the footer.
+//
+// CLAIMS VERIFIED against public/api/advisor.php (2026-05-29):
+//   - anthropic-zdr: true on every API request (line ~210)
+//   - no database, no content logging (only error text + hashed-IP rate counter)
+//   - drop-doc upload read for text extraction, not persisted by KKT
+//   - calculator inputs stay client-side (CalculatorPreview.tsx)
+// TO CONFIRM before publish (do NOT assert without Dennis):
+//   - formal certifications (ISO 27001 / SOC 2) — currently NOT claimed
+//   - named DPO / formal DPA / sub-processor list
+//   - business-correspondence retention period
+//   - confirm no analytics/tracking is added later
+---
+
+<BaseLayout
+  title="Security & privacy — KKT"
+  description="How KKT handles your data: the advisor, dropped documents, the calculator, and our GDPR posture as an EU firm."
+  noindex={true}
+>
+  <article class="prose-page">
+    <div class="container">
+      <div class="section-label">Security &amp; privacy</div>
+      <h1 class="h1-page">How we handle your data.</h1>
+      <p class="lede">
+        We ask senior people to share real, sensitive material — a P&amp;L,
+        a KPI dashboard, an operating situation. That only works if the
+        data handling is honest and plain. Here is exactly what happens to
+        what you share, in the same language we use everywhere else.
+      </p>
+
+      <section class="sec">
+        <div class="section-label">The advisor &amp; dropped documents</div>
+        <h2 class="h2-section">Private by default. Not stored.</h2>
+        <p>
+          When you ask the advisor a question, or drop a document for it to
+          audit, the content is processed in real time to generate the
+          answer and then it is gone. There is no account, no database, and
+          no log of what you typed or uploaded.
+        </p>
+        <ul class="points">
+          <li>
+            <strong>Zero data retention at the AI layer.</strong> Requests
+            to our AI provider (Anthropic&rsquo;s Claude) carry a
+            zero-data-retention flag, so your inputs are not retained by the
+            provider or used to train models.
+          </li>
+          <li>
+            <strong>No storage on our side.</strong> We run no database and
+            write no message content to disk. A dropped file is read once to
+            extract its text, passed to the model, and not kept.
+          </li>
+          <li>
+            <strong>No content in our logs.</strong> The only operational
+            record is a rate-limit counter keyed to a one-way hash of your
+            IP address with timestamps — never the message or the document.
+          </li>
+          <li>
+            <strong>You choose what to share.</strong> The advisor never
+            requires a document. Share only what you are comfortable
+            sharing; redact first if you prefer.
+          </li>
+        </ul>
+        <div class="callout">
+          <p>
+            If you would not put it in an email to us, do not put it in the
+            advisor. We treat both with the same care &mdash; but plain
+            honesty beats a false promise.
+          </p>
+        </div>
+      </section>
+
+      <section class="sec">
+        <div class="section-label">The Cost of Doing Nothing calculator</div>
+        <h2 class="h2-section">Your numbers stay in your browser.</h2>
+        <p>
+          The calculator runs entirely on your device. The figures you
+          enter are not sent to us &mdash; there is no submission step that
+          transmits them &mdash; unless you explicitly choose to attach your
+          results when booking a diagnostic. That is stated in the tool
+          itself, and it is the whole point: it should be useful to a CFO
+          who does not want their numbers leaving their machine.
+        </p>
+      </section>
+
+      <section class="sec">
+        <div class="section-label">Where we are, which law applies</div>
+        <h2 class="h2-section">An EU firm, under GDPR.</h2>
+        <p>
+          KKT is Kitty Kat Technologies O&Uuml; , registered at J&otilde;e 7,
+          10151 Tallinn, Estonia. As an EU entity we operate under the
+          General Data Protection Regulation. Any personal data you send us
+          directly &mdash; an email, a contact-form message &mdash; is used
+          only to respond to you and to run the engagement, never sold and
+          never shared beyond what a specific engagement requires.
+        </p>
+      </section>
+
+      <section class="sec">
+        <div class="section-label">What we do not do</div>
+        <h2 class="h2-section">The short list.</h2>
+        <ul class="points">
+          <li>We do not sell or rent your data to anyone.</li>
+          <li>We do not use what you share with the advisor to train models.</li>
+          <li>We do not run advertising or cross-site tracking on this site.</li>
+          <li>We do not require an account to use anything here.</li>
+        </ul>
+      </section>
+
+      <section class="sec">
+        <div class="section-label">Procurement &amp; due diligence</div>
+        <h2 class="h2-section">Need more for a review?</h2>
+        <p>
+          If your procurement or security team needs a data-processing
+          agreement, a sub-processor list, or answers to a vendor-security
+          questionnaire before an engagement, write to us and we will work
+          through it directly. We would rather have that conversation early
+          than paper over it.
+        </p>
+        <p class="meta-line">
+          Data &amp; privacy questions:
+          <a href="mailto:hello@kittykat.tech">hello@kittykat.tech</a>.
+        </p>
+      </section>
+    </div>
+
+    <CTA
+      heading="Questions before you share anything?"
+      body="Ask first. We would rather answer a data-handling question up front than have you wonder about it later."
+      primaryLabel="Email hello@kittykat.tech"
+      primaryHref="mailto:hello@kittykat.tech"
+      secondaryLabel="How we work"
+      secondaryHref="/approach"
+    />
+  </article>
+</BaseLayout>
+
+<style>
+  .prose-page {
+    padding-top: clamp(40px, 6vh, 72px);
+    padding-bottom: clamp(56px, 9vh, 96px);
+  }
+  .section-label { margin-bottom: 18px; }
+  .h1-page {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(32px, 4.5vw, 48px);
+    line-height: 1.16;
+    margin-bottom: 18px;
+    letter-spacing: -0.01em;
+    max-width: 22ch;
+  }
+  .lede {
+    font-size: clamp(17px, 2vw, 20px);
+    color: var(--text-secondary);
+    line-height: 1.55;
+    max-width: 60ch;
+    margin-bottom: 8px;
+  }
+  .sec {
+    margin-top: clamp(40px, 6vh, 64px);
+    border-top: 1px solid var(--border);
+    padding-top: 36px;
+  }
+  .sec .section-label { margin-bottom: 12px; }
+  .sec h2 { margin-bottom: 16px; max-width: 26ch; }
+  .sec p { max-width: 64ch; margin-bottom: 14px; color: var(--text-secondary); }
+  .points {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0 0;
+    display: grid;
+    gap: 12px;
+    max-width: 720px;
+  }
+  .points li {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 16px 20px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+  .points strong { color: var(--text-primary); }
+  .callout {
+    margin: 24px 0 0;
+    padding: 18px 22px;
+    background: var(--surface-alt);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 4px 4px 0;
+    max-width: 720px;
+  }
+  .callout p {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(17px, 2.2vw, 20px);
+    line-height: 1.35;
+    color: var(--text-primary);
+    margin: 0;
+    max-width: 44ch;
+  }
+  .meta-line {
+    font-size: 14px;
+    color: var(--text-muted) !important;
+    margin-top: 8px;
+  }
+  .meta-line a { color: var(--text-primary); font-weight: 500; }
+</style>
