@@ -1,0 +1,32 @@
+# KKT — Kitty Kat Technologies
+
+> Senior PMO and AI delivery for mid-sized retailers ($50M–$500M) and fuel networks. Based in Tallinn, Estonia (EU). We build and ship operating systems, not decks. Marquee deployment: Optimus, live at Alfa Oil — 600+ stations, $500M annual revenue, Kyrgyzstan.
+
+Kitty Kat Technologies OÜ (public brand: KKT) is an AI delivery and programme-management firm registered in Tallinn, Estonia. The firm works with mid-sized retailers and fuel networks across Central Europe, the EU, and Central Asia. Every engagement starts with a two-week diagnostic. Delivery follows a three-stage model: strengthen the core, optimize and grow, expand and monetize. The exit criterion — the system runs without KKT — is written into the engagement from week one.
+
+The flagship product is Optimus, an operating-intelligence system for fuel-distribution networks. Each morning Optimus pulls live ERP data, forecasts when each station and fuel-type position will hit critical level, detects inbound delivery conflicts, and produces concrete procurement recommendations: which supplier, how many tons, by what date, at what price. It is live at two deployments — Alfa Oil (600+ stations, $500M revenue, Kyrgyzstan) and a second Central Asian network (10 stations, 11 fuel types, 3 regions).
+
+KKT avoids vendor-hype language. Outcomes are stated in measurable terms — margin, cash, availability, customer value, productivity — or not stated at all. The firm is candid about poor fit: it turns down work below ~$50M revenue, pure strategy without delivery, engagements with no senior internal owner, regulated banking/public-sector/defence work, and full outsourcing.
+
+## Pages
+
+- [Home](https://kittykat.tech/): Positioning, the two industries served, featured Alfa Oil case, delivery-model summary.
+- [About](https://kittykat.tech/about/): Firm profile. Registered as Kitty Kat Technologies OÜ, Jõe 7, Tallinn, Estonia. Four operating beliefs. Team — Nageye Ibrahim Rascid (Cloud Expert, 20 years), George Shevardenidze (Data Scientist, 15 years), Dennis Nepomniashy (Data-driven Marketing).
+- [Approach](https://kittykat.tech/approach/): The two-week diagnostic (kick-off days 1–3, investigation days 4–9, synthesis days 10–12, readout day 14) and the three-stage delivery model.
+- [Is this a fit?](https://kittykat.tech/not-for-you/): An honest read on where KKT is and is not the right partner — seven specific conditions.
+- [Optimus](https://kittykat.tech/solutions/optimus/): The product page. Operating-intelligence system for fuel networks; the morning workflow; the full capability surface; two live deployments.
+- [Fuel retail](https://kittykat.tech/industries/fuel-retail/): Fuel-network engagement starting points, with Optimus as the operating engine.
+- [Retail](https://kittykat.tech/industries/retail/): Mid-sized retailer starting points. Links to the open retail playbook (30 services across 11 domains).
+- [Alfa Oil case study](https://kittykat.tech/case-studies/alfa-oil/): Fuel retail, Kyrgyzstan. 600+ stations, $500M annual revenue, 11 fuel types. Optimus live in production.
+- [Click & Grow case study](https://kittykat.tech/case-studies/click-and-grow/): B2C smart indoor gardens. Customer analytics and ML segmentation for Eastern Europe / CIS growth.
+- [GTE case study](https://kittykat.tech/case-studies/gte/): Industrial compressor manufacturer. Finance/manufacturing reporting plus ML for anomaly detection and energy-consumption optimisation.
+- [Kricon case study](https://kittykat.tech/case-studies/kricon/): International logistics. Operational visibility — reporting infrastructure, anomaly detection, and clustering models.
+- [CSC Telecom case study](https://kittykat.tech/case-studies/csc-telecom/): Mid-sized telecom provider. Customer and product analytics; several insights adopted and shipped.
+- [Cost of Doing Nothing — methodology](https://kittykat.tech/methods/cost-of-doing-nothing/): A public, dated methodology (v0.1, 2026-05-07) for a fuel-retail P&L gap calculator. Seven principles; five benchmark source tiers including public annual reports (MOL, OMV, Couche-Tard, EG Group, Shell, BP, ENI) and KKT internal aggregated benchmarks (2022–2026, minimum n=5).
+- [Insights](https://kittykat.tech/insights/): A working-in-public column from named authors at KKT.
+- [Contact](https://kittykat.tech/contact/): hello@kittykat.tech · +372 5555 3621 · Jõe 7, 10151 Tallinn, Estonia.
+
+## Optional
+
+- [Retail AI Canvas (external)](https://retail.kittykat.tech): The open retail playbook — 30 services across 11 retail domains, updated quarterly.
+- [Cost of Doing Nothing — tool preview](https://kittykat.tech/tools/cost-of-doing-nothing/): An interactive calculator in v0 preview (placeholder benchmarks; calibrated launch in a later phase). Not for board use yet.

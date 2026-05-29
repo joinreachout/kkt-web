@@ -39,6 +39,7 @@ const schemaGraph: Record<string, unknown>[] = [
     '@type': 'Organization',
     '@id': 'https://kittykat.tech/#org',
     name: 'Kitty Kat Technologies',
+    legalName: 'Kitty Kat Technologies OÜ',
     alternateName: 'KKT',
     url: 'https://kittykat.tech/',
     logo: 'https://kittykat.tech/favicon.svg',
@@ -57,7 +58,33 @@ const schemaGraph: Record<string, unknown>[] = [
     description:
       'Senior PMO + AI delivery for mid-sized retailers and fuel networks. Tallinn, EU.',
     foundingLocation: 'Tallinn, Estonia',
-    knowsAbout: ['AI delivery', 'PMO', 'Fuel retail', 'Retail analytics'],
+    knowsAbout: [
+      'AI delivery',
+      'PMO',
+      'Fuel retail operations',
+      'Retail analytics',
+      'Operating-intelligence systems',
+    ],
+    member: [
+      {
+        '@type': 'Person',
+        name: 'Nageye Ibrahim Rascid',
+        jobTitle: 'Cloud Expert',
+        sameAs: 'https://www.linkedin.com/in/nageyerascid/',
+      },
+      {
+        '@type': 'Person',
+        name: 'George Shevardenidze',
+        jobTitle: 'Data Scientist',
+        sameAs: 'https://www.linkedin.com/in/george-shevardenidze-017a3999/',
+      },
+      {
+        '@type': 'Person',
+        name: 'Dennis Nepomniashy',
+        jobTitle: 'Data-driven Marketing',
+        sameAs: 'https://www.linkedin.com/in/dennisnepomniashy/',
+      },
+    ],
   },
 ];
 
@@ -156,6 +183,90 @@ if (pathname === '/solutions/optimus') {
       'Daily operating intelligence for fuel networks. Stockouts, replenishment, working capital — in 10 minutes a morning. Live at Alfa Oil (600+ stations, $500M revenue).',
     areaServed: 'Europe and Central Asia',
     audience: { '@type': 'BusinessAudience', audienceType: 'Fuel retail networks' },
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Optimus capability surface',
+      itemListElement: [
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'AI Briefing', description: 'Plain-language daily situation summary — Action Required, Good News, Savings Tip. Free-form chat answers questions from live data.' } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Procurement Advisor', description: 'Concrete order recommendations with supplier, tonnage, deadline, and price. Statuses CRITICAL / ORDER / OK. One-click PO creation.' } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Stockout Forecast', description: 'Days remaining until critical level per station and fuel-type position. Includes in-transit and split-wagon transfers.' } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Delivery conflict resolver', description: 'Auto-Distribute reroutes overflow wagons to the nearest stations with free capacity, with an audit trail.' } },
+        { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Working Capital', description: 'Money frozen in inventory and where to release it, per fuel and per region.' } },
+      ],
+    },
+  });
+}
+
+// FAQPage for /not-for-you — the page's seven fit conditions are
+// genuine Q&A; answer text mirrors the published copy verbatim.
+if (pathname === '/not-for-you') {
+  const mk = (q: string, a: string) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  });
+  schemaGraph.push({
+    '@type': 'FAQPage',
+    '@id': 'https://kittykat.tech/not-for-you/#faq',
+    mainEntity: [
+      mk(
+        'Is KKT the right partner if our revenue is below ~$50M?',
+        'KKT is built for mid-sized retailers and fuel networks. Below that scale, the delivery model usually costs more than the value it can create — you would be paying for rigor you do not need yet. There are excellent partners sized for smaller companies, and starting with one of them is the right first move.'
+      ),
+      mk(
+        'Does KKT take on strategy work without delivery?',
+        'No. KKT work is shaped to put something operating into your business, not to produce a deck that sits on a shelf. If what you need is a slide-led strategy with no delivery team behind it, a strategy house will serve you better.'
+      ),
+      mk(
+        'What if there is no senior internal owner to inherit the work?',
+        'The systems KKT builds keep running after the team leaves only if someone senior inside owns them — with real authority and real time, not just a title. If that person is not in place yet, the honest first step is to get them in seat, and KKT is glad to help scope the role first.'
+      ),
+      mk(
+        'Can KKT put a model into production in four weeks?',
+        'KKT can run a diagnostic in four weeks. A model live in your business and moving real numbers in four weeks — that KKT cannot promise, and would rather say so than over-commit. Good delivery has a floor on time.'
+      ),
+      mk(
+        'Does KKT work in heavily regulated banking, public sector, or defence?',
+        'No. Those domains carry compliance bars and delivery patterns KKT does not claim deep expertise in. Firms built specifically for that work will serve you better.'
+      ),
+      mk(
+        'Will KKT deploy AI without a defined business outcome?',
+        'No. KKT puts data, models, and AI to work only where they earn their place against margin, cash, availability, customer value, or productivity. If the ask is to deploy a chatbot or run an LLM pilot with no business outcome attached, KKT is probably not the right call.'
+      ),
+      mk(
+        'Does KKT offer full outsourcing or staff augmentation?',
+        'No. KKT works alongside your people and brings senior delivery rigor, AI capability, and PMO discipline — but does not take over your operations, IT, or data function. If you need full-service outsourcing or staff augmentation, a different kind of firm is the better fit.'
+      ),
+    ],
+  });
+}
+
+// ItemList for /case-studies — named client engagements. Descriptions
+// drawn only from existing case-study content.
+if (pathname === '/case-studies') {
+  const caseItem = (position: number, name: string, slug: string, description: string) => ({
+    '@type': 'ListItem',
+    position,
+    item: {
+      '@type': 'Article',
+      name,
+      url: `https://kittykat.tech/case-studies/${slug}/`,
+      description,
+      publisher: { '@id': 'https://kittykat.tech/#org' },
+    },
+  });
+  schemaGraph.push({
+    '@type': 'ItemList',
+    '@id': 'https://kittykat.tech/case-studies/#list',
+    name: 'KKT case studies',
+    description: 'Named client engagements delivered by Kitty Kat Technologies.',
+    itemListElement: [
+      caseItem(1, 'Alfa Oil — Optimus operating across the network', 'alfa-oil', 'Fuel retail, Kyrgyzstan. 600+ stations, $500M annual revenue, 11 fuel types. Optimus live in production.'),
+      caseItem(2, 'Click & Grow — ML segmentation for Eastern Europe and CIS', 'click-and-grow', 'B2C smart indoor gardens. Customer analytics and ML segmentation models for targeted growth.'),
+      caseItem(3, 'GTE — reporting and ML for compressor manufacturing', 'gte', 'Industrial compressor manufacturer. Finance and manufacturing reporting, plus ML for anomaly detection and energy-consumption optimisation.'),
+      caseItem(4, 'Kricon — operational visibility for international logistics', 'kricon', 'International logistics. Reporting infrastructure, anomaly detection, and clustering models for ops-level signals.'),
+      caseItem(5, 'CSC Telecom — customer and product analytics', 'csc-telecom', 'Mid-sized telecom provider. Customer and product analytics studies; several insights adopted and shipped.'),
+    ],
   });
 }
 
