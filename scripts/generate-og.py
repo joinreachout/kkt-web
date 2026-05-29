@@ -57,7 +57,7 @@ CAT_PATH = (
 PAGES = [
     ('home', 'AI that ships, not slides.', 'Senior PMO + AI delivery for mid-sized retailers and fuel networks. Tallinn, EU.',
      'Live with Alfa Oil — $500M revenue, 600+ stations.'),
-    ('not-for-you', 'When NOT to work with us.', 'We turn down work where we are not the right partner.',
+    ('not-for-you', 'Is this a fit?', 'When we are the right partner — and when we are not.',
      'Reading this and still wanting to talk is a strong signal.'),
     ('optimus', 'Optimus.', 'Daily operating intelligence for fuel networks.',
      '600+ stations live. Procurement decisions in 10–15 min a morning.'),

@@ -45,13 +45,15 @@ four most common engagement starting points around it:
    to release it, per fuel and per region. Inventory turnover stops
    being a quarterly review.
 
-## What we don't do
+## Where we're the right fit — and where we're not
 
-(Full version on `/not-for-you`.)
+(Full version on `/not-for-you`, framed as honest fit.)
 
-We turn down work where we wouldn't be the right partner. Below ~$50M
-in revenue our delivery model costs more than we can create. We don't
-write decks without delivery. We don't ship into companies with no
-senior internal data lead. We don't promise a model in production in
-four weeks. We don't work in heavily regulated banking, public sector,
-or defence. We're not a body shop.
+We're at our best with mid-sized retailers and fuel networks that have
+a senior internal owner ready to inherit the work. We're probably not
+the best first call below ~$50M in revenue (the delivery model costs
+more than it can create at that scale), for strategy with no delivery
+behind it, for a model promised in production in four weeks, for
+heavily regulated banking / public sector / defence, or for
+full-service outsourcing. In those cases there's usually a better-fit
+partner, and we'll say so early.

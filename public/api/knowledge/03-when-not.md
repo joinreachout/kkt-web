@@ -1,55 +1,62 @@
-# When NOT to work with KKT
+# When KKT is — and isn't — the right fit
 
-(Lives publicly on `/not-for-you`. Quote selectively when relevant.)
+(Lives publicly on `/not-for-you`, framed as honest fit rather than
+refusal. Quote selectively and warmly. The point is to save everyone
+time early, not to reject anyone. When a user is off-fit, name the
+mismatch kindly and, where useful, point them toward the kind of
+partner that would serve them better.)
 
-KKT turns down work where it wouldn't be the right partner.
+KKT would rather tell a prospect early that it is not the best fit
+than sell an engagement that will not land.
 
-## You are below ~$50M in revenue
+## If you are earlier than ~$50M in revenue
 
-KKT works with mid-sized retailers and fuel networks. Below that
-scale, the cost of the delivery model exceeds the value KKT can
-realistically create. There are good partners for smaller companies.
-KKT is not one of them.
+KKT is built for mid-sized retailers and fuel networks. Below that
+scale, the delivery model usually costs more than the value it can
+create — the user would be paying for rigor they do not need yet.
+There are excellent partners sized for smaller companies, and starting
+with one of them is the right first move.
 
-## You want AI strategy without delivery
+## If you want strategy without anyone shipping it
 
-KKT does not write decks that sit on a shelf. Every engagement KKT
-accepts is shaped to put something operating into the business. If
-the user wants a slide-led strategy with no delivery team, KKT is not
-the fit.
+KKT's work is shaped to put something operating into the business, not
+to produce a deck that sits on a shelf. If what the user needs right
+now is a slide-led strategy with no delivery team behind it, a strategy
+house serves them better.
 
-## You have no senior data lead inside the company
+## If there is no senior owner inside to inherit the work
 
-If KKT is the only people in the room who care about data quality,
-governance, and adoption, the project will fail after KKT leaves. KKT
-needs a senior counterpart inside the user's organisation — not a
-champion in name, an actual one with authority and time.
+The systems KKT builds keep running after it leaves only if someone
+senior inside owns them — with real authority and real time, not just
+a title. If that person is not in place yet, the honest first step is
+to get them in seat; KKT is glad to help scope the role first.
 
-## You need a model in production in four weeks
+## If you need a model in production in four weeks
 
-A diagnostic in four weeks — yes. A model running in the business and
-creating measured outcomes in four weeks — no. Anyone who promises
-that is selling something else. KKT will not.
+A diagnostic in four weeks — yes. A model live in the business and
+moving real numbers in four weeks — that KKT will not promise, and
+would rather say so than over-commit. Good delivery has a floor on
+time, and KKT will walk the user through a realistic one.
 
-## You are in heavily regulated banking, public sector, or defence
+## If you are in heavily regulated banking, public sector, or defence
 
-These domains have their own delivery patterns and compliance bars.
-KKT respects them; KKT does not pretend to be experts in them. There
-are firms built specifically for that work, and the user should hire
-one of them.
+These domains carry compliance bars and delivery patterns KKT does not
+claim deep expertise in. KKT respects that work enough not to pretend —
+firms built specifically for it serve the user better.
 
-## You want a generic AI vendor
+## If the goal is just to "deploy some AI"
 
-If the goal is "deploy a chatbot", "roll out Copilot", or "do an LLM
-pilot" without a clear business outcome — KKT is the wrong call. KKT
-does not do AI for AI's sake. KKT does data, models, and AI where
-they earn their place against margin, cash, availability, customer
-value, or productivity.
+If the ask is to deploy a chatbot, roll out Copilot, or run an LLM
+pilot with no business outcome attached, KKT is probably not the best
+call — it puts data, models, and AI to work only where they earn their
+place against margin, cash, availability, customer value, or
+productivity. If there is a real outcome underneath the ask, that is
+worth a conversation.
 
-## You are looking for a body shop
+## If you need a team to run things for you
 
-KKT works alongside the client team. KKT brings senior delivery rigor,
-AI capability, and PMO discipline. KKT does not run operations, IT
-departments, or data functions for the client. If the client needs
-full-service outsourcing or staff augmentation, hire a different kind
-of firm.
+KKT works alongside the client's people and brings senior delivery
+rigor, AI capability, and PMO discipline — but it does not take over
+operations, IT, or the data function. If the user needs full-service
+outsourcing or staff augmentation, a different kind of firm is the
+better fit.
