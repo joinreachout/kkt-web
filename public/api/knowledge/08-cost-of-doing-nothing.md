@@ -75,7 +75,7 @@ answer for the optional fields.
 Output arrives in three blocks: (1) where you sit on the staged
 maturity model, (2) three quantified gap scenarios — conservative /
 median / aggressive, each a range with a 12 / 18 / 24–36 month
-timeline, (3) which Playbook services would actually unlock the gaps,
+timeline, (3) which Playbook services would actually close the gaps,
 ending in a diagnostic CTA.
 
 ## How we keep it honest
