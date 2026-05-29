@@ -172,6 +172,20 @@ const changelog = [
           the only data we own; we are explicit about that.
         </p>
 
+        <figure class="source-weight" aria-label="The five source tiers ordered by weight: Tier 1 public annual reports carries the most weight, down to Tier 5 KKT internal benchmarks.">
+          <ol class="sw-list">
+            <li class="sw-row"><span class="sw-bar"><span class="sw-rank">Tier 1</span>Public annual reports</span></li>
+            <li class="sw-row"><span class="sw-bar"><span class="sw-rank">Tier 2</span>Industry associations</span></li>
+            <li class="sw-row"><span class="sw-bar"><span class="sw-rank">Tier 3</span>Trade-press surveys</span></li>
+            <li class="sw-row"><span class="sw-bar"><span class="sw-rank">Tier 4</span>Consultancy whitepapers</span></li>
+            <li class="sw-row"><span class="sw-bar"><span class="sw-rank">Tier 5</span>KKT internal benchmarks</span></li>
+          </ol>
+          <figcaption>
+            Weighted top to bottom — primary filings outrank aggregators.
+            KKT internal data sits last because it is also the only data we own.
+          </figcaption>
+        </figure>
+
         <ol class="sources">
           {sources.map((s) => (
             <li>
@@ -421,6 +435,64 @@ const changelog = [
     margin-bottom: 8px;
   }
   .principles p { font-size: 15px; max-width: 64ch; margin: 0; }
+
+  .source-weight {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 24px 26px;
+    margin: 8px 0 28px;
+    max-width: 820px;
+  }
+  .sw-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 8px;
+  }
+  .sw-bar {
+    display: block;
+    width: 100%;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--border);
+    border-radius: 0 4px 4px 0;
+    padding: 13px 18px;
+    font-size: 15px;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .sw-rank {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-right: 12px;
+  }
+  .sw-row:nth-child(1) .sw-bar {
+    background: var(--accent-dim);
+    border-left-color: var(--accent);
+  }
+  .sw-row:nth-child(1) .sw-rank { color: var(--accent-text); }
+  @media (min-width: 640px) {
+    .sw-row:nth-child(1) .sw-bar { width: 100%; }
+    .sw-row:nth-child(2) .sw-bar { width: 86%; }
+    .sw-row:nth-child(3) .sw-bar { width: 72%; }
+    .sw-row:nth-child(4) .sw-bar { width: 58%; }
+    .sw-row:nth-child(5) .sw-bar { width: 46%; }
+  }
+  .source-weight figcaption {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 14px;
+    max-width: 64ch;
+    line-height: 1.5;
+  }
 
   .sources {
     list-style: none;
