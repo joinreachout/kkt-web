@@ -12,12 +12,24 @@ interface Props {
   shipped: string;
   outcome: string;
   stack?: string[];
+  image?: string;       // licensed/official product or context photo, e.g. /cases/click-and-grow.jpg
+  imageAlt?: string;
+  imageCredit?: string; // attribution line, if the licence requires it
 }
-const { industry, region, status, live = false, situation, shipped, outcome, stack = [] } =
-  Astro.props as Props;
+const {
+  industry, region, status, live = false, situation, shipped, outcome, stack = [],
+  image, imageAlt = '', imageCredit,
+} = Astro.props as Props;
 ---
 
 <figure class="snapshot" data-reveal>
+  {image && (
+    <div class="snap-figure">
+      <img src={image} alt={imageAlt} loading="lazy" />
+      {imageCredit && <figcaption class="snap-credit">{imageCredit}</figcaption>}
+    </div>
+  )}
+
   <div class="snap-meta">
     <span class="snap-chip">{industry}</span>
     {region && <span class="snap-chip">{region}</span>}
@@ -57,6 +69,26 @@ const { industry, region, status, live = false, situation, shipped, outcome, sta
   .snapshot {
     margin: 0 0 32px;
     max-width: 880px;
+  }
+  .snap-figure {
+    margin: 0 0 20px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--card);
+  }
+  .snap-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 360px;
+    object-fit: cover;
+  }
+  .snap-credit {
+    font-size: 11px;
+    color: var(--text-muted);
+    padding: 8px 14px;
+    border-top: 1px solid var(--border);
   }
   .snap-meta {
     display: flex;
