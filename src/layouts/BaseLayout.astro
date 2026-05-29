@@ -281,6 +281,9 @@ const schemaJsonLd = JSON.stringify({
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Mark JS available before paint so scroll-reveal can hide-then-reveal
+         without a flash; no-JS users keep everything visible. -->
+    <script is:inline>document.documentElement.classList.add('js');</script>
     <title>{title}</title>
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
@@ -326,6 +329,27 @@ const schemaJsonLd = JSON.stringify({
 
     <AdvisorMount />
     <VersionBadge />
+
+    <!-- Scroll-reveal: fade + rise sections in as they enter the viewport.
+         Opt-in via [data-reveal]. Respects reduced-motion; reveals all
+         immediately if IO is unavailable. GPU-only (opacity/transform). -->
+    <script is:inline>
+      (function () {
+        var els = document.querySelectorAll('[data-reveal]');
+        if (!els.length) return;
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce || !('IntersectionObserver' in window)) {
+          els.forEach(function (el) { el.classList.add('in-view'); });
+          return;
+        }
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
+          });
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+        els.forEach(function (el) { io.observe(el); });
+      })();
+    </script>
   </body>
 </html>
 
