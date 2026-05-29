@@ -78,79 +78,46 @@ const clusters = [
         <a href="/case-studies/alfa-oil" class="btn-ghost">Read the Alfa Oil case</a>
       </div>
 
-      <figure class="optimus-flow" aria-label="Optimus daily pulse: ERP cron import at 03:30, forecast engine, recommendations, operator at 08:00, Telegram mirror">
-        <svg viewBox="0 0 760 220" xmlns="http://www.w3.org/2000/svg" role="presentation">
-          <defs>
-            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-              <path d="M0,0 L10,5 L0,10 Z" fill="currentColor" fill-opacity="0.45"/>
-            </marker>
-          </defs>
-
-          <!-- Time pin: 03:30 -->
-          <text x="60" y="32" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="600" fill="#8A5E18" letter-spacing="0.5" text-anchor="middle">03:30</text>
-          <line x1="60" y1="42" x2="60" y2="62" stroke="#B8832A" stroke-width="1.5"/>
-
-          <!-- Box 1: ERP cron import -->
-          <g>
-            <rect x="14" y="64" width="92" height="56" rx="4" fill="#FFFFFF" stroke="currentColor" stroke-opacity="0.15"/>
-            <text x="60" y="86" font-family="'DM Sans', sans-serif" font-size="16" font-weight="600" fill="currentColor" text-anchor="middle">ERP</text>
-            <text x="60" y="103" font-family="'DM Sans', sans-serif" font-size="14" fill="currentColor" fill-opacity="0.6" text-anchor="middle">cron import</text>
-          </g>
-          <text x="60" y="142" font-family="'DM Sans', sans-serif" font-size="14" fill="currentColor" fill-opacity="0.55" text-anchor="middle">Stocks · in-transit · sales</text>
-
-          <!-- Arrow 1 -->
-          <line x1="110" y1="92" x2="158" y2="92" stroke="currentColor" stroke-opacity="0.45" stroke-width="1.5" marker-end="url(#arrow)"/>
-
-          <!-- Box 2: Forecast engine -->
-          <g>
-            <rect x="162" y="64" width="118" height="56" rx="4" fill="#FFFFFF" stroke="currentColor" stroke-opacity="0.15"/>
-            <text x="221" y="86" font-family="'DM Sans', sans-serif" font-size="16" font-weight="600" fill="currentColor" text-anchor="middle">Forecast engine</text>
-            <text x="221" y="103" font-family="'DM Sans', sans-serif" font-size="14" fill="currentColor" fill-opacity="0.6" text-anchor="middle">stockout × delivery</text>
-          </g>
-
-          <!-- Arrow 2 -->
-          <line x1="284" y1="92" x2="332" y2="92" stroke="currentColor" stroke-opacity="0.45" stroke-width="1.5" marker-end="url(#arrow)"/>
-
-          <!-- Box 3: Procurement Advisor -->
-          <g>
-            <rect x="336" y="64" width="138" height="56" rx="4" fill="#FFFFFF" stroke="currentColor" stroke-opacity="0.15"/>
-            <text x="405" y="86" font-family="'DM Sans', sans-serif" font-size="16" font-weight="600" fill="currentColor" text-anchor="middle">Procurement Advisor</text>
-            <text x="405" y="103" font-family="'DM Sans', sans-serif" font-size="14" fill="currentColor" fill-opacity="0.6" text-anchor="middle">supplier · tonnage · price</text>
-          </g>
-
-          <!-- Arrow 3 -->
-          <line x1="478" y1="92" x2="526" y2="92" stroke="currentColor" stroke-opacity="0.45" stroke-width="1.5" marker-end="url(#arrow)"/>
-
-          <!-- Time pin: 08:00 -->
-          <text x="588" y="32" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="600" fill="#8A5E18" letter-spacing="0.5" text-anchor="middle">08:00</text>
-          <line x1="588" y1="42" x2="588" y2="62" stroke="#B8832A" stroke-width="1.5"/>
-
-          <!-- Box 4: Operator -->
-          <g>
-            <rect x="530" y="64" width="116" height="56" rx="4" fill="#1A1410" stroke="#1A1410"/>
-            <text x="588" y="86" font-family="'DM Sans', sans-serif" font-size="16" font-weight="600" fill="#F5F3EF" text-anchor="middle">Operator</text>
-            <text x="588" y="103" font-family="'DM Sans', sans-serif" font-size="14" fill="#F5F3EF" fill-opacity="0.7" text-anchor="middle">10–15 min morning</text>
-          </g>
-
-          <!-- Branch arrow down to Telegram -->
-          <line x1="588" y1="124" x2="588" y2="156" stroke="currentColor" stroke-opacity="0.45" stroke-width="1.5" marker-end="url(#arrow)"/>
-
-          <!-- Box 5: Telegram alerts -->
-          <g>
-            <rect x="514" y="160" width="148" height="42" rx="4" fill="#FFFFFF" stroke="currentColor" stroke-opacity="0.15"/>
-            <text x="588" y="178" font-family="'DM Sans', sans-serif" font-size="12" font-weight="600" fill="currentColor" text-anchor="middle">Telegram mirror</text>
-            <text x="588" y="193" font-family="'DM Sans', sans-serif" font-size="13" fill="currentColor" fill-opacity="0.6" text-anchor="middle">critical alerts only</text>
-          </g>
-
-          <!-- Confirmation feedback arrow (Operator → Procurement Advisor) -->
-          <path d="M 530 110 Q 470 145, 420 124" fill="none" stroke="currentColor" stroke-opacity="0.25" stroke-width="1" stroke-dasharray="3 3" marker-end="url(#arrow)"/>
-          <text x="475" y="155" font-family="'DM Sans', sans-serif" font-size="13" fill="currentColor" fill-opacity="0.45" text-anchor="middle" font-style="italic">confirm / override</text>
-        </svg>
-        <figcaption class="optimus-flow-caption">
+      <figure class="pulse" aria-label="Optimus daily pulse: ERP import at 03:30, forecast engine, procurement advisor, operator at 08:00; critical alerts mirror to Telegram independently of the web.">
+        <div class="pulse-rail">
+          <div class="pulse-step">
+            <div class="pulse-node">
+              <span class="pulse-chip">03:30</span>
+              <span class="pulse-t">ERP</span>
+              <span class="pulse-s">stocks · in-transit · sales</span>
+            </div>
+          </div>
+          <span class="pulse-arrow" aria-hidden="true">&rarr;</span>
+          <div class="pulse-step">
+            <div class="pulse-node">
+              <span class="pulse-t">Forecast engine</span>
+              <span class="pulse-s">stockout &times; delivery</span>
+            </div>
+          </div>
+          <span class="pulse-arrow" aria-hidden="true">&rarr;</span>
+          <div class="pulse-step">
+            <div class="pulse-node">
+              <span class="pulse-t">Procurement Advisor</span>
+              <span class="pulse-s">supplier · tonnage · price</span>
+            </div>
+          </div>
+          <span class="pulse-arrow" aria-hidden="true">&rarr;</span>
+          <div class="pulse-step">
+            <div class="pulse-node pulse-dark">
+              <span class="pulse-chip">08:00</span>
+              <span class="pulse-t">Operator</span>
+              <span class="pulse-s">10&ndash;15 min · confirm or override, issue POs</span>
+            </div>
+          </div>
+        </div>
+        <div class="pulse-note">
+          Critical alerts mirror to a Telegram group all day &mdash;
+          independent of the web interface.
+        </div>
+        <figcaption class="pulse-caption">
           Daily pulse: data lands at 03:30, the head of supply opens
           Optimus at 08:00, ten to fifteen minutes later the day&rsquo;s
-          procurement decisions are issued. Critical events mirror to
-          Telegram independently of the web interface.
+          procurement decisions are issued.
         </figcaption>
       </figure>
     </div>
@@ -549,25 +516,77 @@ const clusters = [
     margin-bottom: 28px;
   }
 
-  .optimus-flow {
+  .pulse {
     margin: 36px 0 0;
-    padding: 24px 28px 22px;
+    padding: 26px 28px 24px;
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 4px;
-    color: var(--text-primary);
-    max-width: 820px;
+    max-width: 860px;
   }
-  .optimus-flow svg {
-    width: 100%;
-    height: auto;
-    display: block;
+  .pulse-rail {
+    display: flex;
+    align-items: stretch;
+    gap: 6px;
   }
-  .optimus-flow-caption {
+  .pulse-step { flex: 1 1 0; min-width: 0; display: flex; }
+  .pulse-node {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 26px 14px 14px;
+    min-height: 78px;
+  }
+  .pulse-dark { background: var(--text-primary); border-color: var(--text-primary); }
+  .pulse-chip {
+    position: absolute;
+    top: 9px;
+    left: 14px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--accent-text);
+  }
+  .pulse-dark .pulse-chip { color: #D9A441; }
+  .pulse-t { font-size: 15px; font-weight: 600; color: var(--text-primary); line-height: 1.2; }
+  .pulse-s { font-size: 12.5px; color: var(--text-secondary); line-height: 1.35; }
+  .pulse-dark .pulse-t { color: var(--bg); }
+  .pulse-dark .pulse-s { color: rgba(245, 243, 239, 0.72); }
+  .pulse-arrow {
+    align-self: center;
+    flex: 0 0 auto;
+    color: var(--text-muted);
+    font-size: 18px;
+    line-height: 1;
+  }
+  .pulse-note {
+    margin-top: 18px;
+    padding: 12px 16px;
+    background: var(--surface-alt);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 4px 4px 0;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    max-width: 62ch;
+  }
+  .pulse-caption {
     margin-top: 16px;
     font-size: 13px;
     color: var(--text-muted);
-    max-width: 60ch;
+    max-width: 62ch;
+  }
+  @media (max-width: 680px) {
+    .pulse-rail { flex-direction: column; gap: 4px; }
+    .pulse-step { width: 100%; }
+    .pulse-arrow { transform: rotate(90deg); padding: 2px 0; }
   }
 
   .section {
