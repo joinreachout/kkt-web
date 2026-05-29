@@ -78,7 +78,7 @@ const teamWithBios = await Promise.all(
       <section data-reveal class="beliefs">
         <h2 class="h2-section">What we believe.</h2>
 
-        <ol class="beliefs-list">
+        <ol class="beliefs-list" data-reveal-stagger>
           <li>
             <div class="belief-num">01</div>
             <div>
@@ -145,7 +145,7 @@ const teamWithBios = await Promise.all(
             </p>
           </div>
         ) : (
-          <div class="team-grid">
+          <div class="team-grid" data-reveal-stagger>
             {teamWithBios.map(({ data, Content }) => (
               <div class="member">
                 {data.photo && (

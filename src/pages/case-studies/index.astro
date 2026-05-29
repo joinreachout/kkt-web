@@ -106,7 +106,7 @@ const cases = [
         </p>
       </blockquote>
 
-      <ul class="case-list">
+      <ul class="case-list" data-reveal-stagger>
         {cases.map((c) => (
           <li>
             <a href={c.href} class={`case-card ${c.featured ? 'case-card-featured' : ''}`}>
@@ -137,7 +137,7 @@ const cases = [
             marquee story KKT leads with on conversion-critical
             surfaces.
           </p>
-          <ul class="smaller-grid">
+          <ul class="smaller-grid" data-reveal-stagger>
             {smallerEngagements.map((s) => (
               <li class="smaller-card">
                 <div class="smaller-logo">
