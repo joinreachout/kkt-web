@@ -1,6 +1,30 @@
 ---
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import CTA from '~/components/CTA.astro';
+import StartingPoints from '~/components/StartingPoints.astro';
+
+const startingPoints = [
+  {
+    pressure: 'Stockouts surprise you, and procurement eats the morning.',
+    lever: 'Procurement and replenishment intelligence',
+    detail: 'The Optimus core: stockout forecasting, supplier consolidation, working-capital release. What the head of supply opens at 8 AM.',
+  },
+  {
+    pressure: 'Margin is something you read after the fact, not a lever you set.',
+    lever: 'Pricing posture',
+    detail: 'Network-level pricing in a daily cadence, with margin posture explicit — margin becomes a controlled variable, not an outcome.',
+  },
+  {
+    pressure: 'The network number hides where money actually moves.',
+    lever: 'Station-level operations',
+    detail: 'Per-station fill levels, fuel mix, conflict resolution, audit trails — the visibility under the headline number.',
+  },
+  {
+    pressure: 'Cash sits frozen in inventory with no view of where.',
+    lever: 'Working capital and turnover',
+    detail: 'Money frozen in inventory and where to release it, per fuel and per region. Turnover stops being a quarterly review.',
+  },
+];
 ---
 
 <BaseLayout
@@ -57,40 +81,7 @@ import CTA from '~/components/CTA.astro';
           workstream — driven by what the diagnostic surfaces.
         </p>
 
-        <div class="starts-grid" data-reveal-stagger>
-          <div class="start-card">
-            <h3 class="start-title">Procurement and replenishment intelligence.</h3>
-            <p>
-              The Optimus core. Stockout forecasting, supplier
-              consolidation, working capital release. The thing the
-              head of supply opens at 8 AM.
-            </p>
-          </div>
-          <div class="start-card">
-            <h3 class="start-title">Pricing posture.</h3>
-            <p>
-              Network-level pricing decisions in a daily cadence,
-              with margin posture explicit. What happens when margin
-              becomes a controlled variable rather than an outcome.
-            </p>
-          </div>
-          <div class="start-card">
-            <h3 class="start-title">Station-level operations.</h3>
-            <p>
-              Per-station fill levels, fuel mix, conflict resolution,
-              audit trails. The visibility under the network number,
-              where most operational money is actually moved.
-            </p>
-          </div>
-          <div class="start-card">
-            <h3 class="start-title">Working capital and turnover.</h3>
-            <p>
-              $ frozen in inventory and where to release it, per
-              fuel and per region. Inventory turnover stops being a
-              quarterly review.
-            </p>
-          </div>
-        </div>
+        <StartingPoints items={startingPoints} />
 
         <p class="starts-tail">
           See the full surface on

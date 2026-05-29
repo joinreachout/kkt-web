@@ -1,6 +1,30 @@
 ---
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import CTA from '~/components/CTA.astro';
+import StartingPoints from '~/components/StartingPoints.astro';
+
+const startingPoints = [
+  {
+    pressure: 'Margin is leaking on the shelf — and no one can point to exactly where.',
+    lever: 'Margin recovery and assortment',
+    detail: 'Where margin is being left on the shelf, and what to do about it. Often the fastest line to measurable money in.',
+  },
+  {
+    pressure: 'You cannot say who actually drives the business.',
+    lever: 'Customer ownership',
+    detail: 'Segmentation, lifecycle, and the operating decisions that follow from knowing your real customers. Compounds over time.',
+  },
+  {
+    pressure: 'Pricing and replenishment move at quarterly speed, not daily.',
+    lever: 'Decision cadence',
+    detail: 'Pricing, replenishment, and cash discipline as a daily rhythm. PMO discipline is what makes the rhythm hold.',
+  },
+  {
+    pressure: 'The numbers do not agree, so decisions wait.',
+    lever: 'Foundational data and reporting',
+    detail: 'When the core is shaky, everything downstream stays shaky. If the diagnostic surfaces this, we start here before reaching for AI.',
+  },
+];
 ---
 
 <BaseLayout
@@ -51,40 +75,7 @@ import CTA from '~/components/CTA.astro';
           workstream worth shipping.
         </p>
 
-        <div class="starts-grid" data-reveal-stagger>
-          <div class="start-card">
-            <h3 class="start-title">Margin recovery and assortment.</h3>
-            <p>
-              Where margin is being left on the shelf, and what to do
-              about it. Data-grounded, decision-shaped, often the
-              fastest line to measurable money in.
-            </p>
-          </div>
-          <div class="start-card">
-            <h3 class="start-title">Customer ownership.</h3>
-            <p>
-              Segmentation, lifecycle, and the operating decisions that
-              follow from knowing who actually drives the business.
-              Compounds over time.
-            </p>
-          </div>
-          <div class="start-card">
-            <h3 class="start-title">Decision cadence.</h3>
-            <p>
-              Pricing, replenishment, cash discipline as a daily
-              rhythm rather than a quarterly review. PMO discipline is
-              what makes that rhythm hold.
-            </p>
-          </div>
-          <div class="start-card">
-            <h3 class="start-title">Foundational data and reporting.</h3>
-            <p>
-              When the core is shaky, everything downstream stays
-              shaky. If the diagnostic surfaces this, we start there
-              before reaching for AI.
-            </p>
-          </div>
-        </div>
+        <StartingPoints items={startingPoints} />
 
         <p class="starts-tail">
           The full playbook lives at

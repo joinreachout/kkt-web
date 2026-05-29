@@ -1,0 +1,102 @@
+---
+// "Pressure -> what we ship first" cards for the industry pages.
+// Turns a flat list of engagement starting points into a pain -> lever
+// infographic. Text comes from each industry page's existing content.
+interface Item {
+  pressure: string;
+  lever: string;
+  detail: string;
+}
+interface Props {
+  items: Item[];
+}
+const { items } = Astro.props as Props;
+---
+
+<div class="sp-grid" data-reveal-stagger>
+  {items.map((it, i) => (
+    <div class="sp-card">
+      <span class="sp-n">{String(i + 1).padStart(2, '0')}</span>
+      <div class="sp-pressure">
+        <span class="sp-k">The pressure</span>
+        <p>{it.pressure}</p>
+      </div>
+      <span class="sp-arrow" aria-hidden="true">&darr;</span>
+      <div class="sp-response">
+        <span class="sp-k sp-k-accent">What we ship first</span>
+        <p class="sp-lever">{it.lever}</p>
+        <p class="sp-detail">{it.detail}</p>
+      </div>
+    </div>
+  ))}
+</div>
+
+<style>
+  .sp-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-bottom: 24px;
+  }
+  @media (min-width: 720px) {
+    .sp-grid { grid-template-columns: 1fr 1fr; }
+  }
+  .sp-card {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 22px 24px 24px;
+    display: flex;
+    flex-direction: column;
+  }
+  .sp-n {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+  .sp-k {
+    display: block;
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 7px;
+  }
+  .sp-k-accent { color: var(--accent-text); }
+  .sp-pressure p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    max-width: 42ch;
+  }
+  .sp-arrow {
+    color: var(--accent);
+    font-size: 18px;
+    line-height: 1;
+    margin: 12px 0;
+  }
+  .sp-lever {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 20px;
+    color: var(--text-primary);
+    margin: 0 0 8px;
+    line-height: 1.2;
+  }
+  .sp-detail {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--text-secondary);
+    max-width: 46ch;
+  }
+</style>
