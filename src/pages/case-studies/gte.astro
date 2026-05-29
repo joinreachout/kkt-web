@@ -2,6 +2,7 @@
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import CTA from '~/components/CTA.astro';
 import RelatedCases from '~/components/RelatedCases.astro';
+import CaseSnapshot from '~/components/CaseSnapshot.astro';
 ---
 
 <BaseLayout
@@ -13,39 +14,15 @@ import RelatedCases from '~/components/RelatedCases.astro';
       <div class="section-label section-label-prior">Case study — GTE &middot; Earlier engagement (predates current ICP focus)</div>
       <h1 class="h1-page">GTE — reporting and ML across compressor operations.</h1>
 
-      <section data-reveal class="topline">
-        <div class="topline-row">
-          <div class="topline-label">Industry</div>
-          <div>Industrial — compressor manufacturing</div>
-        </div>
-        <div class="topline-row">
-          <div class="topline-label">Engagement</div>
-          <div>Reporting platform + ML prototypes</div>
-        </div>
-        <div class="topline-row">
-          <div class="topline-label">Scope</div>
-          <div>Finance, manufacturing, anomaly detection, energy optimisation</div>
-        </div>
-        <div class="topline-row">
-          <div class="topline-label">Status</div>
-          <div><span class="live-dot"></span> Delivered</div>
-        </div>
-      </section>
-
-      <section data-reveal class="prose-block">
-        <p>
-          GTE asked us to build a comprehensive reporting tool spanning the
-          company's operations — from finance through manufacturing — and
-          to prototype machine-learning models for compressor anomaly
-          detection and energy-consumption optimisation.
-        </p>
-        <p>
-          The reporting platform unified previously fragmented sources into
-          one decision surface. The ML prototypes proved the operational
-          value of anomaly detection and gave engineering a concrete
-          roadmap for what to push into production.
-        </p>
-      </section>
+      <CaseSnapshot
+        industry="Industrial — compressors"
+        region="EU"
+        status="Delivered"
+        situation="Finance, manufacturing, and operations data sat in fragmented sources — no single decision surface, and ML opportunities still unproven."
+        shipped="A unified cross-functional reporting platform, plus ML prototypes for compressor anomaly detection and energy-consumption optimisation."
+        outcome="One decision surface across the business, and a proven, costed roadmap for what to industrialise next."
+        stack={['PowerBI', 'PostgreSQL', 'Airflow', 'DBT', 'TensorFlow / Sklearn', 'Flask', 'PuLP / CPLEX']}
+      />
 
       <section data-reveal class="shipped">
         <div class="shipped-label">What shipped</div>
@@ -54,11 +31,6 @@ import RelatedCases from '~/components/RelatedCases.astro';
           <li><strong>Compressor anomaly-detection prototype</strong> — ML over operating telemetry, ready to industrialise into the next phase.</li>
           <li><strong>Energy-consumption optimisation pilot</strong> — model showing realistic savings ranges per compressor profile.</li>
         </ul>
-      </section>
-
-      <section data-reveal class="stack">
-        <div class="stack-label">Tech stack</div>
-        <p>PowerBI · PostgreSQL · Airflow · DBT · TensorFlow / Sklearn · Flask · PuLP / CPLEX</p>
       </section>
 
       <p class="editorial-note">

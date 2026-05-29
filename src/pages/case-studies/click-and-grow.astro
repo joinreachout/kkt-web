@@ -2,6 +2,7 @@
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import CTA from '~/components/CTA.astro';
 import RelatedCases from '~/components/RelatedCases.astro';
+import CaseSnapshot from '~/components/CaseSnapshot.astro';
 ---
 
 <BaseLayout
@@ -13,38 +14,15 @@ import RelatedCases from '~/components/RelatedCases.astro';
       <div class="section-label section-label-prior">Case study — Click & Grow &middot; Adjacent engagement (B2C retail, not core fuel/retail focus)</div>
       <h1 class="h1-page">Click & Grow — segmenting a B2C customer base for targeted growth.</h1>
 
-      <section data-reveal class="topline">
-        <div class="topline-row">
-          <div class="topline-label">Industry</div>
-          <div>B2C — smart indoor gardens</div>
-        </div>
-        <div class="topline-row">
-          <div class="topline-label">Region focus</div>
-          <div>Eastern Europe / CIS</div>
-        </div>
-        <div class="topline-row">
-          <div class="topline-label">Engagement</div>
-          <div>Customer analytics + ML segmentation models</div>
-        </div>
-        <div class="topline-row">
-          <div class="topline-label">Status</div>
-          <div><span class="live-dot"></span> Delivered</div>
-        </div>
-      </section>
-
-      <section data-reveal class="prose-block">
-        <p>
-          Click & Grow asked us to lift sales in Eastern Europe and the CIS
-          region. We ran a detailed customer analysis surfacing the
-          behavioural patterns and preferences that mattered, then
-          recommended targeted marketing activities and built machine-learning
-          models for customer segmentation.
-        </p>
-        <p>
-          Output: a clear picture of who the high-value segments actually
-          were, plus the segmentation engine to act on it.
-        </p>
-      </section>
+      <CaseSnapshot
+        industry="B2C — smart indoor gardens"
+        region="Eastern Europe / CIS"
+        status="Delivered"
+        situation="Sales needed lifting across Eastern Europe and the CIS — but the high-value customer segments were not yet visible enough to act on."
+        shipped="A behavioural customer analysis, a production ML segmentation engine, and a region-specific targeted-activity playbook."
+        outcome="A clear picture of who the high-value segments are — and the engine to market to them by segment, not by average."
+        stack={['Scikit-learn', 'AzureML', 'Flask', 'Azure']}
+      />
 
       <section data-reveal class="shipped">
         <div class="shipped-label">What shipped</div>
@@ -53,11 +31,6 @@ import RelatedCases from '~/components/RelatedCases.astro';
           <li><strong>ML segmentation engine</strong> — production-ready model so marketing could act on segments rather than averages.</li>
           <li><strong>Targeted-activity playbook</strong> — region-specific marketing recommendations grounded in the segmentation, not in vendor-deck claims.</li>
         </ul>
-      </section>
-
-      <section data-reveal class="stack">
-        <div class="stack-label">Tech stack</div>
-        <p>Scikit-learn · AzureML · Flask · Azure</p>
       </section>
 
       <p class="editorial-note">

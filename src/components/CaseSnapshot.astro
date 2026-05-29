@@ -1,0 +1,164 @@
+---
+// Reusable case "engagement at a glance" infographic.
+// Visual-first summary: meta chips + situation -> shipped -> outcome flow
+// + tech-stack pills. Text comes from each case's existing content only —
+// no invented outcomes. Responsive: the flow stacks under 720px.
+interface Props {
+  industry: string;
+  region?: string;
+  status: string;
+  live?: boolean;
+  situation: string;
+  shipped: string;
+  outcome: string;
+  stack?: string[];
+}
+const { industry, region, status, live = false, situation, shipped, outcome, stack = [] } =
+  Astro.props as Props;
+---
+
+<figure class="snapshot" data-reveal>
+  <div class="snap-meta">
+    <span class="snap-chip">{industry}</span>
+    {region && <span class="snap-chip">{region}</span>}
+    <span class={`snap-chip snap-status ${live ? 'is-live' : ''}`}>
+      {live && <span class="snap-dot"></span>}{status}
+    </span>
+  </div>
+
+  <div class="snap-flow" data-reveal-stagger>
+    <div class="snap-panel">
+      <span class="snap-k">The situation</span>
+      <p>{situation}</p>
+    </div>
+    <span class="snap-arrow" aria-hidden="true">&rarr;</span>
+    <div class="snap-panel">
+      <span class="snap-k">What we shipped</span>
+      <p>{shipped}</p>
+    </div>
+    <span class="snap-arrow" aria-hidden="true">&rarr;</span>
+    <div class="snap-panel snap-panel-accent">
+      <span class="snap-k">What it changed</span>
+      <p>{outcome}</p>
+    </div>
+  </div>
+
+  {stack.length > 0 && (
+    <div class="snap-stack">
+      <span class="snap-stack-label">Built with</span>
+      <ul class="snap-chips">
+        {stack.map((t) => <li>{t}</li>)}
+      </ul>
+    </div>
+  )}
+</figure>
+
+<style>
+  .snapshot {
+    margin: 0 0 32px;
+    max-width: 880px;
+  }
+  .snap-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .snap-chip {
+    font-size: 12px;
+    color: var(--text-secondary);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 5px 13px;
+    letter-spacing: 0.01em;
+  }
+  .snap-status.is-live { color: var(--text-primary); font-weight: 500; }
+  .snap-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #2a8a62;
+    margin-right: 7px;
+    vertical-align: middle;
+  }
+
+  .snap-flow {
+    display: flex;
+    align-items: stretch;
+    gap: 6px;
+  }
+  .snap-panel {
+    flex: 1 1 0;
+    min-width: 0;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 18px 20px;
+  }
+  .snap-panel-accent {
+    background: var(--surface-alt);
+    border-left: 3px solid var(--accent);
+  }
+  .snap-k {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-weight: 600;
+    color: var(--accent-text);
+    margin-bottom: 10px;
+  }
+  .snap-panel p {
+    margin: 0;
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--text-secondary);
+  }
+  .snap-panel-accent p { color: var(--text-primary); }
+  .snap-arrow {
+    align-self: center;
+    flex: 0 0 auto;
+    color: var(--text-muted);
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  .snap-stack {
+    margin-top: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .snap-stack-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+  .snap-chips {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .snap-chips li {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-secondary);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 4px 9px;
+  }
+
+  @media (max-width: 720px) {
+    .snap-flow { flex-direction: column; gap: 4px; }
+    .snap-arrow { transform: rotate(90deg); padding: 2px 0; }
+  }
+</style>

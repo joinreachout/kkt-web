@@ -2,6 +2,7 @@
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import CTA from '~/components/CTA.astro';
 import RelatedCases from '~/components/RelatedCases.astro';
+import CaseSnapshot from '~/components/CaseSnapshot.astro';
 ---
 
 <BaseLayout
@@ -13,39 +14,15 @@ import RelatedCases from '~/components/RelatedCases.astro';
       <div class="section-label section-label-prior">Case study — Kricon &middot; Earlier engagement (predates current ICP focus)</div>
       <h1 class="h1-page">Kricon — operational visibility across the route network.</h1>
 
-      <section data-reveal class="topline">
-        <div class="topline-row">
-          <div class="topline-label">Industry</div>
-          <div>International logistics</div>
-        </div>
-        <div class="topline-row">
-          <div class="topline-label">Scale</div>
-          <div>Mid-sized, operations-focused</div>
-        </div>
-        <div class="topline-row">
-          <div class="topline-label">Engagement</div>
-          <div>Business analysis + data and AI roadmap</div>
-        </div>
-        <div class="topline-row">
-          <div class="topline-label">Status</div>
-          <div><span class="live-dot"></span> Delivered</div>
-        </div>
-      </section>
-
-      <section data-reveal class="prose-block">
-        <p>
-          Kricon engaged us to analyse the business end-to-end and surface
-          where data and AI could move operational outcomes — not as a
-          long-term transformation programme, but as concrete shipping
-          opportunities the team could act on.
-        </p>
-        <p>
-          The work covered foundational reporting infrastructure plus
-          specific anomaly-detection and clustering models for
-          operations-level signals. Output: a prioritised plan plus the
-          first running pieces.
-        </p>
-      </section>
+      <CaseSnapshot
+        industry="International logistics"
+        region="Cross-border"
+        status="Delivered"
+        situation="Operational data was fragmented across the route network — no single view, and no clear read on where data and AI would actually pay back."
+        shipped="A unified reporting platform, an anomaly-detection layer over shipment signals, and operational clustering across the network."
+        outcome="One operational decision surface, incidents surfaced before they cascade, and a prioritised plan with the first pieces already running."
+        stack={['PowerBI', 'DBT', 'PostgreSQL', 'custom ELT', 'XGB / IsolationForest / DBSCAN']}
+      />
 
       <section data-reveal class="shipped">
         <div class="shipped-label">What shipped</div>
@@ -54,11 +31,6 @@ import RelatedCases from '~/components/RelatedCases.astro';
           <li><strong>Anomaly-detection layer</strong> — ML models running over shipment-level signals to surface incidents before they cascade.</li>
           <li><strong>Operational clustering</strong> — pattern-finding across the route network to reveal where intervention pays back fastest.</li>
         </ul>
-      </section>
-
-      <section data-reveal class="stack">
-        <div class="stack-label">Tech stack</div>
-        <p>PowerBI · DBT · PostgreSQL · custom ELT · XGB / IsolationForest / DBSCAN</p>
       </section>
 
       <p class="editorial-note">
