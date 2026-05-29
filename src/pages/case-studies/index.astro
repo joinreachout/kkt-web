@@ -18,6 +18,7 @@ const cases = [
   {
     href: '/case-studies/alfa-oil',
     client: 'Alfa Oil',
+    logo: '/logos/alfa-oil.png',
     industry: 'Fuel retail',
     region: 'Kyrgyzstan',
     summary:
@@ -28,6 +29,7 @@ const cases = [
   {
     href: '/case-studies/click-and-grow',
     client: 'Click & Grow',
+    logo: '/logos/click-and-grow.png',
     industry: 'B2C — smart indoor gardens',
     region: 'Eastern Europe / CIS',
     summary:
@@ -37,6 +39,7 @@ const cases = [
   {
     href: '/case-studies/gte',
     client: 'GTE',
+    logo: '/logos/gte.png',
     industry: 'Industrial — compressors',
     region: 'EU',
     summary:
@@ -46,6 +49,7 @@ const cases = [
   {
     href: '/case-studies/kricon',
     client: 'Kricon',
+    logo: '/logos/kricon.png',
     industry: 'International logistics',
     region: 'Cross-border',
     summary:
@@ -55,6 +59,7 @@ const cases = [
   {
     href: '/case-studies/csc-telecom',
     client: 'CSC Telecom',
+    logo: '/logos/csc-telecom.png',
     industry: 'Telecom',
     region: 'Global',
     summary:
@@ -105,6 +110,9 @@ const cases = [
         {cases.map((c) => (
           <li>
             <a href={c.href} class={`case-card ${c.featured ? 'case-card-featured' : ''}`}>
+              <div class="case-logo">
+                <img src={c.logo} alt={`${c.client} logo`} width="150" height="150" loading="lazy" />
+              </div>
               <div class="case-meta">
                 <span class={`case-status ${c.featured ? 'is-featured' : ''}`}>{c.status}</span>
                 <span class="case-sep">·</span>
@@ -246,6 +254,31 @@ const cases = [
   }
   .case-status.is-featured {
     color: var(--accent);
+  }
+
+  .case-logo {
+    width: 116px;
+    height: 60px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+    margin-bottom: 18px;
+  }
+  .case-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+  .case-card-featured .case-logo {
+    width: 132px;
+    height: 68px;
   }
 
   .smaller {
