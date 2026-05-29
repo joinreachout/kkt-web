@@ -11,20 +11,25 @@ DirectoryIndex index.html
 # .git must never be web-accessible.
 RedirectMatch 403 ^/\.git(/|$)
 
-# update.html is operator-only — noindex explicitly.
-<Files "update.html">
-    Header always set X-Robots-Tag "noindex, nofollow"
-</Files>
-
-# Cache static assets. Astro hashes asset filenames so they can be cached
-# aggressively — the html files revalidate on each load and pull fresh refs.
 <IfModule mod_headers.c>
+    # Allow full-length snippets and large image/video previews for search
+    # and AI answer engines (feeds Google AI Overviews etc.). Site-wide.
+    Header set X-Robots-Tag "max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+
+    # Cache static assets. Astro hashes asset filenames so they can be cached
+    # aggressively — the html files revalidate on each load and pull fresh refs.
     <FilesMatch "\.(js|css|woff2?|png|jpg|jpeg|svg|gif|ico)$">
         Header set Cache-Control "public, max-age=31536000, immutable"
     </FilesMatch>
     <FilesMatch "\.html$">
         Header set Cache-Control "public, max-age=300, must-revalidate"
     </FilesMatch>
+
+    # update.html is operator-only — override the global tag to noindex.
+    # Placed after the site-wide Header set so it wins for this file.
+    <Files "update.html">
+        Header set X-Robots-Tag "noindex, nofollow"
+    </Files>
 </IfModule>
 
 # Compress text assets.
