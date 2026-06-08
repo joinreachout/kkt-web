@@ -9,8 +9,8 @@
 
 ## Positioning (canonical)
 
-**AI that ships, not slides.** Senior PMO + AI delivery for mid-sized
-retailers and fuel networks. Tallinn, EU.
+**We build the operating systems your business runs on.** Senior PMO +
+AI delivery for mid-sized retailers and fuel networks. Tallinn, EU.
 
 ## Where we work
 

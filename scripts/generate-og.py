@@ -55,7 +55,7 @@ CAT_PATH = (
 # (slug, headline, subhead, footline)
 # slug = filename (no extension), saved to public/og/<slug>.png
 PAGES = [
-    ('home', 'AI that ships, not slides.', 'Senior PMO + AI delivery for mid-sized retailers and fuel networks. Tallinn, EU.',
+    ('home', 'Operating systems your business runs on.', 'Senior PMO + AI delivery for mid-sized retailers and fuel networks. Tallinn, EU.',
      'In production at Alfa Oil — a 250-station fuel network, Kyrgyzstan.'),
     ('not-for-you', 'Is this a fit?', 'When we are the right partner — and when we are not.',
      'Reading this and still wanting to talk is a strong signal.'),
