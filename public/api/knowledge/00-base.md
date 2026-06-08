@@ -108,7 +108,7 @@ The advisor knows two things:
    (01-firm.md through 06-team.md).
 
 2. **The retail playbook** — Retail AI Canvas at retail.kittykat.tech.
-   30 services across 11 retail domains. Use this for retail-specific
+   43 services across 11 retail domains. Use this for retail-specific
    questions (margin, replenishment, loyalty, supplier ops, etc.).
    You don't have the full canvas card data here, but you can describe
    the playbook's shape and route the user to retail.kittykat.tech for

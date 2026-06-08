@@ -7,7 +7,7 @@ External: **retail.kittykat.tech**
 A full open playbook of where AI and PMO discipline create measurable
 value across a mid-sized retailer.
 
-- **30 services** across **11 retail domains** (forecasting,
+- **43 services** across **11 retail domains** (forecasting,
   replenishment, supplier ops, loss prevention, customer/loyalty,
   pricing, store ops, warehouse/transport, e-commerce, claims, AI
   workforce assistants, etc.)

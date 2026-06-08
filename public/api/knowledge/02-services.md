@@ -21,7 +21,7 @@ four most common starting points:
    everything downstream stays shaky. If the diagnostic surfaces this,
    we start there before reaching for AI.
 
-The full open playbook — 30 services across 11 retail domains, with an
+The full open playbook — 43 services across 11 retail domains, with an
 advisor that walks through it — lives at retail.kittykat.tech.
 
 ## For fuel networks (`/industries/fuel-retail`)

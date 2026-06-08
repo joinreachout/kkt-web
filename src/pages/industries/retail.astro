@@ -5,58 +5,94 @@ import StartingPoints from '~/components/StartingPoints.astro';
 
 const startingPoints = [
   {
-    pressure: 'Margin is leaking on the shelf — and no one can point to exactly where.',
-    lever: 'Margin recovery and assortment',
-    detail: 'Where margin is being left on the shelf, and what to do about it. Often the fastest line to measurable money in.',
+    pressure: 'Store reports nobody fully trusts, margin views that do not agree, loyalty data that never reaches the buying team.',
+    lever: 'One trusted data base',
+    detail: 'POS, ERP, loyalty, stock, supplier, finance and master data connected into one governed layer — the base every later decision depends on.',
   },
   {
-    pressure: 'You cannot say who actually drives the business.',
-    lever: 'Customer ownership',
-    detail: 'Segmentation, lifecycle, and the operating decisions that follow from knowing your real customers. Compounds over time.',
+    pressure: 'Poor fresh ordering — too much of the wrong stock while you lose sales on the right products.',
+    lever: 'Forecasting, replenishment & freshness',
+    detail: 'Demand forecasting, availability protection and waste control, so the shelf matches real demand instead of last period.',
   },
   {
-    pressure: 'Pricing and replenishment move at quarterly speed, not daily.',
-    lever: 'Decision cadence',
-    detail: 'Pricing, replenishment, and cash discipline as a daily rhythm. PMO discipline is what makes the rhythm hold.',
+    pressure: 'Unclear promo ROI and inconsistent margin — commercial money subsidizing demand that would have happened anyway.',
+    lever: 'Promotion & margin intelligence',
+    detail: 'Where promotions and pricing actually create return, and a clearer forward view of where profit and cash are moving.',
   },
   {
-    pressure: 'The numbers do not agree, so decisions wait.',
-    lever: 'Foundational data and reporting',
-    detail: 'When the core is shaky, everything downstream stays shaky. If the diagnostic surfaces this, we start here before reaching for AI.',
+    pressure: 'Loyalty, basket and feedback data sit unused — customers treated as one average, not as different groups.',
+    lever: 'Customer value & loyalty',
+    detail: 'Segmentation, retention and basket growth that follow from knowing who actually drives the business.',
   },
 ];
 ---
 
 <BaseLayout
   title="Retail — KKT"
-  description="AI and PMO delivery for mid-sized retailers. The full playbook lives at retail.kittykat.tech."
+  description="AI and data for mid-sized food retailers — one trusted data foundation, then forecasting, promotions, margin and loyalty. The full playbook at retail.kittykat.tech."
   ogImage="/og/retail.png"
 >
   <article class="prose-page">
     <div class="container">
       <div class="section-label">Industries — Retail</div>
-      <h1 class="h1-page">For mid-sized retailers.</h1>
+      <h1 class="h1-page">For mid-sized food retailers.</h1>
       <p class="lede">
-        Margin, cash, customer ownership, decision speed. We work where AI
-        and PMO discipline earn their place against measurable outcomes — not
-        where they look good in a slide.
+        Your data is already there — POS, ERP, loyalty, stock, supplier,
+        finance, master data. In food retail the gaps are not abstract IT
+        problems: unclear promo ROI, inconsistent margin views, poor fresh
+        ordering, supplier disputes, and store reports nobody fully trusts.
       </p>
 
       <section data-reveal class="ind-pullquote">
         <blockquote>
           <p>
-            Margin. Cash. Customer ownership. Decision speed.
-            Everything else is a means.
+            We connect it into one trusted base, then add AI where it earns
+            its place — built bottom-up, from the core outward, on the data
+            you already have.
           </p>
         </blockquote>
       </section>
 
+      <section data-reveal class="retail-path">
+        <div class="section-label">How the path runs</div>
+        <h2 class="h2-section">From the core outward.</h2>
+        <p class="retail-path-lede">
+          The same staged model behind the playbook: get the core trustworthy
+          first, optimize where it pays, expand into new revenue only when the
+          core is mature.
+        </p>
+        <div class="rpath" data-reveal-stagger>
+          <div class="rpath-step">
+            <span class="rpath-stage">Stage 1</span>
+            <h3 class="rpath-name">Strengthen the core</h3>
+            <p>Data foundation, stock &amp; availability, store execution,
+            margin &amp; cash, supplier performance, reporting, loss
+            prevention.</p>
+          </div>
+          <span class="rpath-arrow" aria-hidden="true">&rarr;</span>
+          <div class="rpath-step">
+            <span class="rpath-stage">Stage 2</span>
+            <h3 class="rpath-name">Optimize &amp; grow</h3>
+            <p>Customers &amp; loyalty, promotions &amp; pricing — where the
+            data foundation starts paying back in margin and customer value.</p>
+          </div>
+          <span class="rpath-arrow" aria-hidden="true">&rarr;</span>
+          <div class="rpath-step rpath-step-accent">
+            <span class="rpath-stage">Stage 3</span>
+            <h3 class="rpath-name">Expand &amp; monetize</h3>
+            <p>Retail media, supplier activation, paid loyalty, new revenue
+            pools — only relevant once the core is mature.</p>
+          </div>
+        </div>
+      </section>
+
       <section data-reveal class="callout">
         <div class="callout-label">The retail playbook</div>
-        <h2 class="callout-title">Retail AI Canvas — 30 services across 11 domains.</h2>
+        <h2 class="callout-title">Retail AI Canvas — 43 services across 11 domains.</h2>
         <p class="callout-body">
-          A full open playbook of where AI and PMO discipline create measurable
-          value across a mid-sized retailer. Built from real engagements,
+          The full open playbook of where AI and data create value across a
+          mid-sized food retailer — data foundation, stock, promotions,
+          margin, customers, suppliers and more. Built from real engagements,
           updated quarterly, with an advisor that walks you through it.
         </p>
         <p>
@@ -68,11 +104,11 @@ const startingPoints = [
 
       <section data-reveal class="starts">
         <div class="section-label">Engagement starting points</div>
-        <h2 class="h2-section">Where retail engagements typically begin.</h2>
+        <h2 class="h2-section">Where the work pays back first.</h2>
         <p class="starts-lede">
-          Diagnostics surface different priorities for different
-          retailers. These four show up the most often as the first
-          workstream worth shipping.
+          The effect runs across the whole business — data foundation, stock
+          and freshness, promotions and margin, customers. We start where the
+          diagnostic points, from the core outward.
         </p>
 
         <StartingPoints items={startingPoints} />
@@ -162,6 +198,50 @@ const startingPoints = [
   .callout-body {
     margin-bottom: 20px;
     max-width: 56ch;
+  }
+
+  .retail-path {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+  }
+  .retail-path .section-label { margin-bottom: 14px; }
+  .retail-path h2 { margin-bottom: 14px; max-width: 24ch; }
+  .retail-path-lede { max-width: 62ch; margin-bottom: 28px; color: var(--text-secondary); }
+  .rpath { display: flex; align-items: stretch; gap: 8px; }
+  .rpath-step {
+    flex: 1 1 0;
+    min-width: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 20px 22px;
+  }
+  .rpath-step-accent { background: var(--surface-alt); border-left: 3px solid var(--accent); }
+  .rpath-stage {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-weight: 600;
+    color: var(--accent-text);
+    margin-bottom: 10px;
+  }
+  .rpath-name {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 20px;
+    color: var(--text-primary);
+    margin: 0 0 10px;
+    line-height: 1.2;
+  }
+  .rpath-step p { font-size: 14px; line-height: 1.55; color: var(--text-secondary); margin: 0; max-width: 42ch; }
+  .rpath-arrow { align-self: center; flex: 0 0 auto; color: var(--text-muted); font-size: 18px; line-height: 1; }
+  @media (max-width: 720px) {
+    .rpath { flex-direction: column; gap: 6px; }
+    .rpath-arrow { transform: rotate(90deg); padding: 2px 0; }
   }
 
   .starts {

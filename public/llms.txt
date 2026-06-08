@@ -14,9 +14,9 @@ KKT avoids vendor-hype language. Outcomes are stated in measurable terms — mar
 - [About](https://kittykat.tech/about/): Firm profile. Registered as Kitty Kat Technologies OÜ, Jõe 7, Tallinn, Estonia. Four operating beliefs. Team — Nageye Ibrahim Rascid (Cloud Expert, 20 years), George Shevardenidze (Data Scientist, 15 years), Dennis Nepomniashy (Data-driven Marketing).
 - [Approach](https://kittykat.tech/approach/): The two-week diagnostic (kick-off days 1–3, investigation days 4–9, synthesis days 10–12, readout day 14) and the three-stage delivery model.
 - [Is this a fit?](https://kittykat.tech/not-for-you/): An honest read on where KKT is and is not the right partner — seven specific conditions.
-- [Optimus](https://kittykat.tech/solutions/optimus/): The product page. Operating-intelligence system for fuel networks; the morning workflow; the full capability surface; two live deployments.
-- [Fuel retail](https://kittykat.tech/industries/fuel-retail/): Fuel-network engagement starting points, with Optimus as the operating engine.
-- [Retail](https://kittykat.tech/industries/retail/): Mid-sized retailer starting points. Links to the open retail playbook (30 services across 11 domains).
+- [Optimus](https://kittykat.tech/solutions/optimus/): The product page. Optimus is the procurement-and-margin engine for fuel networks — one embodiment of KKT's fuel work; in production at Alfa Oil.
+- [Fuel retail](https://kittykat.tech/industries/fuel-retail/): The fuel positioning — connected data first, AI on built foundations, bottom-up across the whole network economy. Optimus is one embodiment.
+- [Retail](https://kittykat.tech/industries/retail/): Mid-sized retailer starting points. Links to the open retail playbook (43 services across 11 domains).
 - [Alfa Oil case study](https://kittykat.tech/case-studies/alfa-oil/): Fuel retail, Kyrgyzstan. A 250-station independent network with Optimus in production for procurement and margin.
 - [Click & Grow case study](https://kittykat.tech/case-studies/click-and-grow/): B2C smart indoor gardens. Customer analytics and ML segmentation for Eastern Europe / CIS growth.
 - [GTE case study](https://kittykat.tech/case-studies/gte/): Industrial compressor manufacturer. Finance/manufacturing reporting plus ML for anomaly detection and energy-consumption optimisation.
@@ -28,5 +28,5 @@ KKT avoids vendor-hype language. Outcomes are stated in measurable terms — mar
 
 ## Optional
 
-- [Retail AI Canvas (external)](https://retail.kittykat.tech): The open retail playbook — 30 services across 11 retail domains, updated quarterly.
+- [Retail AI Canvas (external)](https://retail.kittykat.tech): The open retail playbook — 43 services across 11 retail domains, updated quarterly.
 - [Cost of Doing Nothing — tool preview](https://kittykat.tech/tools/cost-of-doing-nothing/): An interactive calculator in v0 preview (placeholder benchmarks; calibrated launch in a later phase). Not for board use yet.
