@@ -1,8 +1,9 @@
 ---
 // Alfa Oil network visual for /case-studies/alfa-oil and home featured-case.
-// Stylized silhouette of Kyrgyzstan with 600 station dots distributed
-// across populated regions (Bishkek/Chui, Issyk-Kul, Talas, Osh,
-// Naryn, Batken). Accent dots clipped to country outline.
+// Stylized silhouette of Kyrgyzstan with an illustrative field of station
+// dots across populated regions (Bishkek/Chui, Issyk-Kul, Talas, Osh,
+// Naryn, Batken). Dots are decorative, not a 1:1 station count. Accent
+// dots clipped to country outline.
 //
 // Source: Wikipedia "Kyrgyzstan_adm_location_map.svg" (CC BY-SA),
 // path simplified via potrace at turdsize 100.
@@ -15,17 +16,15 @@ interface Props {
 const { variant = 'full' } = Astro.props as Props;
 ---
 
-<figure class={`alfa-net alfa-net-${variant}`} aria-label="Alfa Oil network: 600+ stations operating across Kyrgyzstan">
+<figure class={`alfa-net alfa-net-${variant}`} aria-label="Alfa Oil fuel network across Kyrgyzstan, Optimus in production">
   {variant === 'full' && (
     <div class="alfa-net-callout">
-      <div class="alfa-net-num">600+</div>
-      <div class="alfa-net-label">stations operating</div>
+      <div class="alfa-net-num">250</div>
+      <div class="alfa-net-label">stations</div>
       <div class="alfa-net-meta">
-        <span>$500M revenue</span>
+        <span>Kyrgyzstan</span>
         <span class="dot">·</span>
-        <span>11 fuel types</span>
-        <span class="dot">·</span>
-        <span>Optimus live</span>
+        <span>Optimus in production</span>
       </div>
     </div>
   )}

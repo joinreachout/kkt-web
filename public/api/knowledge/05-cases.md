@@ -10,8 +10,7 @@ varying depth.
 
 - **Industry:** Fuel retail
 - **Region:** Kyrgyzstan, Central Asia
-- **Network:** 600+ stations, 11 fuel types
-- **Revenue:** $500M annual
+- **Network:** ~250 stations, Kyrgyzstan
 - **Status:** Live, in production
 - **Engagement:** Optimus operating across the full network — pricing,
   margin steering, station-level operations, supplier relationships.

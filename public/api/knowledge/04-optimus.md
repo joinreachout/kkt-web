@@ -70,16 +70,13 @@ never depends on the web interface.
 
 ## Live deployments
 
-Two deployments at very different scales — same product, same engine,
-configured for the deployment.
+Optimus is in production at **Alfa Oil** (also branded Red Petrol) — an
+independent fuel network in Kyrgyzstan, ~250 stations. Optimus runs
+across the network for procurement and margin. `/case-studies/alfa-oil`.
 
-1. **Alfa Oil** (also branded Red Petrol) — Kyrgyzstan. 600+ stations,
-   $500M revenue. Optimus operating across the full network.
-   `/case-studies/alfa-oil`.
-
-2. **Central Asian fuel network** — 10 stations, 11 fuel types, 3
-   regions. Smaller end of the range, same engine. (Walkable case
-   study in editorial — depth depends on customer consent tier.)
+(Do not state a revenue figure, a fuel-type count, or a second
+deployment — those were unverified and have been removed. Only "~250
+stations, Kyrgyzstan" is confirmed.)
 
 ## What changes after Optimus ships
 
