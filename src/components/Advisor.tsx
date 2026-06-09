@@ -53,7 +53,7 @@ const MOCK_REPLIES: MockReply[] = [
   {
     pattern: /optimus|fuel.*retail|red petrol|alfa/i,
     reply:
-      "Optimus is the operating-intelligence system we run for fuel networks. Each morning it pulls live ERP data, forecasts which station × fuel positions will hit critical, surfaces inbound delivery conflicts, and produces concrete procurement recommendations — supplier, tonnage, deadline, price. The head of supply works through it in 10–15 minutes, then walks away. Critical events mirror to Telegram independently of the web app.\n\nLive at Alfa Oil (Red Petrol) — 600+ stations, $500M revenue — and at one Central Asian network. Same engine, different scale.\n\nFull surface on /solutions/optimus.",
+      "Optimus is the procurement-and-margin engine we built for fuel networks. It turns buying from a decision made on experience and availability into one made on data: each morning it pulls live ERP data, forecasts which station × fuel positions will run critical, surfaces inbound delivery conflicts, and produces concrete procurement recommendations — supplier, tonnage, deadline, price. The head of supply works through it in 10–15 minutes.\n\nIt is in pilot at Alfa Oil (Red Petrol) — an independent ~250-station fuel network in Kyrgyzstan that is currently testing it. One embodiment of how we work in fuel.\n\nFull surface on /solutions/optimus.",
   },
   {
     pattern: /diagnostic|how.*start|engagement|where.*begin/i,
@@ -63,7 +63,7 @@ const MOCK_REPLIES: MockReply[] = [
   {
     pattern: /not.*fit|not.*work|when.*say no|turn.*down|reject/i,
     reply:
-      "We turn down work where we wouldn't be the right partner. Below ~$50M revenue our delivery model costs more than we can create. We don't write decks without delivery. We can't ship into companies with no senior internal data lead — the project will fail after we leave. We won't promise a model in production in four weeks. We don't work in heavily regulated banking, public sector, or defence. We're not a body shop.\n\nThe full list lives on /not-for-you. Reading that page and still wanting to talk is one of the strongest signals we get.",
+      "We would rather tell you early that we're not the best fit than sell you an engagement that won't land. We're probably not your best first call below ~$50M revenue, for strategy with no delivery behind it, with no senior internal owner to inherit the work, for a model promised in production in four weeks, in heavily regulated banking / public sector / defence, or for full outsourcing. In those cases there's usually a better-fit partner, and we'll say so.\n\nThe honest read is on /not-for-you. Reading it and still wanting to talk is one of the strongest signals we get.",
   },
   {
     pattern: /retail|playbook|canvas|grocery|supermarket/i,
