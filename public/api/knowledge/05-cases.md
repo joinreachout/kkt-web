@@ -11,8 +11,8 @@ varying depth.
 - **Industry:** Fuel retail
 - **Region:** Kyrgyzstan, Central Asia
 - **Network:** ~250 stations, Kyrgyzstan
-- **Status:** Live, in production
-- **Engagement:** Optimus operating across the full network — pricing,
+- **Status:** Live pilot (Alfa is testing Optimus; not yet full production)
+- **Engagement:** Optimus in pilot across the network — pricing,
   margin steering, station-level operations, supplier relationships.
 
 This is the marquee case. When a user asks about KKT's biggest live

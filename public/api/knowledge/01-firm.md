@@ -15,7 +15,7 @@ AI delivery for mid-sized retailers and fuel networks. Tallinn, EU.
 ## Where we work
 
 - **Mid-sized retailers** ($50M–$500M revenue range)
-- **Fuel networks** (independent networks; in production at Alfa Oil, ~250 stations)
+- **Fuel networks** (independent networks; in pilot at Alfa Oil, ~250 stations)
 - **Geography:** Central Europe, EU, CIS
 
 ## What makes us different

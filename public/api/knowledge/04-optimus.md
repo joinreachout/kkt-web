@@ -68,11 +68,12 @@ never depends on the web interface.
 - **Forced Order flow:** Senior management override path with audit
   trail and ship-history fallback.
 
-## Live deployments
+## Live pilot
 
-Optimus is in production at **Alfa Oil** (also branded Red Petrol) — an
-independent fuel network in Kyrgyzstan, ~250 stations. Optimus runs
-across the network for procurement and margin. `/case-studies/alfa-oil`.
+Optimus is in pilot at **Alfa Oil** (also branded Red Petrol) — an
+independent fuel network in Kyrgyzstan, ~250 stations. Alfa is currently
+testing Optimus across the network for procurement and margin; it is a
+live trial, not yet full production. `/case-studies/alfa-oil`.
 
 (Do not state a revenue figure, a fuel-type count, or a second
 deployment — those were unverified and have been removed. Only "~250

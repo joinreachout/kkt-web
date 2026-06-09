@@ -16,7 +16,7 @@ interface Props {
 const { variant = 'full' } = Astro.props as Props;
 ---
 
-<figure class={`alfa-net alfa-net-${variant}`} aria-label="Alfa Oil fuel network across Kyrgyzstan, Optimus in production">
+<figure class={`alfa-net alfa-net-${variant}`} aria-label="Alfa Oil fuel network across Kyrgyzstan, Optimus in pilot">
   {variant === 'full' && (
     <div class="alfa-net-callout">
       <div class="alfa-net-num">250</div>
@@ -24,7 +24,7 @@ const { variant = 'full' } = Astro.props as Props;
       <div class="alfa-net-meta">
         <span>Kyrgyzstan</span>
         <span class="dot">·</span>
-        <span>Optimus in production</span>
+        <span>Optimus in pilot</span>
       </div>
     </div>
   )}
