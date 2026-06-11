@@ -44,7 +44,9 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           publish_branch: production
-          force_orphan: true
+          # Linear history (not orphan): the server deploy.php does reset+pull,
+          # and pull on a force-orphaned branch hangs on unrelated-history merge.
+          force_orphan: false
           commit_message: "deploy: ${{ github.event.head_commit.message }}"
           user_name: github-actions[bot]
           user_email: github-actions[bot]@users.noreply.github.com
@@ -52,5 +54,5 @@ jobs:
       - name: Trigger server pull (production -> live)
         run: |
           sleep 5
-          curl -fsS --retry 3 --retry-delay 5 \
+          curl -fsS -m 90 --retry 2 --retry-delay 5 \
             "https://kittykat.tech/deploy.php?key=${{ secrets.DEPLOY_KEY }}&mode=hard"
