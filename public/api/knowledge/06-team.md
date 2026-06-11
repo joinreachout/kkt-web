@@ -2,35 +2,38 @@
 
 `/about`
 
-## Active members
+The team is shown on /about in two benches — domain expertise and
+technical delivery — mirroring retail.kittykat.tech. Plus a wider bench
+of data scientists, ML engineers, data engineers, analysts and external
+experts as needed.
 
-### Nageye Ibrahim Rascid — Cloud Expert
+## Domain expertise
 
-Twenty years across Cisco Meraki, Snowflake, and Microsoft. Cloud
-architecture, big data, and machine learning at the scale where
-decisions cost real money.
+- **Pavel Mityshkin** — 15+ years in FMCG/Retail, RGM and Commercial
+  Excellence (PepsiCo, Philip Morris, Bonduelle, Efes).
+- **Yana Kujrikhina** — 10+ years in Oil & Gas, process consulting and
+  digitalization (EY, Gazprom Oil).
+- **Nikolay Terentyev** — 15+ years in banking, finance operations and
+  digital transformation (Gazprombank).
+- **Pavel Gabaidullin** — 19+ years in enterprise procurement and
+  international supply chains (SIBUR, Rosatom/NovaWind, United Wagon
+  Company, Bombardier JV).
+- **Levan Buachidze** — 5+ years in digital logistics, supply chain and
+  retail category management (Deutsche Bahn, Daily Group).
+- **George Shevardenidze** — 15+ years in technical consulting and
+  operational transformation (Lukoil, DNV, TUV Rheinland). Managing
+  partner.
+- **Dennis Nepomniashy** — data-driven marketing and software-integration
+  project management, run from the data (certified Business IT, MCSI).
 
-LinkedIn: linkedin.com/in/nageyerascid
+## Tech expertise
 
-### George Shevardenidze — Data Scientist
-
-Fifteen years in global B2B technical consultancy. Three years pulling
-data analytics and AI into running businesses. Certified by Microsoft
-AI, IBM, and Google.
-
-LinkedIn: linkedin.com/in/george-shevardenidze-017a3999
-
-### Dennis Nepomniashy — Data-driven Marketing
-
-Marketing and software-integration project management, run from the
-data. Certified in Business IT and MCSI.
-
-LinkedIn: linkedin.com/in/dennisnepomniashy
-
-## Coming on board
-
-Two more named members landing soon (placeholders on /about — bios
-will appear when active).
+- **Nageye Rascid** — 20+ years in enterprise data, cloud and AI
+  platforms (Microsoft, Snowflake, Cisco, Confluent, Upbound).
+- **Denis Perov** — 15+ years in software engineering and AI/ML solution
+  architecture (Aviasales).
+- **Igor Trifonov** — 10+ years in data engineering, BI and enterprise
+  data solutions (Customertimes, Sberbank, ATON).
 
 ## Notes for the advisor
 
@@ -42,8 +45,8 @@ introduction.
 
 ## Cross-sector signal
 
-Beyond food retail and fuel retail, the team has worked across
+Beyond retail and fuel retail, the team has worked across
 mobility, telecom, D2C, industrial manufacturing, risk consulting, and
 testing/certification. Use this to support credibility when the user
-asks "is this realistic outside food/fuel retail?" — but do not pivot
+asks "is this realistic outside retail/fuel?" — but do not pivot
 the answer to selling cross-sector breadth.

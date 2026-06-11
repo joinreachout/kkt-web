@@ -12,17 +12,45 @@ const smallerEngagements = [
     blurb: 'Premium audio, light, and video integration. Top-tier event and venue work.',
     logo: '/logos/clubtek.png',
   },
+  {
+    name: 'Khaos Marani',
+    region: 'Georgia',
+    blurb: 'Winery. Advanced analytics and predictive ML to forecast wine demand, optimise pricing, and segment consumers for targeted marketing.',
+    logo: null,
+    monogram: 'KM',
+  },
+  {
+    name: 'Geo Engineering',
+    region: 'CIS',
+    blurb: 'Pump manufacturer (Alliance Industry Group). SaaS AI solutions, including an internal chatbot to streamline communications and operations.',
+    logo: null,
+    monogram: 'GE',
+  },
+  {
+    name: 'KliverYards',
+    region: 'CIS',
+    blurb: 'Specialised steel structures and drilling rigs. Data analysis on project delays plus computer vision for production efficiency.',
+    logo: null,
+    monogram: 'KY',
+  },
+  {
+    name: 'RiskTekConsult',
+    region: 'CIS',
+    blurb: 'Specialised risk consultancy. Advanced analytics for failure analysis and prevention.',
+    logo: null,
+    monogram: 'RT',
+  },
 ];
 
 const cases = [
   {
-    href: '/case-studies/alfa-oil',
-    client: 'Alfa Oil',
-    logo: '/logos/alfa-oil.png',
+    href: '/case-studies/red-petroleum',
+    client: 'Red Petroleum',
+    logo: '/logos/red-petroleum.png',
     industry: 'Fuel retail',
     region: 'Kyrgyzstan',
     summary:
-      'Optimus in pilot across a 250-station network in Kyrgyzstan — procurement, margin, station-level operations.',
+      'A full data & AI transformation — supply chain, customers, operations, data foundation. Optimus, the procurement engine, in pilot.',
     status: 'Featured',
     featured: true,
   },
@@ -66,6 +94,17 @@ const cases = [
       'Customer and product analytics for a global Travel/Tourist SIM business. Each study shaped to land a specific decision rather than fill a report.',
     status: 'Delivered',
   },
+  {
+    href: '/case-studies/taxi',
+    client: 'Ride-hailing platform',
+    logo: null,
+    monogram: 'RH',
+    industry: 'Ride-hailing — aggregator',
+    region: 'Baltics',
+    summary:
+      'Data deep-dive plus ML for dynamic pricing and ride-demand forecasting at a leading Baltic ride-hailing platform. Client unnamed while the engagement is in progress.',
+    status: 'In progress',
+  },
 ];
 ---
 
@@ -79,39 +118,34 @@ const cases = [
       <div class="section-label">Case studies</div>
       <h1 class="h1-page">What we shipped, what it moved.</h1>
       <p class="lede">
-        Walkable investigations — not vendor decks. Each case is the
+        Walkable investigations. Each case is the
         engagement as it actually ran: where it started, what shipped,
         what it changed in the business.
       </p>
 
       <div class="cases-strip">
         <div class="cases-stat">
-          <div class="cases-stat-num">5</div>
-          <div class="cases-stat-label">named clients</div>
+          <div class="cases-stat-num">10+</div>
+          <div class="cases-stat-label">engagements shipped</div>
         </div>
         <div class="cases-stat">
-          <div class="cases-stat-num">1</div>
-          <div class="cases-stat-label">live deployment at marquee scale</div>
+          <div class="cases-stat-num">8+</div>
+          <div class="cases-stat-label">sectors</div>
         </div>
         <div class="cases-stat">
-          <div class="cases-stat-num">250</div>
-          <div class="cases-stat-label">stations in the Optimus pilot</div>
+          <div class="cases-stat-num">$600M</div>
+          <div class="cases-stat-label">largest client, Red Petroleum</div>
         </div>
       </div>
-
-      <blockquote class="cases-pull">
-        <p>
-          No anonymous "$500M+ retailer" framing. If we shipped for a
-          client, we name them — or we don&rsquo;t mention the work.
-        </p>
-      </blockquote>
 
       <ul class="case-list" data-reveal-stagger>
         {cases.map((c) => (
           <li>
             <a href={c.href} class={`case-card ${c.featured ? 'case-card-featured' : ''}`}>
               <div class="case-logo">
-                <img src={c.logo} alt={`${c.client} logo`} width="150" height="150" loading="lazy" />
+                {c.logo
+                  ? <img src={c.logo} alt={`${c.client} logo`} width="150" height="150" loading="lazy" />
+                  : <span class="case-monogram" aria-hidden="true">{c.monogram}</span>}
               </div>
               <div class="case-meta">
                 <span class={`case-status ${c.featured ? 'is-featured' : ''}`}>{c.status}</span>
@@ -133,15 +167,16 @@ const cases = [
           <div class="section-label">Smaller engagements</div>
           <h2 class="h2-section">Earlier and adjacent work.</h2>
           <p class="smaller-lede">
-            Listed for completeness — real shipped work, but not the
-            marquee story KKT leads with on conversion-critical
-            surfaces.
+            Listed for completeness — real shipped work, earlier or
+            adjacent to the engagements we lead with.
           </p>
           <ul class="smaller-grid" data-reveal-stagger>
             {smallerEngagements.map((s) => (
               <li class="smaller-card">
                 <div class="smaller-logo">
-                  <img src={s.logo} alt={`${s.name} logo`} loading="lazy" />
+                  {s.logo
+                    ? <img src={s.logo} alt={`${s.name} logo`} loading="lazy" />
+                    : <span class="smaller-monogram" aria-hidden="true">{s.monogram}</span>}
                 </div>
                 <div class="smaller-meta">
                   <div class="smaller-name">{s.name}</div>
@@ -164,8 +199,8 @@ const cases = [
   .section-label { margin-bottom: 18px; }
   .h1-page {
     font-family: var(--font-display);
-    font-style: italic;
-    font-weight: 400;
+    font-style: normal;
+    font-weight: 600;
     font-size: clamp(32px, 4.5vw, 48px);
     line-height: 1.16;
     margin-bottom: 18px;
@@ -191,7 +226,7 @@ const cases = [
   .cases-stat { display: flex; flex-direction: column; gap: 2px; }
   .cases-stat-num {
     font-family: var(--font-display);
-    font-style: italic;
+    font-style: normal;
     font-size: clamp(28px, 3.6vw, 36px);
     color: var(--accent);
     line-height: 1;
@@ -215,8 +250,8 @@ const cases = [
   }
   .cases-pull p {
     font-family: var(--font-display);
-    font-style: italic;
-    font-weight: 400;
+    font-style: normal;
+    font-weight: 600;
     font-size: clamp(18px, 2.2vw, 22px);
     line-height: 1.35;
     color: var(--text-primary);
@@ -280,6 +315,21 @@ const cases = [
     width: 132px;
     height: 68px;
   }
+  .case-monogram {
+    font-family: var(--font-display);
+    font-style: normal;
+    font-size: 24px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+  }
+
+  .cases-carveout {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-style: normal;
+    max-width: 60ch;
+    margin: -22px 0 36px;
+  }
 
   .smaller {
     margin-top: 56px;
@@ -330,9 +380,16 @@ const cases = [
     height: auto;
     object-fit: contain;
   }
+  .smaller-monogram {
+    font-family: var(--font-display);
+    font-style: normal;
+    font-size: 20px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+  }
   .smaller-name {
     font-family: var(--font-display);
-    font-style: italic;
+    font-style: normal;
     font-size: 22px;
     color: var(--text-primary);
     line-height: 1.2;
@@ -367,11 +424,11 @@ const cases = [
   .case-sep { margin: 0 6px; }
   .case-client {
     font-family: var(--font-display);
-    font-style: italic;
+    font-style: normal;
     font-size: 26px;
     color: var(--text-primary);
     margin-bottom: 10px;
-    font-weight: 400;
+    font-weight: 600;
   }
   .case-summary {
     margin-bottom: 14px;

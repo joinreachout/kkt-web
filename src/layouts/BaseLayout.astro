@@ -17,8 +17,8 @@ interface Props {
 }
 
 const {
-  title = 'KKT — operating systems for retail and fuel networks',
-  description = 'Senior PMO + AI delivery for mid-sized retailers and fuel networks. Tallinn, EU.',
+  title = 'KKT — senior data & AI delivery',
+  description = 'A senior data & AI team with roots in business — data foundations, ML, and AI agents, shipped into real operations. Tallinn, EU.',
   canonical,
   noindex = false,
   ogImage = '/og/home.png',
@@ -56,7 +56,7 @@ const schemaGraph: Record<string, unknown>[] = [
       addressCountry: 'EE',
     },
     description:
-      'Senior PMO + AI delivery for mid-sized retailers and fuel networks. Tallinn, EU.',
+      'A senior data & AI team with roots in business — data foundations, ML, and AI agents, shipped into real operations. Tallinn, EU.',
     foundingLocation: 'Tallinn, Estonia',
     knowsAbout: [
       'AI delivery',
@@ -119,7 +119,7 @@ if (pageType === 'article') {
       '@type': 'WebSite',
       '@id': 'https://kittykat.tech/#website',
       url: 'https://kittykat.tech/',
-      name: 'KKT — operating systems for retail and fuel networks',
+      name: 'KKT — senior data & AI delivery',
       publisher: { '@id': 'https://kittykat.tech/#org' },
     });
   }
@@ -143,7 +143,7 @@ if (segments.length > 0 && pageType !== 'article') {
     'retail': 'Retail',
     'fuel-retail': 'Fuel retail',
     'optimus': 'Optimus',
-    'alfa-oil': 'Alfa Oil',
+    'red-petroleum': 'Red Petroleum',
     'click-and-grow': 'Click & Grow',
     'gte': 'GTE',
     'kricon': 'Kricon',
@@ -180,7 +180,7 @@ if (pathname === '/solutions/optimus') {
     provider: { '@id': 'https://kittykat.tech/#org' },
     url: 'https://kittykat.tech/solutions/optimus/',
     description:
-      'Operating intelligence for fuel networks: procurement, margin, stockouts and working capital, on connected data. In pilot at Alfa Oil, a 250-station fuel network in Kyrgyzstan.',
+      'Operating intelligence for fuel networks: procurement, margin, stockouts and working capital, on connected data. In pilot at Red Petroleum, a 250-station fuel network in Kyrgyzstan.',
     areaServed: 'Europe and Central Asia',
     audience: { '@type': 'BusinessAudience', audienceType: 'Fuel retail networks' },
     hasOfferCatalog: {
@@ -211,7 +211,7 @@ if (pathname === '/not-for-you') {
     mainEntity: [
       mk(
         'Is KKT the right partner if our revenue is below ~$50M?',
-        'KKT is built for mid-sized retailers and fuel networks. Below that scale, the delivery model usually costs more than the value it can create — you would be paying for rigor you do not need yet. There are excellent partners sized for smaller companies, and starting with one of them is the right first move.'
+        'KKT is built for mid-sized companies (deepest in retail and fuel). Below that scale, the delivery model usually costs more than the value it can create — you would be paying for rigor you do not need yet. There are excellent partners sized for smaller companies, and starting with one of them is the right first move.'
       ),
       mk(
         'Does KKT take on strategy work without delivery?',
@@ -261,7 +261,7 @@ if (pathname === '/case-studies') {
     name: 'KKT case studies',
     description: 'Named client engagements delivered by Kitty Kat Technologies.',
     itemListElement: [
-      caseItem(1, 'Alfa Oil — piloting Optimus across the network', 'alfa-oil', 'Fuel retail, Kyrgyzstan. A 250-station network with Optimus in pilot for procurement and margin.'),
+      caseItem(1, 'Red Petroleum — piloting Optimus across the network', 'red-petroleum', 'Fuel retail, Kyrgyzstan. A 250-station network with Optimus in pilot for procurement and margin.'),
       caseItem(2, 'Click & Grow — ML segmentation for Eastern Europe and CIS', 'click-and-grow', 'B2C smart indoor gardens. Customer analytics and ML segmentation models for targeted growth.'),
       caseItem(3, 'GTE — reporting and ML for compressor manufacturing', 'gte', 'Industrial compressor manufacturer. Finance and manufacturing reporting, plus ML for anomaly detection and energy-consumption optimisation.'),
       caseItem(4, 'Kricon — operational visibility for international logistics', 'kricon', 'International logistics. Reporting infrastructure, anomaly detection, and clustering models for ops-level signals.'),
@@ -304,11 +304,10 @@ const schemaJsonLd = JSON.stringify({
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
 
-    <!-- Fonts: self-hosted DM Sans + Playfair Display (no cross-origin
-         round-trip). @font-face in global.css; preload the two above-the-fold
-         faces — DM Sans body + Playfair italic H1. -->
+    <!-- Fonts: self-hosted DM Sans (no cross-origin round-trip).
+         @font-face in global.css; preload the above-the-fold body face.
+         Display type is DM Sans 600 — same family, no extra request. -->
     <link rel="preload" as="font" type="font/woff2" href="/fonts/dmsans-latin.woff2" crossorigin />
-    <link rel="preload" as="font" type="font/woff2" href="/fonts/playfair-italic-latin.woff2" crossorigin />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="alternate" type="application/rss+xml" title="KKT — Insights" href="/rss.xml" />

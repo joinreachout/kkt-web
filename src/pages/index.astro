@@ -4,25 +4,31 @@ import Hero from '~/components/Hero.astro';
 import CTA from '~/components/CTA.astro';
 import AlfaNetworkMap from '~/components/AlfaNetworkMap.astro';
 
-// Trust strip variant — flip to 'A' or 'B' if Alfa Oil consent tier shifts.
+// Trust strip variant — flip to 'A' or 'B' if Red Petroleum consent tier shifts.
 // See WORK/briefs/alfa-oil-content-brief.md.
 const trustVariant = 'C' as const;
 ---
 
 <BaseLayout
   title="KKT — operating systems for retail and fuel networks"
-  description="Senior PMO + AI delivery for mid-sized retailers and fuel networks. Tallinn, EU."
+  description="A senior data & AI team with roots in business — data foundations, ML, and AI agents, shipped into real operations. Tallinn, EU."
 >
   <Hero trustVariant={trustVariant} />
 
   <section class="section section-industries" data-reveal>
     <div class="container">
       <div class="section-label">Where we work</div>
-      <h2 class="h2-section">Two industries. One delivery model.</h2>
+      <h2 class="h2-section">We go all the way into the business.</h2>
+      <p class="industries-lede">
+        Retail and fuel networks are where we go deepest — but we've shipped
+        data and AI across telecom, mobility, industry, risk and more.
+        Inside each, the whole operation: procurement and margin, logistics,
+        customers, finance, and the data foundation under it. Not one tool.
+      </p>
       <div class="industry-grid" data-reveal-stagger>
         <a href="/industries/retail" class="industry-card">
           <div class="industry-eyebrow">Retail</div>
-          <h3 class="industry-title">Mid-sized food retailers</h3>
+          <h3 class="industry-title">Mid-sized retailers</h3>
           <p>
             Your data is already there — POS, ERP, loyalty, stock, finance.
             We connect it into one trusted base, then forecasting,
@@ -40,12 +46,12 @@ const trustVariant = 'C' as const;
           <h3 class="industry-title">Fuel networks</h3>
           <p>
             Connected data first, then AI where it earns its place —
-            procurement, margin, logistics, stations. In pilot at Alfa
-            Oil, an independent fuel network in Kyrgyzstan.
+            procurement, margin, logistics, stations. In pilot at Red
+            Petroleum, an independent fuel network in Kyrgyzstan.
           </p>
           <div class="industry-stat">
             <span class="industry-stat-num">250</span>
-            <span class="industry-stat-label">stations in the Optimus pilot at Alfa Oil</span>
+            <span class="industry-stat-label">stations in the Optimus pilot at Red Petroleum</span>
           </div>
           <span class="industry-arrow">See Optimus →</span>
         </a>
@@ -53,12 +59,60 @@ const trustVariant = 'C' as const;
     </div>
   </section>
 
+  <section class="section section-capabilities" data-reveal>
+    <div class="container">
+      <div class="section-label">What we do</div>
+      <h2 class="h2-section">A full data & AI practice, shipped into real operations.</h2>
+      <p class="cap-lede">
+        A senior team with roots in business, not just tech. We work the
+        whole path — from a low-risk prototype to a production system that
+        runs without us. Optimus is one system among many.
+      </p>
+      <div class="cap-grid" data-reveal-stagger>
+        <div class="cap-card">
+          <div class="cap-eyebrow">01</div>
+          <h3 class="cap-title">Data &amp; analytics</h3>
+          <p>We dive into your data — POS, ERP, loyalty, finance — surface the trends that move decisions, and stand up the warehouse, BI and text-to-SQL underneath.</p>
+        </div>
+        <div class="cap-card">
+          <div class="cap-eyebrow">02</div>
+          <h3 class="cap-title">ML models</h3>
+          <p>Segmentation, demand and price forecasting, dynamic pricing, optimisation, anomaly detection, recommendation engines — built for a decision, not a demo.</p>
+        </div>
+        <div class="cap-card">
+          <div class="cap-eyebrow">03</div>
+          <h3 class="cap-title">AI assistants &amp; automation</h3>
+          <p>LLM assistants and chatbots, OCR, computer vision, agentic workflows — plus ready-to-use AI tools fitted to your operation for quicker ROI.</p>
+        </div>
+        <div class="cap-card">
+          <div class="cap-eyebrow">04</div>
+          <h3 class="cap-title">Prototyping — test before invest</h3>
+          <p>Low-risk AI/ML prototypes that prove the value on your data before you commit to a full build.</p>
+        </div>
+        <div class="cap-card">
+          <div class="cap-eyebrow">05</div>
+          <h3 class="cap-title">AI strategy &amp; enablement</h3>
+          <p>We translate business challenges into an AI roadmap, and bring your team up to speed with practical, non-technical training.</p>
+        </div>
+        <div class="cap-card">
+          <div class="cap-eyebrow">06</div>
+          <h3 class="cap-title">AI ethics &amp; regulatory</h3>
+          <p>Guidance through AI's ethical and regulatory landscape, so adoption stays compliant.</p>
+        </div>
+      </div>
+      <p class="cap-tail">
+        <a href="/case-studies/" class="cap-link">See it in the work — fuel, retail, telecom, industry and more →</a>
+      </p>
+    </div>
+  </section>
+
   <section class="section section-pullquote" data-reveal>
     <div class="container">
       <blockquote class="pullquote">
         <p>
-          We are not an AI vendor with a deck. We are a delivery firm
-          with deep AI capability.
+          We don't start with the technology. We start with the business
+          question — then build the data, the processes, and the AI that
+          earns its place, and stay until the system runs without us.
         </p>
       </blockquote>
     </div>
@@ -67,29 +121,30 @@ const trustVariant = 'C' as const;
   <section class="section section-featured" data-reveal>
     <div class="container">
       <div class="section-label">Featured case</div>
-      <h2 class="h2-section">Alfa Oil — piloting Optimus across the network.</h2>
+      <h2 class="h2-section">Red Petroleum — data and AI across the whole network.</h2>
       <div class="featured-grid">
         <div class="featured-card featured-text">
           <p class="featured-body">
-            Walk through the engagement: where it started, what shipped,
-            what it moved. No vendor-deck claims — just what the system
-            does in production today.
+            A full data and AI transformation across four fronts — supply
+            chain, customer value, operations, and the data foundation
+            under all of it. Optimus, the procurement-and-margin engine, is
+            one of them, in pilot. The rest is live.
           </p>
           <div class="featured-stats" data-reveal-stagger>
             <div class="featured-stat">
-              <div class="featured-stat-num">250</div>
-              <div class="featured-stat-label">stations</div>
+              <div class="featured-stat-num">$600M</div>
+              <div class="featured-stat-label">fuel retailer, 220+ stations</div>
             </div>
             <div class="featured-stat">
-              <div class="featured-stat-num">Live</div>
-              <div class="featured-stat-label">Optimus in pilot</div>
+              <div class="featured-stat-num">4</div>
+              <div class="featured-stat-label">fronts: supply, customers, ops, data</div>
             </div>
             <div class="featured-stat">
-              <div class="featured-stat-num">KG</div>
-              <div class="featured-stat-label">Kyrgyzstan network</div>
+              <div class="featured-stat-num">Optimus</div>
+              <div class="featured-stat-label">procurement engine, in pilot</div>
             </div>
           </div>
-          <a href="/case-studies/alfa-oil" class="btn-ghost featured-cta">Read the case</a>
+          <a href="/case-studies/red-petroleum" class="btn-ghost featured-cta">Read the case</a>
         </div>
         <div class="featured-card featured-visual">
           <AlfaNetworkMap variant="compact" />
@@ -101,7 +156,7 @@ const trustVariant = 'C' as const;
   <section class="section section-howweship" data-reveal>
     <div class="container">
       <div class="section-label">How we ship</div>
-      <h2 class="h2-section">Delivery, not theatre.</h2>
+      <h2 class="h2-section">Diagnostic, delivery, handover.</h2>
 
       <figure class="engagement-arc" aria-label="Engagement arc: Diagnostic over two weeks, then a sequenced engagement, then handover when the system runs without us">
         <svg viewBox="0 0 720 160" xmlns="http://www.w3.org/2000/svg" role="presentation">
@@ -112,7 +167,7 @@ const trustVariant = 'C' as const;
           <g>
             <circle cx="120" cy="80" r="16" fill="var(--bg)" stroke="currentColor" stroke-width="1.5"/>
             <text x="120" y="84" font-family="ui-monospace, Menlo, monospace" font-size="11" font-weight="600" fill="currentColor" text-anchor="middle">01</text>
-            <text x="120" y="46" font-family="'Playfair Display', serif" font-style="italic" font-size="22" fill="currentColor" text-anchor="middle">Diagnostic</text>
+            <text x="120" y="46" font-family="'DM Sans', sans-serif" font-style="normal" font-size="22" fill="currentColor" text-anchor="middle">Diagnostic</text>
             <text x="120" y="112" font-family="ui-monospace, Menlo, monospace" font-size="13" font-weight="600" fill="#8A5E18" letter-spacing="0.6" text-anchor="middle">2 WEEKS</text>
             <text x="120" y="128" font-family="'DM Sans', sans-serif" font-size="14" fill="currentColor" fill-opacity="0.55" text-anchor="middle">Scope, no commitment</text>
           </g>
@@ -124,7 +179,7 @@ const trustVariant = 'C' as const;
           <g>
             <circle cx="360" cy="80" r="16" fill="var(--bg)" stroke="currentColor" stroke-width="1.5"/>
             <text x="360" y="84" font-family="ui-monospace, Menlo, monospace" font-size="11" font-weight="600" fill="currentColor" text-anchor="middle">02</text>
-            <text x="360" y="46" font-family="'Playfair Display', serif" font-style="italic" font-size="22" fill="currentColor" text-anchor="middle">Engagement</text>
+            <text x="360" y="46" font-family="'DM Sans', sans-serif" font-style="normal" font-size="22" fill="currentColor" text-anchor="middle">Engagement</text>
             <text x="360" y="112" font-family="ui-monospace, Menlo, monospace" font-size="13" font-weight="600" fill="#8A5E18" letter-spacing="0.6" text-anchor="middle">SHAPED BY WHAT SHIPS</text>
             <text x="360" y="128" font-family="'DM Sans', sans-serif" font-size="14" fill="currentColor" fill-opacity="0.55" text-anchor="middle">PMO + AI delivery, in production</text>
           </g>
@@ -136,7 +191,7 @@ const trustVariant = 'C' as const;
           <g>
             <circle cx="600" cy="80" r="16" fill="var(--bg)" stroke="#B8832A" stroke-width="2"/>
             <text x="600" y="84" font-family="ui-monospace, Menlo, monospace" font-size="11" font-weight="600" fill="#8A5E18" text-anchor="middle">03</text>
-            <text x="600" y="46" font-family="'Playfair Display', serif" font-style="italic" font-size="22" fill="currentColor" text-anchor="middle">Handover</text>
+            <text x="600" y="46" font-family="'DM Sans', sans-serif" font-style="normal" font-size="22" fill="currentColor" text-anchor="middle">Handover</text>
             <text x="600" y="112" font-family="ui-monospace, Menlo, monospace" font-size="13" font-weight="600" fill="#8A5E18" letter-spacing="0.6" text-anchor="middle">EXIT CRITERION</text>
             <text x="600" y="128" font-family="'DM Sans', sans-serif" font-size="14" fill="currentColor" fill-opacity="0.55" text-anchor="middle">System runs without us</text>
           </g>
@@ -205,8 +260,14 @@ const trustVariant = 'C' as const;
     margin-bottom: 12px;
   }
   .section-industries h2 {
-    margin-bottom: 36px;
+    margin-bottom: 14px;
     max-width: 22ch;
+  }
+  .industries-lede {
+    max-width: 62ch;
+    margin-bottom: 36px;
+    color: var(--text-secondary);
+    line-height: 1.6;
   }
 
   .industry-grid {
@@ -245,11 +306,11 @@ const trustVariant = 'C' as const;
   }
   .industry-title {
     font-family: var(--font-display);
-    font-style: italic;
+    font-style: normal;
     font-size: 24px;
     color: var(--text-primary);
     margin-bottom: 10px;
-    font-weight: 400;
+    font-weight: 600;
   }
   .industry-card p {
     font-size: 15px;
@@ -271,7 +332,7 @@ const trustVariant = 'C' as const;
   }
   .industry-stat-num {
     font-family: var(--font-display);
-    font-style: italic;
+    font-style: normal;
     font-size: 32px;
     color: var(--accent);
     line-height: 1;
@@ -283,6 +344,59 @@ const trustVariant = 'C' as const;
     line-height: 1.4;
     max-width: 28ch;
   }
+
+  .section-capabilities {
+    padding-top: clamp(48px, 7vh, 80px);
+    padding-bottom: clamp(48px, 7vh, 80px);
+    border-top: 1px solid var(--border);
+  }
+  .section-capabilities h2 { margin-bottom: 14px; max-width: 22ch; }
+  .cap-lede {
+    max-width: 62ch;
+    margin-bottom: 36px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+  .cap-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  @media (min-width: 720px) {
+    .cap-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1000px) {
+    .cap-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  .cap-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 22px 22px 24px;
+  }
+  .cap-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent-text);
+    margin-bottom: 12px;
+  }
+  .cap-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+  .cap-card p { font-size: 14px; line-height: 1.55; color: var(--text-secondary); margin: 0; }
+  .cap-tail { margin-top: 24px; }
+  .cap-link {
+    font-size: 14px;
+    color: var(--text-primary);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .cap-link:hover { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--accent); }
 
   .section-pullquote {
     padding: clamp(48px, 7vh, 88px) 0;
@@ -297,8 +411,8 @@ const trustVariant = 'C' as const;
   }
   .pullquote p {
     font-family: var(--font-display);
-    font-style: italic;
-    font-weight: 400;
+    font-style: normal;
+    font-weight: 600;
     font-size: clamp(24px, 3.4vw, 38px);
     line-height: 1.25;
     color: var(--text-primary);
@@ -353,7 +467,7 @@ const trustVariant = 'C' as const;
   }
   .featured-stat-num {
     font-family: var(--font-display);
-    font-style: italic;
+    font-style: normal;
     font-size: 36px;
     color: var(--accent);
     line-height: 1;
@@ -417,8 +531,8 @@ const trustVariant = 'C' as const;
   }
   .hws-title {
     font-family: var(--font-display);
-    font-style: italic;
-    font-weight: 400;
+    font-style: normal;
+    font-weight: 600;
     font-size: 22px;
     color: var(--text-primary);
     margin-bottom: 10px;

@@ -70,10 +70,10 @@ never depends on the web interface.
 
 ## Live pilot
 
-Optimus is in pilot at **Alfa Oil** (also branded Red Petrol) — an
-independent fuel network in Kyrgyzstan, ~250 stations. Alfa is currently
+Optimus is in pilot at **Red Petroleum** (also branded Red Petrol) — an
+independent fuel network in Kyrgyzstan, ~250 stations. Red Petroleum is currently
 testing Optimus across the network for procurement and margin; it is a
-live trial, not yet full production. `/case-studies/alfa-oil`.
+live trial, not yet full production. `/case-studies/red-petroleum`.
 
 (Do not state a revenue figure, a fuel-type count, or a second
 deployment — those were unverified and have been removed. Only "~250

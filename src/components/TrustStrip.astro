@@ -1,7 +1,7 @@
 ---
 // Trust strip. Three deployable variants per V2 §3.3 / hero spec.
 // `variant` prop selects the line. Phase 1 currently runs C (full topline,
-// pending Alfa Oil consent — see WORK/briefs/alfa-oil-content-brief.md).
+// pending Red Petroleum consent — see WORK/briefs/alfa-oil-content-brief.md).
 // On consent change, swap the prop in index.astro — no rebuild required.
 type Variant = 'A' | 'B' | 'C';
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 const { variant = 'C' } = Astro.props as Props;
 
 const logos = [
-  { src: '/logos/alfa-oil.png', alt: 'Alfa Oil' },
+  { src: '/logos/red-petroleum.png', alt: 'Red Petroleum' },
   { src: '/logos/click-and-grow.png', alt: 'Click & Grow' },
   { src: '/logos/gte.png', alt: 'GTE' },
   { src: '/logos/kricon.png', alt: 'Kricon' },
@@ -21,13 +21,13 @@ const logos = [
 <div class={`trust-strip variant-${variant}`}>
   {variant === 'B' && (
     <p class="trust-line">
-      Working with <strong>Alfa Oil</strong> — fuel network, CE region.
+      Working with <strong>Red Petroleum</strong> — fuel network, CE region.
     </p>
   )}
 
   {variant === 'C' && (
     <p class="trust-line">
-      Working with <strong>Alfa Oil</strong> — a 250-station fuel network, Optimus in pilot.
+      Working with <strong>Red Petroleum</strong> — a 250-station fuel network, Optimus in pilot.
     </p>
   )}
 

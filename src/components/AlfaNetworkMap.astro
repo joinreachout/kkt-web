@@ -1,5 +1,5 @@
 ---
-// Alfa Oil network visual for /case-studies/alfa-oil and home featured-case.
+// Red Petroleum network visual for /case-studies/red-petroleum and home featured-case.
 // Stylized silhouette of Kyrgyzstan with an illustrative field of station
 // dots across populated regions (Bishkek/Chui, Issyk-Kul, Talas, Osh,
 // Naryn, Batken). Dots are decorative, not a 1:1 station count. Accent
@@ -16,7 +16,7 @@ interface Props {
 const { variant = 'full' } = Astro.props as Props;
 ---
 
-<figure class={`alfa-net alfa-net-${variant}`} aria-label="Alfa Oil fuel network across Kyrgyzstan, Optimus in pilot">
+<figure class={`alfa-net alfa-net-${variant}`} aria-label="Red Petroleum fuel network across Kyrgyzstan, Optimus in pilot">
   {variant === 'full' && (
     <div class="alfa-net-callout">
       <div class="alfa-net-num">250</div>
@@ -691,8 +691,8 @@ const { variant = 'full' } = Astro.props as Props;
   }
   .alfa-net-num {
     font-family: var(--font-display);
-    font-style: italic;
-    font-weight: 400;
+    font-style: normal;
+    font-weight: 600;
     font-size: clamp(54px, 7vw, 78px);
     line-height: 1;
     color: var(--accent);

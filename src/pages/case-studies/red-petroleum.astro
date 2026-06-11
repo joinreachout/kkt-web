@@ -1,0 +1,375 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import CTA from '~/components/CTA.astro';
+import RelatedCases from '~/components/RelatedCases.astro';
+import CaseSnapshot from '~/components/CaseSnapshot.astro';
+import AlfaNetworkMap from '~/components/AlfaNetworkMap.astro';
+import OptimusScreens from '~/components/OptimusScreens.astro';
+
+const scale = [
+  { num: '$600M', label: 'annual revenue' },
+  { num: '220+', label: 'fuel stations' },
+  { num: '13', label: 'depots' },
+  { num: '2,500', label: 'employees' },
+  { num: '500K', label: 'customers' },
+  { num: '3K', label: 'corporate clients' },
+];
+---
+
+<BaseLayout
+  title="Red Petroleum — Case study — KKT"
+  description="A leader in Central Asian fuel retail, run on connected data. One program across fuel and margin, customers, stations, and the data foundation — with Optimus in pilot."
+  ogImage="/og/red-petroleum.png"
+>
+  <article class="prose-page">
+    <div class="container">
+      <div class="section-label">Case study — Red Petroleum &middot; Featured</div>
+      <h1 class="h1-page">Red Petroleum — a fuel network run on connected data.</h1>
+      <p class="rp-lede">
+        A leader in Central Asian fuel retail — 220+ stations, 13 depots,
+        a 500K-strong loyalty base. The data was already there, in ERP,
+        POS, loyalty and logistics, but the network ran on people, calls
+        and manual reconciliation — not on connected decisions. Many
+        vendors, no starting point. We built one program instead,
+        bottom-up: each front standing on the data foundation beneath it.
+      </p>
+
+      <div class="rp-scale" data-reveal-stagger>
+        {scale.map((s) => (
+          <div class="rp-stat">
+            <div class="rp-stat-num">{s.num}</div>
+            <div class="rp-stat-label">{s.label}</div>
+          </div>
+        ))}
+      </div>
+
+      <AlfaNetworkMap />
+
+      <CaseSnapshot
+        industry="Fuel retail — leader, Central Asia"
+        region="Kyrgyzstan, Central Asia"
+        status="Live · Optimus in pilot"
+        live={true}
+        situation="A ~$600M fuel retailer, 220+ stations and 13 depots. The data was there — ERP, POS, loyalty, logistics — but decisions ran on people, calls and the experience of individual managers, not on the data piling up. Many vendors, no starting point."
+        shipped="One program across four fronts — data foundation, customer value, operations, supply chain — built bottom-up. Optimus, the procurement-and-margin engine, is the supply-chain front, in pilot."
+        outcome="The network now runs on one set of numbers instead of conflicting spreadsheets; reporting and manual coordination are sharply down; and an internal data team builds the next data and AI work in-house, after we hand over."
+        stack={['DWH (500M+ rows)', 'BI / self-service', 'Text-to-SQL', 'ML segmentation', 'Optimisation models', 'OCR / LLM assistants']}
+      />
+
+      <section data-reveal class="directions">
+        <div class="section-label">The engagement</div>
+        <h2 class="directions-title">Four fronts, one program.</h2>
+        <p class="directions-lede">
+          Four fronts, built bottom-up — each standing on the data
+          foundation under it. Figures are Red Petroleum's own; the 2026
+          numbers are targets, not results, and Optimus is a live pilot,
+          not full production.
+        </p>
+        <ol class="directions-list">
+          <li>
+            <div class="dir-k">Fuel, logistics &amp; margin — Optimus, in pilot</div>
+            <p>
+              Procurement and price run as one commercial loop: forecast
+              the need, choose supplier and moment, account for the full
+              landed cost of a batch, steer price-at-pump by market and
+              demand. Around it, supply made manageable end-to-end — batch
+              movement, delay risk, acceptance discrepancies, railcars and
+              demurrage, depot operations, station delivery. This is
+              Optimus, the procurement-and-margin engine, in pilot. Early
+              signal: fewer stockouts and surpluses, less railcar idle
+              time and fines — measured on the pilot, not yet network-wide.
+              (Operator views below.)
+            </p>
+          </li>
+          <li>
+            <div class="dir-k">Customers, loyalty &amp; B2B</div>
+            <p>
+              The customer base and B2B portfolio turned into a managed
+              source of growth: customer value read across ~300M
+              transactions and ~500K loyalty members, churn surfaced,
+              frequency and average check worked, promo and corporate-client
+              profitability managed — instead of mass mailings sent on
+              assumptions. A non-fuel recommendation engine is in testing.
+              Higher retention, more margin per customer and fewer wasted
+              discounts are 2026 targets, not yet results.
+            </p>
+          </li>
+          <li>
+            <div class="dir-k">Stations &amp; supporting functions</div>
+            <p>
+              The station run as a profit point, not only an operational
+              object — and the back-office routine taken out. Process
+              re-engineering first, then automation: AI assistants for
+              station operators and HR, OCR for documents, reworked
+              cross-department workflows across MTO procurement,
+              contractors, internal control and back-office. Fewer
+              operational losses, less manual work, and deviations visible
+              before the audit, not after.
+            </p>
+          </li>
+          <li>
+            <div class="dir-k">Data &amp; processes — the foundation</div>
+            <p>
+              The base the other three stand on: one data base unifying
+              ERP, POS, loyalty and logistics on a single business logic —
+              500M+ rows. Quality and availability first, then reporting
+              (20+ interactive BI reports) and knowledge search through a
+              text-to-SQL assistant that answers plain-language questions
+              in seconds. Report preparation moved from days to minutes —
+              one version of truth, and AI that scales systemically, not
+              point by point. An internal data team was formed and trained
+              to carry it.
+            </p>
+          </li>
+        </ol>
+      </section>
+
+      <section data-reveal class="rp-screens-section">
+        <div class="section-label">Supply chain — Optimus pilot</div>
+        <h2 class="rp-screens-title">What the first front looks like.</h2>
+        <p class="rp-screens-lede">
+          Three live operator surfaces from the Optimus pilot — the
+          procurement-and-margin loop above. The workflow and the density
+          are real; at this size the individual numbers are not legible by
+          design.
+        </p>
+        <OptimusScreens
+          variant="grid-3"
+          picks={['procurement-advisor', 'inbound-conflicts', 'fuel-forecast']}
+        />
+      </section>
+
+      <blockquote class="rp-quote" data-reveal>
+        <p>
+          "KKT's proactive approach was key to success. They bridged
+          business goals with in-house technical teams and external
+          partners, ensuring strategic alignment with our operational
+          priorities."
+        </p>
+        <footer>
+          <span class="rp-quote-name">Nikolai Tr.</span>
+          <span class="rp-quote-role">Head of Digital Development, Red Petroleum</span>
+        </footer>
+      </blockquote>
+
+      <section data-reveal class="topline">
+        <div class="topline-row">
+          <div class="topline-label">Industry</div>
+          <div>Fuel retail — leader in Central Asia</div>
+        </div>
+        <div class="topline-row">
+          <div class="topline-label">Region</div>
+          <div>Kyrgyzstan, Central Asia</div>
+        </div>
+        <div class="topline-row">
+          <div class="topline-label">Network</div>
+          <div>220+ stations, 13 depots, independent</div>
+        </div>
+        <div class="topline-row">
+          <div class="topline-label">Status</div>
+          <div><span class="live-dot"></span> Program live · Optimus in pilot</div>
+        </div>
+      </section>
+
+      <section data-reveal class="placeholder-note">
+        <p>
+          <strong>On the numbers.</strong> Scale and program metrics are
+          Red Petroleum's own. Optimus is a live pilot, not full
+          production; the 2026 uplift figures (LTV, retention, non-fuel
+          sales, average check) are targets, not delivered results. The
+          deeper walkable case is in editorial.
+        </p>
+      </section>
+    </div>
+
+    <RelatedCases current="red-petroleum" />
+
+    <CTA
+      heading="Run a fuel network diagnostic."
+      body="A two-week scoped look at where connected data and AI apply to your network. Pricing posture, margin posture, station-level operations, and what shipping looks like."
+    />
+  </article>
+</BaseLayout>
+
+<style>
+  .prose-page { padding-top: clamp(40px, 6vh, 72px); }
+  .section-label { margin-bottom: 18px; }
+  .h1-page {
+    font-family: var(--font-display);
+    font-style: normal;
+    font-weight: 600;
+    font-size: clamp(30px, 4.2vw, 44px);
+    line-height: 1.16;
+    margin-bottom: 18px;
+    letter-spacing: -0.01em;
+    max-width: 24ch;
+  }
+  .rp-lede {
+    max-width: 62ch;
+    margin-bottom: 32px;
+    color: var(--text-secondary);
+    font-size: clamp(16px, 1.9vw, 18px);
+    line-height: 1.6;
+  }
+  .rp-scale {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px 36px;
+    margin-bottom: 36px;
+    padding: 22px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  @media (min-width: 720px) {
+    .rp-scale { grid-template-columns: repeat(6, 1fr); }
+  }
+  .rp-stat { display: flex; flex-direction: column; gap: 2px; }
+  .rp-stat-num {
+    font-family: var(--font-display);
+    font-style: normal;
+    font-size: clamp(24px, 3vw, 32px);
+    color: var(--accent);
+    line-height: 1;
+  }
+  .rp-stat-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+
+  .rp-screens-section { margin: 40px 0 48px; }
+  .rp-screens-section .section-label { margin-bottom: 12px; }
+  .rp-screens-title {
+    font-family: var(--font-display);
+    font-style: normal;
+    font-weight: 600;
+    font-size: clamp(24px, 3.4vw, 32px);
+    line-height: 1.2;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    max-width: 24ch;
+  }
+  .rp-screens-lede {
+    max-width: 60ch;
+    margin-bottom: 24px;
+    color: var(--text-secondary);
+  }
+
+  .directions { margin: 8px 0 40px; }
+  .directions .section-label { margin-bottom: 12px; }
+  .directions-title {
+    font-family: var(--font-display);
+    font-style: normal;
+    font-weight: 600;
+    font-size: clamp(24px, 3.4vw, 32px);
+    line-height: 1.2;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    max-width: 24ch;
+  }
+  .directions-lede {
+    max-width: 62ch;
+    margin-bottom: 26px;
+    color: var(--text-secondary);
+  }
+  .directions-list {
+    list-style: none;
+    counter-reset: dir;
+    padding: 0;
+    margin: 0;
+    max-width: 760px;
+  }
+  .directions-list li {
+    counter-increment: dir;
+    position: relative;
+    padding: 20px 0 20px 52px;
+    border-top: 1px solid var(--border);
+  }
+  .directions-list li:last-child { border-bottom: 1px solid var(--border); }
+  .directions-list li::before {
+    content: counter(dir, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 20px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--accent-text);
+    font-weight: 600;
+  }
+  .dir-k {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+  .directions-list p { margin: 0; max-width: 64ch; color: var(--text-secondary); }
+
+  .rp-quote {
+    margin: 0 0 36px;
+    padding: 26px 30px;
+    background: var(--surface-alt);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 4px 4px 0;
+    max-width: 760px;
+  }
+  .rp-quote p {
+    font-family: var(--font-display);
+    font-style: normal;
+    font-weight: 600;
+    font-size: clamp(18px, 2.1vw, 22px);
+    line-height: 1.4;
+    color: var(--text-primary);
+    margin: 0 0 16px;
+    max-width: 46ch;
+  }
+  .rp-quote footer { display: flex; flex-direction: column; gap: 1px; }
+  .rp-quote-name { font-weight: 600; color: var(--text-primary); font-size: 14px; }
+  .rp-quote-role { font-size: 13px; color: var(--text-muted); }
+
+  .topline {
+    max-width: 720px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 24px 28px;
+    margin-bottom: 32px;
+  }
+  .topline-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 15px;
+    color: var(--text-primary);
+  }
+  .topline-row:last-child { border-bottom: none; }
+  .topline-label {
+    color: var(--text-muted);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    align-self: center;
+  }
+  .live-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #2A8A62;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  .placeholder-note {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 24px;
+    max-width: 720px;
+  }
+  .placeholder-note p { margin: 0; max-width: 64ch; }
+</style>

@@ -11,7 +11,7 @@ than sell an engagement that will not land.
 
 ## If you are earlier than ~$50M in revenue
 
-KKT is built for mid-sized retailers and fuel networks. Below that
+KKT is built for mid-sized companies (deepest in retail and fuel). Below that
 scale, the delivery model usually costs more than the value it can
 create — the user would be paying for rigor they do not need yet.
 There are excellent partners sized for smaller companies, and starting

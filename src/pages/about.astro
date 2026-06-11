@@ -1,20 +1,74 @@
 ---
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import CTA from '~/components/CTA.astro';
-import { getCollection, render } from 'astro:content';
 
-const all = await getCollection('team');
-const team = all
-  .filter((m) => m.data.active !== false)
-  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+// "How we work" + team mirror retail.kittykat.tech (the canonical source).
+const howWeWork = {
+  lead: 'We do not start with technology. We start with the business question, check whether AI and data can realistically help, then move through scope, delivery, adoption, and scale.',
+  steps: [
+    {
+      title: 'Identify & qualify',
+      summary: 'We clarify the business question, understand the current situation, and assess whether AI, data, analytics, automation, or process redesign can realistically help.',
+      outputs: [
+        'A clear view of the business issue, owner, and expected result',
+        'First check of available data, process reality, and feasibility',
+        'A recommendation to proceed, reshape the idea, or stop early',
+      ],
+    },
+    {
+      title: 'Scope & prepare',
+      summary: 'We turn a promising opportunity into a delivery-ready project that business and technical teams can understand.',
+      outputs: [
+        'What needs to change in the process and decision flow',
+        'What data, systems, people, and rules are needed',
+        'Delivery plan, requirements, owners, and acceptance criteria',
+      ],
+    },
+    {
+      title: 'Execute & coordinate',
+      summary: 'We support implementation from the business side and keep technical delivery connected to business outcomes.',
+      outputs: [
+        'Coordinated work between business, vendors, and technical teams',
+        'Regular checks that the solution still solves the business problem',
+        'Testing, acceptance, stakeholder alignment, and adoption support',
+      ],
+    },
+    {
+      title: 'Close, adopt & scale',
+      summary: 'We help make the solution operational, measurable, and ready for further improvement.',
+      outputs: [
+        'A working solution embedded into the business process',
+        'Handover, user adoption, and value tracking',
+        'Clear next steps for scaling or improving the solution',
+      ],
+    },
+  ],
+};
 
-// Render bio bodies once at build time.
-const teamWithBios = await Promise.all(
-  team.map(async (m) => {
-    const { Content } = await render(m);
-    return { ...m, Content };
-  }),
-);
+const teamGroups = [
+  {
+    title: 'Domain expertise',
+    members: [
+      { name: 'Pavel Mityshkin', line: '15+ years in FMCG/Retail, RGM and Commercial Excellence', chips: ['PepsiCo', 'Philip Morris', 'Bonduelle', 'Efes'], initials: 'PM', photo: '/team/pavel-mityshkin.jpg' },
+      { name: 'Yana Kujrikhina', line: '10+ years in Oil & Gas, process consulting and digitalization', chips: ['EY', 'Gazprom Oil'], initials: 'YK', photo: '/team/yana-kujrikhina.jpg' },
+      { name: 'Nikolay Terentyev', line: '15+ years in banking, finance operations and digital transformation', chips: ['Gazprombank'], initials: 'NT', photo: '/team/nikolay-terentyev.png' },
+      { name: 'Pavel Gabaidullin', line: '19+ years in enterprise procurement and international supply chains', chips: ['SIBUR', 'Rosatom / NovaWind', 'United Wagon Company', 'Bombardier JV'], initials: 'PG', photo: '/team/pavel-gabaidullin.jpg' },
+      { name: 'Levan Buachidze', line: '5+ years in digital logistics, supply chain and retail category management', chips: ['Deutsche Bahn', 'Daily Group'], initials: 'LB', photo: '/team/levan-buachidze.jpg' },
+      { name: 'George Shevardenidze', line: '15+ years in technical consulting and operational transformation', chips: ['Lukoil', 'DNV', 'TUV Rheinland'], initials: 'GS', photo: '/team/george-shevardenidze.jpg' },
+      { name: 'Dennis Nepomniashy', line: 'Data-driven marketing and software-integration project management, run from the data', chips: ['Business IT', 'MCSI'], initials: 'DN', photo: '/team/dennis-nepomniashy.jpg' },
+    ],
+  },
+  {
+    title: 'Tech expertise',
+    members: [
+      { name: 'Nageye Rascid', line: '20+ years in enterprise data, cloud and AI platforms', chips: ['Microsoft', 'Snowflake', 'Cisco', 'Confluent', 'Upbound'], initials: 'NR', photo: '/team/nageye-rascid.jpg' },
+      { name: 'Denis Perov', line: '15+ years in software engineering and AI/ML solution architecture', chips: ['Aviasales'], initials: 'DP', photo: '/team/denis-perov.jpg' },
+      { name: 'Igor Trifonov', line: '10+ years in data engineering, BI and enterprise data solutions', chips: ['Customertimes', 'Sberbank', 'ATON'], initials: 'IT', photo: '/team/igor-trifonov.png' },
+    ],
+  },
+];
+
+const benchNote = 'Plus a wider bench of data scientists, ML engineers, data engineers, analysts, domain specialists, and external experts as needed.';
 ---
 
 <BaseLayout
@@ -27,9 +81,10 @@ const teamWithBios = await Promise.all(
       <div class="section-label">About</div>
       <h1 class="h1-page">Kitty Kat Technologies.</h1>
       <p class="lede">
-        A senior PMO and AI delivery firm based in Tallinn, Estonia. We work
-        with mid-sized retailers and fuel networks where the cost of getting
-        things wrong is real and the value of shipping is measurable.
+        A senior data & AI delivery firm based in Tallinn, Estonia, with
+        roots in business. We work with mid-sized companies where the cost
+        of getting things wrong is real and the value of shipping is
+        measurable — with the deepest track record in retail and fuel.
       </p>
 
       <div class="about-strip">
@@ -42,28 +97,30 @@ const teamWithBios = await Promise.all(
           <div class="about-stat-label">stations in the Optimus pilot</div>
         </div>
         <div class="about-stat">
-          <div class="about-stat-num">5</div>
-          <div class="about-stat-label">named client engagements</div>
+          <div class="about-stat-num">10+</div>
+          <div class="about-stat-label">client engagements shipped</div>
         </div>
         <div class="about-stat">
-          <div class="about-stat-num">2</div>
-          <div class="about-stat-label">industries we focus on now</div>
+          <div class="about-stat-num">8+</div>
+          <div class="about-stat-label">sectors shipped across</div>
         </div>
       </div>
 
       <blockquote class="about-pull">
         <p>
-          We are not an AI vendor with a deck. We are a delivery firm
-          with deep AI capability — and the PMO discipline that makes
-          AI actually ship.
+          Deep AI capability is necessary, not sufficient. What ships the
+          work is PMO discipline — scope, sequencing, ownership, delivery
+          under constraint — and starting from the business question, not
+          the technology.
         </p>
       </blockquote>
 
       <p class="entity-def">
         Kitty Kat Technologies (KKT) is a senior PMO and AI delivery firm
         registered in Tallinn, Estonia. The firm works with mid-sized
-        retailers and fuel networks — typically $50M to $500M in annual
-        revenue — across Central Europe, the EU, and Central Asia. Every
+        companies — typically $50M to $500M in annual revenue — across
+        Central Europe, the EU, and Central Asia, with the deepest track
+        record in retail and fuel. Every
         engagement starts with a two-week diagnostic. Delivery follows a
         three-stage model: strengthen the core, optimize and grow, and —
         where the client&rsquo;s maturity supports it — expand and
@@ -72,7 +129,7 @@ const teamWithBios = await Promise.all(
         a delivery team behind them, and turns down work where the case for
         shipping is not yet there. Its flagship product, Optimus, is a live
         operating-intelligence system for fuel networks, running today at
-        Alfa Oil, a 250-station fuel network in Kyrgyzstan.
+        Red Petroleum, a 250-station fuel network in Kyrgyzstan.
       </p>
 
       <section data-reveal class="beliefs">
@@ -133,41 +190,62 @@ const teamWithBios = await Promise.all(
         </p>
       </section>
 
-      <section data-reveal class="who">
-        <h2 class="h2-section">The team.</h2>
+      <section data-reveal class="partners">
+        <div class="section-label">Partnerships</div>
+        <h2 class="h2-section">Who we work alongside.</h2>
+        <p class="partners-body">
+          We partner with <strong>Noventiq</strong>, a global
+          digital-transformation and cybersecurity provider, to bring data
+          and AI into business operations across EMEA, Central Asia, and
+          South-East Asia. A non-exclusive cooperation: each firm brings the
+          other in where it serves the client, and every engagement stands
+          on its own terms.
+        </p>
+      </section>
 
-        {teamWithBios.length === 0 ? (
-          <div class="empty">
-            <p>
-              Team page in progress. Bios drop in as files under
-              <code>src/content/team/</code> — see <code>_TEMPLATE.md</code>
-              in that folder.
-            </p>
-          </div>
-        ) : (
-          <div class="team-grid" data-reveal-stagger>
-            {teamWithBios.map(({ data, Content }) => (
-              <div class="member">
-                {data.photo && (
-                  <img class="member-photo" src={data.photo} alt={`${data.name} portrait`} loading="lazy" />
-                )}
-                <div class="member-name">{data.name}</div>
-                <div class="member-role">{data.role}</div>
-                <div class="member-bio">
-                  <Content />
-                </div>
-                {data.links && (
-                  <div class="member-links">
-                    {data.links.email && <a href={`mailto:${data.links.email}`}>Email</a>}
-                    {data.links.linkedin && (
-                      <a href={data.links.linkedin} rel="noopener" target="_blank">LinkedIn</a>
-                    )}
-                  </div>
-                )}
+      <section data-reveal class="howwework">
+        <div class="section-label">How we work</div>
+        <h2 class="h2-section">From question to delivered AI/data solution.</h2>
+        <p class="hww-lead">{howWeWork.lead}</p>
+        <ol class="hww-steps" data-reveal-stagger>
+          {howWeWork.steps.map((s, i) => (
+            <li class="hww-step">
+              <div class="hww-step-n">{String(i + 1).padStart(2, '0')}</div>
+              <div class="hww-step-body">
+                <h3 class="hww-step-title">{s.title}</h3>
+                <p class="hww-step-sum">{s.summary}</p>
+                <ul class="hww-step-outputs">
+                  {s.outputs.map((o) => <li>{o}</li>)}
+                </ul>
               </div>
-            ))}
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section data-reveal class="who">
+        <div class="section-label">Team &amp; experts</div>
+        <h2 class="h2-section">Domain expertise and technical delivery in one team.</h2>
+        {teamGroups.map((g) => (
+          <div class="team-group">
+            <div class="team-group-title">{g.title}</div>
+            <div class="team-grid" data-reveal-stagger>
+              {g.members.map((m) => (
+                <div class="member">
+                  {m.photo
+                    ? <img class="member-photo" src={m.photo} alt={`${m.name} portrait`} loading="lazy" />
+                    : <div class="member-photo member-initials" aria-hidden="true">{m.initials}</div>}
+                  <div class="member-name">{m.name}</div>
+                  <div class="member-line">{m.line}</div>
+                  <div class="member-chips">
+                    {m.chips.map((c) => <span class="member-chip">{c}</span>)}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-        )}
+        ))}
+        <p class="bench-note">{benchNote}</p>
       </section>
 
       <section data-reveal class="legal">
@@ -188,8 +266,8 @@ const teamWithBios = await Promise.all(
   .section-label { margin-bottom: 18px; }
   .h1-page {
     font-family: var(--font-display);
-    font-style: italic;
-    font-weight: 400;
+    font-style: normal;
+    font-weight: 600;
     font-size: clamp(32px, 4.5vw, 48px);
     line-height: 1.16;
     margin-bottom: 18px;
@@ -215,7 +293,7 @@ const teamWithBios = await Promise.all(
   .about-stat { display: flex; flex-direction: column; gap: 2px; }
   .about-stat-num {
     font-family: var(--font-display);
-    font-style: italic;
+    font-style: normal;
     font-size: clamp(28px, 3.6vw, 36px);
     color: var(--accent);
     line-height: 1;
@@ -239,8 +317,8 @@ const teamWithBios = await Promise.all(
   }
   .about-pull p {
     font-family: var(--font-display);
-    font-style: italic;
-    font-weight: 400;
+    font-style: normal;
+    font-weight: 600;
     font-size: clamp(20px, 2.6vw, 28px);
     line-height: 1.3;
     color: var(--text-primary);
@@ -289,8 +367,8 @@ const teamWithBios = await Promise.all(
   }
   .belief-title {
     font-family: var(--font-display);
-    font-style: italic;
-    font-weight: 400;
+    font-style: normal;
+    font-weight: 600;
     font-size: 20px;
     color: var(--text-primary);
     margin-bottom: 8px;
@@ -308,6 +386,12 @@ const teamWithBios = await Promise.all(
     margin-left: 6px;
   }
   .beliefs-tail a:hover { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--accent); }
+
+  .partners { margin-bottom: 56px; padding-top: 40px; border-top: 1px solid var(--border); }
+  .partners .section-label { margin-bottom: 14px; }
+  .partners h2 { margin-bottom: 16px; }
+  .partners-body { max-width: 62ch; color: var(--text-secondary); line-height: 1.6; }
+  .partners-body strong { color: var(--text-primary); font-weight: 600; }
 
   .who { margin-bottom: 56px; }
   .who h2 { margin-bottom: 28px; }
@@ -348,7 +432,7 @@ const teamWithBios = await Promise.all(
   }
   .member-name {
     font-family: var(--font-display);
-    font-style: italic;
+    font-style: normal;
     font-size: 22px;
     color: var(--text-primary);
     line-height: 1.2;
@@ -371,6 +455,90 @@ const teamWithBios = await Promise.all(
     font-size: 13px;
   }
   .member-links a { color: var(--text-secondary); }
+
+  .howwework { margin-bottom: 56px; padding-top: 40px; border-top: 1px solid var(--border); }
+  .howwework .section-label { margin-bottom: 14px; }
+  .howwework h2 { margin-bottom: 14px; }
+  .hww-lead { max-width: 64ch; color: var(--text-secondary); line-height: 1.6; margin-bottom: 28px; }
+  .hww-steps { list-style: none; padding: 0; margin: 0; counter-reset: step; display: grid; gap: 0; }
+  .hww-step {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 8px;
+    padding: 22px 0;
+    border-top: 1px solid var(--border);
+  }
+  .hww-step:last-child { border-bottom: 1px solid var(--border); }
+  .hww-step-n {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--accent-text);
+    font-weight: 600;
+    padding-top: 3px;
+  }
+  .hww-step-title {
+    font-family: var(--font-display);
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--text-primary);
+    line-height: 1.2;
+    margin: 0 0 8px;
+  }
+  .hww-step-sum { margin: 0 0 12px; max-width: 60ch; color: var(--text-secondary); font-size: 14.5px; line-height: 1.55; }
+  .hww-step-outputs { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
+  .hww-step-outputs li {
+    position: relative;
+    padding-left: 18px;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    max-width: 60ch;
+  }
+  .hww-step-outputs li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .team-group { margin-bottom: 36px; }
+  .team-group:last-of-type { margin-bottom: 24px; }
+  .team-group-title {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .member-initials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    font-family: var(--font-display);
+    font-style: normal;
+    font-size: 20px;
+    color: var(--text-muted);
+  }
+  .member-line { font-size: 13.5px; color: var(--text-secondary); line-height: 1.5; margin-top: 6px; }
+  .member-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 12px; }
+  .member-chip {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-secondary);
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 3px 7px;
+  }
+  .bench-note { font-size: 13px; color: var(--text-muted); font-style: normal; max-width: 64ch; }
 
   .legal {
     border-top: 1px solid var(--border);

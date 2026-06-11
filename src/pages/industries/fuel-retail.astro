@@ -3,33 +3,50 @@ import BaseLayout from '~/layouts/BaseLayout.astro';
 import CTA from '~/components/CTA.astro';
 import StartingPoints from '~/components/StartingPoints.astro';
 
+// The fuel network economy — the canvas A–G blocks. Optimus is A+B,
+// one embodiment; the surface is the whole economy.
 const startingPoints = [
   {
-    pressure: 'Stockouts surprise you, and procurement eats the morning.',
-    lever: 'Procurement and replenishment intelligence',
-    detail: 'The Optimus core: stockout forecasting, supplier consolidation, working-capital release. What the head of supply opens at 8 AM.',
+    pressure: 'Procurement eats the morning, and margin is something you read after the fact.',
+    lever: 'Fuel: procurement, price & margin',
+    detail: 'Procurement and price run as one commercial loop — forecast the need, choose supplier and moment, account for the full landed cost of a batch, set price-at-pump by market and demand. Focus: fewer stockouts and surpluses, less overpay, better margin, faster commercial calls.',
   },
   {
-    pressure: 'Margin is something you read after the fact, not a lever you set.',
-    lever: 'Pricing posture',
-    detail: 'Network-level pricing in a daily cadence, with margin posture explicit — margin becomes a controlled variable, not an outcome.',
+    pressure: 'Batches go dark in transit; railcars sit, fines accrue, dispatch is manual.',
+    lever: 'Logistics & fuel supply',
+    detail: 'Fuel supply made manageable end-to-end — batch movement, delay risk, acceptance discrepancies, railcars and demurrage, depot operations, station delivery, trip execution. Focus: fewer losses, less idle time and fines, less manual dispatch.',
   },
   {
-    pressure: 'The network number hides where money actually moves.',
-    lever: 'Station-level operations',
-    detail: 'Per-station fill levels, fuel mix, conflict resolution, audit trails — the visibility under the headline number.',
+    pressure: 'The network number hides where a station leaks money.',
+    lever: 'Stations, stores & cafés',
+    detail: 'The station run as a profit point, not only an operational object — underperformance, queues and lost traffic, dispenser and POS violations, shift work, equipment, assortment, write-offs, store conversion. Focus: fewer operational losses, higher station revenue, better customer experience.',
   },
   {
-    pressure: 'Cash sits frozen in inventory with no view of where.',
-    lever: 'Working capital and turnover',
-    detail: 'Money frozen in inventory and where to release it, per fuel and per region. Turnover stops being a quarterly review.',
+    pressure: 'The customer base and B2B portfolio drift, and discounts leak margin.',
+    lever: 'Customers, loyalty & B2B',
+    detail: 'The customer base and B2B portfolio turned into a managed source of growth — customer value, churn, frequency and check, promo, reviews, retail media, corporate-client profitability. Focus: higher retention, more margin per customer, fewer wasted discounts, a stronger loyalty program.',
+  },
+  {
+    pressure: 'Deviations surface at the month-end close, once they are already a problem.',
+    lever: 'Finance, money & control',
+    detail: 'Finance sees the business as a live picture and finds the cause of a deviation faster — margin, costs, cash, receivables, payment risks, financial losses and policy violations become visible before they become a problem. Focus: faster management decisions, fewer leaks, better cash control, trust in the numbers.',
+  },
+  {
+    pressure: 'Back-office routine piles up, and violations show up only at the audit.',
+    lever: 'Supporting functions',
+    detail: 'The routine taken out and control strengthened across the functions that support the business — HR, legal, MTO procurement, contractors, internal control, documents and back-office. Focus: less manual work, faster processes, clearer spend, and violations visible before the audit, not after.',
+  },
+  {
+    pressure: 'Every department runs its own numbers, and AI gets bolted on point by point.',
+    lever: 'Data & processes — the foundation',
+    detail: 'The foundation analytics, automation and AI run on — one data base, quality and availability, reporting, knowledge search, office AI tools, process re-engineering and agentic solutions. Focus: one version of truth, less manual work, and AI that scales systemically, not point by point.',
   },
 ];
 ---
 
 <BaseLayout
   title="Fuel retail — KKT"
-  description="AI and data for independent fuel networks — procurement, margin, logistics, stations. Optimus in pilot at Alfa Oil, Kyrgyzstan."
+  description="AI and data for independent fuel networks — procurement, margin, logistics, stations. Optimus in pilot at Red Petroleum, Kyrgyzstan."
   ogImage="/og/fuel-retail.png"
 >
   <article class="prose-page">
@@ -58,11 +75,11 @@ const startingPoints = [
       <section data-reveal class="proof-strip" data-reveal-stagger>
         <div class="proof-card">
           <div class="proof-num">250</div>
-          <div class="proof-label">stations in the Optimus pilot at Alfa Oil</div>
+          <div class="proof-label">stations in the Optimus pilot at Red Petroleum</div>
         </div>
         <div class="proof-card">
           <div class="proof-num">Pilot</div>
-          <div class="proof-label">live trial at Alfa Oil, not a slide</div>
+          <div class="proof-label">live trial at Red Petroleum, not a slide</div>
         </div>
         <div class="proof-card">
           <div class="proof-num">KG</div>
@@ -72,7 +89,7 @@ const startingPoints = [
 
       <section data-reveal class="cta-row">
         <a href="/solutions/optimus" class="btn-primary">See Optimus →</a>
-        <a href="/case-studies/alfa-oil" class="btn-ghost">Read the Alfa Oil case</a>
+        <a href="/case-studies/red-petroleum" class="btn-ghost">Read the Red Petroleum case</a>
       </section>
 
       <section data-reveal class="fuel-path">
@@ -111,7 +128,7 @@ const startingPoints = [
 
       <section data-reveal class="starts">
         <div class="section-label">Engagement starting points</div>
-        <h2 class="h2-section">Where the network economy pays back first.</h2>
+        <h2 class="h2-section">Across the whole network economy.</h2>
         <p class="starts-lede">
           The effect is across the whole network economy — procurement and
           margin, pricing, logistics, stations, finance and control. We
@@ -142,6 +159,24 @@ const startingPoints = [
           <a href="/tools/cost-of-doing-nothing" class="cdn-link">Try the v0 preview →</a>
         </p>
       </section>
+      <section data-reveal class="howwework">
+        <div class="section-label">How we work</div>
+        <h2 class="h2-section">Built around your business economics.</h2>
+        <ul class="hww-list" data-reveal-stagger>
+          <li>
+            <div class="hww-k">From quick wins to systemic transformation</div>
+            <p>Start with clear use cases, then build out the data, processes, models and agentic systems behind them.</p>
+          </li>
+          <li>
+            <div class="hww-k">AI tied to business economics, not the tech of the month</div>
+            <p>Every initiative answers to margin, losses, working capital, revenue, service, or team efficiency.</p>
+          </li>
+          <li>
+            <div class="hww-k">We walk it from idea to deployment</div>
+            <p>We set the priorities, the data, the dependencies, the pilots, and the next realistic step for your network.</p>
+          </li>
+        </ul>
+      </section>
     </div>
 
     <CTA
@@ -156,8 +191,8 @@ const startingPoints = [
   .section-label { margin-bottom: 18px; }
   .h1-page {
     font-family: var(--font-display);
-    font-style: italic;
-    font-weight: 400;
+    font-style: normal;
+    font-weight: 600;
     font-size: clamp(32px, 4.5vw, 48px);
     line-height: 1.16;
     margin-bottom: 18px;
@@ -182,8 +217,8 @@ const startingPoints = [
   .ind-pullquote blockquote { margin: 0; padding: 0; }
   .ind-pullquote p {
     font-family: var(--font-display);
-    font-style: italic;
-    font-weight: 400;
+    font-style: normal;
+    font-weight: 600;
     font-size: clamp(20px, 2.6vw, 28px);
     line-height: 1.3;
     color: var(--text-primary);
@@ -206,7 +241,7 @@ const startingPoints = [
   }
   .proof-num {
     font-family: var(--font-display);
-    font-style: italic;
+    font-style: normal;
     font-size: 32px;
     color: var(--text-primary);
     margin-bottom: 4px;
@@ -256,8 +291,8 @@ const startingPoints = [
   }
   .fpath-name {
     font-family: var(--font-display);
-    font-style: italic;
-    font-weight: 400;
+    font-style: normal;
+    font-weight: 600;
     font-size: 20px;
     color: var(--text-primary);
     margin: 0 0 10px;
@@ -276,6 +311,35 @@ const startingPoints = [
     border-top: 1px solid var(--border);
   }
   .starts .section-label { margin-bottom: 14px; }
+
+  .howwework { margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--border); }
+  .howwework .section-label { margin-bottom: 14px; }
+  .howwework h2 { margin-bottom: 24px; max-width: 24ch; }
+  .hww-list { list-style: none; padding: 0; margin: 0; counter-reset: hww; max-width: 760px; }
+  .hww-list li {
+    counter-increment: hww;
+    position: relative;
+    padding: 18px 0 18px 52px;
+    border-top: 1px solid var(--border);
+  }
+  .hww-list li:last-child { border-bottom: 1px solid var(--border); }
+  .hww-list li::before {
+    content: counter(hww, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 18px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--accent-text);
+    font-weight: 600;
+  }
+  .hww-k {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+  }
+  .hww-list p { margin: 0; max-width: 60ch; color: var(--text-secondary); font-size: 14px; line-height: 1.55; }
   .starts h2 { margin-bottom: 18px; max-width: 26ch; }
   .starts-lede {
     max-width: 60ch;
@@ -298,8 +362,8 @@ const startingPoints = [
   }
   .start-title {
     font-family: var(--font-display);
-    font-style: italic;
-    font-weight: 400;
+    font-style: normal;
+    font-weight: 600;
     font-size: 20px;
     color: var(--text-primary);
     margin-bottom: 10px;
@@ -336,8 +400,8 @@ const startingPoints = [
   }
   .cdn-title {
     font-family: var(--font-display);
-    font-style: italic;
-    font-weight: 400;
+    font-style: normal;
+    font-weight: 600;
     font-size: 22px;
     color: var(--text-primary);
     margin-bottom: 10px;

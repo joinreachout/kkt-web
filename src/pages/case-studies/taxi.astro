@@ -1,0 +1,96 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import CTA from '~/components/CTA.astro';
+import RelatedCases from '~/components/RelatedCases.astro';
+import CaseSnapshot from '~/components/CaseSnapshot.astro';
+---
+
+<BaseLayout
+  title="Ride-hailing platform — Case study — KKT"
+  description="Data deep-dive plus ML for dynamic pricing and demand forecasting at a leading Baltic ride-hailing platform. Engagement in progress."
+>
+  <article class="prose-page">
+    <div class="container">
+      <div class="section-label section-label-prior">Case study — Ride-hailing &middot; Engagement in progress (client unnamed until consent)</div>
+      <h1 class="h1-page">A Baltic ride-hailing platform — pricing and demand, learned from the data.</h1>
+
+      <CaseSnapshot
+        industry="Ride-hailing — aggregator"
+        region="Baltics + adjacent markets"
+        status="In progress"
+        situation="A leading Baltic ride-hailing platform — an aggregator matching licensed taxi companies and drivers with riders — wanted to grow: more riders, more drivers, fewer lost trips. Analytics stopped at dashboards; there was no deep-dive into what the data actually said, and no in-house data-science team to run one."
+        shipped="A data-analytics deep-dive on the real growth levers, then ML where prediction pays: dynamic pricing for real-time fares, ride-demand forecasting to place drivers ahead of demand, and driver-performance signals — with an LLM support assistant on the customer side."
+        outcome="Engagement is live. We are working the highest-leverage questions first — driver supply at peak, rider wait times, and onboarding drop-off — and standing the models up against them rather than shipping a model for its own sake."
+        stack={['Python', 'Scikit-learn', 'Time-series / LSTM', 'MLOps / CI-CD', 'LLM assistant']}
+      />
+
+      <section data-reveal class="shipped">
+        <div class="shipped-label">The approach</div>
+        <ul>
+          <li><strong>Data deep-dive on growth</strong> — not a dashboard refresh. Each business question (low daily rides, long wait times, riders not returning, onboarding drop-off) tested against hypotheses, down to an actionable recommendation.</li>
+          <li><strong>Dynamic pricing</strong> — real-time fare adjustment to demand, traffic, time of day, and events. The one place we'd reach past traditional ML toward a time-series model where it earns its keep.</li>
+          <li><strong>Ride-demand forecasting</strong> — predict demand by area and time so drivers are positioned ahead of it, cutting rider wait and lifting driver utilisation.</li>
+          <li><strong>Driver-performance signals</strong> — ratings, punctuality, cancellations modelled to surface who to reward and where support or training lands.</li>
+          <li><strong>LLM support assistant</strong> — an off-the-shelf assistant fine-tuned for onboarding and the common rider and driver questions, with sentiment analysis on feedback.</li>
+        </ul>
+      </section>
+
+      <p class="editorial-note">
+        Client unnamed while the engagement is in progress — named once the consent tier allows, or not mentioned at all. No invented outcomes: this is the work as it actually runs.
+      </p>
+    </div>
+
+    <RelatedCases current="taxi" />
+
+    <CTA />
+  </article>
+</BaseLayout>
+
+<style>
+  .prose-page { padding-top: clamp(40px, 6vh, 72px); }
+  .section-label { margin-bottom: 18px; }
+  .h1-page {
+    font-family: var(--font-display);
+    font-style: normal;
+    font-weight: 600;
+    font-size: clamp(30px, 4.2vw, 44px);
+    line-height: 1.16;
+    margin-bottom: 36px;
+    letter-spacing: -0.01em;
+    max-width: 26ch;
+  }
+  .editorial-note {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-style: normal;
+    max-width: 64ch;
+  }
+
+  .shipped {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 4px 4px 0;
+    padding: 22px 26px;
+    max-width: 720px;
+    margin-bottom: 32px;
+  }
+  .shipped-label {
+    font-size: 11px;
+    color: var(--accent-text);
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .shipped ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+  .shipped li {
+    font-size: 14px;
+    line-height: 1.6;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    max-width: 64ch;
+  }
+  .shipped li:last-child { padding-bottom: 0; border-bottom: none; }
+  .shipped strong { color: var(--text-primary); font-weight: 600; }
+</style>

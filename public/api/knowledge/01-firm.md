@@ -10,19 +10,20 @@
 ## Positioning (canonical)
 
 **We build the operating systems your business runs on.** Senior PMO +
-AI delivery for mid-sized retailers and fuel networks. Tallinn, EU.
+AI delivery for mid-sized companies (deepest in retail and fuel). Tallinn, EU.
 
 ## Where we work
 
 - **Mid-sized retailers** ($50M–$500M revenue range)
-- **Fuel networks** (independent networks; in pilot at Alfa Oil, ~250 stations)
+- **Fuel networks** (independent networks; in pilot at Red Petroleum, ~250 stations)
 - **Geography:** Central Europe, EU, CIS
 
 ## What makes us different
 
-We are not an AI vendor with a deck. We are a delivery firm with deep
-AI capability. The PMO discipline — scope, sequencing, ownership,
-shipping under constraint — is what separates a slide-led project from
+We start from the business question, not the technology. Strong AI
+capability is the baseline; the PMO discipline — scope, sequencing,
+ownership, shipping under constraint — is what separates a slide-led
+project from
 one that runs in production.
 
 Distinct from a pure tech vendor: we can sit on the client side and
@@ -86,6 +87,15 @@ Most engagements move through some subset of these:
 
 Most clients enter at stage 1 or 2 — they think they need stage 3.
 The diagnostic tells us which one is real.
+
+## Partnerships
+
+- **Noventiq** — KKT has a non-exclusive cooperation with Noventiq (a
+  global digital-transformation and cybersecurity provider) to promote
+  data & AI solutions across EMEA, Central Asia, and South-East Asia.
+  Each firm may introduce the other to its clients; every specific
+  project stands on its own separate agreement. A co-marketing
+  relationship, not a delivery dependency.
 
 ## Contact
 

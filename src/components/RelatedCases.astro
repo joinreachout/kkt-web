@@ -14,9 +14,9 @@ interface Props {
 const { current } = Astro.props as Props;
 
 const all: Record<string, Item> = {
-  'alfa-oil': {
-    href: '/case-studies/alfa-oil',
-    title: 'Alfa Oil',
+  'red-petroleum': {
+    href: '/case-studies/red-petroleum',
+    title: 'Red Petroleum',
     meta: 'Fuel retail · Kyrgyzstan · Live',
     blurb: 'Optimus in pilot across a 250-station fuel network in Kyrgyzstan.',
   },
@@ -44,22 +44,29 @@ const all: Record<string, Item> = {
     meta: 'Telecom · Travel SIM',
     blurb: 'Customer and product analytics adopted into the business.',
   },
+  taxi: {
+    href: '/case-studies/taxi',
+    title: 'Ride-hailing platform',
+    meta: 'Ride-hailing · Baltics · In progress',
+    blurb: 'Data deep-dive plus ML for dynamic pricing and demand forecasting.',
+  },
   optimus: {
     href: '/solutions/optimus',
     title: 'Optimus',
     meta: 'Solution',
-    blurb: 'The operating-intelligence system behind the Alfa Oil engagement.',
+    blurb: 'The operating-intelligence system behind the Red Petroleum engagement.',
   },
 };
 
 // Per-page related set. Hand-curated, not auto-derived — the editorial
 // pairing matters more than topic similarity.
 const relatedFor: Record<string, string[]> = {
-  'alfa-oil': ['optimus', 'kricon', 'click-and-grow'],
-  'click-and-grow': ['alfa-oil', 'csc-telecom'],
-  'gte': ['kricon', 'alfa-oil'],
-  'kricon': ['gte', 'alfa-oil'],
-  'csc-telecom': ['click-and-grow', 'alfa-oil'],
+  'red-petroleum': ['optimus', 'kricon', 'click-and-grow'],
+  'click-and-grow': ['red-petroleum', 'csc-telecom'],
+  'gte': ['kricon', 'red-petroleum'],
+  'kricon': ['gte', 'red-petroleum'],
+  'csc-telecom': ['click-and-grow', 'red-petroleum'],
+  'taxi': ['csc-telecom', 'click-and-grow'],
 };
 
 const slugs = (relatedFor[current] ?? []).filter((s) => s !== current);
@@ -132,7 +139,7 @@ const items = slugs.map((s) => all[s]).filter(Boolean);
   }
   .related-title {
     font-family: var(--font-display);
-    font-style: italic;
+    font-style: normal;
     font-size: 22px;
     color: var(--text-primary);
     margin-bottom: 8px;

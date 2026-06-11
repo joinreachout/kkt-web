@@ -18,7 +18,7 @@ Two named authors. One post a month each. The cadence is the contract
 
 Notes from inside engagements: what we shipped, what we did not, what
 we changed our minds about. Sharp observations from real production
-work — at Alfa Oil, in retail engagements, around Optimus, on the
+work — at Red Petroleum, in retail engagements, around Optimus, on the
 delivery model. Pieces where the author is identifiable and the claim
 is specific.
 

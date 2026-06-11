@@ -51,9 +51,14 @@ interface MockReply {
 // occasional enthusiasm, light personal voice. Still anti-hype.
 const MOCK_REPLIES: MockReply[] = [
   {
-    pattern: /optimus|fuel.*retail|red petrol|alfa/i,
+    pattern: /fuel.?retail|fuel network|network economy/i,
     reply:
-      "Optimus is the procurement-and-margin engine we built for fuel networks. It turns buying from a decision made on experience and availability into one made on data: each morning it pulls live ERP data, forecasts which station × fuel positions will run critical, surfaces inbound delivery conflicts, and produces concrete procurement recommendations — supplier, tonnage, deadline, price. The head of supply works through it in 10–15 minutes.\n\nIt is in pilot at Alfa Oil (Red Petrol) — an independent ~250-station fuel network in Kyrgyzstan that is currently testing it. One embodiment of how we work in fuel.\n\nFull surface on /solutions/optimus.",
+      "For fuel networks we work across the whole network economy, not one product. Seven connected fronts: fuel procurement, price & margin; logistics & supply (railcars, demurrage, depots, delivery); stations, stores & cafés; customers, loyalty & B2B; finance, money & control; supporting functions (HR, MTO procurement, contractors, back-office); and the data & process foundation under all of it.\n\nOptimus — the procurement-and-margin engine — is one embodiment of this (the first two fronts), in pilot at Red Petroleum. The diagnostic decides where your network starts.\n\nFull picture on /industries/fuel-retail.",
+  },
+  {
+    pattern: /optimus|red petrol|alfa/i,
+    reply:
+      "Optimus is the procurement-and-margin engine we built for fuel networks — one embodiment of the broader network economy, not the whole offering. It turns buying from a decision made on experience and availability into one made on data: each morning it pulls live ERP data, forecasts which station × fuel positions will run critical, surfaces inbound delivery conflicts, and produces concrete procurement recommendations — supplier, tonnage, deadline, price. The head of supply works through it in 10–15 minutes.\n\nIt is in pilot at Red Petroleum — an independent ~250-station fuel network in Kyrgyzstan that is currently testing it.\n\nFull surface on /solutions/optimus; the whole fuel economy on /industries/fuel-retail.",
   },
   {
     pattern: /diagnostic|how.*start|engagement|where.*begin/i,
@@ -68,7 +73,7 @@ const MOCK_REPLIES: MockReply[] = [
   {
     pattern: /retail|playbook|canvas|grocery|supermarket/i,
     reply:
-      "For mid-sized retailers we tend to start in one of four places: margin recovery and assortment, customer ownership and segmentation, decision cadence (pricing, replenishment, cash discipline as a daily rhythm), or foundational reporting if the diagnostic surfaces that the core is shaky.\n\nThe full open playbook — 30 services across 11 retail domains, with an advisor that walks you through it — lives at retail.kittykat.tech. Treat it as the field guide. Treat /case-studies as the receipts.",
+      "For mid-sized retailers we tend to start in one of four places: margin recovery and assortment, customer ownership and segmentation, decision cadence (pricing, replenishment, cash discipline as a daily rhythm), or foundational reporting if the diagnostic surfaces that the core is shaky.\n\nThe full open playbook — 43 services across 11 retail domains, with an advisor that walks you through it — lives at retail.kittykat.tech. Treat it as the field guide. Treat /case-studies as the receipts.",
   },
   {
     pattern: /pricing|cost|fee|how much|hourly|day rate|budget/i,
@@ -78,7 +83,7 @@ const MOCK_REPLIES: MockReply[] = [
   {
     pattern: /team|who.*you|founder|about|where.*based/i,
     reply:
-      "We're Kitty Kat Technologies — KKT on day-to-day surfaces — based in Tallinn, Estonia. Three named people on the team today, with two more coming on board. We work where AI and PMO discipline earn their place against measurable outcomes.\n\nProfiles on /about. The short version: enterprise-grade engineering background (Cisco Meraki, Snowflake, Microsoft) plus deep B2B consultancy delivery experience.",
+      "We're Kitty Kat Technologies — KKT on day-to-day surfaces — based in Tallinn, Estonia. A core team across two benches: domain expertise (FMCG/retail, oil & gas, banking, enterprise procurement) and technical delivery (enterprise data, cloud, AI/ML, BI), plus a wider expert bench as needed.\n\nProfiles on /about. The short version: enterprise-grade engineering background (Cisco, Snowflake, Microsoft) plus deep B2B domain and consultancy delivery experience.",
   },
 ];
 

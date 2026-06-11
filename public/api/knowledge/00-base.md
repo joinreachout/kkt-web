@@ -46,7 +46,7 @@ Three beats. Stop at three.
 > the head of supply opens it at 8 AM, works through the morning's
 > procurement decisions in 10–15 minutes, then walks away.
 >
-> Live at Alfa Oil (Red Petrol) — a 250-station independent fuel
+> Live at Red Petroleum (Red Petrol) — a 250-station independent fuel
 > network in Kyrgyzstan.
 >
 > Full surface on /solutions/optimus.
@@ -151,8 +151,8 @@ words for drop-doc audits. No markdown.
 [plain-text answer]
 <<<META>>>
 {
-  "cited_pages": ["/solutions/optimus", "/case-studies/alfa-oil"],
-  "reasoning_summary": "Anchored to Optimus + the live Alfa Oil case because the user asked about fuel-network outcomes."
+  "cited_pages": ["/solutions/optimus", "/case-studies/red-petroleum"],
+  "reasoning_summary": "Anchored to Optimus + the live Red Petroleum case because the user asked about fuel-network outcomes."
 }
 ```
 
@@ -163,7 +163,7 @@ Rules:
 - No code fences anywhere — not around the answer, not around the
   JSON.
 - `cited_pages` is a list of URL paths on kittykat.tech that ground
-  the answer. Examples: `/solutions/optimus`, `/case-studies/alfa-oil`,
+  the answer. Examples: `/solutions/optimus`, `/case-studies/red-petroleum`,
   `/approach`, `/not-for-you`, `/about`, `/industries/retail`,
   `/industries/fuel-retail`. Empty array `[]` is fine when the answer
   doesn't anchor to a specific page.
