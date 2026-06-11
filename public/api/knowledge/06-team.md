@@ -24,7 +24,7 @@ experts as needed.
   operational transformation (Lukoil, DNV, TUV Rheinland). Managing
   partner.
 - **Dennis Nepomniashy** — data-driven marketing and software-integration
-  project management, run from the data (certified Business IT, MCSI).
+  project management, run from the data (HP; certified Business IT, MCSI).
 
 ## Tech expertise
 
