@@ -48,3 +48,9 @@ jobs:
           commit_message: "deploy: ${{ github.event.head_commit.message }}"
           user_name: github-actions[bot]
           user_email: github-actions[bot]@users.noreply.github.com
+
+      - name: Trigger server pull (production -> live)
+        run: |
+          sleep 5
+          curl -fsS --retry 3 --retry-delay 5 \
+            "https://kittykat.tech/deploy.php?key=${{ secrets.DEPLOY_KEY }}&mode=hard"
