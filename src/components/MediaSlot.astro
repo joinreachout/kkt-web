@@ -1,0 +1,76 @@
+---
+// Reserved position for an image / infographic. Renders an intentional,
+// theme-aware placeholder until a real asset is dropped in. Swap for an <img>
+// or an inline SVG infographic later. Adapts to .theme-dark / .theme-soft via
+// the colour tokens.
+interface Props {
+  ratio?: string;            // aspect-ratio, e.g. '16 / 9'
+  label?: string;            // what goes here
+  kind?: 'image' | 'infographic';
+  caption?: string;          // optional visible caption under the slot
+  class?: string;
+}
+const {
+  ratio = '16 / 9',
+  label = 'Visual',
+  kind = 'image',
+  caption,
+  class: cls = '',
+} = Astro.props as Props;
+---
+
+<figure class={`mediaslot ${cls}`} style={`--ms-ratio:${ratio}`} data-kind={kind}>
+  <div class="mediaslot-frame">
+    {kind === 'infographic' ? (
+      <svg class="mediaslot-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M4 20V10M10 20V4M16 20v-7M22 20H2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    ) : (
+      <svg class="mediaslot-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/>
+        <circle cx="8.5" cy="9.5" r="1.7" stroke="currentColor" stroke-width="1.4"/>
+        <path d="M21 16l-5-5L5 20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    )}
+    <span class="mediaslot-label">{kind === 'infographic' ? 'Infographic' : 'Image'} · {label}</span>
+  </div>
+  {caption && <figcaption class="mediaslot-cap">{caption}</figcaption>}
+</figure>
+
+<style>
+  .mediaslot { margin: 0; }
+  .mediaslot-frame {
+    aspect-ratio: var(--ms-ratio, 16 / 9);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    border: 1.5px dashed color-mix(in srgb, var(--accent) 42%, var(--border));
+    border-radius: 12px;
+    background:
+      linear-gradient(0deg, var(--accent-dim), var(--accent-dim)),
+      var(--surface);
+    color: var(--accent-text);
+    text-align: center;
+    padding: 20px;
+  }
+  .mediaslot-icon { width: 30px; height: 30px; opacity: 0.85; }
+  .mediaslot-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent-text);
+    max-width: 36ch;
+    line-height: 1.45;
+  }
+  .mediaslot-cap {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    text-align: center;
+  }
+</style>

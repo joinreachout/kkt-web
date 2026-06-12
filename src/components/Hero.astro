@@ -2,6 +2,7 @@
 // Homepage hero — rebuild (12 Jun 2026 brief).
 // Copy is the ANAS opening statement (canonical source), near-verbatim.
 // Apple-style: white canvas, oversized tight headline, generous space.
+import MediaSlot from './MediaSlot.astro';
 ---
 
 <section class="hero">
@@ -23,6 +24,13 @@
       <a href="#how-we-work" class="btn-primary">See how we work</a>
       <a href="/case-studies/" class="link-cta">View selected work</a>
     </div>
+
+    <MediaSlot
+      class="hero-media"
+      ratio="16 / 8"
+      kind="image"
+      label="Hero visual — product UI, dashboard, or abstract data graphic"
+    />
   </div>
 </section>
 
@@ -77,5 +85,10 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+  }
+  .hero-media {
+    width: 100%;
+    max-width: 920px;
+    margin-top: clamp(40px, 6vh, 72px);
   }
 </style>

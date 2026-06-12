@@ -3,6 +3,7 @@ import BaseLayout from '~/layouts/BaseLayout.astro';
 import Hero from '~/components/Hero.astro';
 import HowWeWork from '~/components/HowWeWork.astro';
 import WhyUs from '~/components/WhyUs.astro';
+import MediaSlot from '~/components/MediaSlot.astro';
 import CTA from '~/components/CTA.astro';
 
 // Trust strip variant — flip to 'A' or 'B' if Red Petroleum consent tier shifts.
@@ -32,6 +33,7 @@ const trustVariant = 'C' as const;
       </p>
       <div class="industry-grid" data-reveal-stagger>
         <a href="/industries/retail" class="industry-card">
+          <MediaSlot class="industry-media" ratio="16 / 9" kind="image" label="Retail — store, shelf, or analytics screen" />
           <div class="industry-eyebrow">Retail</div>
           <h3 class="industry-title">Mid-sized retailers</h3>
           <p>
@@ -47,6 +49,7 @@ const trustVariant = 'C' as const;
         </a>
 
         <a href="/industries/fuel-retail" class="industry-card">
+          <MediaSlot class="industry-media" ratio="16 / 9" kind="image" label="Fuel — station, depot, or network map" />
           <div class="industry-eyebrow">Fuel retail</div>
           <h3 class="industry-title">Fuel networks</h3>
           <p>
@@ -123,96 +126,21 @@ const trustVariant = 'C' as const;
     </div>
   </section>
 
-  <section class="section section-howweship" data-reveal>
+  <section class="section section-infographic theme-dark" data-reveal>
     <div class="container">
-      <div class="section-label">How we ship</div>
-      <h2 class="h2-section">Diagnostic, delivery, handover.</h2>
-
-      <figure class="engagement-arc" aria-label="Engagement arc: Diagnostic over two weeks, then a sequenced engagement, then handover when the system runs without us">
-        <svg viewBox="0 0 720 160" xmlns="http://www.w3.org/2000/svg" role="presentation">
-          <!-- baseline -->
-          <line x1="60" y1="80" x2="660" y2="80" stroke="currentColor" stroke-width="1" stroke-opacity="0.18"/>
-
-          <!-- Phase 1 — Diagnostic -->
-          <g>
-            <circle cx="120" cy="80" r="16" fill="var(--bg)" stroke="currentColor" stroke-width="1.5"/>
-            <text x="120" y="84" font-family="ui-monospace, Menlo, monospace" font-size="11" font-weight="600" fill="currentColor" text-anchor="middle">01</text>
-            <text x="120" y="46" font-family="'DM Sans', sans-serif" font-style="normal" font-size="22" fill="currentColor" text-anchor="middle">Diagnostic</text>
-            <text x="120" y="112" font-family="ui-monospace, Menlo, monospace" font-size="13" font-weight="600" fill="#C2410C" letter-spacing="0.6" text-anchor="middle">2 WEEKS</text>
-            <text x="120" y="128" font-family="'DM Sans', sans-serif" font-size="14" fill="currentColor" fill-opacity="0.55" text-anchor="middle">Scope, no commitment</text>
-          </g>
-
-          <!-- Arrow 1 → 2 (solid, scoped) -->
-          <line x1="138" y1="80" x2="342" y2="80" stroke="currentColor" stroke-opacity="0.35" stroke-width="1.5"/>
-
-          <!-- Phase 2 — Engagement -->
-          <g>
-            <circle cx="360" cy="80" r="16" fill="var(--bg)" stroke="currentColor" stroke-width="1.5"/>
-            <text x="360" y="84" font-family="ui-monospace, Menlo, monospace" font-size="11" font-weight="600" fill="currentColor" text-anchor="middle">02</text>
-            <text x="360" y="46" font-family="'DM Sans', sans-serif" font-style="normal" font-size="22" fill="currentColor" text-anchor="middle">Engagement</text>
-            <text x="360" y="112" font-family="ui-monospace, Menlo, monospace" font-size="13" font-weight="600" fill="#C2410C" letter-spacing="0.6" text-anchor="middle">SHAPED BY WHAT SHIPS</text>
-            <text x="360" y="128" font-family="'DM Sans', sans-serif" font-size="14" fill="currentColor" fill-opacity="0.55" text-anchor="middle">PMO + AI delivery, in production</text>
-          </g>
-
-          <!-- Arrow 2 → 3 -->
-          <line x1="378" y1="80" x2="582" y2="80" stroke="currentColor" stroke-opacity="0.35" stroke-width="1.5"/>
-
-          <!-- Phase 3 — Handover (accent) -->
-          <g>
-            <circle cx="600" cy="80" r="16" fill="var(--bg)" stroke="#FF6A00" stroke-width="2"/>
-            <text x="600" y="84" font-family="ui-monospace, Menlo, monospace" font-size="11" font-weight="600" fill="#C2410C" text-anchor="middle">03</text>
-            <text x="600" y="46" font-family="'DM Sans', sans-serif" font-style="normal" font-size="22" fill="currentColor" text-anchor="middle">Handover</text>
-            <text x="600" y="112" font-family="ui-monospace, Menlo, monospace" font-size="13" font-weight="600" fill="#C2410C" letter-spacing="0.6" text-anchor="middle">EXIT CRITERION</text>
-            <text x="600" y="128" font-family="'DM Sans', sans-serif" font-size="14" fill="currentColor" fill-opacity="0.55" text-anchor="middle">System runs without us</text>
-          </g>
-        </svg>
-      </figure>
-
-      <div class="hws-grid" data-reveal-stagger>
-        <div class="hws-card">
-          <div class="hws-eyebrow">01 — Diagnostic</div>
-          <h3 class="hws-title">A diagnostic before a programme.</h3>
-          <p>
-            Two weeks. Scope only. We look before we commit. Output is a
-            sharp picture of what to ship, what to leave alone, what proof
-            you need before you can decide.
-          </p>
-        </div>
-
-        <div class="hws-card">
-          <div class="hws-eyebrow">02 — Discipline</div>
-          <h3 class="hws-title">PMO discipline as load-bearing.</h3>
-          <p>
-            Scope, sequencing, ownership, shipping under constraint. PMO
-            is what separates a slide-led project from one that runs in
-            production.
-          </p>
-        </div>
-
-        <div class="hws-card">
-          <div class="hws-eyebrow">03 — Earned place</div>
-          <h3 class="hws-title">AI where it earns its place.</h3>
-          <p>
-            No AI for AI's sake. Margin, cash, availability, customer
-            value, productivity — the outcome sets the bar before the tool
-            does.
-          </p>
-        </div>
-
-        <div class="hws-card">
-          <div class="hws-eyebrow">04 — Exit</div>
-          <h3 class="hws-title">Until the system runs without us.</h3>
-          <p>
-            Engagements end; the product keeps operating. We design for
-            that exit from the first week. Internal counterparts inherit
-            the system, not the dependency.
-          </p>
-        </div>
-      </div>
-
-      <p class="hws-tail">
-        <a href="/approach" class="hws-link">How an engagement actually runs →</a>
+      <div class="section-label">The whole operation</div>
+      <h2 class="h2-section infographic-title">Not one tool — the whole path, on connected data.</h2>
+      <p class="infographic-lede">
+        From the business question through the data foundation, the models, and the
+        AI that earns its place — to a system your team runs without us.
       </p>
+      <MediaSlot
+        class="infographic-band"
+        kind="infographic"
+        ratio="16 / 6"
+        label="Value chain / capability map — supply · logistics · stations · customers · finance · data foundation"
+        caption="To be built in code (SVG), in the style of the fuel transformation map."
+      />
     </div>
   </section>
 
@@ -517,4 +445,20 @@ const trustVariant = 'C' as const;
     text-decoration: none;
   }
   .hws-link:hover { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--accent); }
+
+  /* Media-slot placements */
+  .industry-media { margin-bottom: 18px; }
+
+  .section-infographic {
+    padding-top: clamp(48px, 7vh, 88px);
+    padding-bottom: clamp(48px, 7vh, 88px);
+  }
+  .section-infographic .section-label { margin-bottom: 12px; }
+  .infographic-title { margin-bottom: 14px; max-width: 24ch; }
+  .infographic-lede {
+    max-width: 60ch;
+    margin-bottom: 32px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
 </style>
