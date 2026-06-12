@@ -5,41 +5,51 @@ import MediaSlot from '~/components/MediaSlot.astro';
 
 // The fuel network economy — the canvas A–G blocks. Content kept from the
 // fuel-retail runbook; Optimus is one embodiment (A+B), not the headline.
+// Block-level summaries + a few representative tasks each, adapted from the
+// fuel catalog (A–G). The full set of tasks and solution cards lives on the
+// transformation map at fuelretail.kittykat.tech.
 const blocks = [
   {
     lever: 'Fuel: procurement, price & margin',
     pressure: 'Procurement eats the morning, and margin is something you read after the fact.',
-    detail: 'Procurement and price run as one commercial loop — forecast the need, choose supplier and moment, account for the full landed cost of a batch, set price-at-pump by market and demand. Fewer stockouts and surpluses, less overpay, better margin, faster commercial calls.',
+    detail: 'Procurement and price run as one commercial loop — forecast the need, choose supplier and moment, account for the full landed cost of a batch, set price-at-pump by market and demand.',
+    tasks: ['Buy fuel in the right volume at the right moment', 'Choose the supplier and purchase terms', 'Account for the full landed cost of a batch', 'Set price by market and demand'],
   },
   {
     lever: 'Logistics & fuel supply',
     pressure: 'Batches go dark in transit; railcars sit, fines accrue, dispatch is manual.',
-    detail: 'Fuel supply made manageable end-to-end — batch movement, delay risk, acceptance discrepancies, railcars and demurrage, depot operations, station delivery, trip execution. Fewer losses, less idle time and fines, less manual dispatch.',
+    detail: 'Fuel supply made manageable end-to-end — batch movement, delay risk, acceptance discrepancies, railcars and demurrage, depot operations, station delivery, trip execution.',
+    tasks: ['Track batch movement and delay risk', 'Find where you lose on supply discrepancies', 'Control railcars and demurrage', 'Plan fuel delivery to stations'],
   },
   {
     lever: 'Stations, stores & cafés',
     pressure: 'The network number hides where a station leaks money.',
-    detail: 'The station run as a profit point, not only an operational object — underperformance, queues and lost traffic, dispenser and POS violations, shift work, equipment, assortment, write-offs, store conversion. Fewer operational losses, higher station revenue, better customer experience.',
+    detail: 'The station run as a profit point, not only an operational object — underperformance, queues and lost traffic, dispenser and POS violations, shift work, equipment, assortment, store conversion.',
+    tasks: ['Understand why a station underperforms', 'Stop losses at the dispenser and the till', 'Keep station equipment in service', 'Turn fuel traffic into store purchases'],
   },
   {
     lever: 'Customers, loyalty & B2B',
     pressure: 'The customer base and B2B portfolio drift, and discounts leak margin.',
-    detail: 'The customer base and B2B portfolio turned into a managed source of growth — customer value, churn, frequency and check, promo, reviews, retail media, corporate-client profitability. Higher retention, more margin per customer, fewer wasted discounts, a stronger loyalty program.',
+    detail: 'The customer base and B2B portfolio turned into a managed source of growth — customer value, churn, frequency and check, promo, reviews, retail media, corporate-client profitability.',
+    tasks: ['Understand the customer and their economics', 'Retain customers and prevent churn', 'Grow frequency, check and non-fuel share', 'Run and measure promotions'],
   },
   {
     lever: 'Finance, money & control',
     pressure: 'Deviations surface at the month-end close, once they are already a problem.',
-    detail: 'Finance sees the business as a live picture and finds the cause of a deviation faster — margin, costs, cash, receivables, payment risks, financial losses and policy violations become visible before they become a problem. Faster decisions, fewer leaks, better cash control, trust in the numbers.',
+    detail: 'Finance sees the business as a live picture and finds the cause of a deviation faster — margin, costs, cash, receivables, payment risks, financial losses and policy violations made visible early.',
+    tasks: ['See the financial picture here and now', 'Understand the cause of a deviation, not just the fact', 'Anticipate cash and cash-flow gaps', 'Surface financial losses and discrepancies'],
   },
   {
     lever: 'Supporting functions',
     pressure: 'Back-office routine piles up, and violations show up only at the audit.',
-    detail: 'The routine taken out and control strengthened across the functions that support the business — HR, legal, MTO procurement, contractors, internal control, documents and back-office. Less manual work, faster processes, clearer spend, violations visible before the audit.',
+    detail: 'The routine taken out and control strengthened across the functions that support the business — HR, legal, MTO procurement, contractors, internal control, documents and back-office.',
+    tasks: ['HR and workforce', 'Legal', 'MTO procurement and contractors', 'Internal control, losses and risk'],
   },
   {
     lever: 'Data & processes — the foundation',
     pressure: 'Every department runs its own numbers, and AI gets bolted on point by point.',
-    detail: 'The foundation analytics, automation and AI run on — one data base, quality and availability, reporting, knowledge search, office AI tools, process re-engineering and agentic solutions. One version of truth, less manual work, AI that scales systemically.',
+    detail: 'The foundation analytics, automation and AI run on — one data base, quality and availability, reporting, knowledge search, office AI tools, process re-engineering and agentic solutions.',
+    tasks: ['One source of truth instead of different numbers per department', 'Find answers in the company’s knowledge', 'Take routine off the team'],
   },
 ];
 
@@ -114,11 +124,15 @@ const stages = [
             <h3 class="fr-block-lever">{b.lever}</h3>
             <p class="fr-block-pressure">{b.pressure}</p>
             <p class="fr-block-detail">{b.detail}</p>
+            <ul class="fr-block-tasks">
+              {b.tasks.map((t) => <li>{t}</li>)}
+            </ul>
           </article>
         ))}
       </div>
 
       <p class="fr-starts-tail">
+        <a href="https://fuelretail.kittykat.tech" class="link-cta" rel="noopener">See the full transformation map</a>
         <a href="/case-studies/red-petroleum" class="link-cta">Read the Red Petroleum case</a>
       </p>
     </div>
@@ -244,8 +258,16 @@ const stages = [
     letter-spacing: -0.015em; color: var(--text-primary); margin-bottom: 10px; line-height: 1.2;
   }
   .fr-block-pressure { font-size: 15px; line-height: 1.5; color: var(--text-muted); font-style: italic; margin-bottom: 12px; }
-  .fr-block-detail { font-size: 15px; line-height: 1.6; color: var(--text-secondary); margin: 0; }
-  .fr-starts-tail { margin-top: 28px; }
+  .fr-block-detail { font-size: 15px; line-height: 1.6; color: var(--text-secondary); margin: 0 0 16px; }
+  .fr-block-tasks {
+    list-style: none; padding: 16px 0 0; margin: 0; border-top: 1px solid var(--border);
+    display: grid; gap: 7px;
+  }
+  .fr-block-tasks li {
+    position: relative; padding-left: 18px; font-size: 13.5px; line-height: 1.5; color: var(--text-secondary);
+  }
+  .fr-block-tasks li::before { content: '→'; position: absolute; left: 0; top: 0; color: var(--accent); opacity: 0.8; font-size: 13px; }
+  .fr-starts-tail { margin-top: 32px; display: flex; gap: 24px; flex-wrap: wrap; }
 
   /* How we work (soft) */
   .fr-hww { padding-top: clamp(56px, 9vh, 96px); padding-bottom: clamp(56px, 9vh, 96px); }
