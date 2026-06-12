@@ -1,7 +1,8 @@
 /* KKT main site — global styles
- * Visual language matches retail.kittykat.tech.
- * Cream palette + DM Sans (body + bold display type). Technical, no serif italics.
- * No drop shadows except modals/overlays. No gradients.
+ * Visual language (rebuild, 12 Jun 2026 brief): white background, high contrast.
+ * Apple-style — white + near-black + a single confident blue accent. No pastels,
+ * no dark heavy theme. DM Sans (body + bold display type). No serif italics.
+ * No drop shadows except modals/overlays. No gradients on type.
  */
 
 /* Self-hosted fonts (was Google Fonts cross-origin — removed render-blocking
@@ -32,28 +33,32 @@
 }
 
 :root {
-  /* Surfaces */
-  --bg:            #F5F3EF;
+  /* Surfaces — white canvas, one neutral grey band for alternation (Apple #F5F5F7) */
+  --bg:            #FFFFFF;
   --surface:       #FFFFFF;
-  --surface-alt:   #F0EDE8;
-  --card:          #FAFAF8;
+  --surface-alt:   #F5F5F7;
+  --card:          #FFFFFF;
 
-  /* Strokes */
-  --border:        rgba(30, 24, 16, 0.10);
-  --border-hover:  rgba(30, 24, 16, 0.20);
+  /* Strokes — neutral hairlines */
+  --border:        rgba(0, 0, 0, 0.11);
+  --border-hover:  rgba(0, 0, 0, 0.28);
 
-  /* Text */
-  --text-primary:  #1A1410;
-  --text-secondary:#5C5045;
-  --text-muted:    #756658;
+  /* Text — near-black on white, two greys */
+  --text-primary:  #1D1D1F;
+  --text-secondary:#515257;
+  --text-muted:    #86868B;
 
-  /* Accent (warm amber) */
-  --accent:        #AD7B25;
-  --accent-dim:    rgba(173, 123, 37, 0.10);
-  --accent-text:   #8A5E18;
+  /* Accent — warm orange. Solid orange for fills/marks; a darker "burnt"
+   * orange for small text (orange on white fails WCAG at small sizes); a
+   * gradient (amber → orange → orange-red) reserved for high-impact moments. */
+  --accent:          #FF6A00;
+  --accent-dim:      rgba(255, 106, 0, 0.10);
+  --accent-text:     #C2410C;
+  --accent-gradient:   linear-gradient(118deg, #FF9D2E 0%, #FF6A00 52%, #F5481F 100%);
+  --accent-gradient-v: linear-gradient(180deg, #FF9D2E 0%, #FF6A00 52%, #F5481F 100%);
 
   /* Functional */
-  --max-width: 1080px;
+  --max-width: 1120px;
 
   /* Type */
   --font-body:    'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -207,24 +212,26 @@ ol, ul {
   text-transform: uppercase;
 }
 
-/* Buttons */
+/* Buttons — Apple-style pills */
 .btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 13px 28px;
-  background: var(--text-primary);
+  padding: 13px 26px;
+  background: var(--accent-gradient);
   color: #FFF;
   border: none;
-  border-radius: 3px;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  border-radius: 980px;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0;
   text-decoration: none;
   white-space: nowrap;
-  transition: opacity .15s ease;
+  box-shadow: 0 6px 18px rgba(255, 106, 0, 0.26);
+  transition: filter .18s ease, transform .18s ease, box-shadow .18s ease;
 }
-.btn-primary:hover { opacity: 0.85; text-decoration: none; }
+.btn-primary:hover { filter: brightness(1.06) saturate(1.04); box-shadow: 0 9px 24px rgba(255, 106, 0, 0.36); text-decoration: none; }
+.btn-primary:active { transform: scale(0.98); }
 
 .btn-ghost {
   display: inline-flex;
@@ -232,20 +239,35 @@ ol, ul {
   justify-content: center;
   padding: 13px 24px;
   background: transparent;
-  color: var(--text-secondary);
-  border: 1px solid var(--border);
-  border-radius: 3px;
-  font-size: 14px;
-  font-weight: 400;
+  color: var(--accent-text);
+  border: 1px solid var(--border-hover);
+  border-radius: 980px;
+  font-size: 15px;
+  font-weight: 500;
   text-decoration: none;
   white-space: nowrap;
-  transition: border-color .18s ease, color .18s ease;
+  transition: border-color .18s ease, color .18s ease, background .18s ease;
 }
 .btn-ghost:hover {
-  border-color: var(--border-hover);
-  color: var(--text-primary);
+  border-color: var(--accent);
+  color: var(--accent-text);
+  background: var(--accent-dim);
   text-decoration: none;
 }
+
+/* Inline text-link CTA — Apple "Learn more ›" pattern */
+.link-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--accent-text);
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+}
+.link-cta::after { content: '›'; font-size: 1.2em; line-height: 1; transition: transform .18s ease; }
+.link-cta:hover { text-decoration: none; }
+.link-cta:hover::after { transform: translateX(3px); }
 
 /* Layout helpers */
 .container {
@@ -259,6 +281,27 @@ ol, ul {
 .section {
   padding-top: clamp(56px, 9vh, 96px);
   padding-bottom: clamp(56px, 9vh, 96px);
+}
+
+/* Alternating section bands. Apply .theme-dark to a full-width section to flip
+ * it to a near-black band — it re-points the colour tokens, so child components
+ * re-theme automatically. The orange accent is kept (and brightened for text on
+ * dark). .theme-soft is the light-grey (#F5F5F7) band for gentler alternation. */
+.theme-dark {
+  --surface:        #1B1B1F;
+  --surface-alt:    #232328;
+  --card:           #1B1B1F;
+  --border:         rgba(255, 255, 255, 0.14);
+  --border-hover:   rgba(255, 255, 255, 0.30);
+  --text-primary:   #FFFFFF;
+  --text-secondary: #B0B0B8;
+  --text-muted:     #8A8A92;
+  --accent-text:    #FF9D4D;
+  background: #111114;
+  color: var(--text-primary);
+}
+.theme-soft {
+  background: var(--surface-alt);
 }
 
 .divider {

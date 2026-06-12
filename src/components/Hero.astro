@@ -1,52 +1,81 @@
 ---
-import TrustStrip from './TrustStrip.astro';
-type TrustVariant = 'A' | 'B' | 'C';
-interface Props {
-  trustVariant?: TrustVariant;
-}
-const { trustVariant = 'C' } = Astro.props as Props;
+// Homepage hero — rebuild (12 Jun 2026 brief).
+// Copy is the ANAS opening statement (canonical source), near-verbatim.
+// Apple-style: white canvas, oversized tight headline, generous space.
 ---
 
 <section class="hero">
   <div class="container hero-inner fade-up" data-parallax>
-    <h1 class="h1-hero hero-title">We build the operating systems your business runs on.</h1>
+    <p class="hero-eyebrow">Business-first Data &amp; AI</p>
+
+    <h1 class="hero-title">
+      We help companies move from <span class="hero-accent">business questions</span>
+      to practical solutions in data, analytics, and automation.
+    </h1>
+
     <p class="hero-sub">
-      A senior data & AI team with roots in business, run with PMO rigor —
-      from data foundations to ML to AI agents, shipped into real
-      operations. Tallinn, EU.
+      Domain expertise, process consulting, data engineering, ML/AI architecture
+      and delivery coordination — in one team. The starting point is always the
+      business objective. Technology comes after that.
     </p>
 
     <div class="hero-ctas">
-      <a href="/case-studies/" class="btn-primary">See our work</a>
-      <a href="/contact" class="btn-ghost">Book a diagnostic</a>
+      <a href="#how-we-work" class="btn-primary">See how we work</a>
+      <a href="/case-studies/" class="link-cta">View selected work</a>
     </div>
-
-    <TrustStrip variant={trustVariant} />
   </div>
 </section>
 
 <style>
   .hero {
-    padding-top: clamp(48px, 7vh, 96px);
-    padding-bottom: clamp(56px, 9vh, 120px);
+    padding-top: clamp(64px, 11vh, 132px);
+    padding-bottom: clamp(48px, 8vh, 96px);
+    text-align: center;
+  }
+  .hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero-eyebrow {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-text);
+    margin-bottom: 22px;
   }
   .hero-title {
-    max-width: 18ch;
-    margin-bottom: 18px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(38px, 6.2vw, 76px);
+    line-height: 1.04;
+    letter-spacing: -0.035em;
+    color: var(--text-primary);
+    max-width: 17ch;
+    text-wrap: balance;
+    margin-bottom: 26px;
+  }
+  .hero-accent {
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
   }
   .hero-sub {
-    font-family: var(--font-body);
-    font-style: normal;
-    font-size: clamp(17px, 2.2vw, 22px);
-    line-height: 1.5;
+    font-size: clamp(17px, 1.8vw, 21px);
+    line-height: 1.55;
     color: var(--text-secondary);
-    max-width: 56ch;
-    margin: 0 0 32px;
-    font-weight: 600;
+    max-width: 60ch;
+    font-weight: 400;
+    margin: 0 0 38px;
   }
   .hero-ctas {
     display: flex;
-    gap: 12px;
+    gap: 22px;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
   }
 </style>

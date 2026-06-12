@@ -1,0 +1,99 @@
+---
+// "Why us" — adapted from the Fuel Retail catalog value-props (canonical content
+// reference). Owner-side framing + four differentiators. Light-grey band
+// (theme-soft) for the alternating section rhythm.
+
+const points = [
+  {
+    title: 'Tied to business economics',
+    body: 'Every initiative earns its place against margin, losses, working capital, revenue, service, or team productivity — not the fashion of the moment.',
+  },
+  {
+    title: 'Quick wins, then the system',
+    body: 'We start from concrete use cases and build the data, processes, models, and agents up from there — not a big-bang programme that stalls.',
+  },
+  {
+    title: 'Global experience, your reality',
+    body: 'We bring international practice but adapt to your data maturity, systems, operating constraints, and local market — not a copy-paste playbook.',
+  },
+  {
+    title: 'From idea to implementation',
+    body: 'We define the priorities, data, dependencies, and pilots — then stay through delivery and adoption until the solution runs without us.',
+  },
+];
+---
+
+<section class="section whyus theme-soft" data-reveal>
+  <div class="container">
+    <header class="whyus-head">
+      <p class="section-label">Why us</p>
+      <h2 class="h2-section whyus-title">We sit on the owner's side of the table.</h2>
+      <p class="whyus-intro">
+        A senior team with roots in business, not just tech — so the work is shaped
+        by what moves the business, and built to keep running after we leave.
+      </p>
+    </header>
+
+    <div class="whyus-grid" data-reveal-stagger>
+      {points.map((p) => (
+        <article class="whyus-card">
+          <span class="whyus-mark" aria-hidden="true"></span>
+          <h3 class="whyus-card-title">{p.title}</h3>
+          <p class="whyus-card-body">{p.body}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .whyus { padding-top: clamp(56px, 9vh, 100px); padding-bottom: clamp(56px, 9vh, 100px); }
+  .whyus-head { max-width: 44ch; margin-bottom: clamp(36px, 5vh, 60px); }
+  .whyus-title { margin: 12px 0 16px; }
+  .whyus-intro {
+    font-size: clamp(16px, 1.6vw, 19px);
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+
+  .whyus-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  @media (min-width: 720px) {
+    .whyus-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+  }
+
+  .whyus-card {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 28px 26px;
+    overflow: hidden;
+  }
+  .whyus-mark {
+    display: block;
+    width: 34px;
+    height: 4px;
+    border-radius: 4px;
+    background: var(--accent-gradient);
+    margin-bottom: 18px;
+  }
+  .whyus-card-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(18px, 1.9vw, 22px);
+    letter-spacing: -0.015em;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+  }
+  .whyus-card-body {
+    font-size: clamp(15px, 1.4vw, 16px);
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin: 0;
+    max-width: 52ch;
+  }
+</style>

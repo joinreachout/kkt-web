@@ -1,0 +1,227 @@
+---
+// "How we work" — scroll-reveal roadmap (12 Jun 2026 brief: Codu-style step
+// progression). Copy is the ANAS 4-stage methodology, near-verbatim.
+// Each step rises in via the global [data-reveal] observer; a rail line fills
+// with scroll and the numbered nodes light up as they enter view.
+
+const steps = [
+  {
+    n: '01',
+    title: 'Identify & qualify',
+    lead: 'We clarify the business question, understand the current situation, and assess whether AI, data, analytics, automation, or process redesign can realistically help.',
+    outputs: [
+      'A clear view of the business issue, its owner, and the expected result',
+      'A first check of available data, process reality, and feasibility',
+      'A recommendation to proceed, reshape the idea, or stop early',
+    ],
+  },
+  {
+    n: '02',
+    title: 'Scope & prepare',
+    lead: 'We turn a promising opportunity into a delivery-ready project that both business and technical teams can understand.',
+    outputs: [
+      'What needs to change in the process and decision flow',
+      'The data, systems, people, and rules required',
+      'A delivery plan with requirements, owners, and acceptance criteria',
+    ],
+  },
+  {
+    n: '03',
+    title: 'Execute & coordinate',
+    lead: 'We support implementation from the business side and keep technical delivery connected to business outcomes.',
+    outputs: [
+      'Coordinated work between business, vendors, and technical teams',
+      'Regular checks that the solution still solves the business problem',
+      'Testing, acceptance, stakeholder alignment, and adoption support',
+    ],
+  },
+  {
+    n: '04',
+    title: 'Close, adopt & scale',
+    lead: 'We help make the solution operational, measurable, and ready for further improvement.',
+    outputs: [
+      'A working solution embedded into the business process',
+      'Handover, user adoption, and value tracking',
+      'Clear next steps for scaling or improving the solution',
+    ],
+  },
+];
+---
+
+<section id="how-we-work" class="section hww theme-dark" data-hww>
+  <div class="container">
+    <header class="hww-head" data-reveal>
+      <p class="section-label">How we work</p>
+      <h2 class="h2-section hww-title">From question to delivered solution.</h2>
+      <p class="hww-intro">
+        Four stages, from a business question to a solution that runs. The starting
+        point is always the objective or decision that needs to improve — technology
+        comes after that.
+      </p>
+    </header>
+
+    <ol class="hww-steps">
+      <div class="hww-line" aria-hidden="true"><div class="hww-line-fill"></div></div>
+      {steps.map((s) => (
+        <li class="hww-step" data-reveal>
+          <div class="hww-rail-col">
+            <span class="hww-num">{s.n}</span>
+          </div>
+          <div class="hww-body">
+            <h3 class="hww-step-title">{s.title}</h3>
+            <p class="hww-lead">{s.lead}</p>
+            <ul class="hww-out">
+              {s.outputs.map((o) => <li>{o}</li>)}
+            </ul>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .hww { padding-top: clamp(56px, 9vh, 104px); padding-bottom: clamp(56px, 9vh, 104px); }
+  .hww-head { max-width: 40ch; margin-bottom: clamp(40px, 6vh, 72px); }
+  .hww-title { margin: 12px 0 18px; }
+  .hww-intro {
+    font-size: clamp(16px, 1.6vw, 19px);
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+
+  .hww-steps { position: relative; list-style: none; padding: 0; margin: 0; }
+
+  /* Continuous rail through the number column, with an accent fill that grows
+     on scroll. Centered on the 64px number column (32px). */
+  .hww-line {
+    position: absolute;
+    top: 26px;
+    bottom: 26px;
+    left: 31px;
+    width: 2px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .hww-line-fill {
+    position: absolute;
+    inset: 0;
+    background: var(--accent-gradient-v);
+    transform: scaleY(0);
+    transform-origin: top center;
+    transition: transform .12s linear;
+  }
+
+  .hww-step {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: clamp(16px, 2.4vw, 36px);
+    padding-bottom: clamp(32px, 5vh, 64px);
+  }
+  .hww-step:last-child { padding-bottom: 0; }
+
+  .hww-rail-col { position: relative; }
+  .hww-num {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 1.5px solid var(--border-hover);
+    color: var(--text-muted);
+    font-size: 15px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    transition: background .35s ease, border-color .35s ease, color .35s ease, transform .35s ease;
+  }
+  .hww-step.in-view .hww-num {
+    background: var(--accent-gradient);
+    border-color: transparent;
+    color: #fff;
+  }
+
+  .hww-body { padding-top: 11px; }
+  .hww-step-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(21px, 2.4vw, 28px);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+  }
+  .hww-lead {
+    font-size: clamp(16px, 1.5vw, 18px);
+    line-height: 1.6;
+    color: var(--text-secondary);
+    max-width: 60ch;
+    margin-bottom: 18px;
+  }
+  .hww-out {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 9px;
+    max-width: 62ch;
+  }
+  .hww-out li {
+    position: relative;
+    padding-left: 22px;
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--text-secondary);
+  }
+  .hww-out li::before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 9px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.55;
+  }
+
+  @media (max-width: 560px) {
+    .hww-step { grid-template-columns: 44px 1fr; gap: 16px; }
+    .hww-num { width: 40px; height: 40px; font-size: 13px; }
+    .hww-line { left: 21px; top: 20px; }
+    .hww-body { padding-top: 6px; }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var sec = document.querySelector('[data-hww]');
+    if (!sec) return;
+    var fill = sec.querySelector('.hww-line-fill');
+    var nums = sec.querySelectorAll('.hww-num');
+    if (!fill || nums.length < 2) return;
+    var ticking = false;
+    function upd() {
+      ticking = false;
+      var first = nums[0].getBoundingClientRect();
+      var last = nums[nums.length - 1].getBoundingClientRect();
+      var anchor = window.innerHeight * 0.5;
+      var startY = first.top + first.height / 2;
+      var endY = last.top + last.height / 2;
+      var p = (anchor - startY) / (endY - startY);
+      p = Math.max(0, Math.min(1, p));
+      fill.style.transform = 'scaleY(' + p + ')';
+    }
+    function onScroll() {
+      if (!ticking) { ticking = true; requestAnimationFrame(upd); }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    upd();
+  })();
+</script>

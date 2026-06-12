@@ -1,8 +1,9 @@
 ---
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import Hero from '~/components/Hero.astro';
+import HowWeWork from '~/components/HowWeWork.astro';
+import WhyUs from '~/components/WhyUs.astro';
 import CTA from '~/components/CTA.astro';
-import AlfaNetworkMap from '~/components/AlfaNetworkMap.astro';
 
 // Trust strip variant — flip to 'A' or 'B' if Red Petroleum consent tier shifts.
 // See WORK/briefs/alfa-oil-content-brief.md.
@@ -14,6 +15,10 @@ const trustVariant = 'C' as const;
   description="A senior data & AI team with roots in business — data foundations, ML, and AI agents, shipped into real operations. Tallinn, EU."
 >
   <Hero trustVariant={trustVariant} />
+
+  <HowWeWork />
+
+  <WhyUs />
 
   <section class="section section-industries" data-reveal>
     <div class="container">
@@ -45,15 +50,15 @@ const trustVariant = 'C' as const;
           <div class="industry-eyebrow">Fuel retail</div>
           <h3 class="industry-title">Fuel networks</h3>
           <p>
-            Connected data first, then AI where it earns its place —
-            procurement, margin, logistics, stations. In pilot at Red
-            Petroleum, an independent fuel network in Kyrgyzstan.
+            Connected data first, then AI where it earns its place — across
+            supply and procurement, logistics and the depot, station
+            operations, the shop and café, and customer loyalty.
           </p>
           <div class="industry-stat">
-            <span class="industry-stat-num">250</span>
-            <span class="industry-stat-label">stations in the Optimus pilot at Red Petroleum</span>
+            <span class="industry-stat-num">7</span>
+            <span class="industry-stat-label">blocks from supply and logistics to stations, customers and the data foundation</span>
           </div>
-          <span class="industry-arrow">See Optimus →</span>
+          <span class="industry-arrow">Explore the fuel map →</span>
         </a>
       </div>
     </div>
@@ -66,7 +71,7 @@ const trustVariant = 'C' as const;
       <p class="cap-lede">
         A senior team with roots in business, not just tech. We work the
         whole path — from a low-risk prototype to a production system that
-        runs without us. Optimus is one system among many.
+        runs without us.
       </p>
       <div class="cap-grid" data-reveal-stagger>
         <div class="cap-card">
@@ -118,41 +123,6 @@ const trustVariant = 'C' as const;
     </div>
   </section>
 
-  <section class="section section-featured" data-reveal>
-    <div class="container">
-      <div class="section-label">Featured case</div>
-      <h2 class="h2-section">Red Petroleum — data and AI across the whole network.</h2>
-      <div class="featured-grid">
-        <div class="featured-card featured-text">
-          <p class="featured-body">
-            A full data and AI transformation across four fronts — supply
-            chain, customer value, operations, and the data foundation
-            under all of it. Optimus, the procurement-and-margin engine, is
-            one of them, in pilot. The rest is live.
-          </p>
-          <div class="featured-stats" data-reveal-stagger>
-            <div class="featured-stat">
-              <div class="featured-stat-num">$600M</div>
-              <div class="featured-stat-label">fuel retailer, 220+ stations</div>
-            </div>
-            <div class="featured-stat">
-              <div class="featured-stat-num">4</div>
-              <div class="featured-stat-label">fronts: supply, customers, ops, data</div>
-            </div>
-            <div class="featured-stat">
-              <div class="featured-stat-num">Optimus</div>
-              <div class="featured-stat-label">procurement engine, in pilot</div>
-            </div>
-          </div>
-          <a href="/case-studies/red-petroleum" class="btn-ghost featured-cta">Read the case</a>
-        </div>
-        <div class="featured-card featured-visual">
-          <AlfaNetworkMap variant="compact" />
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section class="section section-howweship" data-reveal>
     <div class="container">
       <div class="section-label">How we ship</div>
@@ -168,7 +138,7 @@ const trustVariant = 'C' as const;
             <circle cx="120" cy="80" r="16" fill="var(--bg)" stroke="currentColor" stroke-width="1.5"/>
             <text x="120" y="84" font-family="ui-monospace, Menlo, monospace" font-size="11" font-weight="600" fill="currentColor" text-anchor="middle">01</text>
             <text x="120" y="46" font-family="'DM Sans', sans-serif" font-style="normal" font-size="22" fill="currentColor" text-anchor="middle">Diagnostic</text>
-            <text x="120" y="112" font-family="ui-monospace, Menlo, monospace" font-size="13" font-weight="600" fill="#8A5E18" letter-spacing="0.6" text-anchor="middle">2 WEEKS</text>
+            <text x="120" y="112" font-family="ui-monospace, Menlo, monospace" font-size="13" font-weight="600" fill="#C2410C" letter-spacing="0.6" text-anchor="middle">2 WEEKS</text>
             <text x="120" y="128" font-family="'DM Sans', sans-serif" font-size="14" fill="currentColor" fill-opacity="0.55" text-anchor="middle">Scope, no commitment</text>
           </g>
 
@@ -180,7 +150,7 @@ const trustVariant = 'C' as const;
             <circle cx="360" cy="80" r="16" fill="var(--bg)" stroke="currentColor" stroke-width="1.5"/>
             <text x="360" y="84" font-family="ui-monospace, Menlo, monospace" font-size="11" font-weight="600" fill="currentColor" text-anchor="middle">02</text>
             <text x="360" y="46" font-family="'DM Sans', sans-serif" font-style="normal" font-size="22" fill="currentColor" text-anchor="middle">Engagement</text>
-            <text x="360" y="112" font-family="ui-monospace, Menlo, monospace" font-size="13" font-weight="600" fill="#8A5E18" letter-spacing="0.6" text-anchor="middle">SHAPED BY WHAT SHIPS</text>
+            <text x="360" y="112" font-family="ui-monospace, Menlo, monospace" font-size="13" font-weight="600" fill="#C2410C" letter-spacing="0.6" text-anchor="middle">SHAPED BY WHAT SHIPS</text>
             <text x="360" y="128" font-family="'DM Sans', sans-serif" font-size="14" fill="currentColor" fill-opacity="0.55" text-anchor="middle">PMO + AI delivery, in production</text>
           </g>
 
@@ -189,10 +159,10 @@ const trustVariant = 'C' as const;
 
           <!-- Phase 3 — Handover (accent) -->
           <g>
-            <circle cx="600" cy="80" r="16" fill="var(--bg)" stroke="#B8832A" stroke-width="2"/>
-            <text x="600" y="84" font-family="ui-monospace, Menlo, monospace" font-size="11" font-weight="600" fill="#8A5E18" text-anchor="middle">03</text>
+            <circle cx="600" cy="80" r="16" fill="var(--bg)" stroke="#FF6A00" stroke-width="2"/>
+            <text x="600" y="84" font-family="ui-monospace, Menlo, monospace" font-size="11" font-weight="600" fill="#C2410C" text-anchor="middle">03</text>
             <text x="600" y="46" font-family="'DM Sans', sans-serif" font-style="normal" font-size="22" fill="currentColor" text-anchor="middle">Handover</text>
-            <text x="600" y="112" font-family="ui-monospace, Menlo, monospace" font-size="13" font-weight="600" fill="#8A5E18" letter-spacing="0.6" text-anchor="middle">EXIT CRITERION</text>
+            <text x="600" y="112" font-family="ui-monospace, Menlo, monospace" font-size="13" font-weight="600" fill="#C2410C" letter-spacing="0.6" text-anchor="middle">EXIT CRITERION</text>
             <text x="600" y="128" font-family="'DM Sans', sans-serif" font-size="14" fill="currentColor" fill-opacity="0.55" text-anchor="middle">System runs without us</text>
           </g>
         </svg>
