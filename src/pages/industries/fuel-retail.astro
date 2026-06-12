@@ -53,10 +53,12 @@ const blocks = [
   },
 ];
 
+// The three canvas stages (FUEL_STAGES) — faithful translation of the canvas
+// descriptions (Russian source; my translation, to be cross-checked with George).
 const stages = [
-  { tag: 'Essential', name: 'See & control, now', body: 'Bring the picture together on data you already have — need, stock, supplier offers, your price against the market. Cheap, fast, no models.' },
-  { tag: 'Advanced', name: 'Forecast & optimize', body: 'Forecast demand, find the right volume and moment, price by local sensitivity. Builds on the foundation beneath it.' },
-  { tag: 'Frontier', name: 'Decisions under AI', body: 'Agents prepare the order or hold price sharp within your rules — the person sets the bounds and approves. Never AI on its own.' },
+  { tag: 'Stage 1', name: 'Essential solutions', body: 'Quick to launch on the data you already have. A clear effect without a big process change.' },
+  { tag: 'Stage 2', name: 'Advanced solutions', body: 'Need more mature data, integrations and models. A bigger effect from optimizing decisions and processes.' },
+  { tag: 'Stage 3', name: 'Agentic & systemic solutions', body: 'End-to-end solutions and AI agents that run on top of the foundation. The person sets the rules and controls the result.' },
 ];
 ---
 
@@ -122,7 +124,6 @@ const stages = [
           <article class="fr-block">
             <span class="fr-block-mark" aria-hidden="true"></span>
             <h3 class="fr-block-lever">{b.lever}</h3>
-            <p class="fr-block-pressure">{b.pressure}</p>
             <p class="fr-block-detail">{b.detail}</p>
             <ul class="fr-block-tasks">
               {b.tasks.map((t) => <li>{t}</li>)}
