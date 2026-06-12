@@ -18,6 +18,16 @@ const NOINDEX_PATHS = [
 
 export default defineConfig({
   site: 'https://kittykat.tech',
+  // Per-case pages were consolidated into the single /case-studies page (cases
+  // expand in place). Old per-case URLs redirect to the matching anchor.
+  redirects: {
+    '/case-studies/red-petroleum': '/case-studies/#red-petroleum',
+    '/case-studies/click-and-grow': '/case-studies/#click-grow',
+    '/case-studies/csc-telecom': '/case-studies/#csc-telecom',
+    '/case-studies/gte': '/case-studies/#gte',
+    '/case-studies/kricon': '/case-studies/#kricon',
+    '/case-studies/taxi': '/case-studies/#forrest-taxi',
+  },
   integrations: [
     react(),
     mdx(),

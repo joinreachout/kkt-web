@@ -1,442 +1,278 @@
 ---
 import BaseLayout from '~/layouts/BaseLayout.astro';
+import MediaSlot from '~/components/MediaSlot.astro';
 import CTA from '~/components/CTA.astro';
 
-// Smaller / earlier engagements — separate bucket from the marquee five.
-// Listed for completeness, not heavyweight. Add new entries by dropping
-// a logo into public/logos/ and appending here.
-const smallerEngagements = [
+// One page, cases expand in place (View Transitions morph) — no page per case.
+// Content adapted (EN) from the fuel-canvas trackRecord. Filterable by sector;
+// each expanded case carries an image and a headline result. Red Petroleum sits
+// mid-grid at equal weight.
+const cases = [
   {
-    name: 'Clubtek',
-    region: 'Thailand',
-    blurb: 'Premium audio, light, and video integration. Top-tier event and venue work.',
-    logo: '/logos/clubtek.png',
+    id: 'click-grow', name: 'Click & Grow', logo: '/logos/click-and-grow.png',
+    sector: 'Retail / D2C', years: 'EU · 2022–2023', result: 'Lifecycle on real data',
+    focus: 'Customer analytics for a D2C smart-garden brand',
+    image: 'Customer segments / lifecycle dashboard',
+    what: 'Customer analytics, segmentation, and personalisation built on device-and-consumable behaviour.',
+    scope: ['Customer analytics and segmentation across the D2C base', 'Transactional behaviour combined with product-engagement signals', 'Personalisation support for retention and lifecycle marketing'],
+    outcome: ['Customer behaviour made actionable for retention planning', 'Lifecycle marketing grounded in real customer data'],
   },
   {
-    name: 'Khaos Marani',
-    region: 'Georgia',
-    blurb: 'Winery. Advanced analytics and predictive ML to forecast wine demand, optimise pricing, and segment consumers for targeted marketing.',
-    logo: null,
-    monogram: 'KM',
+    id: 'csc-telecom', name: 'CSC Telecom', logo: '/logos/csc-telecom.png',
+    sector: 'Telecom', years: 'Baltics · 2023–present', result: 'Churn made visible',
+    focus: 'Customer analytics, tariff analysis, and churn modelling',
+    image: 'Churn cohorts / tariff analysis',
+    what: 'Behavioural segmentation, personalised communications, tariff and promo-response analysis, and first churn models for retention.',
+    scope: ['Behavioural segmentation and personalised-communication design', 'Tariff structure and package-configuration analysis', 'Promo-response evaluation by cohort', 'First churn models to route at-risk customers into retention'],
+    outcome: ['Risk groups visible earlier, not lost in overall traffic', 'Marketing and commercial decisions on one customer base'],
   },
   {
-    name: 'Geo Engineering',
-    region: 'CIS',
-    blurb: 'Pump manufacturer (Alliance Industry Group). SaaS AI solutions, including an internal chatbot to streamline communications and operations.',
-    logo: null,
-    monogram: 'GE',
+    id: 'gte', name: 'GTE', logo: '/logos/gte.png',
+    sector: 'Industry', years: '2022–2023', result: 'In active design',
+    focus: 'Fuel-efficiency optimisation in compressor design',
+    image: 'Compressor efficiency model / engineering view',
+    what: 'Business-problem framing, an architecture blending operations research, ML and physical engineering rules, team-shaping support, and development oversight.',
+    scope: ['Framing the fuel-efficiency optimisation problem in compressor design', 'Architecture combining OR, ML, and physical engineering rules', 'Team-composition recommendations', 'Oversight of the technical development'],
+    outcome: ['Model used in active design work', 'Fuel-efficiency gains validated against engineering baselines'],
   },
   {
-    name: 'KliverYards',
-    region: 'CIS',
-    blurb: 'Specialised steel structures and drilling rigs. Data analysis on project delays plus computer vision for production efficiency.',
-    logo: null,
-    monogram: 'KY',
+    id: 'forrest-taxi', name: 'Forrest Taxi', logo: null,
+    sector: 'Mobility', years: 'Baltics & Nordics · 2023', result: 'Feasibility proven',
+    focus: 'Dynamic-pricing architecture and feasibility',
+    image: 'Dynamic-pricing prototype / map',
+    what: 'Business-problem framing, a target architecture, an ML prototype to prove feasibility, implementation-vendor support, and results control against a baseline.',
+    scope: ['Framing the in-app pricing problem', 'Defining the target architecture', 'An ML prototype to prove feasibility', 'Vendor-selection support and development oversight'],
+    outcome: ['Feasibility proven before committing to a full build', 'Target architecture aligned to the business problem', 'Rollout controlled against a measurable baseline'],
   },
   {
-    name: 'RiskTekConsult',
-    region: 'CIS',
-    blurb: 'Specialised risk consultancy. Advanced analytics for failure analysis and prevention.',
-    logo: null,
-    monogram: 'RT',
+    id: 'kricon', name: 'Kricon', logo: '/logos/kricon.png',
+    sector: 'Logistics', years: 'International · 2023–2024', result: 'Ops signals, live',
+    focus: 'Operational visibility for international logistics',
+    image: 'Anomaly / clustering signals dashboard',
+    what: 'Reporting infrastructure, anomaly detection, and clustering models that turn operational data into ops-level signals.',
+    scope: ['Reporting infrastructure across operations', 'Anomaly detection on operational data', 'Clustering models for ops-level signals'],
+    outcome: ['Operational issues surfaced as signals, not after the fact', 'A reporting base the operation can run on'],
+  },
+  {
+    id: 'red-petroleum', name: 'Red Petroleum', logo: '/logos/red-petroleum.png',
+    sector: 'Fuel', years: 'Central Asia · 2024–present', result: 'Days → minutes',
+    focus: 'A multi-year data & AI transformation across the network',
+    image: 'BI dashboards / station network map',
+    what: 'AI-readiness and roadmap, a DWH/BI foundation, customer segmentation, anti-fraud analytics, internal assistants, and automation across payments, logistics and procurement.',
+    scope: ['Roadmap and leadership alignment for the data & AI programme', 'DWH/BI foundation: 24+ dashboards across 9 departments', 'Segmentation of 380,000+ loyalty members; anti-fraud over 30M+ transactions', 'NL analytics agent, internal RAG assistants, payment/logistics automation, a first procurement-optimisation product', 'Hiring and training the client’s in-house data team'],
+    outcome: ['Most of the roadmap delivered', 'In-house data team now runs independently', 'Reporting that took days now takes minutes', 'First in-house ML models in production'],
+  },
+  {
+    id: 'loyalty-reactivation', name: 'Fuel retail loyalty', logo: null,
+    sector: 'Fuel', years: '2024–2025', result: '~12,000 reactivated',
+    focus: 'Reactivating dormant customers through segmentation',
+    image: 'RFM segments deployed in the loyalty app',
+    what: 'Problem framing with marketing leadership, a hybrid RFM + clustering segmentation, 11 segments deployed in the app, and A/B-tested campaigns.',
+    scope: ['A hybrid RFM + GMM-clustering segmentation prototype', '11 segments validated with the business', 'Segments deployed in the loyalty mobile app', 'A/B-tested campaigns and an automatic refresh pipeline handed over'],
+    outcome: ['~12,000 dormant customers reactivated', 'Segments adopted into the next marketing cycle', 'An automatic ML pipeline now refreshes the programme'],
+  },
+  {
+    id: 'nl-analytics', name: 'Enterprise analytics agent', logo: null,
+    sector: 'Enterprise AI', years: 'Enterprise DWH · 2025', result: '90%+ accuracy',
+    focus: 'A natural-language analytics agent for the executive team',
+    image: 'NL analytics agent / semantic layer',
+    what: 'A business semantic layer, KPI grounding, a golden training set, and support for a multi-agent analytics architecture.',
+    scope: ['KPI definitions, business hierarchies, and logic grounding', 'A golden Q&A set for accuracy tuning', 'Support for a specialised multi-agent architecture by question type', 'Preparing internal staff to maintain and extend it'],
+    outcome: ['90%+ answer accuracy in production', 'Leadership can query enterprise data directly', 'Internal staff trained to run and improve the system'],
   },
 ];
 
-const cases = [
-  {
-    href: '/case-studies/red-petroleum',
-    client: 'Red Petroleum',
-    logo: '/logos/red-petroleum.png',
-    industry: 'Fuel retail',
-    region: 'Kyrgyzstan',
-    summary:
-      'A full data & AI transformation — supply chain, customers, operations, data foundation. Optimus, the procurement engine, in pilot.',
-    status: 'Featured',
-    featured: true,
-  },
-  {
-    href: '/case-studies/click-and-grow',
-    client: 'Click & Grow',
-    logo: '/logos/click-and-grow.png',
-    industry: 'B2C — smart indoor gardens',
-    region: 'Eastern Europe / CIS',
-    summary:
-      'Customer analytics and ML segmentation to find where the high-value segments actually were, then act on them.',
-    status: 'Delivered',
-  },
-  {
-    href: '/case-studies/gte',
-    client: 'GTE',
-    logo: '/logos/gte.png',
-    industry: 'Industrial — compressors',
-    region: 'EU',
-    summary:
-      'Reporting platform across finance and manufacturing, plus ML prototypes for compressor anomaly detection and energy optimisation.',
-    status: 'Delivered',
-  },
-  {
-    href: '/case-studies/kricon',
-    client: 'Kricon',
-    logo: '/logos/kricon.png',
-    industry: 'International logistics',
-    region: 'Cross-border',
-    summary:
-      'Operational visibility across the route network — reporting infrastructure plus anomaly-detection and clustering models for ops-level signals.',
-    status: 'Delivered',
-  },
-  {
-    href: '/case-studies/csc-telecom',
-    client: 'CSC Telecom',
-    logo: '/logos/csc-telecom.png',
-    industry: 'Telecom',
-    region: 'Global',
-    summary:
-      'Customer and product analytics for a global Travel/Tourist SIM business. Each study shaped to land a specific decision rather than fill a report.',
-    status: 'Delivered',
-  },
-  {
-    href: '/case-studies/taxi',
-    client: 'Ride-hailing platform',
-    logo: null,
-    monogram: 'RH',
-    industry: 'Ride-hailing — aggregator',
-    region: 'Baltics',
-    summary:
-      'Data deep-dive plus ML for dynamic pricing and ride-demand forecasting at a leading Baltic ride-hailing platform. Client unnamed while the engagement is in progress.',
-    status: 'In progress',
-  },
-];
+const sectors = ['All', ...Array.from(new Set(cases.map((c) => c.sector)))];
+const initials = (n) => n.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join('').toUpperCase();
 ---
 
 <BaseLayout
   title="Case studies — KKT"
-  description="Walkable investigations of what we shipped and what it moved."
-  ogImage="/og/case-studies.png"
+  description="Selected work across fuel retail, logistics, customer analytics, industrial operations, and AI for management decisions. Filter by sector; open a client for the full picture."
+  ogImage="/og/home.png"
 >
-  <article class="prose-page">
+  <section class="section cs-intro" data-reveal>
     <div class="container">
-      <div class="section-label">Case studies</div>
-      <h1 class="h1-page">What we shipped, what it moved.</h1>
-      <p class="lede">
-        Walkable investigations. Each case is the
-        engagement as it actually ran: where it started, what shipped,
-        what it changed in the business.
+      <p class="section-label">Selected work</p>
+      <h1 class="cs-h1">What we’ve <span class="grad">delivered</span>.</h1>
+      <p class="cs-lede">
+        A cross-section of the work — fuel, retail, telecom, mobility, logistics,
+        industry, and enterprise AI. Filter by sector, then open a client for the
+        full picture: what we did, the scope, the result.
       </p>
 
-      <div class="cases-strip">
-        <div class="cases-stat">
-          <div class="cases-stat-num">10+</div>
-          <div class="cases-stat-label">engagements shipped</div>
-        </div>
-        <div class="cases-stat">
-          <div class="cases-stat-num">8+</div>
-          <div class="cases-stat-label">sectors</div>
-        </div>
-        <div class="cases-stat">
-          <div class="cases-stat-num">$600M</div>
-          <div class="cases-stat-label">largest client, Red Petroleum</div>
-        </div>
-      </div>
-
-      <ul class="case-list" data-reveal-stagger>
-        {cases.map((c) => (
-          <li>
-            <a href={c.href} class={`case-card ${c.featured ? 'case-card-featured' : ''}`}>
-              <div class="case-logo">
-                {c.logo
-                  ? <img src={c.logo} alt={`${c.client} logo`} width="150" height="150" loading="lazy" />
-                  : <span class="case-monogram" aria-hidden="true">{c.monogram}</span>}
-              </div>
-              <div class="case-meta">
-                <span class={`case-status ${c.featured ? 'is-featured' : ''}`}>{c.status}</span>
-                <span class="case-sep">·</span>
-                <span>{c.industry}</span>
-                <span class="case-sep">·</span>
-                <span>{c.region}</span>
-              </div>
-              <h2 class="case-client">{c.client}</h2>
-              <p class="case-summary">{c.summary}</p>
-              <span class="case-arrow">Read the case →</span>
-            </a>
-          </li>
+      <div class="cs-filters" role="tablist" aria-label="Filter by sector">
+        {sectors.map((s, i) => (
+          <button class={`cs-filter${i === 0 ? ' is-active' : ''}`} data-filter={s} type="button">{s}</button>
         ))}
-      </ul>
-
-      {smallerEngagements.length > 0 && (
-        <section data-reveal class="smaller">
-          <div class="section-label">Smaller engagements</div>
-          <h2 class="h2-section">Earlier and adjacent work.</h2>
-          <p class="smaller-lede">
-            Listed for completeness — real shipped work, earlier or
-            adjacent to the engagements we lead with.
-          </p>
-          <ul class="smaller-grid" data-reveal-stagger>
-            {smallerEngagements.map((s) => (
-              <li class="smaller-card">
-                <div class="smaller-logo">
-                  {s.logo
-                    ? <img src={s.logo} alt={`${s.name} logo`} loading="lazy" />
-                    : <span class="smaller-monogram" aria-hidden="true">{s.monogram}</span>}
-                </div>
-                <div class="smaller-meta">
-                  <div class="smaller-name">{s.name}</div>
-                  <div class="smaller-region">{s.region}</div>
-                </div>
-                <p class="smaller-blurb">{s.blurb}</p>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
+      </div>
     </div>
+  </section>
 
-    <CTA />
-  </article>
+  <section class="section cs-grid-section" data-cases data-reveal>
+    <div class="container">
+      <div class="cs-grid">
+        {cases.map((c) => (
+          <article class="cs-tile" data-id={c.id} data-sector={c.sector} id={c.id} style={`view-transition-name: cs-${c.id}`}>
+            <button class="cs-open" aria-expanded="false" aria-controls={`d-${c.id}`}>
+              <span class="cs-brand">
+                {c.logo
+                  ? <img class="cs-logo" src={c.logo} alt={c.name} loading="lazy" />
+                  : <span class="cs-mono" aria-hidden="true">{initials(c.name)}</span>}
+              </span>
+              <span class="cs-name">{c.name}</span>
+              <span class="cs-focus">{c.focus}</span>
+              <span class="cs-result-chip">{c.result}</span>
+              <span class="cs-cue" aria-hidden="true">+</span>
+            </button>
+
+            <div class="cs-detail" id={`d-${c.id}`} hidden>
+              <div class="cs-detail-grid">
+                <div class="cs-detail-main">
+                  <div class="cs-meta">{c.sector} · {c.years}</div>
+                  <p class="cs-what">{c.what}</p>
+                  <div class="cs-cols">
+                    <div>
+                      <h4 class="cs-col-h">What we did</h4>
+                      <ul class="cs-list">{c.scope.map((s) => <li>{s}</li>)}</ul>
+                    </div>
+                    <div>
+                      <h4 class="cs-col-h">What changed</h4>
+                      <ul class="cs-list cs-list-out">{c.outcome.map((o) => <li>{o}</li>)}</ul>
+                    </div>
+                  </div>
+                  <button class="cs-close" type="button">Close</button>
+                </div>
+                <aside class="cs-detail-side">
+                  <div class="cs-result"><span class="cs-result-num">{c.result}</span></div>
+                  <MediaSlot ratio="4 / 3" kind="image" label={c.image} />
+                </aside>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA />
 </BaseLayout>
 
 <style>
-  .prose-page { padding-top: clamp(40px, 6vh, 72px); }
-  .section-label { margin-bottom: 18px; }
-  .h1-page {
-    font-family: var(--font-display);
-    font-style: normal;
-    font-weight: 600;
-    font-size: clamp(32px, 4.5vw, 48px);
-    line-height: 1.16;
-    margin-bottom: 18px;
-    letter-spacing: -0.01em;
-    max-width: 22ch;
+  .section-label { margin-bottom: 16px; }
+  .grad { background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
+
+  .cs-intro { padding-top: clamp(48px, 8vh, 104px); padding-bottom: clamp(28px, 4vh, 44px); }
+  .cs-h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(36px, 5.4vw, 66px); line-height: 1.05; letter-spacing: -0.03em; color: var(--text-primary); margin-bottom: 22px; }
+  .cs-lede { font-size: clamp(17px, 1.8vw, 21px); line-height: 1.55; color: var(--text-secondary); max-width: 64ch; margin-bottom: 28px; }
+
+  .cs-filters { display: flex; flex-wrap: wrap; gap: 8px; }
+  .cs-filter {
+    font-size: 13px; font-weight: 500; color: var(--text-secondary);
+    background: var(--surface); border: 1px solid var(--border); border-radius: 100px;
+    padding: 8px 16px; transition: border-color .18s ease, color .18s ease, background .18s ease;
   }
-  .lede {
-    font-size: clamp(17px, 2vw, 20px);
-    color: var(--text-secondary);
-    line-height: 1.55;
-    max-width: 56ch;
-    margin-bottom: 40px;
-  }
-  .cases-strip {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 36px;
-    margin-bottom: 28px;
-    padding: 18px 0;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-  .cases-stat { display: flex; flex-direction: column; gap: 2px; }
-  .cases-stat-num {
-    font-family: var(--font-display);
-    font-style: normal;
-    font-size: clamp(28px, 3.6vw, 36px);
-    color: var(--accent);
-    line-height: 1;
-  }
-  .cases-stat-label {
-    font-size: 11px;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    font-weight: 600;
-    max-width: 24ch;
+  .cs-filter:hover { border-color: var(--border-hover); color: var(--text-primary); }
+  .cs-filter.is-active { color: #fff; background: var(--accent-gradient); border-color: transparent; }
+
+  .cs-grid-section { padding-top: clamp(20px, 3vh, 32px); padding-bottom: clamp(56px, 9vh, 100px); }
+  .cs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(208px, 1fr)); gap: 14px; align-items: start; }
+
+  .cs-tile { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; transition: opacity .3s ease, filter .3s ease, border-color .2s ease; }
+  .cs-tile[hidden] { display: none; }
+  .cs-grid.has-open .cs-tile:not(.is-open) { opacity: 0.4; filter: grayscale(1); }
+  .cs-tile:hover { border-color: var(--border-hover); }
+
+  .cs-open { display: grid; gap: 10px; width: 100%; text-align: left; background: none; border: 0; padding: 20px 20px 18px; position: relative; }
+  .cs-brand { display: flex; align-items: center; height: 32px; }
+  .cs-logo { max-height: 28px; max-width: 124px; object-fit: contain; object-position: left center; filter: grayscale(1); opacity: 0.78; transition: filter .2s ease, opacity .2s ease; }
+  .cs-tile:hover .cs-logo, .cs-tile.is-open .cs-logo { filter: none; opacity: 1; }
+  .cs-mono { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 9px; background: var(--accent-dim); color: var(--accent-text); font-weight: 700; font-size: 12.5px; }
+  .cs-name { font-family: var(--font-display); font-weight: 600; font-size: 16px; letter-spacing: -0.01em; color: var(--text-primary); }
+  .cs-focus { font-size: 13px; line-height: 1.45; color: var(--text-muted); }
+  .cs-result-chip { font-size: 11px; font-weight: 700; letter-spacing: 0.04em; color: var(--accent-text); margin-top: 2px; }
+  .cs-cue { position: absolute; top: 16px; right: 18px; font-size: 18px; line-height: 1; color: var(--text-muted); transition: transform .25s ease, color .2s ease; }
+  .cs-tile.is-open .cs-cue { transform: rotate(45deg); color: var(--accent-text); }
+  .cs-open:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; border-radius: 14px; }
+
+  .cs-tile.is-open { grid-column: 1 / -1; border-color: var(--border-hover); }
+  .cs-detail[hidden] { display: none; }
+  .cs-detail { padding: 4px 24px 26px; border-top: 1px solid var(--border); margin-top: 4px; animation: csIn .32s ease both; }
+  @keyframes csIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  .cs-detail-grid { display: grid; grid-template-columns: 1fr; gap: clamp(24px, 4vw, 44px); padding-top: 20px; }
+  @media (min-width: 880px) { .cs-detail-grid { grid-template-columns: 1.4fr 0.9fr; } }
+  .cs-meta { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 14px; }
+  .cs-what { font-size: clamp(16px, 1.6vw, 18px); line-height: 1.55; color: var(--text-primary); max-width: 64ch; margin-bottom: 24px; }
+  .cs-cols { display: grid; grid-template-columns: 1fr; gap: 22px; }
+  @media (min-width: 640px) { .cs-cols { grid-template-columns: 1fr 1fr; gap: 36px; } }
+  .cs-col-h { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; }
+  .cs-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 9px; }
+  .cs-list li { position: relative; padding-left: 20px; font-size: 14.5px; line-height: 1.55; color: var(--text-secondary); }
+  .cs-list li::before { content: ''; position: absolute; left: 2px; top: 9px; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); opacity: 0.5; }
+  .cs-list-out li::before { border-radius: 2px; opacity: 0.85; }
+  .cs-close { margin-top: 24px; background: none; border: 1px solid var(--border-hover); color: var(--text-secondary); border-radius: 980px; padding: 8px 18px; font-size: 14px; font-weight: 500; transition: border-color .18s ease, color .18s ease; }
+  .cs-close:hover { border-color: var(--accent); color: var(--accent-text); }
+
+  .cs-detail-side { display: flex; flex-direction: column; gap: 16px; }
+  .cs-result-num {
+    font-family: var(--font-display); font-weight: 600; font-size: clamp(30px, 4vw, 46px); line-height: 1.05; letter-spacing: -0.02em;
+    background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
   }
 
-  .cases-pull {
-    margin: 0 0 36px;
-    padding: 22px 26px;
-    background: var(--surface-alt);
-    border-left: 3px solid var(--accent);
-    border-radius: 0 4px 4px 0;
-    max-width: 720px;
-  }
-  .cases-pull p {
-    font-family: var(--font-display);
-    font-style: normal;
-    font-weight: 600;
-    font-size: clamp(18px, 2.2vw, 22px);
-    line-height: 1.35;
-    color: var(--text-primary);
-    margin: 0;
-    max-width: 38ch;
-  }
-
-  .case-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    gap: 16px;
-  }
-  .case-card {
-    display: block;
-    padding: 24px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    text-decoration: none;
-    color: inherit;
-    transition: border-color .18s ease;
-  }
-  .case-card:hover {
-    border-color: var(--border-hover);
-    text-decoration: none;
-  }
-  .case-card-featured {
-    padding: 32px;
-    border-top: 3px solid var(--accent);
-  }
-  .case-card-featured .case-client {
-    font-size: 32px;
-  }
-  .case-status.is-featured {
-    color: var(--accent);
-  }
-
-  .case-logo {
-    width: 116px;
-    height: 60px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 16px;
-    margin-bottom: 18px;
-  }
-  .case-logo img {
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    display: block;
-  }
-  .case-card-featured .case-logo {
-    width: 132px;
-    height: 68px;
-  }
-  .case-monogram {
-    font-family: var(--font-display);
-    font-style: normal;
-    font-size: 24px;
-    color: var(--text-muted);
-    letter-spacing: 0.04em;
-  }
-
-  .cases-carveout {
-    font-size: 13px;
-    color: var(--text-muted);
-    font-style: normal;
-    max-width: 60ch;
-    margin: -22px 0 36px;
-  }
-
-  .smaller {
-    margin-top: 56px;
-    padding-top: 40px;
-    border-top: 1px solid var(--border);
-  }
-  .smaller .section-label { margin-bottom: 14px; }
-  .smaller h2 { margin-bottom: 14px; max-width: 26ch; }
-  .smaller-lede {
-    max-width: 60ch;
-    margin-bottom: 28px;
-    color: var(--text-secondary);
-  }
-  .smaller-grid {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-  @media (min-width: 720px) {
-    .smaller-grid { grid-template-columns: 1fr 1fr; }
-  }
-  .smaller-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 22px 24px;
-    display: grid;
-    grid-template-columns: 60px 1fr;
-    column-gap: 16px;
-    row-gap: 8px;
-    align-items: start;
-  }
-  .smaller-logo {
-    grid-row: 1 / span 2;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .smaller-logo img {
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-  }
-  .smaller-monogram {
-    font-family: var(--font-display);
-    font-style: normal;
-    font-size: 20px;
-    color: var(--text-muted);
-    letter-spacing: 0.04em;
-  }
-  .smaller-name {
-    font-family: var(--font-display);
-    font-style: normal;
-    font-size: 22px;
-    color: var(--text-primary);
-    line-height: 1.2;
-  }
-  .smaller-region {
-    font-size: 11px;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    font-weight: 600;
-    margin-top: 2px;
-  }
-  .smaller-blurb {
-    grid-column: 1 / -1;
-    font-size: 14px;
-    color: var(--text-secondary);
-    margin: 0;
-    max-width: 56ch;
-  }
-  .case-meta {
-    font-size: 12px;
-    color: var(--text-muted);
-    margin-bottom: 10px;
-    letter-spacing: 0.04em;
-  }
-  .case-status {
-    color: var(--accent-text);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-  }
-  .case-sep { margin: 0 6px; }
-  .case-client {
-    font-family: var(--font-display);
-    font-style: normal;
-    font-size: 26px;
-    color: var(--text-primary);
-    margin-bottom: 10px;
-    font-weight: 600;
-  }
-  .case-summary {
-    margin-bottom: 14px;
-    max-width: 60ch;
-  }
-  .case-arrow {
-    font-size: 13px;
-    color: var(--text-primary);
-    font-weight: 500;
-  }
+  @media (prefers-reduced-motion: reduce) { .cs-detail { animation: none; } .cs-tile, .cs-cue, .cs-logo { transition: none; } }
 </style>
+
+<script is:inline>
+  (function () {
+    var sec = document.querySelector('[data-cases]');
+    if (!sec) return;
+    var grid = sec.querySelector('.cs-grid');
+    var tiles = Array.prototype.slice.call(sec.querySelectorAll('.cs-tile'));
+    var filters = Array.prototype.slice.call(document.querySelectorAll('.cs-filter'));
+    var openId = null, activeFilter = 'All';
+
+    function renderOpen() {
+      grid.classList.toggle('has-open', !!openId);
+      tiles.forEach(function (t) {
+        var o = t.getAttribute('data-id') === openId;
+        t.classList.toggle('is-open', o);
+        t.querySelector('.cs-open').setAttribute('aria-expanded', o ? 'true' : 'false');
+        t.querySelector('.cs-detail').hidden = !o;
+      });
+    }
+    function renderFilter() {
+      tiles.forEach(function (t) {
+        var show = activeFilter === 'All' || t.getAttribute('data-sector') === activeFilter;
+        t.hidden = !show;
+        if (!show && t.getAttribute('data-id') === openId) { openId = null; }
+      });
+      renderOpen();
+    }
+    function run(fn) { if (document.startViewTransition) document.startViewTransition(fn); else fn(); }
+
+    tiles.forEach(function (t) {
+      var id = t.getAttribute('data-id');
+      t.querySelector('.cs-open').addEventListener('click', function () {
+        openId = (openId === id) ? null : id;
+        run(renderOpen);
+        if (openId) setTimeout(function () { t.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); }, 80);
+      });
+      var cb = t.querySelector('.cs-close');
+      if (cb) cb.addEventListener('click', function () { openId = null; run(renderOpen); });
+    });
+    filters.forEach(function (f) {
+      f.addEventListener('click', function () {
+        activeFilter = f.getAttribute('data-filter');
+        filters.forEach(function (x) { x.classList.toggle('is-active', x === f); });
+        run(renderFilter);
+      });
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && openId) { openId = null; run(renderOpen); } });
+
+    // Deep-link: /case-studies/#<id> opens that case (old per-case URLs redirect here).
+    if (location.hash) {
+      var el = document.getElementById(location.hash.slice(1));
+      if (el && el.classList.contains('cs-tile')) { openId = el.getAttribute('data-id'); renderOpen(); setTimeout(function(){ el.scrollIntoView({block:'center'}); }, 120); }
+    }
+  })();
+</script>
