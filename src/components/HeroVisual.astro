@@ -1,0 +1,86 @@
+---
+// Hero brand graphic — custom, on-brand abstract: scattered data/questions
+// converge into a single decision node, which rises into an outcome. Built in
+// code (no stock, no product screenshot), orange-gradient brand language.
+// Gentle draw-in on load; static under reduced-motion.
+const dots = [
+  [95, 150, 5], [120, 250, 4], [90, 332, 6], [162, 108, 3.5], [178, 300, 5],
+  [205, 192, 4.5], [150, 372, 3.5], [232, 128, 5], [252, 262, 4], [212, 340, 3],
+  [285, 202, 4.5], [305, 300, 3.5], [128, 196, 3], [268, 168, 3.5],
+];
+const curves = [
+  'M95 150 C 350 118, 520 198, 700 220',
+  'M90 332 C 350 362, 520 252, 700 220',
+  'M205 192 C 420 168, 560 205, 700 220',
+  'M178 300 C 420 322, 560 240, 700 220',
+  'M232 128 C 452 108, 580 188, 700 220',
+  'M252 262 C 462 282, 580 242, 700 220',
+  'M305 300 C 500 318, 600 250, 700 220',
+];
+---
+
+<figure class="hv">
+  <svg viewBox="0 0 1000 440" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Scattered data and questions converging into a single decision that rises into an outcome">
+    <defs>
+      <linearGradient id="hvGrad" x1="0" y1="0" x2="1" y2="0.4">
+        <stop offset="0" stop-color="#FF9D2E"/>
+        <stop offset="0.52" stop-color="#FF6A00"/>
+        <stop offset="1" stop-color="#F5481F"/>
+      </linearGradient>
+      <radialGradient id="hvGlow" cx="0.5" cy="0.5" r="0.5">
+        <stop offset="0" stop-color="#FF6A00" stop-opacity="0.22"/>
+        <stop offset="1" stop-color="#FF6A00" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+
+    <!-- depth gridlines -->
+    <g stroke="#1D1D1F" stroke-opacity="0.05" stroke-width="1">
+      <line x1="40" y1="120" x2="960" y2="120"/>
+      <line x1="40" y1="220" x2="960" y2="220"/>
+      <line x1="40" y1="320" x2="960" y2="320"/>
+    </g>
+
+    <!-- converging flows -->
+    <g class="hv-curves" stroke="url(#hvGrad)" stroke-width="1.6" stroke-linecap="round" fill="none">
+      {curves.map((d) => <path d={d} pathlength="1"/>)}
+    </g>
+
+    <!-- scattered data / questions -->
+    <g class="hv-dots" fill="#1D1D1F">
+      {dots.map(([x, y, r]) => <circle cx={x} cy={y} r={r} fill-opacity="0.30"/>)}
+    </g>
+
+    <!-- decision node -->
+    <circle class="hv-glow" cx="700" cy="220" r="46" fill="url(#hvGlow)"/>
+    <circle class="hv-node" cx="700" cy="220" r="15" fill="url(#hvGrad)"/>
+    <circle class="hv-node-ring" cx="700" cy="220" r="26" stroke="url(#hvGrad)" stroke-width="1.4" stroke-opacity="0.5"/>
+
+    <!-- rises into an outcome -->
+    <path class="hv-rise" d="M714 212 C 800 180, 850 150, 902 100" stroke="url(#hvGrad)" stroke-width="2" stroke-linecap="round" pathlength="1"/>
+    <circle class="hv-out" cx="902" cy="100" r="8" fill="url(#hvGrad)"/>
+  </svg>
+</figure>
+
+<style>
+  .hv { margin: 0; width: 100%; }
+  .hv svg { width: 100%; height: auto; display: block; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hv-curves path { stroke-dasharray: 1; stroke-dashoffset: 1; animation: hvDraw 1.1s cubic-bezier(.2,.7,.3,1) forwards; }
+    .hv-curves path:nth-child(2) { animation-delay: .08s; }
+    .hv-curves path:nth-child(3) { animation-delay: .16s; }
+    .hv-curves path:nth-child(4) { animation-delay: .24s; }
+    .hv-curves path:nth-child(5) { animation-delay: .32s; }
+    .hv-curves path:nth-child(6) { animation-delay: .40s; }
+    .hv-curves path:nth-child(7) { animation-delay: .48s; }
+    .hv-dots circle { opacity: 0; animation: hvFade .5s ease forwards; }
+    .hv-dots circle:nth-child(odd) { animation-delay: .15s; }
+    .hv-dots circle:nth-child(even) { animation-delay: .3s; }
+    .hv-node, .hv-node-ring, .hv-glow { opacity: 0; transform-box: fill-box; transform-origin: center; animation: hvPop .6s cubic-bezier(.2,.8,.3,1) .7s forwards; }
+    .hv-rise { stroke-dasharray: 1; stroke-dashoffset: 1; animation: hvDraw .7s cubic-bezier(.2,.7,.3,1) .95s forwards; }
+    .hv-out { opacity: 0; transform-box: fill-box; transform-origin: center; animation: hvPop .5s cubic-bezier(.2,.8,.3,1) 1.5s forwards; }
+  }
+  @keyframes hvDraw { to { stroke-dashoffset: 0; } }
+  @keyframes hvFade { to { opacity: 1; } }
+  @keyframes hvPop { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: scale(1); } }
+</style>
