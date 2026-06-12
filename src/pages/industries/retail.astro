@@ -33,6 +33,32 @@ const stages = [
   { tag: 'Stage 2', name: 'Optimize and grow', body: 'Use customer intelligence, promotion analytics and pricing discipline to grow more profitably from the existing base.' },
   { tag: 'Stage 3', name: 'Expand and monetize', body: 'Optional strategic expansion once the core is ready: retail media, supplier activation, paid loyalty, partner ecosystems.' },
 ];
+
+// The 10 pressures and 9 business areas from the Retail AI Canvas — the entry
+// points and the coverage. The full 43 services live on the canvas.
+const pressures = [
+  'Improve margin and cash control',
+  'Reduce stockouts, waste and overstock',
+  'Make promotions and pricing more profitable',
+  'Grow customer value and loyalty',
+  'Improve store execution and field control',
+  'Make reporting and decisions faster',
+  'Improve supplier performance and claims',
+  'Improve labour productivity and scheduling',
+  'Reduce fraud, leakage and control gaps',
+  'Explore new revenue pools beyond classic retail',
+];
+const areas = [
+  'Commercial, Category & Buying',
+  'Marketing, Loyalty & Customer',
+  'Store Operations',
+  'Supply Chain & Logistics',
+  'Finance & Reporting',
+  'Procurement & Supplier Management',
+  'Workforce & HR Operations',
+  'Risk & Loss Prevention',
+  'Executive / Across the Business',
+];
 ---
 
 <BaseLayout
@@ -99,6 +125,22 @@ const stages = [
             <p class="rt-block-detail">{b.detail}</p>
           </article>
         ))}
+      </div>
+
+      <div class="rt-canvas-map">
+        <div class="rt-map-col">
+          <h3 class="rt-map-h">Start from the pressure you feel</h3>
+          <ul class="rt-pressures" data-reveal-stagger>
+            {pressures.map((p) => <li>{p}</li>)}
+          </ul>
+        </div>
+        <div class="rt-map-col">
+          <h3 class="rt-map-h">Across the business</h3>
+          <ul class="rt-areas">
+            {areas.map((a) => <li>{a}</li>)}
+          </ul>
+          <p class="rt-map-note">9 business areas · 43 services in the open playbook.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -200,6 +242,37 @@ const stages = [
   }
   .rt-block-pressure { font-size: 15px; line-height: 1.5; color: var(--text-muted); font-style: italic; margin-bottom: 12px; }
   .rt-block-detail { font-size: 15px; line-height: 1.6; color: var(--text-secondary); margin: 0; }
+
+  /* Canvas map — pressures (entry points) + business areas (coverage) */
+  .rt-canvas-map {
+    margin-top: clamp(32px, 5vh, 56px);
+    padding-top: clamp(32px, 5vh, 48px);
+    border-top: 1px solid var(--border);
+    display: grid; grid-template-columns: 1fr; gap: clamp(28px, 4vw, 48px);
+  }
+  @media (min-width: 860px) { .rt-canvas-map { grid-template-columns: 1.1fr 0.9fr; } }
+  .rt-map-h {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--text-muted); margin-bottom: 16px;
+  }
+  .rt-pressures { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+  @media (min-width: 520px) { .rt-pressures { grid-template-columns: 1fr 1fr; } }
+  .rt-pressures li {
+    position: relative; padding: 11px 14px 11px 34px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    font-size: 14px; line-height: 1.4; color: var(--text-primary);
+    transition: border-color .18s ease;
+  }
+  .rt-pressures li:hover { border-color: var(--border-hover); }
+  .rt-pressures li::before {
+    content: '→'; position: absolute; left: 14px; top: 11px; color: var(--accent); font-weight: 600;
+  }
+  .rt-areas { list-style: none; padding: 0; margin: 0 0 14px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .rt-areas li {
+    font-size: 13px; color: var(--text-secondary); background: var(--accent-dim);
+    border-radius: 100px; padding: 7px 14px; line-height: 1.3;
+  }
+  .rt-map-note { font-size: 13px; color: var(--text-muted); }
 
   /* Playbook callout (soft) */
   .rt-playbook { padding-top: clamp(48px, 7vh, 88px); padding-bottom: clamp(48px, 7vh, 88px); }
