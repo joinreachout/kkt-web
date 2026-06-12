@@ -3,39 +3,33 @@ import BaseLayout from '~/layouts/BaseLayout.astro';
 import CTA from '~/components/CTA.astro';
 import MediaSlot from '~/components/MediaSlot.astro';
 
-// Content kept from the retail runbook / canvas. New design language mirrors
-// the fuel-retail page.
-const blocks = [
-  {
-    lever: 'One trusted data base',
-    pressure: 'Store reports nobody fully trusts, margin views that do not agree, loyalty data that never reaches the buying team.',
-    detail: 'POS, ERP, loyalty, stock, supplier, finance and master data connected into one governed layer — the base every later decision depends on.',
-  },
-  {
-    lever: 'Forecasting, replenishment & freshness',
-    pressure: 'Poor fresh ordering — too much of the wrong stock while you lose sales on the right products.',
-    detail: 'Demand forecasting, availability protection and waste control, so the shelf matches real demand instead of last period.',
-  },
-  {
-    lever: 'Promotion & margin intelligence',
-    pressure: 'Unclear promo ROI and inconsistent margin — commercial money subsidizing demand that would have happened anyway.',
-    detail: 'Where promotions and pricing actually create return, and a clearer forward view of where profit and cash are moving.',
-  },
-  {
-    lever: 'Customer value & loyalty',
-    pressure: 'Loyalty, basket and feedback data sit unused — customers treated as one average, not as different groups.',
-    detail: 'Segmentation, retention and basket growth that follow from knowing who actually drives the business.',
-  },
-];
-
+// All content below is taken from the Retail AI Canvas (retail.kittykat.tech) —
+// stage labels and step purposes, domain titles/subtitles, and pressures are
+// verbatim from the canvas data. No invented copy. Full 43 services live on the
+// canvas.
 const stages = [
-  { tag: 'Stage 1', name: 'Strengthen core operations', body: 'Improve visibility, execution, stock, margin, supplier control, reporting, loss prevention and workforce productivity in the current business.' },
-  { tag: 'Stage 2', name: 'Optimize and grow', body: 'Use customer intelligence, promotion analytics and pricing discipline to grow more profitably from the existing base.' },
-  { tag: 'Stage 3', name: 'Expand and monetize', body: 'Optional strategic expansion once the core is ready: retail media, supplier activation, paid loyalty, partner ecosystems.' },
+  { tag: 'Stage 1', name: 'Strengthen Core Operations', body: 'Create a common factual base and reveal value leakage; then improve consistency, exception handling, and management response.' },
+  { tag: 'Stage 2', name: 'Optimize and Grow', body: 'Use evidence, forecasting, segmentation, and decision support to improve economics — and embed better decisions into recurring work, reducing manual dependence.' },
+  { tag: 'Stage 3', name: 'Expand and Monetize', body: 'Use stronger customer access, supplier relevance, and operating intelligence as strategic assets.' },
 ];
 
-// The 10 pressures and 9 business areas from the Retail AI Canvas — the entry
-// points and the coverage. The full 43 services live on the canvas.
+// The 12 canvas domains — verbatim titles and subtitles.
+const domains = [
+  { stage: 1, title: 'Data Foundation', sub: 'Build the trusted base that every retail decision depends on.' },
+  { stage: 1, title: 'Stock & Availability', sub: 'Stop carrying too much of the wrong stock while losing sales on the right products.' },
+  { stage: 1, title: 'Margin & Cash', sub: 'Give leadership a clearer forward view of where profit and cash are moving.' },
+  { stage: 1, title: 'Reporting & Decisions', sub: 'Turn trusted data into faster management decisions.' },
+  { stage: 1, title: 'Store Execution', sub: 'Make the store network closer to the plan.' },
+  { stage: 1, title: 'Warehouse & Transport Operations', sub: 'Make warehouse and transport execution visible before depot and delivery problems hit stores.' },
+  { stage: 1, title: 'Supplier Performance', sub: 'Make supplier performance, claims, and commercial value visible before problems hit stores or money is left behind.' },
+  { stage: 1, title: 'Loss Prevention', sub: 'Detect leakage earlier and focus investigation where value is genuinely at risk.' },
+  { stage: 1, title: 'Workforce & AI Assistants', sub: 'Give store, field, head-office, HR, legal, commercial, and service teams practical AI support for the work they already do every day.' },
+  { stage: 2, title: 'Customers & Loyalty', sub: 'Use loyalty, transaction, basket, campaign, and feedback data to understand customers as different groups with different value, needs, and risks.' },
+  { stage: 2, title: 'Promotions & Pricing', sub: 'Spend commercial money where it creates real return, not where it only subsidizes demand that would have happened anyway.' },
+  { stage: 3, title: 'Expand and Monetize', sub: 'Use stronger customer access, supplier relationships, store traffic, loyalty data, digital channels, and local trust to create new revenue pools beyond classic product margin.' },
+];
+
+// The 10 canvas pressures — verbatim.
 const pressures = [
   'Improve margin and cash control',
   'Reduce stockouts, waste and overstock',
@@ -48,22 +42,11 @@ const pressures = [
   'Reduce fraud, leakage and control gaps',
   'Explore new revenue pools beyond classic retail',
 ];
-const areas = [
-  'Commercial, Category & Buying',
-  'Marketing, Loyalty & Customer',
-  'Store Operations',
-  'Supply Chain & Logistics',
-  'Finance & Reporting',
-  'Procurement & Supplier Management',
-  'Workforce & HR Operations',
-  'Risk & Loss Prevention',
-  'Executive / Across the Business',
-];
 ---
 
 <BaseLayout
   title="Retail — KKT"
-  description="AI and data for mid-sized retailers — one trusted data foundation, then forecasting, promotions, margin and loyalty. The full playbook at retail.kittykat.tech."
+  description="AI and data for mid-sized retailers — strengthen core operations, optimize and grow, then expand and monetize. The full Retail AI Canvas at retail.kittykat.tech."
   ogImage="/og/retail.png"
 >
   <!-- Intro -->
@@ -81,15 +64,14 @@ const areas = [
     </div>
   </section>
 
-  <!-- Position + staged path (dark band) -->
+  <!-- Staged path (dark band) -->
   <section class="section rt-path theme-dark" data-reveal>
     <div class="container">
       <p class="section-label">How the path runs</p>
-      <h2 class="rt-path-title">From the core outward — on the data you already have.</h2>
+      <h2 class="rt-path-title">Strengthen the core, optimize and grow, then expand and monetize.</h2>
       <p class="rt-path-lede">
-        We connect your data into one trusted base, then add AI where it earns its
-        place. Strengthen the core first, optimize where it pays, expand into new
-        revenue only when the core is ready.
+        The staged model behind the canvas. Strengthen the core first, optimize
+        where it pays, and expand into new revenue only when the core is ready.
       </p>
 
       <ol class="rt-stages" data-reveal-stagger>
@@ -105,59 +87,47 @@ const areas = [
     </div>
   </section>
 
-  <!-- Starting points -->
-  <section class="section rt-starts" data-reveal>
+  <!-- What we cover — the 12 canvas domains -->
+  <section class="section rt-domains" data-reveal>
     <div class="container">
-      <p class="section-label">Engagement starting points</p>
-      <h2 class="rt-starts-title">Where the work pays back first.</h2>
-      <p class="rt-starts-lede">
-        The effect runs across the whole business — data foundation, stock and
-        freshness, promotions and margin, customers. We start where the diagnostic
-        points, from the core outward.
+      <p class="section-label">What we cover</p>
+      <h2 class="rt-domains-title">Across the retail business.</h2>
+      <p class="rt-domains-lede">
+        The domains of the Retail AI Canvas — where AI and data create value across
+        a mid-sized retailer, from the data foundation to new revenue pools.
       </p>
 
-      <div class="rt-blocks" data-reveal-stagger>
-        {blocks.map((b) => (
-          <article class="rt-block">
-            <span class="rt-block-mark" aria-hidden="true"></span>
-            <h3 class="rt-block-lever">{b.lever}</h3>
-            <p class="rt-block-pressure">{b.pressure}</p>
-            <p class="rt-block-detail">{b.detail}</p>
+      <div class="rt-domain-grid" data-reveal-stagger>
+        {domains.map((d) => (
+          <article class="rt-domain">
+            <span class="rt-domain-tag">Stage {d.stage}</span>
+            <h3 class="rt-domain-name">{d.title}</h3>
+            <p class="rt-domain-sub">{d.sub}</p>
           </article>
         ))}
-      </div>
-
-      <div class="rt-canvas-map">
-        <div class="rt-map-col">
-          <h3 class="rt-map-h">Start from the pressure you feel</h3>
-          <ul class="rt-pressures" data-reveal-stagger>
-            {pressures.map((p) => <li>{p}</li>)}
-          </ul>
-        </div>
-        <div class="rt-map-col">
-          <h3 class="rt-map-h">Across the business</h3>
-          <ul class="rt-areas">
-            {areas.map((a) => <li>{a}</li>)}
-          </ul>
-          <p class="rt-map-note">9 business areas · 43 services in the open playbook.</p>
-        </div>
       </div>
     </div>
   </section>
 
-  <!-- The retail playbook (soft band) -->
+  <!-- Pressures (entry points) + playbook (soft band) -->
   <section class="section rt-playbook theme-soft" data-reveal>
     <div class="container">
-      <div class="rt-playbook-card">
-        <p class="rt-playbook-tag">The retail playbook</p>
-        <h2 class="rt-playbook-title">Retail AI Canvas — 43 services across 11 domains.</h2>
-        <p class="rt-playbook-body">
-          The full open playbook of where AI and data create value across a
-          mid-sized retailer — data foundation, stock, promotions, margin,
-          customers, suppliers and more. Built from real engagements, updated
-          quarterly, with an advisor that walks you through it.
-        </p>
-        <a href="https://retail.kittykat.tech" class="btn-primary" rel="noopener">Open the playbook →</a>
+      <div class="rt-pb-grid">
+        <div>
+          <p class="section-label">Start from the pressure you feel</p>
+          <ul class="rt-pressures" data-reveal-stagger>
+            {pressures.map((p) => <li>{p}</li>)}
+          </ul>
+        </div>
+        <div class="rt-playbook-card">
+          <p class="rt-playbook-tag">The retail playbook</p>
+          <h2 class="rt-playbook-title">Retail AI Canvas — 43 services across 11 domains.</h2>
+          <p class="rt-playbook-body">
+            The full open playbook, built from real engagements and updated
+            quarterly, with an advisor that walks you through it.
+          </p>
+          <a href="https://retail.kittykat.tech" class="btn-primary" rel="noopener">Open the playbook →</a>
+        </div>
       </div>
     </div>
   </section>
@@ -194,7 +164,7 @@ const areas = [
   .rt-path-title {
     font-family: var(--font-display); font-weight: 600;
     font-size: clamp(26px, 3.4vw, 40px); line-height: 1.14; letter-spacing: -0.02em;
-    color: var(--text-primary); max-width: 22ch; margin: 12px 0 16px;
+    color: var(--text-primary); max-width: 24ch; margin: 12px 0 16px;
   }
   .rt-path-lede { font-size: clamp(16px, 1.6vw, 19px); line-height: 1.6; color: var(--text-secondary); max-width: 62ch; margin-bottom: clamp(32px, 5vh, 52px); }
   .rt-stages { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr; gap: 14px; }
@@ -221,69 +191,41 @@ const areas = [
     .rt-stage-arrow { right: 50%; top: auto; bottom: -13px; transform: translateX(50%) rotate(90deg); }
   }
 
-  /* Starting points */
-  .rt-starts { padding-top: clamp(56px, 9vh, 100px); padding-bottom: clamp(48px, 7vh, 88px); }
-  .rt-starts-title {
+  /* Domains */
+  .rt-domains { padding-top: clamp(56px, 9vh, 100px); padding-bottom: clamp(48px, 7vh, 88px); }
+  .rt-domains-title {
     font-family: var(--font-display); font-weight: 600; font-size: clamp(26px, 3.4vw, 40px);
-    letter-spacing: -0.02em; color: var(--text-primary); margin: 12px 0 16px; max-width: 22ch;
+    letter-spacing: -0.02em; color: var(--text-primary); margin: 12px 0 16px;
   }
-  .rt-starts-lede { font-size: clamp(16px, 1.6vw, 19px); line-height: 1.6; color: var(--text-secondary); max-width: 66ch; margin-bottom: clamp(32px, 5vh, 52px); }
-  .rt-blocks { display: grid; grid-template-columns: 1fr; gap: 16px; }
-  @media (min-width: 720px) { .rt-blocks { grid-template-columns: 1fr 1fr; gap: 20px; } }
-  .rt-block {
+  .rt-domains-lede { font-size: clamp(16px, 1.6vw, 19px); line-height: 1.6; color: var(--text-secondary); max-width: 66ch; margin-bottom: clamp(32px, 5vh, 52px); }
+  .rt-domain-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+  @media (min-width: 640px) { .rt-domain-grid { grid-template-columns: 1fr 1fr; gap: 16px; } }
+  @media (min-width: 1000px) { .rt-domain-grid { grid-template-columns: repeat(3, 1fr); } }
+  .rt-domain {
     background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
-    padding: 26px 28px 24px; transition: border-color .2s ease, transform .2s ease;
+    padding: 22px 24px 24px; transition: border-color .2s ease, transform .2s ease;
   }
-  .rt-block:hover { border-color: var(--border-hover); transform: translateY(-2px); }
-  .rt-block-mark { display: block; width: 34px; height: 4px; border-radius: 4px; background: var(--accent-gradient); margin-bottom: 16px; }
-  .rt-block-lever {
-    font-family: var(--font-display); font-weight: 600; font-size: clamp(18px, 1.9vw, 22px);
-    letter-spacing: -0.015em; color: var(--text-primary); margin-bottom: 10px; line-height: 1.2;
-  }
-  .rt-block-pressure { font-size: 15px; line-height: 1.5; color: var(--text-muted); font-style: italic; margin-bottom: 12px; }
-  .rt-block-detail { font-size: 15px; line-height: 1.6; color: var(--text-secondary); margin: 0; }
+  .rt-domain:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+  .rt-domain-tag { display: inline-block; font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 10px; }
+  .rt-domain-name { font-family: var(--font-display); font-weight: 600; font-size: 18px; letter-spacing: -0.01em; color: var(--text-primary); margin-bottom: 8px; line-height: 1.2; }
+  .rt-domain-sub { font-size: 14px; line-height: 1.55; color: var(--text-secondary); margin: 0; }
 
-  /* Canvas map — pressures (entry points) + business areas (coverage) */
-  .rt-canvas-map {
-    margin-top: clamp(32px, 5vh, 56px);
-    padding-top: clamp(32px, 5vh, 48px);
-    border-top: 1px solid var(--border);
-    display: grid; grid-template-columns: 1fr; gap: clamp(28px, 4vw, 48px);
-  }
-  @media (min-width: 860px) { .rt-canvas-map { grid-template-columns: 1.1fr 0.9fr; } }
-  .rt-map-h {
-    font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--text-muted); margin-bottom: 16px;
-  }
+  /* Pressures + playbook (soft) */
+  .rt-playbook { padding-top: clamp(48px, 7vh, 88px); padding-bottom: clamp(48px, 7vh, 88px); }
+  .rt-pb-grid { display: grid; grid-template-columns: 1fr; gap: clamp(28px, 4vw, 48px); align-items: start; }
+  @media (min-width: 880px) { .rt-pb-grid { grid-template-columns: 1fr 1fr; } }
   .rt-pressures { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
-  @media (min-width: 520px) { .rt-pressures { grid-template-columns: 1fr 1fr; } }
   .rt-pressures li {
     position: relative; padding: 11px 14px 11px 34px;
     background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
     font-size: 14px; line-height: 1.4; color: var(--text-primary);
-    transition: border-color .18s ease;
   }
-  .rt-pressures li:hover { border-color: var(--border-hover); }
-  .rt-pressures li::before {
-    content: '→'; position: absolute; left: 14px; top: 11px; color: var(--accent); font-weight: 600;
-  }
-  .rt-areas { list-style: none; padding: 0; margin: 0 0 14px; display: flex; flex-wrap: wrap; gap: 8px; }
-  .rt-areas li {
-    font-size: 13px; color: var(--text-secondary); background: var(--accent-dim);
-    border-radius: 100px; padding: 7px 14px; line-height: 1.3;
-  }
-  .rt-map-note { font-size: 13px; color: var(--text-muted); }
-
-  /* Playbook callout (soft) */
-  .rt-playbook { padding-top: clamp(48px, 7vh, 88px); padding-bottom: clamp(48px, 7vh, 88px); }
+  .rt-pressures li::before { content: '→'; position: absolute; left: 14px; top: 11px; color: var(--accent); font-weight: 600; }
   .rt-playbook-card {
     background: var(--surface); border: 1px solid var(--border); border-radius: 18px;
-    padding: clamp(28px, 4.5vw, 52px); max-width: 860px;
+    padding: clamp(26px, 3.5vw, 40px); align-self: start;
   }
   .rt-playbook-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 14px; }
-  .rt-playbook-title {
-    font-family: var(--font-display); font-weight: 600; font-size: clamp(24px, 3vw, 36px);
-    letter-spacing: -0.02em; color: var(--text-primary); margin-bottom: 16px; max-width: 22ch; line-height: 1.14;
-  }
-  .rt-playbook-body { font-size: clamp(16px, 1.6vw, 18px); line-height: 1.6; color: var(--text-secondary); max-width: 60ch; margin-bottom: 26px; }
+  .rt-playbook-title { font-family: var(--font-display); font-weight: 600; font-size: clamp(22px, 2.6vw, 30px); letter-spacing: -0.02em; color: var(--text-primary); margin-bottom: 14px; line-height: 1.16; max-width: 20ch; }
+  .rt-playbook-body { font-size: clamp(15px, 1.5vw, 17px); line-height: 1.6; color: var(--text-secondary); max-width: 52ch; margin-bottom: 24px; }
 </style>
