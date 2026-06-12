@@ -58,6 +58,18 @@ const curves = [
     <!-- rises into an outcome -->
     <path class="hv-rise" d="M714 212 C 800 180, 850 150, 902 100" stroke="url(#hvGrad)" stroke-width="2" stroke-linecap="round" pathlength="1"/>
     <circle class="hv-out" cx="902" cy="100" r="8" fill="url(#hvGrad)"/>
+
+    <!-- labels: read the story left → right -->
+    <g class="hv-labels" font-family="'DM Sans', system-ui, sans-serif">
+      <text x="86" y="96" font-size="15" font-weight="700" letter-spacing="2.2" fill="#86868B">QUESTIONS &amp; DATA</text>
+      <text x="86" y="118" font-size="13.5" fill="#9C9CA3">scattered across systems</text>
+
+      <text x="700" y="300" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="2" fill="#C2410C">A PRACTICAL SOLUTION</text>
+      <text x="700" y="320" text-anchor="middle" font-size="13.5" fill="#9C9CA3">on connected data</text>
+
+      <text x="902" y="64" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="2" fill="#86868B">OUTCOME</text>
+      <text x="902" y="83" text-anchor="middle" font-size="13.5" fill="#9C9CA3">that runs</text>
+    </g>
   </svg>
 </figure>
 
@@ -79,6 +91,7 @@ const curves = [
     .hv-node, .hv-node-ring, .hv-glow { opacity: 0; transform-box: fill-box; transform-origin: center; animation: hvPop .6s cubic-bezier(.2,.8,.3,1) .7s forwards; }
     .hv-rise { stroke-dasharray: 1; stroke-dashoffset: 1; animation: hvDraw .7s cubic-bezier(.2,.7,.3,1) .95s forwards; }
     .hv-out { opacity: 0; transform-box: fill-box; transform-origin: center; animation: hvPop .5s cubic-bezier(.2,.8,.3,1) 1.5s forwards; }
+    .hv-labels { opacity: 0; animation: hvFade .6s ease 1.05s forwards; }
   }
   @keyframes hvDraw { to { stroke-dashoffset: 0; } }
   @keyframes hvFade { to { opacity: 1; } }
