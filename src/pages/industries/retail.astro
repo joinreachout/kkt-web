@@ -1,29 +1,37 @@
 ---
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import CTA from '~/components/CTA.astro';
-import StartingPoints from '~/components/StartingPoints.astro';
+import MediaSlot from '~/components/MediaSlot.astro';
 
-const startingPoints = [
+// Content kept from the retail runbook / canvas. New design language mirrors
+// the fuel-retail page.
+const blocks = [
   {
-    pressure: 'Store reports nobody fully trusts, margin views that do not agree, loyalty data that never reaches the buying team.',
     lever: 'One trusted data base',
+    pressure: 'Store reports nobody fully trusts, margin views that do not agree, loyalty data that never reaches the buying team.',
     detail: 'POS, ERP, loyalty, stock, supplier, finance and master data connected into one governed layer — the base every later decision depends on.',
   },
   {
-    pressure: 'Poor fresh ordering — too much of the wrong stock while you lose sales on the right products.',
     lever: 'Forecasting, replenishment & freshness',
+    pressure: 'Poor fresh ordering — too much of the wrong stock while you lose sales on the right products.',
     detail: 'Demand forecasting, availability protection and waste control, so the shelf matches real demand instead of last period.',
   },
   {
-    pressure: 'Unclear promo ROI and inconsistent margin — commercial money subsidizing demand that would have happened anyway.',
     lever: 'Promotion & margin intelligence',
+    pressure: 'Unclear promo ROI and inconsistent margin — commercial money subsidizing demand that would have happened anyway.',
     detail: 'Where promotions and pricing actually create return, and a clearer forward view of where profit and cash are moving.',
   },
   {
-    pressure: 'Loyalty, basket and feedback data sit unused — customers treated as one average, not as different groups.',
     lever: 'Customer value & loyalty',
+    pressure: 'Loyalty, basket and feedback data sit unused — customers treated as one average, not as different groups.',
     detail: 'Segmentation, retention and basket growth that follow from knowing who actually drives the business.',
   },
+];
+
+const stages = [
+  { tag: 'Stage 1', name: 'Strengthen core operations', body: 'Improve visibility, execution, stock, margin, supplier control, reporting, loss prevention and workforce productivity in the current business.' },
+  { tag: 'Stage 2', name: 'Optimize and grow', body: 'Use customer intelligence, promotion analytics and pricing discipline to grow more profitably from the existing base.' },
+  { tag: 'Stage 3', name: 'Expand and monetize', body: 'Optional strategic expansion once the core is ready: retail media, supplier activation, paid loyalty, partner ecosystems.' },
 ];
 ---
 
@@ -32,263 +40,177 @@ const startingPoints = [
   description="AI and data for mid-sized retailers — one trusted data foundation, then forecasting, promotions, margin and loyalty. The full playbook at retail.kittykat.tech."
   ogImage="/og/retail.png"
 >
-  <article class="prose-page">
+  <!-- Intro -->
+  <section class="section rt-intro" data-reveal>
     <div class="container">
-      <div class="section-label">Industries — Retail</div>
-      <h1 class="h1-page">For mid-sized retailers.</h1>
-      <p class="lede">
-        Your data is already there — POS, ERP, loyalty, stock, supplier,
-        finance, master data. In mid-sized retail the gaps are not abstract IT
-        problems: unclear promo ROI, inconsistent margin views, poor fresh
-        ordering, supplier disputes, and store reports nobody fully trusts.
+      <p class="section-label">Industries — Retail</p>
+      <h1 class="rt-h1">For mid-sized <span class="grad">retailers</span>.</h1>
+      <p class="rt-lede">
+        Your data is already there — POS, ERP, loyalty, stock, supplier, finance,
+        master data. In mid-sized retail the gaps are not abstract IT problems:
+        unclear promo ROI, inconsistent margin views, poor fresh ordering, supplier
+        disputes, and store reports nobody fully trusts.
+      </p>
+      <MediaSlot class="rt-intro-media" ratio="16 / 7" kind="image" label="Retail — store floor, shelf, or the analytics behind it" />
+    </div>
+  </section>
+
+  <!-- Position + staged path (dark band) -->
+  <section class="section rt-path theme-dark" data-reveal>
+    <div class="container">
+      <p class="section-label">How the path runs</p>
+      <h2 class="rt-path-title">From the core outward — on the data you already have.</h2>
+      <p class="rt-path-lede">
+        We connect your data into one trusted base, then add AI where it earns its
+        place. Strengthen the core first, optimize where it pays, expand into new
+        revenue only when the core is ready.
       </p>
 
-      <section data-reveal class="ind-pullquote">
-        <blockquote>
-          <p>
-            We connect it into one trusted base, then add AI where it earns
-            its place — built bottom-up, from the core outward, on the data
-            you already have.
-          </p>
-        </blockquote>
-      </section>
-
-      <section data-reveal class="retail-path">
-        <div class="section-label">How the path runs</div>
-        <h2 class="h2-section">From the core outward.</h2>
-        <p class="retail-path-lede">
-          The staged model behind the playbook — starting from business
-          reality, not a technology catalogue. Strengthen the core first,
-          optimize where it pays, expand into new revenue only when the core
-          is ready.
-        </p>
-        <div class="rpath" data-reveal-stagger>
-          <div class="rpath-step">
-            <span class="rpath-stage">Stage 1</span>
-            <h3 class="rpath-name">Strengthen core operations</h3>
-            <p>Improve visibility, execution, stock, margin, supplier control,
-            reporting, loss prevention and workforce productivity in the
-            current business.</p>
-          </div>
-          <span class="rpath-arrow" aria-hidden="true">&rarr;</span>
-          <div class="rpath-step">
-            <span class="rpath-stage">Stage 2</span>
-            <h3 class="rpath-name">Optimize and grow</h3>
-            <p>Use customer intelligence, promotion analytics and pricing
-            discipline to grow more profitably from the existing base.</p>
-          </div>
-          <span class="rpath-arrow" aria-hidden="true">&rarr;</span>
-          <div class="rpath-step rpath-step-accent">
-            <span class="rpath-stage">Stage 3</span>
-            <h3 class="rpath-name">Expand and monetize</h3>
-            <p>Optional strategic expansion once the core is ready: retail
-            media, supplier activation, paid loyalty, partner ecosystems.</p>
-          </div>
-        </div>
-      </section>
-
-      <section data-reveal class="callout">
-        <div class="callout-label">The retail playbook</div>
-        <h2 class="callout-title">Retail AI Canvas — 43 services across 11 domains.</h2>
-        <p class="callout-body">
-          The full open playbook of where AI and data create value across a
-          mid-sized retailer — data foundation, stock, promotions,
-          margin, customers, suppliers and more. Built from real engagements,
-          updated quarterly, with an advisor that walks you through it.
-        </p>
-        <p>
-          <a href="https://retail.kittykat.tech" class="btn-primary" rel="noopener">
-            Open the playbook →
-          </a>
-        </p>
-      </section>
-
-      <section data-reveal class="starts">
-        <div class="section-label">Engagement starting points</div>
-        <h2 class="h2-section">Where the work pays back first.</h2>
-        <p class="starts-lede">
-          The effect runs across the whole business — data foundation, stock
-          and freshness, promotions and margin, customers. We start where the
-          diagnostic points, from the core outward.
-        </p>
-
-        <StartingPoints items={startingPoints} />
-
-        <p class="starts-tail">
-          The full playbook lives at
-          <a href="https://retail.kittykat.tech" rel="noopener">retail.kittykat.tech</a>.
-        </p>
-      </section>
+      <ol class="rt-stages" data-reveal-stagger>
+        {stages.map((s, i) => (
+          <li class={`rt-stage${i === stages.length - 1 ? ' rt-stage-frontier' : ''}`}>
+            <span class="rt-stage-tag">{s.tag}</span>
+            <h3 class="rt-stage-name">{s.name}</h3>
+            <p>{s.body}</p>
+            {i < stages.length - 1 && <span class="rt-stage-arrow" aria-hidden="true">→</span>}
+          </li>
+        ))}
+      </ol>
     </div>
+  </section>
 
-    <CTA
-      heading="Retail diagnostic, two weeks."
-      body="A focused look at where the playbook applies to your business — what to ship first, what to leave alone, what proof you need to commit."
-    />
-  </article>
+  <!-- Starting points -->
+  <section class="section rt-starts" data-reveal>
+    <div class="container">
+      <p class="section-label">Engagement starting points</p>
+      <h2 class="rt-starts-title">Where the work pays back first.</h2>
+      <p class="rt-starts-lede">
+        The effect runs across the whole business — data foundation, stock and
+        freshness, promotions and margin, customers. We start where the diagnostic
+        points, from the core outward.
+      </p>
+
+      <div class="rt-blocks" data-reveal-stagger>
+        {blocks.map((b) => (
+          <article class="rt-block">
+            <span class="rt-block-mark" aria-hidden="true"></span>
+            <h3 class="rt-block-lever">{b.lever}</h3>
+            <p class="rt-block-pressure">{b.pressure}</p>
+            <p class="rt-block-detail">{b.detail}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- The retail playbook (soft band) -->
+  <section class="section rt-playbook theme-soft" data-reveal>
+    <div class="container">
+      <div class="rt-playbook-card">
+        <p class="rt-playbook-tag">The retail playbook</p>
+        <h2 class="rt-playbook-title">Retail AI Canvas — 43 services across 11 domains.</h2>
+        <p class="rt-playbook-body">
+          The full open playbook of where AI and data create value across a
+          mid-sized retailer — data foundation, stock, promotions, margin,
+          customers, suppliers and more. Built from real engagements, updated
+          quarterly, with an advisor that walks you through it.
+        </p>
+        <a href="https://retail.kittykat.tech" class="btn-primary" rel="noopener">Open the playbook →</a>
+      </div>
+    </div>
+  </section>
+
+  <CTA
+    heading="Retail diagnostic, two weeks."
+    body="A focused look at where the playbook applies to your business — what to ship first, what to leave alone, what proof you need to commit."
+  />
 </BaseLayout>
 
 <style>
-  .prose-page {
-    padding-top: clamp(40px, 6vh, 72px);
-  }
-  .section-label { margin-bottom: 18px; }
-  .h1-page {
-    font-family: var(--font-display);
-    font-style: normal;
-    font-weight: 600;
-    font-size: clamp(32px, 4.5vw, 48px);
-    line-height: 1.16;
-    margin-bottom: 18px;
-    letter-spacing: -0.01em;
-    max-width: 22ch;
-  }
-  .lede {
-    font-size: clamp(17px, 2vw, 20px);
-    color: var(--text-secondary);
-    line-height: 1.55;
-    max-width: 56ch;
-    margin-bottom: 48px;
-  }
-  .ind-pullquote {
-    margin: 8px 0 40px;
-    padding: 28px 32px;
-    background: var(--surface-alt);
-    border-left: 3px solid var(--accent);
-    border-radius: 0 4px 4px 0;
-    max-width: 760px;
-  }
-  .ind-pullquote blockquote { margin: 0; padding: 0; }
-  .ind-pullquote p {
-    font-family: var(--font-display);
-    font-style: normal;
-    font-weight: 600;
-    font-size: clamp(20px, 2.6vw, 28px);
-    line-height: 1.3;
-    color: var(--text-primary);
-    margin: 0;
-    max-width: 30ch;
+  .section-label { margin-bottom: 16px; }
+  .grad {
+    background: var(--accent-gradient);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
   }
 
-  .callout {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: clamp(24px, 4vw, 36px);
-    max-width: 720px;
-    margin-bottom: 32px;
+  /* Intro */
+  .rt-intro { padding-top: clamp(48px, 8vh, 104px); padding-bottom: clamp(40px, 6vh, 72px); }
+  .rt-h1 {
+    font-family: var(--font-display); font-weight: 600;
+    font-size: clamp(36px, 5.4vw, 66px); line-height: 1.05; letter-spacing: -0.03em;
+    color: var(--text-primary); max-width: 16ch; margin-bottom: 22px;
   }
-  .callout-label {
-    font-size: 11px;
-    color: var(--accent-text);
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    margin-bottom: 12px;
+  .rt-lede {
+    font-size: clamp(17px, 1.8vw, 21px); line-height: 1.55; color: var(--text-secondary);
+    max-width: 64ch; margin-bottom: clamp(32px, 5vh, 56px);
   }
-  .callout-title {
-    font-family: var(--font-display);
-    font-style: normal;
-    font-weight: 600;
-    font-size: clamp(22px, 3vw, 30px);
-    line-height: 1.2;
-    color: var(--text-primary);
-    margin-bottom: 14px;
-    max-width: 22ch;
+  .rt-intro-media { max-width: 1000px; }
+
+  /* Staged path (dark) */
+  .rt-path { padding-top: clamp(56px, 9vh, 104px); padding-bottom: clamp(56px, 9vh, 104px); }
+  .rt-path-title {
+    font-family: var(--font-display); font-weight: 600;
+    font-size: clamp(26px, 3.4vw, 40px); line-height: 1.14; letter-spacing: -0.02em;
+    color: var(--text-primary); max-width: 22ch; margin: 12px 0 16px;
   }
-  .callout-body {
-    margin-bottom: 20px;
-    max-width: 56ch;
+  .rt-path-lede { font-size: clamp(16px, 1.6vw, 19px); line-height: 1.6; color: var(--text-secondary); max-width: 62ch; margin-bottom: clamp(32px, 5vh, 52px); }
+  .rt-stages { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr; gap: 14px; }
+  @media (min-width: 760px) { .rt-stages { grid-template-columns: repeat(3, 1fr); gap: 18px; } }
+  .rt-stage {
+    position: relative; background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 24px 24px 26px;
+  }
+  .rt-stage-frontier { border: 1.5px solid transparent; background: linear-gradient(var(--surface), var(--surface)) padding-box, var(--accent-gradient) border-box; }
+  .rt-stage-tag {
+    display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--accent-text); margin-bottom: 12px;
+  }
+  .rt-stage-name {
+    font-family: var(--font-display); font-weight: 600; font-size: clamp(19px, 2vw, 23px);
+    letter-spacing: -0.015em; color: var(--text-primary); margin-bottom: 10px; line-height: 1.2;
+  }
+  .rt-stage p { font-size: 15px; line-height: 1.55; color: var(--text-secondary); margin: 0; }
+  .rt-stage-arrow {
+    position: absolute; right: -13px; top: 50%; transform: translateY(-50%);
+    color: var(--accent); font-size: 18px; line-height: 1; z-index: 1;
+  }
+  @media (max-width: 759px) {
+    .rt-stage-arrow { right: 50%; top: auto; bottom: -13px; transform: translateX(50%) rotate(90deg); }
   }
 
-  .retail-path {
-    margin-top: 8px;
-    margin-bottom: 8px;
-    padding-top: 40px;
-    border-top: 1px solid var(--border);
+  /* Starting points */
+  .rt-starts { padding-top: clamp(56px, 9vh, 100px); padding-bottom: clamp(48px, 7vh, 88px); }
+  .rt-starts-title {
+    font-family: var(--font-display); font-weight: 600; font-size: clamp(26px, 3.4vw, 40px);
+    letter-spacing: -0.02em; color: var(--text-primary); margin: 12px 0 16px; max-width: 22ch;
   }
-  .retail-path .section-label { margin-bottom: 14px; }
-  .retail-path h2 { margin-bottom: 14px; max-width: 24ch; }
-  .retail-path-lede { max-width: 62ch; margin-bottom: 28px; color: var(--text-secondary); }
-  .rpath { display: flex; align-items: stretch; gap: 8px; }
-  .rpath-step {
-    flex: 1 1 0;
-    min-width: 0;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 20px 22px;
+  .rt-starts-lede { font-size: clamp(16px, 1.6vw, 19px); line-height: 1.6; color: var(--text-secondary); max-width: 66ch; margin-bottom: clamp(32px, 5vh, 52px); }
+  .rt-blocks { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 720px) { .rt-blocks { grid-template-columns: 1fr 1fr; gap: 20px; } }
+  .rt-block {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    padding: 26px 28px 24px; transition: border-color .2s ease, transform .2s ease;
   }
-  .rpath-step-accent { background: var(--surface-alt); border-left: 3px solid var(--accent); }
-  .rpath-stage {
-    display: block;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.16em;
-    font-weight: 600;
-    color: var(--accent-text);
-    margin-bottom: 10px;
+  .rt-block:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+  .rt-block-mark { display: block; width: 34px; height: 4px; border-radius: 4px; background: var(--accent-gradient); margin-bottom: 16px; }
+  .rt-block-lever {
+    font-family: var(--font-display); font-weight: 600; font-size: clamp(18px, 1.9vw, 22px);
+    letter-spacing: -0.015em; color: var(--text-primary); margin-bottom: 10px; line-height: 1.2;
   }
-  .rpath-name {
-    font-family: var(--font-display);
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    color: var(--text-primary);
-    margin: 0 0 10px;
-    line-height: 1.2;
-  }
-  .rpath-step p { font-size: 14px; line-height: 1.55; color: var(--text-secondary); margin: 0; max-width: 42ch; }
-  .rpath-arrow { align-self: center; flex: 0 0 auto; color: var(--text-muted); font-size: 18px; line-height: 1; }
-  @media (max-width: 720px) {
-    .rpath { flex-direction: column; gap: 6px; }
-    .rpath-arrow { transform: rotate(90deg); padding: 2px 0; }
-  }
+  .rt-block-pressure { font-size: 15px; line-height: 1.5; color: var(--text-muted); font-style: italic; margin-bottom: 12px; }
+  .rt-block-detail { font-size: 15px; line-height: 1.6; color: var(--text-secondary); margin: 0; }
 
-  .starts {
-    margin-top: 56px;
-    padding-top: 40px;
-    border-top: 1px solid var(--border);
+  /* Playbook callout (soft) */
+  .rt-playbook { padding-top: clamp(48px, 7vh, 88px); padding-bottom: clamp(48px, 7vh, 88px); }
+  .rt-playbook-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 18px;
+    padding: clamp(28px, 4.5vw, 52px); max-width: 860px;
   }
-  .starts .section-label { margin-bottom: 14px; }
-  .starts h2 { margin-bottom: 18px; max-width: 24ch; }
-  .starts-lede {
-    max-width: 60ch;
-    margin-bottom: 32px;
+  .rt-playbook-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 14px; }
+  .rt-playbook-title {
+    font-family: var(--font-display); font-weight: 600; font-size: clamp(24px, 3vw, 36px);
+    letter-spacing: -0.02em; color: var(--text-primary); margin-bottom: 16px; max-width: 22ch; line-height: 1.14;
   }
-  .starts-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 18px;
-    margin-bottom: 24px;
-  }
-  @media (min-width: 720px) {
-    .starts-grid { grid-template-columns: 1fr 1fr; }
-  }
-  .start-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 22px 24px;
-  }
-  .start-title {
-    font-family: var(--font-display);
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    color: var(--text-primary);
-    margin-bottom: 10px;
-  }
-  .start-card p { font-size: 15px; max-width: 50ch; }
-  .starts-tail {
-    font-size: 14px;
-    color: var(--text-muted);
-    max-width: 60ch;
-  }
-  .starts-tail a {
-    color: var(--text-primary);
-    font-weight: 500;
-    text-decoration: none;
-  }
-  .starts-tail a:hover { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--accent); }
+  .rt-playbook-body { font-size: clamp(16px, 1.6vw, 18px); line-height: 1.6; color: var(--text-secondary); max-width: 60ch; margin-bottom: 26px; }
 </style>
