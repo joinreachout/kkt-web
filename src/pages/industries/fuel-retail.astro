@@ -1,431 +1,273 @@
 ---
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import CTA from '~/components/CTA.astro';
-import StartingPoints from '~/components/StartingPoints.astro';
+import MediaSlot from '~/components/MediaSlot.astro';
 
-// The fuel network economy — the canvas A–G blocks. Optimus is A+B,
-// one embodiment; the surface is the whole economy.
-const startingPoints = [
+// The fuel network economy — the canvas A–G blocks. Content kept from the
+// fuel-retail runbook; Optimus is one embodiment (A+B), not the headline.
+const blocks = [
   {
-    pressure: 'Procurement eats the morning, and margin is something you read after the fact.',
     lever: 'Fuel: procurement, price & margin',
-    detail: 'Procurement and price run as one commercial loop — forecast the need, choose supplier and moment, account for the full landed cost of a batch, set price-at-pump by market and demand. Focus: fewer stockouts and surpluses, less overpay, better margin, faster commercial calls.',
+    pressure: 'Procurement eats the morning, and margin is something you read after the fact.',
+    detail: 'Procurement and price run as one commercial loop — forecast the need, choose supplier and moment, account for the full landed cost of a batch, set price-at-pump by market and demand. Fewer stockouts and surpluses, less overpay, better margin, faster commercial calls.',
   },
   {
-    pressure: 'Batches go dark in transit; railcars sit, fines accrue, dispatch is manual.',
     lever: 'Logistics & fuel supply',
-    detail: 'Fuel supply made manageable end-to-end — batch movement, delay risk, acceptance discrepancies, railcars and demurrage, depot operations, station delivery, trip execution. Focus: fewer losses, less idle time and fines, less manual dispatch.',
+    pressure: 'Batches go dark in transit; railcars sit, fines accrue, dispatch is manual.',
+    detail: 'Fuel supply made manageable end-to-end — batch movement, delay risk, acceptance discrepancies, railcars and demurrage, depot operations, station delivery, trip execution. Fewer losses, less idle time and fines, less manual dispatch.',
   },
   {
-    pressure: 'The network number hides where a station leaks money.',
     lever: 'Stations, stores & cafés',
-    detail: 'The station run as a profit point, not only an operational object — underperformance, queues and lost traffic, dispenser and POS violations, shift work, equipment, assortment, write-offs, store conversion. Focus: fewer operational losses, higher station revenue, better customer experience.',
+    pressure: 'The network number hides where a station leaks money.',
+    detail: 'The station run as a profit point, not only an operational object — underperformance, queues and lost traffic, dispenser and POS violations, shift work, equipment, assortment, write-offs, store conversion. Fewer operational losses, higher station revenue, better customer experience.',
   },
   {
-    pressure: 'The customer base and B2B portfolio drift, and discounts leak margin.',
     lever: 'Customers, loyalty & B2B',
-    detail: 'The customer base and B2B portfolio turned into a managed source of growth — customer value, churn, frequency and check, promo, reviews, retail media, corporate-client profitability. Focus: higher retention, more margin per customer, fewer wasted discounts, a stronger loyalty program.',
+    pressure: 'The customer base and B2B portfolio drift, and discounts leak margin.',
+    detail: 'The customer base and B2B portfolio turned into a managed source of growth — customer value, churn, frequency and check, promo, reviews, retail media, corporate-client profitability. Higher retention, more margin per customer, fewer wasted discounts, a stronger loyalty program.',
   },
   {
-    pressure: 'Deviations surface at the month-end close, once they are already a problem.',
     lever: 'Finance, money & control',
-    detail: 'Finance sees the business as a live picture and finds the cause of a deviation faster — margin, costs, cash, receivables, payment risks, financial losses and policy violations become visible before they become a problem. Focus: faster management decisions, fewer leaks, better cash control, trust in the numbers.',
+    pressure: 'Deviations surface at the month-end close, once they are already a problem.',
+    detail: 'Finance sees the business as a live picture and finds the cause of a deviation faster — margin, costs, cash, receivables, payment risks, financial losses and policy violations become visible before they become a problem. Faster decisions, fewer leaks, better cash control, trust in the numbers.',
   },
   {
-    pressure: 'Back-office routine piles up, and violations show up only at the audit.',
     lever: 'Supporting functions',
-    detail: 'The routine taken out and control strengthened across the functions that support the business — HR, legal, MTO procurement, contractors, internal control, documents and back-office. Focus: less manual work, faster processes, clearer spend, and violations visible before the audit, not after.',
+    pressure: 'Back-office routine piles up, and violations show up only at the audit.',
+    detail: 'The routine taken out and control strengthened across the functions that support the business — HR, legal, MTO procurement, contractors, internal control, documents and back-office. Less manual work, faster processes, clearer spend, violations visible before the audit.',
   },
   {
-    pressure: 'Every department runs its own numbers, and AI gets bolted on point by point.',
     lever: 'Data & processes — the foundation',
-    detail: 'The foundation analytics, automation and AI run on — one data base, quality and availability, reporting, knowledge search, office AI tools, process re-engineering and agentic solutions. Focus: one version of truth, less manual work, and AI that scales systemically, not point by point.',
+    pressure: 'Every department runs its own numbers, and AI gets bolted on point by point.',
+    detail: 'The foundation analytics, automation and AI run on — one data base, quality and availability, reporting, knowledge search, office AI tools, process re-engineering and agentic solutions. One version of truth, less manual work, AI that scales systemically.',
   },
+];
+
+const stages = [
+  { tag: 'Essential', name: 'See & control, now', body: 'Bring the picture together on data you already have — need, stock, supplier offers, your price against the market. Cheap, fast, no models.' },
+  { tag: 'Advanced', name: 'Forecast & optimize', body: 'Forecast demand, find the right volume and moment, price by local sensitivity. Builds on the foundation beneath it.' },
+  { tag: 'Frontier', name: 'Decisions under AI', body: 'Agents prepare the order or hold price sharp within your rules — the person sets the bounds and approves. Never AI on its own.' },
 ];
 ---
 
 <BaseLayout
   title="Fuel retail — KKT"
-  description="AI and data for independent fuel networks — procurement, margin, logistics, stations. Optimus in pilot at Red Petroleum, Kyrgyzstan."
+  description="AI and data for independent fuel networks — procurement and margin, logistics, stations, customers, finance and control. Bottom-up, on the data you already have."
   ogImage="/og/fuel-retail.png"
 >
-  <article class="prose-page">
+  <!-- Intro -->
+  <section class="section fr-intro" data-reveal>
     <div class="container">
-      <div class="section-label">Industries — Fuel retail</div>
-      <h1 class="h1-page">For independent fuel networks.</h1>
-      <p class="lede">
-        Your network already has the data — ERP, POS, loyalty, GPS, depots,
-        BI, spreadsheets. What is usually missing is connectedness: the
-        network runs on people, calls, manual reconciliation and the
-        experience of individual managers, while the data you have piled up
-        does not yet work for your decisions.
+      <p class="section-label">Industries — Fuel retail</p>
+      <h1 class="fr-h1">For independent <span class="grad">fuel networks</span>.</h1>
+      <p class="fr-lede">
+        Your network already has the data — ERP, POS, loyalty, GPS, depots, BI,
+        spreadsheets. What is usually missing is connectedness: the network runs
+        on people, calls, manual reconciliation and the experience of individual
+        managers, while the data you have piled up does not yet work for your
+        decisions.
+      </p>
+      <MediaSlot class="fr-intro-media" ratio="16 / 7" kind="image" label="Fuel — station forecourt, depot, or the network at a glance" />
+    </div>
+  </section>
+
+  <!-- Position + maturity path (dark band) -->
+  <section class="section fr-path theme-dark" data-reveal>
+    <div class="container">
+      <p class="section-label">How the path runs</p>
+      <h2 class="fr-path-title">AI earns its place on top of a foundation — so the path runs bottom-up.</h2>
+      <p class="fr-path-lede">
+        AI agents are not installed on top of chaos. Every block of the network
+        economy climbs the same way — start small on data you already have, build
+        the foundation as you go. You do not need to be at the top to begin.
       </p>
 
-      <section data-reveal class="ind-pullquote">
-        <blockquote>
-          <p>
-            AI agents are not installed on top of chaos. They earn their
-            place once the data, rules, forecasts and control beneath them
-            are built — so the path runs bottom-up, on the data you already
-            have.
-          </p>
-        </blockquote>
-      </section>
-
-      <section data-reveal class="proof-strip" data-reveal-stagger>
-        <div class="proof-card">
-          <div class="proof-num">250</div>
-          <div class="proof-label">stations in the Optimus pilot at Red Petroleum</div>
-        </div>
-        <div class="proof-card">
-          <div class="proof-num">Pilot</div>
-          <div class="proof-label">live trial at Red Petroleum, not a slide</div>
-        </div>
-        <div class="proof-card">
-          <div class="proof-num">KG</div>
-          <div class="proof-label">independent network, Kyrgyzstan</div>
-        </div>
-      </section>
-
-      <section data-reveal class="cta-row">
-        <a href="/solutions/optimus" class="btn-primary">See Optimus →</a>
-        <a href="/case-studies/red-petroleum" class="btn-ghost">Read the Red Petroleum case</a>
-      </section>
-
-      <section data-reveal class="fuel-path">
-        <div class="section-label">How the path runs</div>
-        <h2 class="h2-section">Bottom-up, on data you already have.</h2>
-        <p class="fuel-path-lede">
-          Every block of the network economy climbs the same way — start
-          small on existing data, build the foundation as you go. You do
-          not need to be at the top to begin.
-        </p>
-        <div class="fpath" data-reveal-stagger>
-          <div class="fpath-step">
-            <span class="fpath-stage">Essential</span>
-            <h3 class="fpath-name">See &amp; control, now</h3>
-            <p>Bring the picture together on data you already have — need,
-            stock, supplier offers, your price against the market. Cheap,
-            fast, no models.</p>
-          </div>
-          <span class="fpath-arrow" aria-hidden="true">&rarr;</span>
-          <div class="fpath-step">
-            <span class="fpath-stage">Advanced</span>
-            <h3 class="fpath-name">Forecast &amp; optimize</h3>
-            <p>Forecast demand, find the right volume and moment, price by
-            local sensitivity. Builds on the foundation beneath it.</p>
-          </div>
-          <span class="fpath-arrow" aria-hidden="true">&rarr;</span>
-          <div class="fpath-step fpath-step-accent">
-            <span class="fpath-stage">Frontier</span>
-            <h3 class="fpath-name">Decisions under AI</h3>
-            <p>Agents prepare the order or hold price sharp within your
-            rules — the person sets the bounds and approves. Never AI on
-            its own.</p>
-          </div>
-        </div>
-      </section>
-
-      <section data-reveal class="starts">
-        <div class="section-label">Engagement starting points</div>
-        <h2 class="h2-section">Across the whole network economy.</h2>
-        <p class="starts-lede">
-          The effect is across the whole network economy — procurement and
-          margin, pricing, logistics, stations, finance and control. We
-          start where the diagnostic points. Optimus is one embodiment of
-          this: the procurement-and-margin engine.
-        </p>
-
-        <StartingPoints items={startingPoints} />
-
-        <p class="starts-tail">
-          See the full surface on
-          <a href="/solutions/optimus">Optimus</a>.
-        </p>
-      </section>
-
-      <section data-reveal class="cdn-preview">
-        <div class="cdn-tag">Cost of doing nothing &middot; Phase 1.5</div>
-        <h3 class="cdn-title">Quantify the gap to top-quartile peers.</h3>
-        <p>
-          A single-page calculator: 6–8 inputs, three quantified gap
-          scenarios (conservative / median / aggressive), every number
-          with a source. Currently in benchmark calibration. The
-          methodology is already public.
-        </p>
-        <p class="cdn-links">
-          <a href="/methods/cost-of-doing-nothing" class="cdn-link">Read the methodology →</a>
-          <span class="cdn-sep">·</span>
-          <a href="/tools/cost-of-doing-nothing" class="cdn-link">Try the v0 preview →</a>
-        </p>
-      </section>
-      <section data-reveal class="howwework">
-        <div class="section-label">How we work</div>
-        <h2 class="h2-section">Built around your business economics.</h2>
-        <ul class="hww-list" data-reveal-stagger>
-          <li>
-            <div class="hww-k">From quick wins to systemic transformation</div>
-            <p>Start with clear use cases, then build out the data, processes, models and agentic systems behind them.</p>
+      <ol class="fr-stages" data-reveal-stagger>
+        {stages.map((s, i) => (
+          <li class={`fr-stage${i === stages.length - 1 ? ' fr-stage-frontier' : ''}`}>
+            <span class="fr-stage-tag">{s.tag}</span>
+            <h3 class="fr-stage-name">{s.name}</h3>
+            <p>{s.body}</p>
+            {i < stages.length - 1 && <span class="fr-stage-arrow" aria-hidden="true">→</span>}
           </li>
-          <li>
-            <div class="hww-k">AI tied to business economics, not the tech of the month</div>
-            <p>Every initiative answers to margin, losses, working capital, revenue, service, or team efficiency.</p>
-          </li>
-          <li>
-            <div class="hww-k">We walk it from idea to deployment</div>
-            <p>We set the priorities, the data, the dependencies, the pilots, and the next realistic step for your network.</p>
-          </li>
-        </ul>
-      </section>
+        ))}
+      </ol>
     </div>
+  </section>
 
-    <CTA
-      heading="Fuel network diagnostic, two weeks."
-      body="A scoped look at where connected data and AI earn their place in your network — procurement and pricing, logistics, stations, finance and control — and what shipping first looks like."
-    />
-  </article>
+  <!-- Starting points — the whole network economy -->
+  <section class="section fr-starts" data-reveal>
+    <div class="container">
+      <p class="section-label">Engagement starting points</p>
+      <h2 class="fr-starts-title">Across the whole network economy.</h2>
+      <p class="fr-starts-lede">
+        The effect runs across the whole network economy — procurement and margin,
+        pricing, logistics, stations, finance and control. We start where the
+        diagnostic points. Optimus is one embodiment of this: the
+        procurement-and-margin engine, in pilot at Red Petroleum.
+      </p>
+
+      <div class="fr-blocks" data-reveal-stagger>
+        {blocks.map((b) => (
+          <article class="fr-block">
+            <span class="fr-block-mark" aria-hidden="true"></span>
+            <h3 class="fr-block-lever">{b.lever}</h3>
+            <p class="fr-block-pressure">{b.pressure}</p>
+            <p class="fr-block-detail">{b.detail}</p>
+          </article>
+        ))}
+      </div>
+
+      <p class="fr-starts-tail">
+        <a href="/case-studies/red-petroleum" class="link-cta">Read the Red Petroleum case</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- How we work (soft band) -->
+  <section class="section fr-hww theme-soft" data-reveal>
+    <div class="container">
+      <p class="section-label">How we work</p>
+      <h2 class="fr-hww-title">Built around your business economics.</h2>
+      <ul class="fr-hww-list" data-reveal-stagger>
+        <li>
+          <div class="fr-hww-k">From quick wins to systemic transformation</div>
+          <p>Start with clear use cases, then build out the data, processes, models and agentic systems behind them.</p>
+        </li>
+        <li>
+          <div class="fr-hww-k">AI tied to business economics, not the tech of the month</div>
+          <p>Every initiative answers to margin, losses, working capital, revenue, service, or team efficiency.</p>
+        </li>
+        <li>
+          <div class="fr-hww-k">We walk it from idea to deployment</div>
+          <p>We set the priorities, the data, the dependencies, the pilots, and the next realistic step for your network.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Cost of doing nothing preview -->
+  <section class="section fr-cdn" data-reveal>
+    <div class="container">
+      <div class="fr-cdn-card">
+        <div class="fr-cdn-tag">Cost of doing nothing · Phase 1.5</div>
+        <h3 class="fr-cdn-title">Quantify the gap to top-quartile peers.</h3>
+        <p>
+          A single-page calculator: 6–8 inputs, three quantified gap scenarios
+          (conservative / median / aggressive), every number with a source.
+          Currently in benchmark calibration; the methodology is already public.
+        </p>
+        <p class="fr-cdn-links">
+          <a href="/methods/cost-of-doing-nothing" class="link-cta">Read the methodology</a>
+          <a href="/tools/cost-of-doing-nothing" class="link-cta">Try the v0 preview</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CTA
+    heading="Fuel network diagnostic, two weeks."
+    body="A scoped look at where connected data and AI earn their place in your network — procurement and pricing, logistics, stations, finance and control — and what shipping first looks like."
+  />
 </BaseLayout>
 
 <style>
-  .prose-page { padding-top: clamp(40px, 6vh, 72px); }
-  .section-label { margin-bottom: 18px; }
-  .h1-page {
-    font-family: var(--font-display);
-    font-style: normal;
-    font-weight: 600;
-    font-size: clamp(32px, 4.5vw, 48px);
-    line-height: 1.16;
-    margin-bottom: 18px;
-    letter-spacing: -0.01em;
-    max-width: 22ch;
-  }
-  .lede {
-    font-size: clamp(17px, 2vw, 20px);
-    color: var(--text-secondary);
-    line-height: 1.55;
-    max-width: 60ch;
-    margin-bottom: 40px;
-  }
-  .ind-pullquote {
-    margin: 8px 0 40px;
-    padding: 28px 32px;
-    background: var(--surface-alt);
-    border-left: 3px solid var(--accent);
-    border-radius: 0 4px 4px 0;
-    max-width: 760px;
-  }
-  .ind-pullquote blockquote { margin: 0; padding: 0; }
-  .ind-pullquote p {
-    font-family: var(--font-display);
-    font-style: normal;
-    font-weight: 600;
-    font-size: clamp(20px, 2.6vw, 28px);
-    line-height: 1.3;
-    color: var(--text-primary);
-    margin: 0;
-    max-width: 32ch;
+  .section-label { margin-bottom: 16px; }
+  .grad {
+    background: var(--accent-gradient);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
   }
 
-  .proof-strip {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 16px;
-    margin-bottom: 36px;
-    max-width: 820px;
+  /* Intro */
+  .fr-intro { padding-top: clamp(48px, 8vh, 104px); padding-bottom: clamp(40px, 6vh, 72px); }
+  .fr-h1 {
+    font-family: var(--font-display); font-weight: 600;
+    font-size: clamp(36px, 5.4vw, 66px); line-height: 1.05; letter-spacing: -0.03em;
+    color: var(--text-primary); max-width: 16ch; margin-bottom: 22px;
   }
-  .proof-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 20px 24px;
+  .fr-lede {
+    font-size: clamp(17px, 1.8vw, 21px); line-height: 1.55; color: var(--text-secondary);
+    max-width: 64ch; margin-bottom: clamp(32px, 5vh, 56px);
   }
-  .proof-num {
-    font-family: var(--font-display);
-    font-style: normal;
-    font-size: 32px;
-    color: var(--text-primary);
-    margin-bottom: 4px;
-    line-height: 1;
+  .fr-intro-media { max-width: 1000px; }
+
+  /* Maturity path (dark) */
+  .fr-path { padding-top: clamp(56px, 9vh, 104px); padding-bottom: clamp(56px, 9vh, 104px); }
+  .fr-path-title {
+    font-family: var(--font-display); font-weight: 600;
+    font-size: clamp(26px, 3.4vw, 40px); line-height: 1.14; letter-spacing: -0.02em;
+    color: var(--text-primary); max-width: 22ch; margin: 12px 0 16px;
   }
-  .proof-label {
-    font-size: 13px;
-    color: var(--text-secondary);
+  .fr-path-lede { font-size: clamp(16px, 1.6vw, 19px); line-height: 1.6; color: var(--text-secondary); max-width: 62ch; margin-bottom: clamp(32px, 5vh, 52px); }
+  .fr-stages { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr; gap: 14px; }
+  @media (min-width: 760px) { .fr-stages { grid-template-columns: repeat(3, 1fr); gap: 18px; } }
+  .fr-stage {
+    position: relative; background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 24px 24px 26px;
   }
-  .cta-row {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-bottom: 32px;
+  .fr-stage-frontier { border-color: transparent; box-shadow: inset 0 0 0 1.5px transparent; background: linear-gradient(var(--surface), var(--surface)) padding-box, var(--accent-gradient) border-box; border: 1.5px solid transparent; }
+  .fr-stage-tag {
+    display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--accent-text); margin-bottom: 12px;
+  }
+  .fr-stage-name {
+    font-family: var(--font-display); font-weight: 600; font-size: clamp(19px, 2vw, 23px);
+    letter-spacing: -0.015em; color: var(--text-primary); margin-bottom: 10px; line-height: 1.2;
+  }
+  .fr-stage p { font-size: 15px; line-height: 1.55; color: var(--text-secondary); margin: 0; }
+  .fr-stage-arrow {
+    position: absolute; right: -13px; top: 50%; transform: translateY(-50%);
+    color: var(--accent); font-size: 18px; line-height: 1; z-index: 1;
+  }
+  @media (max-width: 759px) {
+    .fr-stage-arrow { right: 50%; top: auto; bottom: -13px; transform: translateX(50%) rotate(90deg); }
   }
 
-  .fuel-path {
-    margin-top: 32px;
-    padding-top: 40px;
-    border-top: 1px solid var(--border);
+  /* Starting points */
+  .fr-starts { padding-top: clamp(56px, 9vh, 100px); padding-bottom: clamp(48px, 7vh, 88px); }
+  .fr-starts-title {
+    font-family: var(--font-display); font-weight: 600; font-size: clamp(26px, 3.4vw, 40px);
+    letter-spacing: -0.02em; color: var(--text-primary); margin: 12px 0 16px; max-width: 22ch;
   }
-  .fuel-path .section-label { margin-bottom: 14px; }
-  .fuel-path h2 { margin-bottom: 14px; max-width: 24ch; }
-  .fuel-path-lede { max-width: 60ch; margin-bottom: 28px; color: var(--text-secondary); }
-  .fpath {
-    display: flex;
-    align-items: stretch;
-    gap: 8px;
+  .fr-starts-lede { font-size: clamp(16px, 1.6vw, 19px); line-height: 1.6; color: var(--text-secondary); max-width: 66ch; margin-bottom: clamp(32px, 5vh, 52px); }
+  .fr-blocks { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 720px) { .fr-blocks { grid-template-columns: 1fr 1fr; gap: 20px; } }
+  .fr-block {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    padding: 26px 28px 24px; transition: border-color .2s ease, transform .2s ease;
   }
-  .fpath-step {
-    flex: 1 1 0;
-    min-width: 0;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 20px 22px;
+  .fr-block:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+  .fr-block-mark { display: block; width: 34px; height: 4px; border-radius: 4px; background: var(--accent-gradient); margin-bottom: 16px; }
+  .fr-block-lever {
+    font-family: var(--font-display); font-weight: 600; font-size: clamp(18px, 1.9vw, 22px);
+    letter-spacing: -0.015em; color: var(--text-primary); margin-bottom: 10px; line-height: 1.2;
   }
-  .fpath-step-accent { background: var(--surface-alt); border-left: 3px solid var(--accent); }
-  .fpath-stage {
-    display: block;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.16em;
-    font-weight: 600;
-    color: var(--accent-text);
-    margin-bottom: 10px;
-  }
-  .fpath-name {
-    font-family: var(--font-display);
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    color: var(--text-primary);
-    margin: 0 0 10px;
-    line-height: 1.2;
-  }
-  .fpath-step p { font-size: 14px; line-height: 1.55; color: var(--text-secondary); margin: 0; max-width: 42ch; }
-  .fpath-arrow { align-self: center; flex: 0 0 auto; color: var(--text-muted); font-size: 18px; line-height: 1; }
-  @media (max-width: 720px) {
-    .fpath { flex-direction: column; gap: 6px; }
-    .fpath-arrow { transform: rotate(90deg); padding: 2px 0; }
-  }
+  .fr-block-pressure { font-size: 15px; line-height: 1.5; color: var(--text-muted); font-style: italic; margin-bottom: 12px; }
+  .fr-block-detail { font-size: 15px; line-height: 1.6; color: var(--text-secondary); margin: 0; }
+  .fr-starts-tail { margin-top: 28px; }
 
-  .starts {
-    margin-top: 56px;
-    padding-top: 40px;
-    border-top: 1px solid var(--border);
+  /* How we work (soft) */
+  .fr-hww { padding-top: clamp(56px, 9vh, 96px); padding-bottom: clamp(56px, 9vh, 96px); }
+  .fr-hww-title {
+    font-family: var(--font-display); font-weight: 600; font-size: clamp(24px, 3vw, 36px);
+    letter-spacing: -0.02em; color: var(--text-primary); margin: 12px 0 24px; max-width: 24ch;
   }
-  .starts .section-label { margin-bottom: 14px; }
+  .fr-hww-list { list-style: none; padding: 0; margin: 0; counter-reset: hww; max-width: 800px; }
+  .fr-hww-list li { counter-increment: hww; position: relative; padding: 22px 0 22px 56px; border-top: 1px solid var(--border); }
+  .fr-hww-list li:last-child { border-bottom: 1px solid var(--border); }
+  .fr-hww-list li::before {
+    content: counter(hww, decimal-leading-zero); position: absolute; left: 0; top: 22px;
+    font-family: var(--font-mono); font-size: 13px; color: var(--accent-text); font-weight: 700;
+  }
+  .fr-hww-k { font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px; }
+  .fr-hww-list p { margin: 0; max-width: 64ch; color: var(--text-secondary); font-size: 15px; line-height: 1.55; }
 
-  .howwework { margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--border); }
-  .howwework .section-label { margin-bottom: 14px; }
-  .howwework h2 { margin-bottom: 24px; max-width: 24ch; }
-  .hww-list { list-style: none; padding: 0; margin: 0; counter-reset: hww; max-width: 760px; }
-  .hww-list li {
-    counter-increment: hww;
-    position: relative;
-    padding: 18px 0 18px 52px;
-    border-top: 1px solid var(--border);
-  }
-  .hww-list li:last-child { border-bottom: 1px solid var(--border); }
-  .hww-list li::before {
-    content: counter(hww, decimal-leading-zero);
-    position: absolute;
-    left: 0;
-    top: 18px;
-    font-family: var(--font-mono);
-    font-size: 13px;
-    color: var(--accent-text);
-    font-weight: 600;
-  }
-  .hww-k {
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 6px;
-  }
-  .hww-list p { margin: 0; max-width: 60ch; color: var(--text-secondary); font-size: 14px; line-height: 1.55; }
-  .starts h2 { margin-bottom: 18px; max-width: 26ch; }
-  .starts-lede {
-    max-width: 60ch;
-    margin-bottom: 32px;
-  }
-  .starts-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 18px;
-    margin-bottom: 24px;
-  }
-  @media (min-width: 720px) {
-    .starts-grid { grid-template-columns: 1fr 1fr; }
-  }
-  .start-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 22px 24px;
-  }
-  .start-title {
-    font-family: var(--font-display);
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    color: var(--text-primary);
-    margin-bottom: 10px;
-  }
-  .start-card p { font-size: 15px; max-width: 50ch; }
-  .starts-tail {
-    font-size: 14px;
-    color: var(--text-muted);
-    max-width: 60ch;
-  }
-  .starts-tail a {
-    color: var(--text-primary);
-    font-weight: 500;
-    text-decoration: none;
-  }
-  .starts-tail a:hover { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--accent); }
-
-  .cdn-preview {
-    margin-top: 48px;
-    padding: 26px 28px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--accent);
-    border-radius: 0 4px 4px 0;
-    max-width: 760px;
-  }
-  .cdn-tag {
-    font-size: 11px;
-    color: var(--accent-text);
-    text-transform: uppercase;
-    letter-spacing: 0.16em;
-    font-weight: 600;
-    margin-bottom: 10px;
-  }
-  .cdn-title {
-    font-family: var(--font-display);
-    font-style: normal;
-    font-weight: 600;
-    font-size: 22px;
-    color: var(--text-primary);
-    margin-bottom: 10px;
-    line-height: 1.25;
-  }
-  .cdn-preview p {
-    font-size: 14px;
-    margin: 0 0 14px;
-    max-width: 56ch;
-  }
-  .cdn-links {
-    margin: 0;
-    font-size: 13px;
-  }
-  .cdn-sep { color: var(--text-muted); margin: 0 8px; }
-  .cdn-link {
-    font-size: 13px;
-    color: var(--text-primary);
-    font-weight: 500;
-    text-decoration: none;
-  }
-  .cdn-link:hover {
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    text-decoration-color: var(--accent);
-  }
+  /* Cost of doing nothing */
+  .fr-cdn { padding-top: clamp(40px, 6vh, 72px); padding-bottom: clamp(40px, 6vh, 72px); }
+  .fr-cdn-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: clamp(28px, 4vw, 44px); max-width: 820px; }
+  .fr-cdn-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 14px; }
+  .fr-cdn-title { font-family: var(--font-display); font-weight: 600; font-size: clamp(22px, 2.6vw, 30px); letter-spacing: -0.02em; color: var(--text-primary); margin-bottom: 14px; }
+  .fr-cdn-card p { font-size: 16px; line-height: 1.6; color: var(--text-secondary); max-width: 64ch; }
+  .fr-cdn-links { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 18px; }
 </style>
