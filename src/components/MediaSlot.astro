@@ -5,9 +5,11 @@
 // the colour tokens.
 interface Props {
   ratio?: string;            // aspect-ratio, e.g. '16 / 9'
-  label?: string;            // what goes here
+  label?: string;            // what goes here (placeholder only)
   kind?: 'image' | 'infographic';
   caption?: string;          // optional visible caption under the slot
+  src?: string;              // when set, render the real image instead of the placeholder
+  alt?: string;
   class?: string;
 }
 const {
@@ -15,11 +17,16 @@ const {
   label = 'Visual',
   kind = 'image',
   caption,
+  src,
+  alt = '',
   class: cls = '',
 } = Astro.props as Props;
 ---
 
 <figure class={`mediaslot ${cls}`} style={`--ms-ratio:${ratio}`} data-kind={kind}>
+  {src ? (
+    <img class="mediaslot-img" src={src} alt={alt} loading="lazy" />
+  ) : (
   <div class="mediaslot-frame">
     {kind === 'infographic' ? (
       <svg class="mediaslot-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -34,11 +41,20 @@ const {
     )}
     <span class="mediaslot-label">{kind === 'infographic' ? 'Infographic' : 'Image'} · {label}</span>
   </div>
+  )}
   {caption && <figcaption class="mediaslot-cap">{caption}</figcaption>}
 </figure>
 
 <style>
   .mediaslot { margin: 0; }
+  .mediaslot-img {
+    display: block;
+    width: 100%;
+    aspect-ratio: var(--ms-ratio, 16 / 9);
+    object-fit: cover;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
   .mediaslot-frame {
     aspect-ratio: var(--ms-ratio, 16 / 9);
     width: 100%;

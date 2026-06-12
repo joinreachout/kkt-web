@@ -12,7 +12,7 @@ const cases = [
     id: 'click-grow', name: 'Click & Grow', logo: '/logos/click-and-grow.png',
     sector: 'Retail / D2C', years: 'EU · 2022–2023', result: 'Lifecycle on real data',
     focus: 'Customer analytics for a D2C smart-garden brand',
-    image: 'Customer segments / lifecycle dashboard',
+    image: 'Customer segments / lifecycle dashboard', img: '/cases/click-and-grow-new.jpg',
     what: 'Customer analytics, segmentation, and personalisation built on device-and-consumable behaviour.',
     scope: ['Customer analytics and segmentation across the D2C base', 'Transactional behaviour combined with product-engagement signals', 'Personalisation support for retention and lifecycle marketing'],
     outcome: ['Customer behaviour made actionable for retention planning', 'Lifecycle marketing grounded in real customer data'],
@@ -145,7 +145,7 @@ const initials = (n) => n.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[
                 </div>
                 <aside class="cs-detail-side">
                   <div class="cs-result"><span class="cs-result-num">{c.result}</span></div>
-                  <MediaSlot ratio="4 / 3" kind="image" label={c.image} />
+                  <MediaSlot ratio="4 / 3" kind="image" label={c.image} src={c.img} alt={c.name} />
                 </aside>
               </div>
             </div>
