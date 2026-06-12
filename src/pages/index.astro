@@ -1,8 +1,6 @@
 ---
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import Hero from '~/components/Hero.astro';
-import HowWeWork from '~/components/HowWeWork.astro';
-import WhyUs from '~/components/WhyUs.astro';
 import ClientCases from '~/components/ClientCases.astro';
 import MediaSlot from '~/components/MediaSlot.astro';
 import CTA from '~/components/CTA.astro';
@@ -17,12 +15,6 @@ const trustVariant = 'C' as const;
   description="A senior data & AI team with roots in business — data foundations, ML, and AI agents, shipped into real operations. Tallinn, EU."
 >
   <Hero trustVariant={trustVariant} />
-
-  <HowWeWork />
-
-  <WhyUs />
-
-  <ClientCases />
 
   <section class="section section-industries" data-reveal>
     <div class="container">
@@ -70,14 +62,14 @@ const trustVariant = 'C' as const;
     </div>
   </section>
 
-  <section class="section section-capabilities" data-reveal>
+  <section class="section section-capabilities theme-dark" data-reveal>
     <div class="container">
       <div class="section-label">What we do</div>
       <h2 class="h2-section">A full data & AI practice, shipped into real operations.</h2>
       <p class="cap-lede">
-        A senior team with roots in business, not just tech. We work the
-        whole path — from a low-risk prototype to a production system that
-        runs without us.
+        A senior team with roots in business and the technical delivery to
+        back it. We work the whole path — from a low-risk prototype to a
+        production system that runs without us.
       </p>
       <div class="cap-grid" data-reveal-stagger>
         <div class="cap-card">
@@ -117,38 +109,7 @@ const trustVariant = 'C' as const;
     </div>
   </section>
 
-  <section class="section section-pullquote" data-reveal>
-    <div class="container">
-      <blockquote class="pullquote">
-        <p>
-          We don't start with the technology. We start with the business
-          question — then build the data, the processes, and the AI that
-          earns its place, and stay until the system runs without us.
-        </p>
-      </blockquote>
-    </div>
-  </section>
-
-  <section class="section section-infographic theme-dark" data-reveal>
-    <div class="container">
-      <div class="section-label">How we do it</div>
-      <h2 class="h2-section infographic-title">We build the foundation first. AI comes at the top.</h2>
-      <p class="infographic-lede">
-        AI agents don’t get bolted onto chaos — they become useful once the data,
-        rules, forecasts, and control loops are built underneath. So the path runs
-        bottom-up: from visibility and control now, through forecasting and
-        optimisation, to decisions run by AI. You can start small, on the data you
-        already have; the foundation is built as you climb.
-      </p>
-      <MediaSlot
-        class="infographic-band"
-        kind="infographic"
-        ratio="16 / 6"
-        label="The maturity path — visibility & control → forecasting & optimisation → AI-run decisions"
-        caption="To be built in code (SVG), in the style of the fuel transformation map."
-      />
-    </div>
-  </section>
+  <ClientCases />
 
   <CTA />
 </BaseLayout>
