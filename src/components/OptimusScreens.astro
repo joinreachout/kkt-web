@@ -11,6 +11,9 @@
 //
 // Each screen has alt text describing the surface, not the data.
 
+import { toLocale } from '~/i18n/config';
+import type { Locale } from '~/i18n/config';
+
 interface Screen {
   src: string;
   alt: string;
@@ -24,8 +27,43 @@ interface Props {
 }
 
 const { variant, hero, picks } = Astro.props as Props;
+const locale = toLocale(Astro.currentLocale);
 
-const ALL: Record<string, Screen> = {
+// "Live in production" badge on the hero variant, per locale.
+const LIVE_TAG: Record<Locale, string> = {
+  en: 'Live in production',
+  de: 'Live im Produktivbetrieb',
+  et: 'Live tootmises',
+};
+
+// Localised caption + alt overrides keyed by slug. EN is the base (ALL);
+// de/et fall back to EN for any slug not listed.
+const LOCALIZED: Record<Exclude<Locale, 'en'>, Record<string, { alt: string; caption: string }>> = {
+  de: {
+    'procurement-advisor': { caption: 'Beschaffungsberater', alt: 'Optimus Beschaffungsberater — Status-Pills Critical / Need Order / Overflow / OK mit 14-Tage-Fehlbestand-Zeitleiste und Lieferanten-Ranking' },
+    'fuel-forecast': { caption: 'Füllstand-Prognose', alt: 'Optimus Füllstand-Prognose — Liniendiagramm der Bestandsprojektion je Station × Kraftstoffsorte mit Regionalfiltern' },
+    'fill-levels': { caption: 'Stations-Füllstände', alt: 'Optimus Stations-Füllstände — vertikale Balken zeigen % Kapazität je Kraftstoff, farbcodiert nach Dringlichkeit' },
+    'inbound-conflicts': { caption: 'Eingehende Konflikte', alt: 'Optimus Dashboard eingehender Konflikte — Verteilungsansicht auf Waggon-Ebene, passt / passt nicht / umgeleitet' },
+    'redistribute-modal': { caption: 'Lieferung umverteilen', alt: 'Optimus Dialog „Lieferung umverteilen“ — Waggon-Auswahl-Overlay für Routing-Entscheidungen' },
+    'scenarios': { caption: 'Strategie & Szenarien', alt: 'Optimus Strategie und Szenarien — Modus-Vergleichstabelle über Standard Safety / Cost / Cash / Balanced / Crisis' },
+    'release-reserve': { caption: 'Reserve freigeben', alt: 'Optimus Dialog „Reserve freigeben“ — Zuteilungsplan für Kraftstoff, der ohne Ziel beim Lieferanten liegt' },
+    'supplier-offers': { caption: 'Lieferantenangebote', alt: 'Optimus Lieferantenangebote — Preistabellen der Lieferanten, Zuverlässigkeitswerte, Liefertage je Route' },
+    'how-it-works': { caption: 'Operator-Leitfaden', alt: 'Optimus Operator-Leitfaden — fünfstufige Morgenroutine, zehn bis fünfzehn Minuten' },
+  },
+  et: {
+    'procurement-advisor': { caption: 'Hankenõustaja', alt: 'Optimus Hankenõustaja — staatuse pillid Critical / Need Order / Overflow / OK koos 14-päevase laovähesuse ajateljega ja tarnijate pingereaga' },
+    'fuel-forecast': { caption: 'Kütusetaseme prognoos', alt: 'Optimus Kütusetaseme prognoos — laoseisu projektsiooni joongraafik jaama × kütuseliigi kohta piirkonnafiltritega' },
+    'fill-levels': { caption: 'Jaamade täituvus', alt: 'Optimus Jaamade täituvus — püstribad näitavad % mahtu kütuse kohta, värvikoodiga kiireloomulisuse järgi' },
+    'inbound-conflicts': { caption: 'Sissetulevad konfliktid', alt: 'Optimus sissetulevate konfliktide töölaud — vagunipõhine jaotusvaade, mahub / ei mahu / ümber suunatud' },
+    'redistribute-modal': { caption: 'Jaota tarne ümber', alt: 'Optimus „Jaota tarne ümber“ dialoog — vagunivaliku ülekate marsruudiotsuste jaoks' },
+    'scenarios': { caption: 'Strateegia & stsenaariumid', alt: 'Optimus Strateegia ja stsenaariumid — režiimide võrdlustabel: Standard Safety / Cost / Cash / Balanced / Crisis' },
+    'release-reserve': { caption: 'Vabasta reserv', alt: 'Optimus „Vabasta reserv“ dialoog — jaotusplaan kütusele, mis on tarnija juures ilma sihtkohata' },
+    'supplier-offers': { caption: 'Tarnijate pakkumised', alt: 'Optimus Tarnijate pakkumised — tarnijate hinnatabelid, usaldusväärsuse skoorid, tarnepäevad marsruudi kohta' },
+    'how-it-works': { caption: 'Operaatori juhend', alt: 'Optimus operaatori juhend — viieastmeline hommikurutiin, kümme kuni viisteist minutit' },
+  },
+};
+
+const BASE: Record<string, Screen> = {
   'procurement-advisor': {
     src: '/screens/optimus-procurement-advisor.jpg',
     alt: 'Optimus Procurement Advisor — Critical / Need Order / Overflow / OK status pills with 14-day stockout timeline and supplier ranking',
@@ -73,15 +111,26 @@ const ALL: Record<string, Screen> = {
   },
 };
 
-const heroScreen = hero ? ALL[hero] : null;
-const pickedScreens = (picks ?? []).map((s) => ALL[s]).filter(Boolean);
+// Resolve a slug to its locale-appropriate screen (caption + alt localised,
+// src always the same image). Falls back to the EN base.
+function resolve(slug: string): Screen | undefined {
+  const base = BASE[slug];
+  if (!base) return undefined;
+  if (locale === 'en') return base;
+  const o = LOCALIZED[locale]?.[slug];
+  return o ? { ...base, alt: o.alt, caption: o.caption } : base;
+}
+
+const heroScreen = hero ? resolve(hero) : null;
+const pickedScreens = (picks ?? []).map((s) => resolve(s)).filter(Boolean) as Screen[];
+const liveTag = LIVE_TAG[locale];
 ---
 
 {variant === 'hero' && heroScreen && (
   <figure class="opt-hero">
     <img src={heroScreen.src} alt={heroScreen.alt} loading="lazy" decoding="async" />
     <figcaption>
-      <span class="opt-hero-tag">Live in production</span>
+      <span class="opt-hero-tag">{liveTag}</span>
       <span>{heroScreen.caption}</span>
     </figcaption>
   </figure>
