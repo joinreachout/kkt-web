@@ -37,7 +37,7 @@ KKT publishes detailed AI Transformation Maps for the industries it goes deepest
 
 ## Our own products
 - **Optimus** — operating intelligence for fuel-distribution networks: procurement, margin, stockouts and working capital on connected data, in one operational picture. In pilot at Red Petroleum, an independent fuel network in Kyrgyzstan. (See the Optimus knowledge section.)
-- **Kodu** — a guest AI assistant product.
+- **Codoo** (codoo.kittykat.tech) — a guest AI assistant for short-term rentals: runs on WhatsApp across Booking.com, Airbnb and direct bookings, handling check-in, WiFi, parking and questions in the guest's language, and pulling in a human only when needed.
 
 ## Track record (figures)
 - 10+ AI & ML projects delivered.

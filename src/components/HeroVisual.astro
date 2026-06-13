@@ -1,26 +1,25 @@
 ---
-// Hero brand graphic — custom, on-brand abstract: scattered data/questions
-// converge into a single decision node, which rises into an outcome. Built in
-// code (no stock, no product screenshot), orange-gradient brand language.
-// Gentle draw-in on load; static under reduced-motion.
-const dots = [
-  [95, 150, 5], [120, 250, 4], [90, 332, 6], [162, 108, 3.5], [178, 300, 5],
-  [205, 192, 4.5], [150, 372, 3.5], [232, 128, 5], [252, 262, 4], [212, 340, 3],
-  [285, 202, 4.5], [305, 300, 3.5], [128, 196, 3], [268, 168, 3.5],
+// Hero brand graphic — custom, on-brand abstract. Each labeled source across
+// the business (strategy, operations, data, IT, finance) converges into a
+// single practical AI solution, which rises into a measurable outcome.
+// Built in code (no stock, no product screenshot), orange-gradient brand
+// language. Gentle draw-in on load; static under reduced-motion.
+const inputs = [
+  { x: 300, y: 80,  label: 'Strategy' },
+  { x: 268, y: 158, label: 'Operations' },
+  { x: 316, y: 232, label: 'Data' },
+  { x: 280, y: 308, label: 'IT systems' },
+  { x: 304, y: 386, label: 'Finance' },
 ];
-const curves = [
-  'M95 150 C 350 118, 520 198, 700 220',
-  'M90 332 C 350 362, 520 252, 700 220',
-  'M205 192 C 420 168, 560 205, 700 220',
-  'M178 300 C 420 322, 560 240, 700 220',
-  'M232 128 C 452 108, 580 188, 700 220',
-  'M252 262 C 462 282, 580 242, 700 220',
-  'M305 300 C 500 318, 600 250, 700 220',
-];
+// Smooth converging flow from each source into the decision node at (700, 220).
+const curve = ({ x, y }) => {
+  const c2y = Math.round(y + (220 - y) * 0.5);
+  return `M${x} ${y} C ${x + 190} ${y}, 600 ${c2y}, 700 220`;
+};
 ---
 
 <figure class="hv">
-  <svg viewBox="0 0 1000 440" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Scattered data and questions converging into a single decision that rises into an outcome">
+  <svg viewBox="0 0 1000 440" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Strategy, operations, data, IT and finance across the business converge into a single practical AI solution that rises into a measurable outcome">
     <defs>
       <linearGradient id="hvGrad" x1="0" y1="0" x2="1" y2="0.4">
         <stop offset="0" stop-color="#FF9D2E"/>
@@ -40,14 +39,19 @@ const curves = [
       <line x1="40" y1="320" x2="960" y2="320"/>
     </g>
 
-    <!-- converging flows -->
+    <!-- converging flows, one per source -->
     <g class="hv-curves" stroke="url(#hvGrad)" stroke-width="1.6" stroke-linecap="round" fill="none">
-      {curves.map((d) => <path d={d} pathlength="1"/>)}
+      {inputs.map((p) => <path d={curve(p)} pathlength="1"/>)}
     </g>
 
-    <!-- scattered data / questions -->
-    <g class="hv-dots" fill="#1D1D1F">
-      {dots.map(([x, y, r]) => <circle cx={x} cy={y} r={r} fill-opacity="0.30"/>)}
+    <!-- labeled sources scattered across the business -->
+    <g class="hv-sources" font-family="'DM Sans', system-ui, sans-serif">
+      {inputs.map(({ x, y, label }) => (
+        <g class="hv-source">
+          <circle cx={x} cy={y} r="6" fill="#1D1D1F" fill-opacity="0.32"/>
+          <text x={x - 16} y={y + 5} text-anchor="end" font-size="15.5" font-weight="500" fill="#6E6E73">{label}</text>
+        </g>
+      ))}
     </g>
 
     <!-- decision node -->
@@ -59,11 +63,8 @@ const curves = [
     <path class="hv-rise" d="M714 212 C 800 180, 850 150, 902 100" stroke="url(#hvGrad)" stroke-width="2" stroke-linecap="round" pathlength="1"/>
     <circle class="hv-out" cx="902" cy="100" r="8" fill="url(#hvGrad)"/>
 
-    <!-- labels: read the story left → right -->
+    <!-- node + outcome labels -->
     <g class="hv-labels" font-family="'DM Sans', system-ui, sans-serif">
-      <text x="86" y="96" font-size="13.5" font-weight="700" letter-spacing="1.3" fill="#86868B">STRATEGY · IT · OPERATIONS · DATA</text>
-      <text x="86" y="118" font-size="13.5" fill="#9C9CA3">scattered across the business</text>
-
       <text x="700" y="300" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="2" fill="#C2410C">PRACTICAL AI SOLUTION</text>
 
       <text x="902" y="64" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="2" fill="#86868B">BUSINESS OUTCOME</text>
@@ -77,20 +78,22 @@ const curves = [
   .hv svg { width: 100%; height: auto; display: block; }
 
   @media (prefers-reduced-motion: no-preference) {
-    .hv-curves path { stroke-dasharray: 1; stroke-dashoffset: 1; animation: hvDraw 1.1s cubic-bezier(.2,.7,.3,1) forwards; }
-    .hv-curves path:nth-child(2) { animation-delay: .08s; }
-    .hv-curves path:nth-child(3) { animation-delay: .16s; }
-    .hv-curves path:nth-child(4) { animation-delay: .24s; }
-    .hv-curves path:nth-child(5) { animation-delay: .32s; }
-    .hv-curves path:nth-child(6) { animation-delay: .40s; }
-    .hv-curves path:nth-child(7) { animation-delay: .48s; }
-    .hv-dots circle { opacity: 0; animation: hvFade .5s ease forwards; }
-    .hv-dots circle:nth-child(odd) { animation-delay: .15s; }
-    .hv-dots circle:nth-child(even) { animation-delay: .3s; }
-    .hv-node, .hv-node-ring, .hv-glow { opacity: 0; transform-box: fill-box; transform-origin: center; animation: hvPop .6s cubic-bezier(.2,.8,.3,1) .7s forwards; }
-    .hv-rise { stroke-dasharray: 1; stroke-dashoffset: 1; animation: hvDraw .7s cubic-bezier(.2,.7,.3,1) .95s forwards; }
-    .hv-out { opacity: 0; transform-box: fill-box; transform-origin: center; animation: hvPop .5s cubic-bezier(.2,.8,.3,1) 1.5s forwards; }
-    .hv-labels { opacity: 0; animation: hvFade .6s ease 1.05s forwards; }
+    .hv-source { opacity: 0; animation: hvFade .5s ease forwards; }
+    .hv-source:nth-child(1) { animation-delay: .05s; }
+    .hv-source:nth-child(2) { animation-delay: .14s; }
+    .hv-source:nth-child(3) { animation-delay: .23s; }
+    .hv-source:nth-child(4) { animation-delay: .32s; }
+    .hv-source:nth-child(5) { animation-delay: .41s; }
+    .hv-curves path { stroke-dasharray: 1; stroke-dashoffset: 1; animation: hvDraw 1s cubic-bezier(.2,.7,.3,1) forwards; }
+    .hv-curves path:nth-child(1) { animation-delay: .45s; }
+    .hv-curves path:nth-child(2) { animation-delay: .54s; }
+    .hv-curves path:nth-child(3) { animation-delay: .63s; }
+    .hv-curves path:nth-child(4) { animation-delay: .72s; }
+    .hv-curves path:nth-child(5) { animation-delay: .81s; }
+    .hv-node, .hv-node-ring, .hv-glow { opacity: 0; transform-box: fill-box; transform-origin: center; animation: hvPop .6s cubic-bezier(.2,.8,.3,1) 1.15s forwards; }
+    .hv-rise { stroke-dasharray: 1; stroke-dashoffset: 1; animation: hvDraw .7s cubic-bezier(.2,.7,.3,1) 1.45s forwards; }
+    .hv-out { opacity: 0; transform-box: fill-box; transform-origin: center; animation: hvPop .5s cubic-bezier(.2,.8,.3,1) 1.95s forwards; }
+    .hv-labels { opacity: 0; animation: hvFade .6s ease 1.5s forwards; }
   }
   @keyframes hvDraw { to { stroke-dashoffset: 0; } }
   @keyframes hvFade { to { opacity: 1; } }

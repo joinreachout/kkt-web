@@ -4,7 +4,7 @@ import MediaSlot from '~/components/MediaSlot.astro';
 import CTA from '~/components/CTA.astro';
 
 // Our own products. Optimus screenshots are interim (existing repo shots) — to be
-// swapped for the new improved-UI screenshots. Kodu copy/link pending.
+// swapped for the new improved-UI screenshots.
 const optimusFeatures = [
   { name: 'AI Briefing', body: 'A plain-language daily situation summary — what needs action, where the savings are — with free-form questions answered from live data.' },
   { name: 'Procurement Advisor', body: 'Concrete order recommendations: supplier, tonnage, deadline, price. Statuses from CRITICAL to OK, with one-click PO creation.' },
@@ -16,7 +16,7 @@ const optimusFeatures = [
 
 <BaseLayout
   title="Our Solutions — KKT"
-  description="KKT's own products: Optimus, operating intelligence for fuel-distribution networks, and Kodu."
+  description="KKT's own products: Optimus, operating intelligence for fuel-distribution networks, and Codoo."
   ogImage="/og/optimus.png"
 >
   <!-- Intro -->
@@ -61,7 +61,7 @@ const optimusFeatures = [
   <section class="section sol-codoo" data-reveal>
     <div class="container">
       <div class="sol-codoo-head">
-        <img class="sol-kodu-logo" src="/logos/codoo.png" alt="Codoo" width="56" height="56" />
+        <img class="sol-codoo-logo" src="/logos/codoo.png" alt="Codoo" width="56" height="56" />
         <p class="section-label">Codoo</p>
         <h2 class="sol-h2">A guest assistant, from booking to checkout.</h2>
         <p class="sol-codoo-body">
@@ -105,7 +105,7 @@ const optimusFeatures = [
   /* Codoo */
   .sol-codoo { padding-top: clamp(48px, 7vh, 88px); padding-bottom: clamp(48px, 7vh, 88px); }
   .sol-codoo-head { max-width: 64ch; margin-bottom: clamp(28px, 4vh, 40px); }
-  .sol-kodu-logo { width: 56px; height: 56px; border-radius: 14px; display: block; margin-bottom: 18px; }
+  .sol-codoo-logo { width: 56px; height: 56px; border-radius: 14px; display: block; margin-bottom: 18px; }
   .sol-codoo-body { font-size: clamp(16px, 1.6vw, 18px); line-height: 1.6; color: var(--text-secondary); max-width: 60ch; margin-bottom: 18px; }
   .sol-codoo-media { max-width: 1000px; }
 </style>
