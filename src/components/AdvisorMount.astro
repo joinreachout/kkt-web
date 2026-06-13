@@ -2,9 +2,11 @@
 // Mounts the Advisor React island once globally.
 // Lives in BaseLayout so it's available on every page via Cmd+K.
 import Advisor from './Advisor.tsx';
+import { toLocale } from '~/i18n/config';
+const locale = toLocale(Astro.currentLocale);
 ---
 
-<Advisor client:idle />
+<Advisor client:idle locale={locale} />
 
 <style is:global>
   /* Advisor styles — global so React-rendered DOM gets them.

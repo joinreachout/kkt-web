@@ -35,12 +35,84 @@ const ADVISOR_ENDPOINT = '/api/advisor.php';
 const ALLOWED_DOC_TYPES = ['.txt', '.md', '.pdf'];
 const MAX_DOC_BYTES = 1_500_000; // 1.5 MB — bigger than typical audit doc, smaller than upload limit
 
-const SUGGESTED: string[] = [
-  'How does KKT actually deliver?',
-  'Are you a fit for a mid-sized retailer?',
-  'What does a two-week diagnostic look like?',
-  'Why would you turn down work?',
-];
+type Locale = 'en' | 'de' | 'et';
+
+// UI chrome strings per locale. The backend (advisor.php) answers in the
+// user's language via the LLM; this only localises the widget shell.
+interface UIStrings {
+  eyebrow: string;
+  status: string;
+  emptyTitle: string;
+  emptyBody: string;
+  suggested: string[];
+  you: string;
+  moreOn: string;
+  why: string;
+  placeholder: string;
+  placeholderAttach: string;
+  send: string;
+  footClose: string;
+  footToggle: string;
+  panelAria: string;
+  closeAria: string;
+  attachAria: string;
+  attachTitle: string;
+  removeAria: string;
+  sendAria: string;
+  inputAria: string;
+  auditDoc: (name: string) => string;
+  unsupported: (types: string) => string;
+  tooLarge: (kb: number, max: number) => string;
+  connDropped: string;
+}
+
+const UI: Record<Locale, UIStrings> = {
+  en: {
+    eyebrow: 'Advisor', status: 'Ask anything',
+    emptyTitle: "What's on your mind?",
+    emptyBody: "Ask about how we ship, who we work with, when we’d say no, what a diagnostic looks like — anything across KKT or the retail playbook. You can attach a strategy doc or RFP and I’ll audit it in plain language.",
+    suggested: ['How does KKT actually deliver?', 'Are you a fit for a mid-sized retailer?', 'What does a two-week diagnostic look like?', 'Why would you turn down work?'],
+    you: 'You', moreOn: 'More on:', why: 'Why this answer?',
+    placeholder: 'Type a question. Enter to send.', placeholderAttach: 'Optional question — Enter to send.',
+    send: 'Send', footClose: 'closes', footToggle: 'toggles',
+    panelAria: 'KKT advisor', closeAria: 'Close advisor', attachAria: 'Attach a document',
+    attachTitle: 'Attach a document (.txt, .md, .pdf)', removeAria: 'Remove attachment', sendAria: 'Send', inputAria: 'Question to the advisor',
+    auditDoc: (n) => `Audit this document: ${n}`,
+    unsupported: (t) => `Unsupported file type. We accept ${t}.`,
+    tooLarge: (kb, max) => `File is too large (${kb} KB). Max ${max} KB.`,
+    connDropped: 'Connection dropped while answering. Try again — usually it just works on retry.',
+  },
+  de: {
+    eyebrow: 'Advisor', status: 'Fragen Sie alles',
+    emptyTitle: 'Was beschäftigt Sie?',
+    emptyBody: 'Fragen Sie, wie wir liefern, mit wem wir arbeiten, wann wir Nein sagen würden, wie eine Diagnose aussieht — alles rund um KKT oder das Retail-Playbook. Sie können ein Strategiepapier oder RFP anhängen, und ich prüfe es in klarer Sprache.',
+    suggested: ['Wie liefert KKT konkret?', 'Passt ihr zu einem mittelständischen Einzelhändler?', 'Wie sieht eine zweiwöchige Diagnose aus?', 'Warum würdet ihr einen Auftrag ablehnen?'],
+    you: 'Sie', moreOn: 'Mehr dazu:', why: 'Warum diese Antwort?',
+    placeholder: 'Stellen Sie eine Frage. Enter zum Senden.', placeholderAttach: 'Optionale Frage — Enter zum Senden.',
+    send: 'Senden', footClose: 'schließt', footToggle: 'schaltet um',
+    panelAria: 'KKT-Berater', closeAria: 'Berater schließen', attachAria: 'Dokument anhängen',
+    attachTitle: 'Dokument anhängen (.txt, .md, .pdf)', removeAria: 'Anhang entfernen', sendAria: 'Senden', inputAria: 'Frage an den Berater',
+    auditDoc: (n) => `Dieses Dokument prüfen: ${n}`,
+    unsupported: (t) => `Nicht unterstützter Dateityp. Wir akzeptieren ${t}.`,
+    tooLarge: (kb, max) => `Datei ist zu groß (${kb} KB). Max. ${max} KB.`,
+    connDropped: 'Die Verbindung brach während der Antwort ab. Versuchen Sie es erneut — meist klappt es beim zweiten Mal.',
+  },
+  et: {
+    eyebrow: 'Advisor', status: 'Küsi mida tahes',
+    emptyTitle: 'Mis sul mõttes on?',
+    emptyBody: 'Küsi, kuidas me tarnime, kellega töötame, millal ütleksime ei, milline näeb välja diagnostika — kõike KKT või jaemüügi käsiraamatu kohta. Võid lisada strateegiadokumendi või RFP ja ma analüüsin selle lihtsas keeles.',
+    suggested: ['Kuidas KKT tegelikult tarnib?', 'Kas sobite keskmise suurusega jaemüüjale?', 'Milline näeb välja kahenädalane diagnostika?', 'Miks te töö tagasi lükkaksite?'],
+    you: 'Sina', moreOn: 'Loe lisaks:', why: 'Miks see vastus?',
+    placeholder: 'Kirjuta küsimus. Enter saadab.', placeholderAttach: 'Valikuline küsimus — Enter saadab.',
+    send: 'Saada', footClose: 'sulgeb', footToggle: 'lülitab',
+    panelAria: 'KKT nõustaja', closeAria: 'Sulge nõustaja', attachAria: 'Lisa dokument',
+    attachTitle: 'Lisa dokument (.txt, .md, .pdf)', removeAria: 'Eemalda manus', sendAria: 'Saada', inputAria: 'Küsimus nõustajale',
+    auditDoc: (n) => `Analüüsi seda dokumenti: ${n}`,
+    unsupported: (t) => `Toetamata failitüüp. Aktsepteerime ${t}.`,
+    tooLarge: (kb, max) => `Fail on liiga suur (${kb} KB). Max ${max} KB.`,
+    connDropped: 'Ühendus katkes vastamise ajal. Proovi uuesti — tavaliselt töötab teisel korral.',
+  },
+};
 
 interface MockReply {
   pattern: RegExp;
@@ -99,7 +171,8 @@ function findMockReply(input: string): string {
 
 let nextId = 1;
 
-export default function Advisor() {
+export default function Advisor({ locale = 'en' }: { locale?: Locale }) {
+  const t = UI[locale] ?? UI.en;
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
@@ -167,11 +240,11 @@ export default function Advisor() {
     const lower = f.name.toLowerCase();
     const okType = ALLOWED_DOC_TYPES.some((ext) => lower.endsWith(ext));
     if (!okType) {
-      setDocError(`Unsupported file type. We accept ${ALLOWED_DOC_TYPES.join(' / ')}.`);
+      setDocError(t.unsupported(ALLOWED_DOC_TYPES.join(' / ')));
       return;
     }
     if (f.size > MAX_DOC_BYTES) {
-      setDocError(`File is too large (${Math.round(f.size / 1024)} KB). Max ${Math.round(MAX_DOC_BYTES / 1024)} KB.`);
+      setDocError(t.tooLarge(Math.round(f.size / 1024), Math.round(MAX_DOC_BYTES / 1024)));
       return;
     }
     setAttachment({ name: f.name, size: f.size, file: f });
@@ -273,7 +346,7 @@ export default function Advisor() {
     } catch (err) {
       // Backend missing / 404 / network — fall back to mock.
       const reply = backendOk
-        ? "Connection dropped while answering. Try again — usually it just works on retry."
+        ? t.connDropped
         : findMockReply(text);
       setMessages((m) =>
         m.map((msg) => (msg.id === assistantId ? { ...msg, content: reply } : msg)),
@@ -286,7 +359,7 @@ export default function Advisor() {
   function send(text: string) {
     const trimmed = text.trim();
     if ((!trimmed && !attachment) || thinking) return;
-    const messageText = trimmed || (attachment ? `Audit this document: ${attachment.name}` : '');
+    const messageText = trimmed || (attachment ? t.auditDoc(attachment.name) : '');
     streamFromBackend(messageText, attachment);
   }
 
@@ -315,21 +388,21 @@ export default function Advisor() {
       <aside
         className={`kkt-advisor-panel ${open ? 'is-open' : ''}`}
         role="dialog"
-        aria-label="KKT advisor"
+        aria-label={t.panelAria}
         aria-hidden={!open}
       >
         <header className="kkt-advisor-header">
           <div className="kkt-advisor-title">
-            <span className="kkt-advisor-eyebrow">Advisor</span>
+            <span className="kkt-advisor-eyebrow">{t.eyebrow}</span>
             <span className="kkt-advisor-status">
-              <span className="kkt-advisor-dot" /> Ask anything
+              <span className="kkt-advisor-dot" /> {t.status}
             </span>
           </div>
           <button
             type="button"
             className="kkt-advisor-close"
             onClick={() => setOpen(false)}
-            aria-label="Close advisor"
+            aria-label={t.closeAria}
           >
             <span aria-hidden="true">×</span>
           </button>
@@ -338,15 +411,10 @@ export default function Advisor() {
         <div className="kkt-advisor-body" ref={listRef}>
           {messages.length === 0 ? (
             <div className="kkt-advisor-empty">
-              <h2>What's on your mind?</h2>
-              <p>
-                Ask about how we ship, who we work with, when we&rsquo;d say
-                no, what a diagnostic looks like — anything across KKT or
-                the retail playbook. You can attach a strategy doc or RFP
-                and I&rsquo;ll audit it in plain language.
-              </p>
+              <h2>{t.emptyTitle}</h2>
+              <p>{t.emptyBody}</p>
               <ul className="kkt-advisor-suggestions">
-                {SUGGESTED.map((s) => (
+                {t.suggested.map((s) => (
                   <li key={s}>
                     <button
                       type="button"
@@ -364,7 +432,7 @@ export default function Advisor() {
               {messages.map((m) => (
                 <li key={m.id} className={`kkt-advisor-msg role-${m.role}`}>
                   <div className="kkt-advisor-msg-role">
-                    {m.role === 'user' ? 'You' : 'KKT'}
+                    {m.role === 'user' ? t.you : 'KKT'}
                   </div>
                   {m.attachmentName && (
                     <div className="kkt-advisor-msg-attachment">
@@ -384,7 +452,7 @@ export default function Advisor() {
                   )}
                   {m.citedPages && m.citedPages.length > 0 && (
                     <div className="kkt-advisor-msg-cites">
-                      <span className="cite-label">More on:</span>
+                      <span className="cite-label">{t.moreOn}</span>
                       {m.citedPages.map((p) => (
                         <a key={p} href={p} className="cite-link">
                           {p}
@@ -394,7 +462,7 @@ export default function Advisor() {
                   )}
                   {m.role === 'assistant' && m.reasoningSummary && (
                     <details className="kkt-advisor-reasoning">
-                      <summary>Why this answer?</summary>
+                      <summary>{t.why}</summary>
                       <p>{m.reasoningSummary}</p>
                     </details>
                   )}
@@ -447,8 +515,8 @@ export default function Advisor() {
             className="kkt-advisor-attach"
             onClick={() => fileInputRef.current?.click()}
             disabled={thinking || !!attachment}
-            aria-label="Attach a document"
-            title="Attach a document (.txt, .md, .pdf)"
+            aria-label={t.attachAria}
+            title={t.attachTitle}
           >
             <span aria-hidden="true">📎</span>
           </button>
@@ -458,23 +526,23 @@ export default function Advisor() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder={attachment ? 'Optional question — Enter to send.' : 'Type a question. Enter to send.'}
+            placeholder={attachment ? t.placeholderAttach : t.placeholder}
             rows={2}
-            aria-label="Question to the advisor"
+            aria-label={t.inputAria}
           />
           <button
             type="submit"
             className="kkt-advisor-send"
             disabled={(!input.trim() && !attachment) || thinking}
-            aria-label="Send"
+            aria-label={t.sendAria}
           >
-            Send
+            {t.send}
           </button>
         </form>
 
         <footer className="kkt-advisor-foot">
           <span className="kkt-advisor-shortcut">
-            <kbd>Esc</kbd> closes &middot; <kbd>⌘</kbd>+<kbd>K</kbd> toggles
+            <kbd>Esc</kbd> {t.footClose} &middot; <kbd>⌘</kbd>+<kbd>K</kbd> {t.footToggle}
           </span>
         </footer>
       </aside>
