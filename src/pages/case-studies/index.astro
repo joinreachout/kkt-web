@@ -179,8 +179,7 @@ const initials = (n) => n.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[
 
   .cs-open { display: grid; gap: 10px; width: 100%; text-align: left; background: none; border: 0; padding: 20px 20px 18px; position: relative; }
   .cs-brand { display: flex; align-items: center; height: 32px; }
-  .cs-logo { max-height: 28px; max-width: 124px; object-fit: contain; object-position: left center; filter: grayscale(1); opacity: 0.78; transition: filter .2s ease, opacity .2s ease; }
-  .cs-tile:hover .cs-logo, .cs-tile.is-open .cs-logo { filter: none; opacity: 1; }
+  .cs-logo { max-height: 28px; max-width: 124px; object-fit: contain; object-position: left center; opacity: 1; transition: opacity .2s ease; }
   .cs-mono { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 9px; background: var(--accent-dim); color: var(--accent-text); font-weight: 700; font-size: 12.5px; }
   .cs-name { font-family: var(--font-display); font-weight: 600; font-size: 16px; letter-spacing: -0.01em; color: var(--text-primary); }
   .cs-focus { font-size: 13px; line-height: 1.45; color: var(--text-muted); }
