@@ -1,0 +1,55 @@
+# Pages CMS configuration — https://pagescms.org
+#
+# This file lets non-developers edit the Insights blog from a web UI.
+# One-time setup:
+#   1. Install the "Pages CMS" GitHub App on the joinreachout/kkt-web repo
+#      (https://github.com/apps/pages-cms — grant access to this repo only).
+#   2. Go to https://app.pagescms.org, sign in with GitHub, open this repo.
+#   3. Edit / create Insights posts. Publishing commits to `main`, which
+#      auto-deploys to kittykat.tech.
+#
+# Field names below MUST match the Astro content schema in
+# src/content.config.ts (collection: insights). Don't rename them without
+# updating that schema, or the build will fail.
+
+media:
+  input: public/insights   # uploaded images are stored here…
+  output: /insights         # …and referenced from this public path
+
+content:
+  - name: insights
+    label: Insights (blog)
+    type: collection
+    path: src/content/insights
+    filename: '{year}-{month}-{fields.title}.md'
+    view:
+      primary: title
+      fields: [author, publishedAt, draft]
+      sort: [publishedAt, title]
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: summary
+        label: Summary
+        type: text
+        description: One or two sentences. Shown on the list and as the page meta description.
+      - name: author
+        label: Author
+        type: string
+        required: true
+        description: "Named author — e.g. George Shevardnadze. Avoid the generic \"KKT\"."
+      - name: publishedAt
+        label: Published date
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+      - name: draft
+        label: Draft (hide from the live site)
+        type: boolean
+        default: false
+      - name: body
+        label: Body
+        type: rich-text

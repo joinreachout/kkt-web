@@ -30,7 +30,13 @@ const insights = defineCollection({
     title: z.string(),
     summary: z.string().optional(),
     author: z.string(),
-    publishedAt: z.string(), // YYYY-MM-DD
+    // YYYY-MM-DD. Accept either a quoted string or a YAML date (some CMS
+    // editors write the date unquoted, which the YAML parser turns into a
+    // Date) and normalise to a plain YYYY-MM-DD string so templates and the
+    // RSS feed keep working unchanged.
+    publishedAt: z
+      .union([z.string(), z.date()])
+      .transform((v) => (typeof v === 'string' ? v : v.toISOString().slice(0, 10))),
     draft: z.boolean().default(false),
   }),
 });
