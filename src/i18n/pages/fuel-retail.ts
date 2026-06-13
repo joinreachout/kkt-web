@@ -27,7 +27,7 @@ export const FUEL: Record<Locale, FuelDict> = {
       { tag: 'Stage 3', name: 'Agentic & systemic solutions', body: 'End-to-end solutions and AI agents that run on top of the foundation. The person sets the rules and controls the result.' },
     ],
     startsLabel: 'Engagement starting points', startsTitle: 'Across the whole network economy.',
-    startsLede: 'The effect runs across the whole network economy — procurement and margin, pricing, logistics, stations, finance and control. We start where the diagnostic points. Optimus is one embodiment of this: the procurement-and-margin engine, in pilot at Red Petroleum.',
+    startsLede: 'The effect runs across the whole network economy — procurement and margin, pricing, logistics, stations, finance and control. We start where the diagnostic points.',
     blocks: [
       { lever: 'Fuel: procurement, price & margin', detail: 'Procurement and price run as one commercial loop — forecast the need, choose supplier and moment, account for the full landed cost of a batch, set price-at-pump by market and demand.', tasks: ['Buy fuel in the right volume at the right moment', 'Choose the supplier and purchase terms', 'Account for the full landed cost of a batch', 'Set price by market and demand'] },
       { lever: 'Logistics & fuel supply', detail: 'Fuel supply made manageable end-to-end — batch movement, delay risk, acceptance discrepancies, railcars and demurrage, depot operations, station delivery, trip execution.', tasks: ['Track batch movement and delay risk', 'Find where you lose on supply discrepancies', 'Control railcars and demurrage', 'Plan fuel delivery to stations'] },
@@ -60,7 +60,7 @@ export const FUEL: Record<Locale, FuelDict> = {
       { tag: 'Stufe 3', name: 'Agentische & systemische Lösungen', body: 'Durchgängige Lösungen und KI-Agenten, die auf dem Fundament laufen. Der Mensch setzt die Regeln und kontrolliert das Ergebnis.' },
     ],
     startsLabel: 'Einstiegspunkte für die Zusammenarbeit', startsTitle: 'Über die gesamte Netzökonomie.',
-    startsLede: 'Der Effekt erstreckt sich über die gesamte Netzökonomie — Beschaffung und Marge, Preisgestaltung, Logistik, Stationen, Finanzen und Kontrolle. Wir beginnen dort, wohin die Diagnose zeigt. Optimus ist eine Ausprägung davon: die Beschaffungs- und Margen-Engine, im Pilotbetrieb bei Red Petroleum.',
+    startsLede: 'Der Effekt erstreckt sich über die gesamte Netzökonomie — Beschaffung und Marge, Preisgestaltung, Logistik, Stationen, Finanzen und Kontrolle. Wir beginnen dort, wohin die Diagnose zeigt.',
     blocks: [
       { lever: 'Kraftstoff: Beschaffung, Preis & Marge', detail: 'Beschaffung und Preis laufen als ein kommerzieller Kreislauf — Bedarf prognostizieren, Lieferant und Zeitpunkt wählen, die vollen Landekosten einer Charge berücksichtigen, Tankstellenpreis nach Markt und Nachfrage setzen.', tasks: ['Kraftstoff in der richtigen Menge zum richtigen Zeitpunkt einkaufen', 'Lieferant und Einkaufskonditionen wählen', 'Die vollen Landekosten einer Charge berücksichtigen', 'Preis nach Markt und Nachfrage setzen'] },
       { lever: 'Logistik & Kraftstoffversorgung', detail: 'Kraftstoffversorgung durchgängig steuerbar gemacht — Chargenbewegung, Verzögerungsrisiko, Annahmedifferenzen, Eisenbahnwaggons und Standgeld, Depotbetrieb, Stationsbelieferung, Fahrtausführung.', tasks: ['Chargenbewegung und Verzögerungsrisiko verfolgen', 'Finden, wo Sie bei Versorgungsdifferenzen verlieren', 'Eisenbahnwaggons und Standgeld kontrollieren', 'Kraftstofflieferung an Stationen planen'] },
@@ -93,7 +93,7 @@ export const FUEL: Record<Locale, FuelDict> = {
       { tag: '3. etapp', name: 'Agentsed ja süsteemsed lahendused', body: 'Otsast-otsani lahendused ja TI-agendid, mis töötavad vundamendi peal. Inimene seab reeglid ja kontrollib tulemust.' },
     ],
     startsLabel: 'Koostöö alguspunktid', startsTitle: 'Läbi kogu võrgumajanduse.',
-    startsLede: 'Mõju ulatub läbi kogu võrgumajanduse — hanked ja marginaal, hinnastamine, logistika, jaamad, rahandus ja kontroll. Alustame sealt, kuhu diagnostika osutab. Optimus on selle üks kehastus: hanke- ja marginaalimootor, piloodis Red Petroleumis.',
+    startsLede: 'Mõju ulatub läbi kogu võrgumajanduse — hanked ja marginaal, hinnastamine, logistika, jaamad, rahandus ja kontroll. Alustame sealt, kuhu diagnostika osutab.',
     blocks: [
       { lever: 'Kütus: hanked, hind ja marginaal', detail: 'Hanked ja hind toimivad ühe ärilise tsüklina — prognoosi vajadus, vali tarnija ja hetk, arvesta partii täielik tarnekulu, sea pumbahind turu ja nõudluse järgi.', tasks: ['Osta kütust õiges koguses õigel hetkel', 'Vali tarnija ja ostutingimused', 'Arvesta partii täielik tarnekulu', 'Sea hind turu ja nõudluse järgi'] },
       { lever: 'Logistika ja kütusetarne', detail: 'Kütusetarne otsast-otsani hallatav — partii liikumine, viivituse risk, vastuvõtu erinevused, raudteevagunid ja seisuaeg, depootegevus, jaamatarne, reisi teostus.', tasks: ['Jälgi partii liikumist ja viivituse riski', 'Leia, kus tarne erinevustel kaotad', 'Kontrolli raudteevaguneid ja seisuaega', 'Planeeri kütusetarne jaamadesse'] },
