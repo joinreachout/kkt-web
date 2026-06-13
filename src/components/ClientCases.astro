@@ -193,9 +193,8 @@ const initials = (name) =>
   }
   .cases-partner-logo {
     height: 24px; width: auto; max-width: 130px; object-fit: contain; object-position: left center;
-    filter: grayscale(1); opacity: 0.65; transition: filter .2s ease, opacity .2s ease;
+    opacity: 1; transition: opacity .2s ease;
   }
-  .cases-partner:hover .cases-partner-logo { filter: none; opacity: 1; }
   .cases-partner-note { font-size: 12px; color: var(--text-muted); }
   .cases-tail { margin-top: 26px; }
 
@@ -231,9 +230,8 @@ const initials = (name) =>
   .case-brand { display: flex; align-items: center; height: 34px; }
   .case-logo {
     max-height: 30px; max-width: 130px; object-fit: contain; object-position: left center;
-    filter: grayscale(1); opacity: 0.78; transition: filter .2s ease, opacity .2s ease;
+    opacity: 1; transition: opacity .2s ease;
   }
-  .case-tile:hover .case-logo, .case-tile.is-open .case-logo { filter: none; opacity: 1; }
   .case-mono {
     display: inline-flex; align-items: center; justify-content: center;
     width: 34px; height: 34px; border-radius: 9px;
