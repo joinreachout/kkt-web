@@ -116,7 +116,6 @@ const initials = (n) => n.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[
               </span>
               <span class="cs-name">{c.name}</span>
               <span class="cs-focus">{c.focus}</span>
-              <span class="cs-result-chip">{c.result}</span>
               <span class="cs-cue" aria-hidden="true">+</span>
             </button>
 
@@ -138,7 +137,6 @@ const initials = (n) => n.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[
                   <button class="cs-close" type="button">Close</button>
                 </div>
                 <aside class="cs-detail-side">
-                  <div class="cs-result"><span class="cs-result-num">{c.result}</span></div>
                   <MediaSlot ratio="4 / 3" kind="image" label={c.image} src={c.img} alt={c.name} />
                 </aside>
               </div>

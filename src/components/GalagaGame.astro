@@ -28,11 +28,11 @@
     const H = canvas.height;
 
     const PALETTE = {
-      bg:       '#1A1410',
-      surface:  '#2A211A',
-      cream:    '#F5F3EF',
-      muted:    '#9C8E82',
-      accent:   '#B8832A',
+      bg:       '#FFFFFF',
+      surface:  '#F0F0F2',
+      cream:    '#1D1D1F',
+      muted:    '#86868B',
+      accent:   '#FF6A00',
       danger:   '#C94A3D',
     };
 
@@ -242,7 +242,7 @@
       ctx.fillStyle = PALETTE.bg;
       ctx.fillRect(0, 0, W, H);
 
-      ctx.strokeStyle = 'rgba(245, 243, 239, 0.03)';
+      ctx.strokeStyle = 'rgba(0, 0, 0, 0.05)';
       ctx.lineWidth = 1;
       for (let x = 0; x < W; x += 60) {
         ctx.beginPath();
@@ -257,7 +257,7 @@
         ctx.stroke();
       }
 
-      ctx.fillStyle = PALETTE.cream;
+      ctx.fillStyle = PALETTE.accent;
       ctx.fillRect(player.x, player.y, player.w, player.h);
       ctx.fillRect(player.x + player.w / 2 - 3, player.y - 8, 6, 8);
 
@@ -307,7 +307,7 @@
       }
 
       if (gameState === 'paused') {
-        ctx.fillStyle = 'rgba(26, 20, 16, 0.7)';
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.75)';
         ctx.fillRect(0, 0, W, H);
         ctx.fillStyle = PALETTE.cream;
         ctx.font = 'italic 32px "Playfair Display", serif';
@@ -320,7 +320,7 @@
       }
 
       if (gameState === 'gameover') {
-        ctx.fillStyle = 'rgba(26, 20, 16, 0.8)';
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
         ctx.fillRect(0, 0, W, H);
         ctx.fillStyle = PALETTE.cream;
         ctx.font = 'italic 38px "Playfair Display", serif';
@@ -350,7 +350,7 @@
 
 <style is:global>
   .galaga-shell {
-    background: #1A1410;
+    background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 4px;
     padding: 16px;
@@ -363,7 +363,7 @@
     height: auto;
     max-width: 720px;
     image-rendering: pixelated;
-    background: #1A1410;
+    background: #FFFFFF;
     outline: none;
   }
   .galaga-controls {
@@ -376,8 +376,8 @@
   .galaga-controls kbd {
     font-family: var(--font-mono);
     font-size: 10px;
-    background: rgba(245, 243, 239, 0.08);
-    border: 1px solid rgba(245, 243, 239, 0.16);
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
     border-radius: 2px;
     padding: 1px 5px;
     color: var(--text-muted);

@@ -22,6 +22,9 @@ const stages = f.stages;
       <p class="section-label">{f.introLabel}</p>
       <h1 class="fr-h1">{f.h1a}<span class="grad">{f.h1grad}</span>.</h1>
       <p class="fr-lede">{f.lede}</p>
+      <p class="fr-intro-cta">
+        <a href="https://fuelretail.kittykat.tech" class="btn-primary" rel="noopener">{f.tailMap} →</a>
+      </p>
       <MediaSlot class="fr-intro-media" ratio="16 / 7" kind="image" src="/industries/fuel-retail.jpg" alt={f.imgAlt} label={f.imgLabel} />
     </div>
   </section>
@@ -111,6 +114,7 @@ const stages = f.stages;
     font-size: clamp(17px, 1.8vw, 21px); line-height: 1.55; color: var(--text-secondary);
     max-width: 64ch; margin-bottom: clamp(32px, 5vh, 56px);
   }
+  .fr-intro-cta { margin: clamp(18px, 3vh, 30px) 0 clamp(28px, 5vh, 52px); }
   .fr-intro-media { max-width: 1000px; }
 
   /* Maturity path (dark) */
