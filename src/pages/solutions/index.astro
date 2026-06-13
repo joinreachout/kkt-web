@@ -1,0 +1,105 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import MediaSlot from '~/components/MediaSlot.astro';
+import CTA from '~/components/CTA.astro';
+
+// Our own products. Optimus screenshots are interim (existing repo shots) — to be
+// swapped for the new improved-UI screenshots. Kodu copy/link pending.
+const optimusFeatures = [
+  { name: 'AI Briefing', body: 'A plain-language daily situation summary — what needs action, where the savings are — with free-form questions answered from live data.' },
+  { name: 'Procurement Advisor', body: 'Concrete order recommendations: supplier, tonnage, deadline, price. Statuses from CRITICAL to OK, with one-click PO creation.' },
+  { name: 'Stockout Forecast', body: 'Days remaining to a critical level per station and fuel type, including in-transit and split-wagon transfers.' },
+  { name: 'Delivery conflict resolver', body: 'Auto-Distribute reroutes overflow wagons to the nearest stations with free capacity, with a full audit trail.' },
+  { name: 'Working Capital', body: 'Money frozen in inventory and where to release it — per fuel and per region.' },
+];
+---
+
+<BaseLayout
+  title="Our Solutions — KKT"
+  description="KKT's own products: Optimus, operating intelligence for fuel-distribution networks, and Kodu."
+  ogImage="/og/optimus.png"
+>
+  <!-- Intro -->
+  <section class="section sol-intro" data-reveal>
+    <div class="container">
+      <p class="section-label">Our solutions</p>
+      <h1 class="sol-h1">Products we built and run.</h1>
+      <p class="sol-lede">
+        Alongside client delivery, we build our own products — where a recurring
+        problem in our industries is worth solving once, properly, and operating.
+      </p>
+    </div>
+  </section>
+
+  <!-- Optimus -->
+  <section class="section sol-optimus theme-dark" data-reveal>
+    <div class="container">
+      <p class="section-label">Optimus</p>
+      <h2 class="sol-h2">Operating intelligence for fuel-distribution networks.</h2>
+      <p class="sol-optimus-lede">
+        Procurement, margin, stockouts, and working capital — on connected data, in
+        one operational picture. Optimus turns daily fuel-supply decisions into a
+        controlled workflow: forecast the shortage, recommend the order, manage
+        distribution, reconcile against the ERP. In pilot at Red Petroleum, an
+        independent fuel network in Kyrgyzstan.
+      </p>
+
+      <MediaSlot class="sol-optimus-media" ratio="16 / 9" kind="image" label="Optimus — procurement advisor" src="/screens/optimus-procurement-advisor.jpg" alt="Optimus procurement advisor" />
+
+      <ul class="sol-features" data-reveal-stagger>
+        {optimusFeatures.map((f) => (
+          <li class="sol-feature">
+            <h3 class="sol-feature-name">{f.name}</h3>
+            <p>{f.body}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Kodu -->
+  <section class="section sol-kodu" data-reveal>
+    <div class="container">
+      <div class="sol-kodu-card">
+        <p class="section-label">Kodu</p>
+        <h2 class="sol-h2 sol-kodu-h2">A guest AI assistant.</h2>
+        <p class="sol-kodu-body">
+          Kodu is our guest-assistant product. <em>Full write-up and link coming.</em>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CTA
+    heading="Want one of these in your operation?"
+    body="Optimus is built for fuel networks; the approach behind it applies wherever a recurring operational decision is worth solving once and running. Tell us the decision you want to get under control."
+  />
+</BaseLayout>
+
+<style>
+  .section-label { margin-bottom: 16px; }
+
+  /* Intro */
+  .sol-intro { padding-top: clamp(48px, 8vh, 104px); padding-bottom: clamp(32px, 5vh, 56px); }
+  .sol-h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(36px, 5.4vw, 66px); line-height: 1.05; letter-spacing: -0.03em; color: var(--text-primary); margin-bottom: 22px; max-width: 18ch; }
+  .sol-lede { font-size: clamp(17px, 1.8vw, 21px); line-height: 1.55; color: var(--text-secondary); max-width: 62ch; }
+  .sol-h2 { font-family: var(--font-display); font-weight: 600; font-size: clamp(24px, 3.2vw, 38px); letter-spacing: -0.02em; line-height: 1.14; color: var(--text-primary); margin: 12px 0 16px; max-width: 24ch; }
+
+  /* Optimus (dark) */
+  .sol-optimus { padding-top: clamp(56px, 9vh, 100px); padding-bottom: clamp(56px, 9vh, 100px); }
+  .sol-optimus-lede { font-size: clamp(16px, 1.7vw, 19px); line-height: 1.6; color: var(--text-secondary); max-width: 66ch; margin-bottom: clamp(28px, 4vh, 40px); }
+  .sol-optimus-media { max-width: 1000px; margin-bottom: clamp(32px, 5vh, 52px); }
+  .sol-features { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr; gap: 14px; }
+  @media (min-width: 720px) { .sol-features { grid-template-columns: 1fr 1fr; gap: 18px; } }
+  @media (min-width: 1000px) { .sol-features { grid-template-columns: repeat(3, 1fr); } }
+  .sol-feature { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 22px 24px 24px; }
+  .sol-feature-name { font-family: var(--font-display); font-weight: 600; font-size: 18px; letter-spacing: -0.01em; color: var(--text-primary); margin-bottom: 10px; }
+  .sol-feature p { font-size: 14.5px; line-height: 1.55; color: var(--text-secondary); margin: 0; }
+
+  /* Kodu */
+  .sol-kodu { padding-top: clamp(48px, 7vh, 80px); padding-bottom: clamp(48px, 7vh, 80px); }
+  .sol-kodu-card { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: clamp(28px, 4vw, 44px); max-width: 760px; }
+  .sol-kodu-h2 { margin-top: 4px; }
+  .sol-kodu-body { font-size: clamp(16px, 1.6vw, 18px); line-height: 1.6; color: var(--text-secondary); max-width: 56ch; }
+  .sol-kodu-body em { color: var(--text-muted); font-style: italic; }
+</style>
