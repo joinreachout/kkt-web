@@ -12,6 +12,10 @@ const NOINDEX_PATHS = [
   '/404.html',
   '/tools/cost-of-doing-nothing',
   '/tools/cost-of-doing-nothing/',
+  '/methods/cost-of-doing-nothing',
+  '/methods/cost-of-doing-nothing/',
+  '/not-for-you',
+  '/not-for-you/',
   '/security',
   '/security/',
 ];

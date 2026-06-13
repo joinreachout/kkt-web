@@ -1,104 +1,55 @@
 # Kitty Kat Technologies — firm profile
 
 ## Naming
+- **Public brand:** KKT (hero, nav, conversion surfaces).
+- **Legal name:** Kitty Kat Technologies OÜ (legal footer, /about, contracts).
+- **Headquarters:** Tallinn, Estonia (EU entity). Office: Jõe 7, 10151 Tallinn.
+- **Affiliates:** Bangkok and Georgia.
 
-- **Public-facing brand:** KKT (used on hero, nav, all conversion-critical surfaces)
-- **Full legal name:** Kitty Kat Technologies OÜ (used in legal footer, /about, contracts)
-- **Registered:** Tallinn, Estonia
-- **Office:** Jõe 7, 10151 Tallinn
+## What KKT does
+A senior data & AI delivery firm. We help companies move from business questions to practical solutions in **data, AI, and automation** — and keep them running. We combine domain expertise with the technical delivery to put data and AI to work.
 
-## Positioning (canonical)
+We start from the business question, not the technology.
 
-**We build the operating systems your business runs on.** Senior PMO +
-AI delivery for mid-sized companies (deepest in retail and fuel). Tallinn, EU.
+## Who we work with
+**Mid-enterprise companies in traditional, asset-heavy industries** — companies with established operations, legacy systems, and complex processes, where the cost of getting things wrong is real and a working solution is measurable.
 
-## Where we work
+- **Typical client revenue:** $100M–$1B.
+- **Focus industries:** Oil & Gas, Energy, Retail, Fuel retail, Logistics — and, more broadly, telecom, mobility, and industry.
 
-- **Mid-sized retailers** ($50M–$500M revenue range)
-- **Fuel networks** (independent networks; in pilot at Red Petroleum, ~250 stations)
-- **Geography:** Central Europe, EU, CIS
+## How we work (the method)
+From a business question to a solution that runs:
+1. **Identify & qualify** — clarify the business question, understand the current situation, and assess whether AI, data, analytics, automation, or process redesign can realistically help. Output: a clear view of the issue, its owner and expected result; a first feasibility check; a recommendation to proceed, reshape, or stop early.
+2. **Scope & prepare** — turn a promising opportunity into a delivery-ready project both business and technical teams understand. Output: what changes in process and decision flow; the data, systems, people and rules needed; a delivery plan with requirements, owners and acceptance criteria.
+3. **Execute & coordinate** — support implementation from the business side and keep technical delivery tied to business outcomes. Output: coordinated work across business, vendors and technical teams; regular checks that it still solves the problem; testing, acceptance, alignment, adoption.
+4. **Close, adopt & scale** — make the solution operational, measurable and ready to improve. Output: a solution embedded in the process; handover, adoption and value tracking; clear next steps.
 
-## What makes us different
+## Why clients choose KKT
+- **AI tied to business economics**, not the fashion of technology — every initiative answers to margin, losses, working capital, revenue, service, or team efficiency.
+- **Quick wins, then the system** — start from clear use cases and build the data, processes, models and agents up from there.
+- **World experience, your context** — international practice adapted to your data maturity, system availability, operating constraints and local reality.
+- **From idea to implementation** — we define the priorities, data, dependencies and pilots, then stay through delivery and adoption.
 
-We start from the business question, not the technology. Strong AI
-capability is the baseline; the PMO discipline — scope, sequencing,
-ownership, shipping under constraint — is what separates a slide-led
-project from
-one that runs in production.
+## Specialized solutions (industry maps)
+KKT publishes detailed AI Transformation Maps for the industries it goes deepest in:
+- **Retail AI Canvas** (retail.kittykat.tech) — 43 services across the retail business, organised by stage (Strengthen Core Operations → Optimize and Grow → Expand and Monetize) and by 12 domains (Data Foundation, Stock & Availability, Margin & Cash, Reporting & Decisions, Store Execution, Warehouse & Transport, Supplier Performance, Loss Prevention, Workforce & AI Assistants, Customers & Loyalty, Promotions & Pricing, Expand and Monetize).
+- **Fuel AI Transformation Map** (fuelretail.kittykat.tech) — the whole fuel network economy in 7 blocks (A Fuel commercial, B Logistics, C Stations/stores, D Customers/loyalty/B2B, E Finance/control, F Support functions, G Data foundation). Solutions are tiered: Essential → Advanced → Agentic & systemic.
 
-Distinct from a pure tech vendor: we can sit on the client side and
-coordinate transformation while a vendor builds, or we can lead
-delivery directly. Either way the work has to land in production and
-change something a manager actually decides on.
+## Our own products
+- **Optimus** — operating intelligence for fuel-distribution networks: procurement, margin, stockouts and working capital on connected data, in one operational picture. In pilot at Red Petroleum, an independent fuel network in Kyrgyzstan. (See the Optimus knowledge section.)
+- **Kodu** — a guest AI assistant product.
 
-Distinct from a pure consultancy: we don't ship decks. Every
-engagement we accept is shaped to put something operating into the
-business.
+## Track record (figures)
+- 10+ AI & ML projects delivered.
+- 2 large-scale AI & data transformation programmes.
 
-## How we work — four principles
-
-1. **Outcomes set the bar.** AI earns its place by moving margin,
-   cash, availability, customer value, or productivity — or it doesn't
-   ship. If the case isn't there, we say so.
-
-2. **PMO is the rigor.** Scope, sequencing, ownership, shipping under
-   constraint. Without that, deliverables become decks. With it,
-   systems run.
-
-3. **Senior counterpart, always.** We work alongside your team, not
-   over it. A senior internal owner with authority and time is a
-   precondition. If the room is empty when we leave, the project will
-   fail.
-
-4. **Until the system runs without us.** The exit criterion is built
-   in from week one. Engagements end; the product keeps operating.
-
-## How an engagement runs
-
-Every engagement starts with a **two-week diagnostic**.
-
-- Days 1–3: kick-off, data access, scope freeze
-- Days 4–9: investigation — interviews, data review, surfacing
-  patterns. We tell the client what we're seeing as we see it
-- Days 10–12: synthesis — what to ship, what to leave alone, what
-  proof to commit
-- Day 14: decision-grade readout
-
-If the case for an engagement isn't there, we say so at the readout.
-Honest answers beat a sold project.
-
-After the diagnostic, if there's a fit, we agree on a sequenced
-engagement: a set of operating outcomes, the milestones that prove
-them, and the senior counterpart inside the organisation who inherits
-the system as we ship it. Engagement length is shaped by what's real
-to ship, not by a default contract length.
-
-## Three-stage delivery model
-
-Most engagements move through some subset of these:
-
-1. **Strengthen the core.** Data, governance, decision-grade
-   visibility. The unsexy work that makes everything after possible.
-2. **Optimize and grow.** AI and PMO discipline applied where they
-   earn their place — margin, cash, availability, customer value,
-   productivity.
-3. **Expand and monetize.** New revenue, supplier monetization,
-   customer ownership, strategic expansion. Optional, maturity-dependent.
-
-Most clients enter at stage 1 or 2 — they think they need stage 3.
-The diagnostic tells us which one is real.
-
-## Partnerships
-
-- **Noventiq** — KKT has a non-exclusive cooperation with Noventiq (a
-  global digital-transformation and cybersecurity provider) to promote
-  data & AI solutions across EMEA, Central Asia, and South-East Asia.
-  Each firm may introduce the other to its clients; every specific
-  project stands on its own separate agreement. A co-marketing
-  relationship, not a delivery dependency.
+## Partners
+- **Noventiq** — non-exclusive cooperation (global digital-transformation and cybersecurity provider) to bring data & AI into operations across EMEA, Central Asia and South-East Asia. Co-marketing, not a delivery dependency.
+- **Microsoft** — AI partner.
+- **AWS** — solutions delivered on AWS.
+- **Meta** — Meta Tech Provider.
 
 ## Contact
-
 - Email: hello@kittykat.tech
 - Phone: +372 5555 3621
 - LinkedIn: linkedin.com/company/kittykattech
