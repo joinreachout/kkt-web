@@ -48,6 +48,7 @@ const curve = ({ x, y }) => {
     <g class="hv-sources" font-family="'DM Sans', system-ui, sans-serif">
       {inputs.map(({ x, y, label }) => (
         <g class="hv-source">
+          <circle class="hv-dot-mask" cx={x} cy={y} r="8.5"/>
           <circle cx={x} cy={y} r="6" fill="#1D1D1F" fill-opacity="0.32"/>
           <text x={x - 16} y={y + 5} text-anchor="end" font-size="15.5" font-weight="500" fill="#6E6E73">{label}</text>
         </g>
@@ -65,7 +66,7 @@ const curve = ({ x, y }) => {
 
     <!-- node + outcome labels -->
     <g class="hv-labels" font-family="'DM Sans', system-ui, sans-serif">
-      <text x="700" y="300" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="2" fill="#C2410C">PRACTICAL AI SOLUTION</text>
+      <text x="700" y="328" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="2" fill="#C2410C">PRACTICAL AI SOLUTION</text>
 
       <text x="902" y="64" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="2" fill="#86868B">BUSINESS OUTCOME</text>
       <text x="902" y="83" text-anchor="middle" font-size="13.5" fill="#9C9CA3">measurable ROI</text>
@@ -76,6 +77,8 @@ const curve = ({ x, y }) => {
 <style>
   .hv { margin: 0; width: 100%; }
   .hv svg { width: 100%; height: auto; display: block; }
+  /* white underlay so each source dot sits cleanly on top of the orange flow */
+  .hv-dot-mask { fill: var(--bg, #fff); }
 
   @media (prefers-reduced-motion: no-preference) {
     .hv-source { opacity: 0; animation: hvFade .5s ease forwards; }

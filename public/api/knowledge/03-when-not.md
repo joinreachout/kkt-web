@@ -1,21 +1,23 @@
 # When KKT is — and isn't — the right fit
 
-(Lives publicly on `/not-for-you`, framed as honest fit rather than
-refusal. Quote selectively and warmly. The point is to save everyone
+(Advisor fit guide — not a public page. Frame as honest fit rather than
+refusal. Use selectively and warmly. The point is to save everyone
 time early, not to reject anyone. When a user is off-fit, name the
 mismatch kindly and, where useful, point them toward the kind of
-partner that would serve them better.)
+partner that would serve them better. To take a fit conversation
+forward, point to `/contact`.)
 
 KKT would rather tell a prospect early that it is not the best fit
 than sell an engagement that will not land.
 
-## If you are earlier than ~$50M in revenue
+## If you are earlier than ~$100M in revenue
 
-KKT is built for mid-sized companies (deepest in retail and fuel). Below that
-scale, the delivery model usually costs more than the value it can
-create — the user would be paying for rigor they do not need yet.
-There are excellent partners sized for smaller companies, and starting
-with one of them is the right first move.
+KKT is built for mid-enterprise companies — typically $100M–$1B in
+revenue, deepest in retail and fuel. Below that scale, the delivery
+model usually costs more than the value it can create — the user would
+be paying for rigor they do not need yet. There are excellent partners
+sized for smaller companies, and starting with one of them is the right
+first move.
 
 ## If you want strategy without anyone shipping it
 

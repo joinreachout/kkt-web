@@ -1,6 +1,6 @@
 # What we ship
 
-## For mid-sized retailers (`/industries/retail`)
+## For retailers (`/industries/retail`)
 
 Diagnostics surface different priorities for different retailers. The
 four most common starting points:
@@ -65,13 +65,13 @@ diagnostic decides where to start.
 
 ## Where we're the right fit — and where we're not
 
-(Full version on `/not-for-you`, framed as honest fit.)
+(Full fit logic in 03-when-not.md.)
 
-We're at our best with mid-sized companies (deepest in retail and fuel) that have
-a senior internal owner ready to inherit the work. We're probably not
-the best first call below ~$50M in revenue (the delivery model costs
-more than it can create at that scale), for strategy with no delivery
-behind it, for a model promised in production in four weeks, for
-heavily regulated banking / public sector / defence, or for
-full-service outsourcing. In those cases there's usually a better-fit
-partner, and we'll say so early.
+We're at our best with mid-enterprise companies (deepest in retail and
+fuel) that have a senior internal owner ready to inherit the work.
+We're probably not the best first call below ~$100M in revenue (the
+delivery model costs more than it can create at that scale), for
+strategy with no delivery behind it, for a model promised in production
+in four weeks, for heavily regulated banking / public sector / defence,
+or for full-service outsourcing. In those cases there's usually a
+better-fit partner, and we'll say so early.

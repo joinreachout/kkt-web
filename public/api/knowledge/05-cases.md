@@ -1,141 +1,142 @@
 # Case studies
 
-`/case-studies/`
+All cases live on one page, `/case-studies/`. They expand in place —
+there are no per-case URLs. To point at a specific case, use the `#id`
+anchor (e.g. `/case-studies#red-petroleum`). The page is a
+cross-section, not the full body of work, and is filterable by sector.
 
-Five named clients. Red Petroleum is featured (the marquee case). The
-other four are real shipped work, written up as walkable cases of
-varying depth.
+Present these as peers. Red Petroleum is the largest in scope but sits
+mid-grid at equal weight — don't foreground it as the single marquee
+case.
 
-## Red Petroleum — `/case-studies/red-petroleum`
+## Click & Grow — `/case-studies#click-grow`
 
-- **Industry:** Fuel retail — a leader in Central Asian fuel retail
-- **Region:** Kyrgyzstan, Central Asia
-- **Scale:** ~$600M annual revenue, 220+ stations, 13 depots, ~2,500
-  employees, ~500K customers, ~3K corporate clients.
-- **Status:** Live — the broad data & AI program is in production;
-  the Optimus procurement-and-margin engine is in pilot.
-- **Engagement:** One connected data & AI program across four fronts:
-  (1) **Supply chain — Optimus, in pilot** — fuel-order optimisation
-  (what to order, when, from which supplier, to which depot), real-time
-  rail tracking with arrival prediction, TMS-integrated dispatch from
-  one center; early pilot signal: fewer stockouts and surpluses, less
-  railcar idle time. (2) **Customer value** — RFM + ML segmentation
-  across ~300M transactions / ~500K customers; a non-fuel
-  recommendation engine in testing. LTV (+~10%), retention (+12–15%),
-  non-fuel sales (+12–15%) and average check (+20%) are 2026 targets,
-  not realised results. (3) **Operational excellence** — process
-  re-engineering, AI assistants for HR and station operators, OCR, a
-  large reduction in manual work, and an internal data team trained
-  for handover. (4) **Data foundation** — a central DWH on 500M+ rows
-  unifying ERP, POS, loyalty and logistics; 20+ interactive BI reports;
-  a text-to-SQL assistant (~16s answers, >95% accuracy on business
-  context).
-- **Named quote:** "KKT's proactive approach was key to success. They
-  bridged business goals with in-house technical teams and external
-  partners…" — Nikolai Tr., Head of Digital Development, Red Petroleum.
+- **Sector / region:** Retail / D2C — smart indoor gardens. EU,
+  2022–2023.
+- **Headline:** Lifecycle on real data.
+- **Engagement:** Customer analytics, segmentation, and personalisation
+  for a D2C smart-garden brand, built on device-and-consumable
+  behaviour — transactional data combined with product-engagement
+  signals to support retention and lifecycle marketing.
+- **What changed:** Customer behaviour made actionable for retention
+  planning; lifecycle marketing grounded in real customer data.
 
-This is the marquee case — a real, named client and KKT's biggest
-deployment. The broad program is in production; the Optimus engine
-specifically is in pilot. Be precise about that split if asked, and
-keep the 2026 uplift figures as targets, not delivered results.
+## CSC Telecom (TravelSIM) — `/case-studies#csc-telecom`
 
-## Click & Grow — `/case-studies/click-and-grow`
+- **Sector / region:** Telecom. Baltics, 2023–present.
+- **Headline:** Churn made visible.
+- **Engagement:** Behavioural segmentation, personalised
+  communications, tariff and promo-response analysis, and first churn
+  models for retention — for TravelSIM, CSC Telecom's travel-eSIM brand.
+- **What changed:** At-risk customers visible earlier rather than lost
+  in overall traffic; marketing and commercial decisions on one
+  customer base.
 
-- **Industry:** B2C — smart indoor gardens
-- **Region focus:** Eastern Europe / CIS
-- **Status:** Delivered
-- **Engagement:** Customer analytics + ML segmentation models for
-  targeted growth in EE/CIS. Detailed customer analysis surfacing
-  behavioural patterns and preferences. Targeted marketing
-  recommendations and segmentation engine.
-- **Tech:** Scikit-learn, AzureML, Flask, Azure
+## GTE — `/case-studies#gte`
 
-## GTE — `/case-studies/gte`
+- **Sector:** Industry — compressor design. 2022–2023.
+- **Headline:** In active design.
+- **Engagement:** Fuel-efficiency optimisation in compressor design.
+  Business-problem framing, an architecture blending operations
+  research, ML and physical engineering rules, team-composition
+  support, and oversight of the technical development.
+- **What changed:** Model used in active design work; fuel-efficiency
+  gains validated against engineering baselines.
 
-- **Industry:** Industrial — compressor manufacturing
-- **Status:** Delivered
-- **Engagement:** Reporting platform across finance and manufacturing,
-  plus ML prototypes for compressor anomaly detection and
-  energy-consumption optimisation.
-- **Tech:** PowerBI, PostgreSQL, Airflow, DBT, TensorFlow/Sklearn,
-  Flask, PuLP/CPLEX
+## Taxigo — `/case-studies#forrest-taxi`
 
-## Kricon — `/case-studies/kricon`
+- **Sector / region:** Mobility — ride-hailing. Baltics & Nordics,
+  2023.
+- **Headline:** Feasibility proven.
+- **Engagement:** Dynamic-pricing architecture and feasibility.
+  Business-problem framing, a target architecture, an ML prototype to
+  prove feasibility, vendor-selection support and development
+  oversight, and results control against a baseline.
+- **What changed:** Feasibility proven before committing to a full
+  build; target architecture aligned to the business problem; rollout
+  controlled against a measurable baseline.
 
-- **Industry:** International logistics
-- **Engagement:** Operational visibility across the route network.
-  Reporting infrastructure plus anomaly-detection and clustering
-  models for ops-level signals.
-- **Tech:** PowerBI, DBT, PostgreSQL, custom ELT, XGB/IsolationForest/DBSCAN
+## Kricon — `/case-studies#kricon`
 
-## CSC Telecom — `/case-studies/csc-telecom`
+- **Sector / region:** Logistics. International, 2023–2024.
+- **Headline:** Ops signals, live.
+- **Engagement:** Operational visibility across the route network —
+  reporting infrastructure plus anomaly-detection and clustering models
+  that turn operational data into ops-level signals.
+- **What changed:** Operational issues surfaced as signals rather than
+  after the fact; a reporting base the operation can run on.
 
-- **Industry:** Telecom (mid-sized provider)
-- **Product:** Global Travel/Tourist SIM
-- **Engagement:** Customer and product analytics studies — each
-  shaped to land a specific decision rather than fill a report. A
-  number of insights were adopted by the customer and shipped into
-  the business.
-- **Tech:** Scikit-learn, AzureML, Flask, Azure
+## Red Petroleum — `/case-studies#red-petroleum`
 
-## Ride-hailing platform (unnamed) — `/case-studies/taxi`
+- **Sector / region:** Fuel retail. Central Asia (Kyrgyzstan),
+  2024–present. An independent fuel network, ~250 stations.
+- **Headline:** Days → minutes.
+- **Status:** Live — the broad data & AI program is in production; the
+  Optimus procurement-and-margin engine is in pilot. Be precise about
+  that split if asked.
+- **Engagement:** A multi-year data & AI transformation across the
+  network: AI-readiness and roadmap with leadership alignment; a DWH/BI
+  foundation (24+ dashboards across 9 departments); customer
+  segmentation of 380,000+ loyalty members; anti-fraud analytics over
+  30M+ transactions; internal assistants (a natural-language analytics
+  agent, internal RAG assistants); payment, logistics and procurement
+  automation, including a first procurement-optimisation product
+  (Optimus); plus hiring and training the client's in-house data team.
+- **What changed:** Most of the roadmap delivered; the in-house data
+  team now runs independently; reporting that took days now takes
+  minutes; first in-house ML models in production.
 
-- **Industry:** Ride-hailing — aggregator (matches licensed taxi
-  companies and drivers with riders; no own fleet)
-- **Region:** Baltics + adjacent markets
-- **Status:** In progress — client unnamed until the consent tier
-  allows it. No result figures published (engagement is live, not
-  closed out).
-- **Engagement:** Data-analytics deep-dive on the real growth levers
-  (driver supply at peak, rider wait times, onboarding drop-off, rider
-  return), then ML where prediction pays: dynamic pricing (real-time
-  fares), ride-demand forecasting (driver placement), driver-performance
-  signals, plus an LLM support assistant with feedback sentiment.
-- **Tech:** Python, Scikit-learn, time-series / LSTM, MLOps / CI-CD,
-  LLM assistant
+This is KKT's largest deployment, but treat it as one strong case among
+several, not the headline. Optimus has its own surface in 04-optimus.md;
+don't conflate the program (in production) with the Optimus engine (in
+pilot). No revenue figure for Red Petroleum is published — don't state
+one.
 
-This is the one case shown unnamed and figure-free, by design: the
-engagement is in progress and naming isn't yet consented. The advisor
-should be honest that it's live, not delivered, and that no outcome
-numbers exist yet.
+## Fuel retail loyalty — `/case-studies#loyalty-reactivation`
 
-## Smaller engagements
+- **Sector:** Fuel retail. 2024–2025.
+- **Headline:** ~12,000 reactivated.
+- **Note:** Shown without a named client (anonymised work, no logo).
+  Real shipped work, but not a named client — don't attribute it to a
+  named company. (On the homepage partners-and-clients strip it is
+  deliberately omitted; it still appears on /case-studies.)
+- **Engagement:** Reactivating dormant customers through segmentation —
+  a hybrid RFM + GMM-clustering model, 11 segments validated with the
+  business and deployed in the loyalty mobile app, A/B-tested campaigns,
+  and an automatic refresh pipeline handed over.
+- **What changed:** ~12,000 dormant customers reactivated; segments
+  adopted into the next marketing cycle; an automatic ML pipeline now
+  refreshes the programme.
 
-Listed under "Smaller engagements" on /case-studies/. Real work, but
-not the marquee story KKT leads with.
+## Enterprise analytics agent — `/case-studies#nl-analytics`
 
-### Clubtek — Thailand
+- **Sector:** Enterprise AI. 2025.
+- **Headline:** 90%+ accuracy.
+- **Note:** Shown without a named client (anonymised work, no logo) —
+  same caveat as above: real work, not a named client. (Also omitted
+  from the homepage partners-and-clients strip.)
+- **Engagement:** A natural-language analytics agent for an executive
+  team — a business semantic layer with KPI grounding, a golden Q&A set
+  for accuracy tuning, support for a specialised multi-agent
+  architecture by question type, and preparing internal staff to
+  maintain and extend it.
+- **What changed:** 90%+ answer accuracy in production; leadership can
+  query enterprise data directly; internal staff trained to run and
+  improve the system.
 
-Premium audio, light, and video integration. Top-tier event and venue
-work. KKT has done targeted analytics / data work for them.
+## Clients vs partners — don't confuse them
 
-### Khaos Marani — Georgia
-
-Winery. Advanced analytics and predictive ML to forecast wine demand,
-optimise pricing, and segment consumers for targeted marketing.
-
-### Geo Engineering — CIS
-
-Pump manufacturer (part of Alliance Industry Group). SaaS AI
-solutions, including an internal chatbot to streamline communications
-and operations.
-
-### KliverYards — CIS
-
-Specialised steel structures and drilling rigs. Data analysis on
-project delays plus computer vision to improve production efficiency.
-
-### RiskTekConsult — CIS
-
-Specialised risk consultancy. Advanced analytics for failure analysis
-and prevention.
+The cases above are delivered (or live) client work. Separately, KKT
+has named partners — Noventiq, Microsoft, AWS, Meta (see 01-firm.md).
+Partners are relationships and platforms, not case studies: don't list
+them as shipped engagements or invent client outcomes for them.
 
 ## Note on ICP fit
 
-Red Petroleum and (arguably) Click & Grow fit the new KKT positioning
-(mid-sized retailers + fuel networks) precisely. GTE / Kricon / CSC
-Telecom are real shipped work but predate the current sharper focus.
-Clubtek is also outside the focused ICP — Thai AV integrator, listed
-under smaller engagements. The advisor should be honest about that if
-asked: KKT has shipped across these sectors historically, but the
-firm's go-forward focus is mid-sized retail and fuel.
+KKT's go-forward focus is mid-enterprise companies in traditional,
+asset-heavy industries, deepest in retail and fuel. Several cases sit
+outside that sharpest focus — GTE (industry), Kricon (logistics), CSC
+Telecom (telecom), Taxigo (mobility) are real shipped work across
+sectors but predate the current, narrower positioning. Be honest about
+that if asked: KKT has delivered across these sectors historically, and
+the firm's go-forward focus is mid-enterprise retail and fuel.
