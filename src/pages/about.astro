@@ -2,27 +2,20 @@
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import CTA from '~/components/CTA.astro';
 
-// Team mirrors the fuel-retail runbook (the canonical source). The engagement
-// method lives on /approach — not repeated here.
+// Team mirrors the fuel-retail runbook. Who-we-serve and how-we-work live on the
+// homepage / its sections — About stays short: the firm, the offices, the team.
 const stats = [
-  { num: 'EU', label: 'Tallinn-based, EU entity' },
-  { num: '10+', label: 'client engagements shipped' },
-  { num: '8+', label: 'sectors shipped across' },
-  { num: '$50–500M', label: 'typical client revenue' },
-];
-
-const beliefs = [
-  { n: '01', title: 'Outcomes set the bar', body: 'AI earns its place by moving margin, cash, availability, customer value, or productivity — or it doesn’t ship. If the case isn’t there, we say so.' },
-  { n: '02', title: 'PMO is the rigor', body: 'Scope, sequencing, ownership, shipping under constraint. Without that discipline, deliverables become decks. With it, systems run.' },
-  { n: '03', title: 'Senior counterpart, always', body: 'We work alongside your team, not over it. A senior internal owner with authority and time is a precondition, not a bonus.' },
-  { n: '04', title: 'Until the system runs without us', body: 'The exit criterion is built in from week one. Engagements end; the product keeps operating. Counterparts inherit the system, not the dependency.' },
+  { num: 'EU', label: 'Tallinn HQ · EU entity' },
+  { num: '10+', label: 'AI & ML projects delivered' },
+  { num: '2', label: 'large-scale AI & data transformations' },
+  { num: '$100M–1B', label: 'typical client revenue' },
 ];
 
 const teamGroups = [
   {
-    title: 'Domain expertise',
+    title: 'Domain',
     members: [
-      { name: 'Pavel Mityshkin', line: '15+ years in FMCG/Retail, RGM and Commercial Excellence', chips: ['PepsiCo', 'Philip Morris', 'Bonduelle', 'Efes'], initials: 'PM', photo: '/team/pavel-mityshkin.jpg' },
+      { name: 'Pavel Mityshkin', line: '15+ years in FMCG/Retail, RGM and Commercial Excellence', chips: ['PepsiCo', 'Philip Morris', 'Bonduelle', 'Efes'], assoc: true, initials: 'PM', photo: '/team/pavel-mityshkin.jpg' },
       { name: 'Yana Kujrikhina', line: '10+ years in Oil & Gas, process consulting and digitalization', chips: ['EY', 'Gazprom Oil'], initials: 'YK', photo: '/team/yana-kujrikhina.jpg' },
       { name: 'Nikolay Terentyev', line: '15+ years in banking, finance operations and digital transformation', chips: ['Gazprombank'], initials: 'NT', photo: '/team/nikolay-terentyev.png' },
       { name: 'Pavel Gabaidullin', line: '19+ years in enterprise procurement and international supply chains', chips: ['SIBUR', 'Rosatom / NovaWind', 'United Wagon Company', 'Bombardier JV'], initials: 'PG', photo: '/team/pavel-gabaidullin.jpg' },
@@ -32,11 +25,11 @@ const teamGroups = [
     ],
   },
   {
-    title: 'Tech expertise',
+    title: 'Technical',
     members: [
-      { name: 'Nageye Rascid', line: '20+ years in enterprise data, cloud and AI platforms', chips: ['Microsoft', 'Snowflake', 'Cisco', 'Confluent', 'Upbound'], initials: 'NR', photo: '/team/nageye-rascid.jpg' },
-      { name: 'Denis Perov', line: '15+ years in software engineering and AI/ML solution architecture', chips: ['Aviasales'], initials: 'DP', photo: '/team/denis-perov.jpg' },
-      { name: 'Igor Trifonov', line: '10+ years in data engineering, BI and enterprise data solutions', chips: ['Customertimes', 'Sberbank', 'ATON'], initials: 'IT', photo: '/team/igor-trifonov.png' },
+      { name: 'Nageye Rascid', line: '20+ years in enterprise data, cloud and AI platforms', chips: ['Microsoft', 'Snowflake', 'Cisco', 'Confluent', 'Upbound'], assoc: true, initials: 'NR', photo: '/team/nageye-rascid.jpg' },
+      { name: 'Denis Perov', line: '15+ years in software engineering and AI/ML solution architecture', chips: ['Aviasales'], assoc: true, initials: 'DP', photo: '/team/denis-perov.jpg' },
+      { name: 'Igor Trifonov', line: '10+ years in data engineering, BI and enterprise data solutions', chips: ['Customertimes', 'Sberbank', 'ATON'], assoc: true, initials: 'IT', photo: '/team/igor-trifonov.png' },
     ],
   },
 ];
@@ -46,7 +39,7 @@ const benchNote = 'Plus a wider bench of data scientists, ML engineers, data eng
 
 <BaseLayout
   title="About — KKT"
-  description="Kitty Kat Technologies — a senior data & AI delivery firm in Tallinn, EU, with roots in business and the deepest track record in retail and fuel."
+  description="Kitty Kat Technologies — a senior data & AI delivery firm headquartered in Tallinn, Estonia, with affiliates in Bangkok and Georgia."
   ogImage="/og/about.png"
 >
   <!-- Intro -->
@@ -55,10 +48,9 @@ const benchNote = 'Plus a wider bench of data scientists, ML engineers, data eng
       <p class="section-label">About</p>
       <h1 class="ab-h1"><span class="grad">Kitty Kat</span> Technologies.</h1>
       <p class="ab-lede">
-        A senior data & AI delivery firm based in Tallinn, Estonia, with roots in
-        business. We work with mid-sized companies where the cost of getting things
-        wrong is real and the value of shipping is measurable — with the deepest
-        track record in retail and fuel.
+        A senior data & AI delivery firm, headquartered in Tallinn, Estonia, with
+        affiliates in Bangkok and Georgia. We combine domain expertise with the
+        technical delivery to put data and AI to work — and keep it running.
       </p>
       <div class="ab-stats" data-reveal-stagger>
         {stats.map((s) => (
@@ -71,52 +63,6 @@ const benchNote = 'Plus a wider bench of data scientists, ML engineers, data eng
     </div>
   </section>
 
-  <!-- What we believe (dark band) -->
-  <section class="section ab-beliefs theme-dark" data-reveal>
-    <div class="container">
-      <p class="section-label">What we believe</p>
-      <h2 class="ab-h2">Deep AI capability is necessary, not sufficient.</h2>
-      <p class="ab-beliefs-lead">
-        What ships the work is PMO discipline — scope, sequencing, ownership,
-        delivery under constraint — and starting from the business question, not the
-        technology.
-      </p>
-      <div class="ab-beliefs-grid" data-reveal-stagger>
-        {beliefs.map((b) => (
-          <article class="ab-belief">
-            <span class="ab-belief-n">{b.n}</span>
-            <h3 class="ab-belief-title">{b.title}</h3>
-            <p>{b.body}</p>
-          </article>
-        ))}
-      </div>
-      <p class="ab-beliefs-tail">
-        The honest flip side — who we are, and are not, the right partner for.
-        <a href="/not-for-you" class="link-cta">Is this a fit?</a>
-      </p>
-    </div>
-  </section>
-
-  <!-- Who we are -->
-  <section class="section ab-firm" data-reveal>
-    <div class="container">
-      <p class="ab-firm-body">
-        Kitty Kat Technologies (KKT) works with mid-sized companies — typically
-        $50M to $500M in annual revenue — across Central Europe, the EU, and Central
-        Asia, with the deepest track record in retail and fuel. Every engagement
-        starts with a two-week diagnostic, and the exit criterion — that the system
-        runs without KKT — is built in from week one. KKT does not produce strategy
-        decks without a delivery team behind them, and turns down work where the
-        case for shipping is not yet there. Optimus, an operating-intelligence system
-        for fuel networks, is one of the systems it has built — in pilot at Red
-        Petroleum.
-      </p>
-      <p class="ab-firm-link">
-        <a href="/approach" class="link-cta">How we run an engagement</a>
-      </p>
-    </div>
-  </section>
-
   <!-- Partnerships (soft band) -->
   <section class="section ab-partners theme-soft" data-reveal>
     <div class="container">
@@ -126,8 +72,7 @@ const benchNote = 'Plus a wider bench of data scientists, ML engineers, data eng
         We partner with <strong>Noventiq</strong>, a global digital-transformation
         and cybersecurity provider, to bring data and AI into business operations
         across EMEA, Central Asia, and South-East Asia. A non-exclusive cooperation:
-        each firm brings the other in where it serves the client, and every
-        engagement stands on its own terms.
+        each firm brings the other in where it serves the client.
       </p>
     </div>
   </section>
@@ -136,7 +81,7 @@ const benchNote = 'Plus a wider bench of data scientists, ML engineers, data eng
   <section class="section ab-team" data-reveal>
     <div class="container">
       <p class="section-label">Team &amp; experts</p>
-      <h2 class="ab-h2 ab-team-h2">Domain expertise and technical delivery in one team.</h2>
+      <h2 class="ab-h2 ab-team-h2">One team, end to end.</h2>
       {teamGroups.map((g) => (
         <div class="ab-team-group">
           <div class="ab-team-group-title">{g.title}</div>
@@ -149,6 +94,7 @@ const benchNote = 'Plus a wider bench of data scientists, ML engineers, data eng
                 <div class="ab-member-name">{m.name}</div>
                 <div class="ab-member-line">{m.line}</div>
                 <div class="ab-member-chips">
+                  {m.assoc && <span class="ab-member-chip ab-chip-assoc">Associated expert</span>}
                   {m.chips.map((c) => <span class="ab-member-chip">{c}</span>)}
                 </div>
               </article>
@@ -173,7 +119,7 @@ const benchNote = 'Plus a wider bench of data scientists, ML engineers, data eng
   }
 
   /* Intro */
-  .ab-intro { padding-top: clamp(48px, 8vh, 104px); padding-bottom: clamp(40px, 6vh, 72px); }
+  .ab-intro { padding-top: clamp(48px, 8vh, 104px); padding-bottom: clamp(48px, 7vh, 80px); }
   .ab-h1 {
     font-family: var(--font-display); font-weight: 600; font-size: clamp(36px, 5.4vw, 66px);
     line-height: 1.05; letter-spacing: -0.03em; color: var(--text-primary); margin-bottom: 22px;
@@ -181,26 +127,10 @@ const benchNote = 'Plus a wider bench of data scientists, ML engineers, data eng
   .ab-lede { font-size: clamp(17px, 1.8vw, 21px); line-height: 1.55; color: var(--text-secondary); max-width: 64ch; margin-bottom: clamp(32px, 5vh, 48px); }
   .ab-stats { display: flex; flex-wrap: wrap; gap: clamp(24px, 4vw, 48px); padding-top: 28px; border-top: 1px solid var(--border); }
   .ab-stat-num {
-    font-family: var(--font-display); font-weight: 600; font-size: clamp(26px, 3.4vw, 38px); line-height: 1;
+    font-family: var(--font-display); font-weight: 600; font-size: clamp(24px, 3vw, 34px); line-height: 1;
     background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
   }
-  .ab-stat-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.12em; font-weight: 600; max-width: 20ch; margin-top: 8px; }
-
-  /* Beliefs (dark) */
-  .ab-beliefs { padding-top: clamp(56px, 9vh, 100px); padding-bottom: clamp(56px, 9vh, 100px); }
-  .ab-beliefs-lead { font-size: clamp(16px, 1.6vw, 19px); line-height: 1.6; color: var(--text-secondary); max-width: 64ch; margin-bottom: clamp(32px, 5vh, 48px); }
-  .ab-beliefs-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
-  @media (min-width: 720px) { .ab-beliefs-grid { grid-template-columns: 1fr 1fr; gap: 18px; } }
-  .ab-belief { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 24px 26px 26px; }
-  .ab-belief-n { display: inline-block; font-family: var(--font-mono); font-size: 13px; font-weight: 700; margin-bottom: 12px; background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-  .ab-belief-title { font-family: var(--font-display); font-weight: 600; font-size: clamp(18px, 1.9vw, 21px); letter-spacing: -0.01em; color: var(--text-primary); margin-bottom: 10px; }
-  .ab-belief p { font-size: 15px; line-height: 1.6; color: var(--text-secondary); margin: 0; }
-  .ab-beliefs-tail { margin-top: 28px; font-size: 14px; color: var(--text-muted); display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
-
-  /* Firm */
-  .ab-firm { padding-top: clamp(48px, 7vh, 88px); padding-bottom: clamp(40px, 6vh, 72px); }
-  .ab-firm-body { font-size: clamp(16px, 1.7vw, 19px); line-height: 1.75; color: var(--text-secondary); max-width: 68ch; }
-  .ab-firm-link { margin-top: 22px; }
+  .ab-stat-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.12em; font-weight: 600; max-width: 22ch; margin-top: 8px; }
 
   /* Partners (soft) */
   .ab-partners { padding-top: clamp(48px, 7vh, 88px); padding-bottom: clamp(48px, 7vh, 88px); }
@@ -221,6 +151,7 @@ const benchNote = 'Plus a wider bench of data scientists, ML engineers, data eng
   .ab-member-line { font-size: 13.5px; color: var(--text-secondary); line-height: 1.5; margin-top: 7px; }
   .ab-member-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 13px; width: fit-content; }
   .ab-member-chip { font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary); background: var(--surface-alt); border: 1px solid var(--border); border-radius: 6px; padding: 3px 8px; }
+  .ab-chip-assoc { font-family: var(--font-body); color: var(--accent-text); background: var(--accent-dim); border-color: transparent; font-weight: 600; }
   .ab-bench { font-size: 13.5px; color: var(--text-muted); max-width: 64ch; margin-top: 8px; }
   .ab-legal { font-size: 13.5px; color: var(--text-muted); margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); max-width: 60ch; }
   .ab-legal strong { color: var(--text-secondary); font-weight: 600; }
