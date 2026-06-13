@@ -146,7 +146,6 @@ if (segments.length > 0 && pageType !== 'article') {
     'about': 'About',
     'approach': 'Approach',
     'contact': 'Contact',
-    'not-for-you': 'Is this a fit?',
     'retail': 'Retail',
     'fuel-retail': 'Fuel retail',
     'optimus': 'Optimus',
@@ -155,7 +154,6 @@ if (segments.length > 0 && pageType !== 'article') {
     'gte': 'GTE',
     'kricon': 'Kricon',
     'csc-telecom': 'CSC Telecom',
-    'cost-of-doing-nothing': 'Cost of doing nothing',
   };
   const items = [
     { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://kittykat.tech/' },
@@ -204,49 +202,6 @@ if (pathname === '/solutions/optimus') {
   });
 }
 
-// FAQPage for /not-for-you — the page's seven fit conditions are
-// genuine Q&A; answer text mirrors the published copy verbatim.
-if (pathname === '/not-for-you') {
-  const mk = (q: string, a: string) => ({
-    '@type': 'Question',
-    name: q,
-    acceptedAnswer: { '@type': 'Answer', text: a },
-  });
-  schemaGraph.push({
-    '@type': 'FAQPage',
-    '@id': 'https://kittykat.tech/not-for-you/#faq',
-    mainEntity: [
-      mk(
-        'Is KKT the right partner if our revenue is below ~$50M?',
-        'KKT is built for mid-sized companies (deepest in retail and fuel). Below that scale, the delivery model usually costs more than the value it can create — you would be paying for rigor you do not need yet. There are excellent partners sized for smaller companies, and starting with one of them is the right first move.'
-      ),
-      mk(
-        'Does KKT take on strategy work without delivery?',
-        'No. KKT work is shaped to put something operating into your business, not to produce a deck that sits on a shelf. If what you need is a slide-led strategy with no delivery team behind it, a strategy house will serve you better.'
-      ),
-      mk(
-        'What if there is no senior internal owner to inherit the work?',
-        'The systems KKT builds keep running after the team leaves only if someone senior inside owns them — with real authority and real time, not just a title. If that person is not in place yet, the honest first step is to get them in seat, and KKT is glad to help scope the role first.'
-      ),
-      mk(
-        'Can KKT put a model into production in four weeks?',
-        'KKT can run a diagnostic in four weeks. A model live in your business and moving real numbers in four weeks — that KKT cannot promise, and would rather say so than over-commit. Good delivery has a floor on time.'
-      ),
-      mk(
-        'Does KKT work in heavily regulated banking, public sector, or defence?',
-        'No. Those domains carry compliance bars and delivery patterns KKT does not claim deep expertise in. Firms built specifically for that work will serve you better.'
-      ),
-      mk(
-        'Will KKT deploy AI without a defined business outcome?',
-        'No. KKT puts data, models, and AI to work only where they earn their place against margin, cash, availability, customer value, or productivity. If the ask is to deploy a chatbot or run an LLM pilot with no business outcome attached, KKT is probably not the right call.'
-      ),
-      mk(
-        'Does KKT offer full outsourcing or staff augmentation?',
-        'No. KKT works alongside your people and brings senior delivery rigor, AI capability, and PMO discipline — but does not take over your operations, IT, or data function. If you need full-service outsourcing or staff augmentation, a different kind of firm is the better fit.'
-      ),
-    ],
-  });
-}
 
 // ItemList for /case-studies — named client engagements. Descriptions
 // drawn only from existing case-study content.
