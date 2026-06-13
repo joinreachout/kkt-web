@@ -73,7 +73,7 @@ never depends on the web interface.
 Optimus is in pilot at **Red Petroleum** (also branded Red Petrol) — an
 independent fuel network in Kyrgyzstan, ~250 stations. Red Petroleum is currently
 testing Optimus across the network for procurement and margin; it is a
-live trial, not yet full production. `/case-studies/red-petroleum`.
+live trial, not yet full production. `/case-studies#red-petroleum`.
 
 (Do not state a revenue figure, a fuel-type count, or a second
 deployment — those were unverified and have been removed. Only "~250
