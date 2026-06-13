@@ -33,7 +33,7 @@ export function stripLocale(pathname: string): string {
 
 // Paths that currently have de/et versions. Grows as pages are localised.
 // Anything not in here falls back to English so links never 404 mid-rollout.
-export const TRANSLATED_PATHS = new Set<string>(['/', '/industries/retail', '/industries/fuel-retail', '/solutions', '/solutions/optimus', '/case-studies', '/about', '/contact']);
+export const TRANSLATED_PATHS = new Set<string>(['/', '/industries/retail', '/industries/fuel-retail', '/solutions', '/solutions/optimus', '/case-studies', '/about', '/contact', '/insights']);
 
 export function hasTranslation(pathname: string, locale: Locale): boolean {
   if (locale === DEFAULT_LOCALE) return true;
