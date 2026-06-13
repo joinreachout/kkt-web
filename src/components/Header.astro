@@ -1,19 +1,27 @@
 ---
 // KKT wordmark + nav. Sticky top bar.
 import CatMark from './CatMark.astro';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import { useStrings } from '~/i18n/strings';
+import { localizePath, toLocale } from '~/i18n/config';
+
+const locale = toLocale(Astro.currentLocale);
+const t = useStrings(Astro.currentLocale);
+const L = (p: string) => localizePath(p, locale);
+
 const navItems = [
-  { href: '/industries/retail', label: 'Retail' },
-  { href: '/industries/fuel-retail', label: 'Fuel retail' },
-  { href: '/solutions', label: 'Our Solutions' },
-  { href: '/case-studies/', label: 'Case studies' },
-  { href: '/insights', label: 'Insights' },
-  { href: '/about', label: 'About' },
+  { href: '/industries/retail', label: t.nav.retail },
+  { href: '/industries/fuel-retail', label: t.nav.fuel },
+  { href: '/solutions', label: t.nav.solutions },
+  { href: '/case-studies/', label: t.nav.cases },
+  { href: '/insights', label: t.nav.insights },
+  { href: '/about', label: t.nav.about },
 ];
 ---
 
 <header class="site-header">
   <div class="container header-inner">
-    <a href="/" class="wordmark" aria-label="KKT — home">
+    <a href={L('/')} class="wordmark" aria-label="KKT — home">
       <CatMark size={26} />
       <span class="wordmark-text">KKT</span>
     </a>
@@ -21,21 +29,22 @@ const navItems = [
     <nav aria-label="Primary">
       <ul class="nav-list">
         {navItems.map((item) => (
-          <li><a href={item.href}>{item.label}</a></li>
+          <li><a href={L(item.href)}>{item.label}</a></li>
         ))}
       </ul>
     </nav>
 
     <div class="header-actions">
+      <LanguageSwitcher />
       <button type="button" class="advisor-trigger advisor-trigger-full" data-advisor-open aria-label="Open advisor (Cmd+K)">
-        <span class="advisor-trigger-label">Ask the advisor</span>
+        <span class="advisor-trigger-label">{t.actions.advisor}</span>
         <span class="kbd-chip"><kbd>⌘</kbd><kbd>K</kbd></span>
       </button>
       <button type="button" class="advisor-trigger advisor-trigger-icon" data-advisor-open aria-label="Open advisor">
         <span aria-hidden="true">✦</span>
       </button>
-      <a href="/contact" class="header-cta">Book a diagnostic</a>
-      <button type="button" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+      <a href={L('/contact')} class="header-cta">{t.actions.diagnostic}</a>
+      <button type="button" class="nav-toggle" aria-label={t.actions.menu} aria-expanded="false" aria-controls="mobile-nav">
         <span class="nav-toggle-bar"></span>
         <span class="nav-toggle-bar"></span>
         <span class="nav-toggle-bar"></span>
@@ -46,9 +55,9 @@ const navItems = [
   <div id="mobile-nav" class="mobile-nav" hidden>
     <ul>
       {navItems.map((item) => (
-        <li><a href={item.href}>{item.label}</a></li>
+        <li><a href={L(item.href)}>{item.label}</a></li>
       ))}
-      <li class="mobile-nav-cta"><a href="/contact">Book a diagnostic</a></li>
+      <li class="mobile-nav-cta"><a href={L('/contact')}>{t.actions.diagnostic}</a></li>
     </ul>
   </div>
 </header>

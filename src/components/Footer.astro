@@ -1,6 +1,11 @@
 ---
 // Footer — legal name "Kitty Kat Technologies" appears here per V2 §3.1.
 import CatMark from './CatMark.astro';
+import { useStrings } from '~/i18n/strings';
+import { localizePath, toLocale } from '~/i18n/config';
+const locale = toLocale(Astro.currentLocale);
+const t = useStrings(Astro.currentLocale);
+const L = (p: string) => localizePath(p, locale);
 const year = new Date().getFullYear();
 ---
 
@@ -11,42 +16,40 @@ const year = new Date().getFullYear();
         <CatMark size={28} ariaLabel="Kitty Kat Technologies" />
         <span class="footer-wordmark">KKT</span>
       </div>
-      <p class="footer-tag">We build the operating systems your business runs on.</p>
+      <p class="footer-tag">{t.footer.tag}</p>
     </div>
 
     <div class="footer-cols">
       <div>
-        <div class="footer-col-label">Industries</div>
+        <div class="footer-col-label">{t.footer.industries}</div>
         <ul>
-          <li><a href="/industries/retail">Retail</a></li>
-          <li><a href="/industries/fuel-retail">Fuel retail</a></li>
+          <li><a href={L('/industries/retail')}>{t.nav.retail}</a></li>
+          <li><a href={L('/industries/fuel-retail')}>{t.nav.fuel}</a></li>
         </ul>
       </div>
 
       <div>
-        <div class="footer-col-label">Work</div>
+        <div class="footer-col-label">{t.footer.work}</div>
         <ul>
-          <li><a href="/case-studies/">Case studies</a></li>
-          <li><a href="/solutions">Our Solutions</a></li>
+          <li><a href={L('/case-studies/')}>{t.nav.cases}</a></li>
+          <li><a href={L('/solutions')}>{t.nav.solutions}</a></li>
         </ul>
       </div>
 
       <div>
-        <div class="footer-col-label">Company</div>
+        <div class="footer-col-label">{t.footer.company}</div>
         <ul>
-          <li><a href="/about">About</a></li>
-          <li><a href="/insights">Insights</a></li>
-          <li><a href="/contact">Contact</a></li>
-          <li><button type="button" class="footer-link-button" data-advisor-open>Ask the advisor</button></li>
+          <li><a href={L('/about')}>{t.nav.about}</a></li>
+          <li><a href={L('/insights')}>{t.nav.insights}</a></li>
+          <li><a href={L('/contact')}>{t.footer.contact}</a></li>
+          <li><button type="button" class="footer-link-button" data-advisor-open>{t.actions.advisor}</button></li>
         </ul>
       </div>
     </div>
   </div>
 
   <div class="container footer-legal">
-    <p>
-      &copy; {year} Kitty Kat Technologies OÜ &middot; Jõe 7, 10151 Tallinn, Estonia
-    </p>
+    <p>{t.footer.legal(year)}</p>
     <p>
       <a href="mailto:hello@kittykat.tech">hello@kittykat.tech</a>
       <span class="sep">&middot;</span>

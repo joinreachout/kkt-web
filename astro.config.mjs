@@ -22,6 +22,17 @@ const NOINDEX_PATHS = [
 
 export default defineConfig({
   site: 'https://kittykat.tech',
+  // i18n: English at the root (no prefix), German and Estonian under /de/ and
+  // /et/. Localized pages live in src/pages/de|et/ and pull their copy from
+  // src/i18n/ dictionaries keyed by Astro.currentLocale.
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'de', 'et'],
+    routing: {
+      prefixDefaultLocale: false,
+      redirectToDefaultLocale: false,
+    },
+  },
   // Per-case pages were consolidated into the single /case-studies page (cases
   // expand in place). Old per-case URLs redirect to the matching anchor.
   redirects: {

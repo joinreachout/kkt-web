@@ -4,6 +4,7 @@ import Header from '~/components/Header.astro';
 import Footer from '~/components/Footer.astro';
 import VersionBadge from '~/components/VersionBadge.astro';
 import AdvisorMount from '~/components/AdvisorMount.astro';
+import { LANGS, toLocale, alternates } from '~/i18n/config';
 
 interface Props {
   title?: string;
@@ -30,6 +31,12 @@ const {
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site).toString();
 const ogImageUrl = new URL(ogImage, Astro.site).toString();
 const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
+
+// i18n: page language + hreflang alternates for this path.
+const locale = toLocale(Astro.currentLocale);
+const langTag = LANGS[locale].bcp47;
+const ogLocale = { en: 'en_US', de: 'de_DE', et: 'et_EE' }[locale];
+const hreflangs = alternates(Astro.url.pathname, Astro.site);
 
 // Schema.org JSON-LD. Always emits an Organization graph node + a
 // page-type node (WebPage / Article). Search engines pick from the
@@ -277,7 +284,7 @@ const schemaJsonLd = JSON.stringify({
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={langTag}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -289,12 +296,16 @@ const schemaJsonLd = JSON.stringify({
     {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonicalUrl} />
 
+    <!-- hreflang alternates (en at root, de/et prefixed) -->
+    {hreflangs.map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
+
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:site_name" content="KKT" />
+    <meta property="og:locale" content={ogLocale} />
     <meta property="og:image" content={ogImageUrl} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />

@@ -4,12 +4,15 @@
 // single practical AI solution, which rises into a measurable outcome.
 // Built in code (no stock, no product screenshot), orange-gradient brand
 // language. Gentle draw-in on load; static under reduced-motion.
+import { useStrings } from '~/i18n/strings';
+const t = useStrings(Astro.currentLocale);
+const vs = t.hero.vSources;
 const inputs = [
-  { x: 300, y: 80,  label: 'Strategy' },
-  { x: 268, y: 158, label: 'Operations' },
-  { x: 316, y: 232, label: 'Data' },
-  { x: 280, y: 308, label: 'IT systems' },
-  { x: 304, y: 386, label: 'Finance' },
+  { x: 300, y: 80,  label: vs[0] },
+  { x: 268, y: 158, label: vs[1] },
+  { x: 316, y: 232, label: vs[2] },
+  { x: 280, y: 308, label: vs[3] },
+  { x: 304, y: 386, label: vs[4] },
 ];
 // Smooth converging flow from each source into the decision node at (700, 220).
 const curve = ({ x, y }) => {
@@ -66,10 +69,10 @@ const curve = ({ x, y }) => {
 
     <!-- node + outcome labels -->
     <g class="hv-labels" font-family="'DM Sans', system-ui, sans-serif">
-      <text x="700" y="328" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="2" fill="#C2410C">PRACTICAL AI SOLUTION</text>
+      <text x="700" y="328" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="2" fill="#C2410C">{t.hero.vSolution}</text>
 
-      <text x="902" y="64" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="2" fill="#86868B">BUSINESS OUTCOME</text>
-      <text x="902" y="83" text-anchor="middle" font-size="13.5" fill="#9C9CA3">measurable ROI</text>
+      <text x="902" y="64" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="2" fill="#86868B">{t.hero.vOutcome}</text>
+      <text x="902" y="83" text-anchor="middle" font-size="13.5" fill="#9C9CA3">{t.hero.vRoi}</text>
     </g>
   </svg>
 </figure>

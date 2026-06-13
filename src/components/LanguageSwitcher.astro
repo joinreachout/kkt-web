@@ -1,0 +1,57 @@
+---
+// Language switcher — links to the same page in each locale. Sits in the
+// header. Uses the current path so switching keeps you on the same page.
+import { LOCALES, LANGS, localizePath, hasTranslation, toLocale, DEFAULT_LOCALE } from '~/i18n/config';
+
+const current = toLocale(Astro.currentLocale);
+const path = Astro.url.pathname;
+
+// If the current page isn't translated in a target locale yet, send the
+// switcher to that locale's homepage rather than back to English.
+const target = (loc: (typeof LOCALES)[number]) =>
+  hasTranslation(path, loc)
+    ? localizePath(path, loc)
+    : loc === DEFAULT_LOCALE
+      ? localizePath(path, DEFAULT_LOCALE)
+      : `/${loc}/`;
+---
+
+<div class="lang-switch" role="group" aria-label="Language">
+  {LOCALES.map((loc) => (
+    <a
+      href={target(loc)}
+      class:list={['lang-opt', { 'is-active': loc === current }]}
+      hreflang={LANGS[loc].bcp47}
+      aria-current={loc === current ? 'true' : undefined}
+      lang={LANGS[loc].bcp47}
+    >{LANGS[loc].label}</a>
+  ))}
+</div>
+
+<style>
+  .lang-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 2px;
+  }
+  .lang-opt {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 4px 6px;
+    border-radius: 2px;
+    transition: color .15s ease, background .15s ease;
+  }
+  .lang-opt:hover { color: var(--text-primary); text-decoration: none; }
+  .lang-opt.is-active {
+    color: var(--text-primary);
+    background: var(--surface-alt);
+    font-weight: 600;
+  }
+</style>

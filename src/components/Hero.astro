@@ -3,25 +3,26 @@
 // Copy is the ANAS opening statement (canonical source), near-verbatim.
 // Apple-style: white canvas, oversized tight headline, generous space.
 import HeroVisual from './HeroVisual.astro';
+import { useStrings } from '~/i18n/strings';
+import { localizePath, toLocale } from '~/i18n/config';
+const locale = toLocale(Astro.currentLocale);
+const t = useStrings(Astro.currentLocale);
+const L = (p: string) => localizePath(p, locale);
 ---
 
 <section class="hero">
   <div class="container hero-inner fade-up" data-parallax>
-    <p class="hero-eyebrow">Business-first Data &amp; AI</p>
+    <p class="hero-eyebrow">{t.hero.eyebrow}</p>
 
     <h1 class="hero-title">
-      We help companies move from <span class="hero-accent">business questions</span>
-      to practical solutions in <span class="hero-accent">data, AI, and automation</span>.
+      {t.hero.titleA}<span class="hero-accent">{t.hero.titleAccent1}</span>{t.hero.titleB}<span class="hero-accent">{t.hero.titleAccent2}</span>.
     </h1>
 
-    <p class="hero-sub">
-      Domain expertise and technical delivery in one team — from the business
-      question to a solution that runs in your operations.
-    </p>
+    <p class="hero-sub">{t.hero.sub}</p>
 
     <div class="hero-ctas">
-      <a href="#how-we-work" class="btn-primary">See how we work</a>
-      <a href="/case-studies/" class="link-cta">View selected work</a>
+      <a href="#how-we-work" class="btn-primary">{t.hero.ctaPrimary}</a>
+      <a href={L('/case-studies/')} class="link-cta">{t.hero.ctaSecondary}</a>
     </div>
 
     <div class="hero-media">
