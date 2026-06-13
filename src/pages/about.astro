@@ -28,7 +28,7 @@ const teamGroups = [
     title: 'Technical',
     members: [
       { name: 'Nageye Rascid', line: '20+ years in enterprise data, cloud and AI platforms', chips: ['Microsoft', 'Snowflake', 'Cisco', 'Confluent', 'Upbound'], assoc: true, initials: 'NR', photo: '/team/nageye-rascid.jpg' },
-      { name: 'Denis Perov', line: '15+ years in software engineering and AI/ML solution architecture', chips: ['Aviasales'], assoc: true, initials: 'DP', photo: '/team/denis-perov.jpg' },
+      { name: 'Denis Perov', line: '15+ years in software engineering and AI/ML solution architecture', chips: ['Aviasales'], initials: 'DP', photo: '/team/denis-perov.jpg' },
       { name: 'Igor Trifonov', line: '10+ years in data engineering, BI and enterprise data solutions', chips: ['Customertimes', 'Sberbank', 'ATON'], assoc: true, initials: 'IT', photo: '/team/igor-trifonov.png' },
     ],
   },
@@ -94,7 +94,7 @@ const benchNote = 'Plus a wider bench of data scientists, ML engineers, data eng
                 <div class="ab-member-name">{m.name}</div>
                 <div class="ab-member-line">{m.line}</div>
                 <div class="ab-member-chips">
-                  {m.assoc && <span class="ab-member-chip ab-chip-assoc">Associated expert</span>}
+                  {m.assoc && <span class="ab-member-chip">Associated expert</span>}
                   {m.chips.map((c) => <span class="ab-member-chip">{c}</span>)}
                 </div>
               </article>
@@ -151,7 +151,6 @@ const benchNote = 'Plus a wider bench of data scientists, ML engineers, data eng
   .ab-member-line { font-size: 13.5px; color: var(--text-secondary); line-height: 1.5; margin-top: 7px; }
   .ab-member-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 13px; width: fit-content; }
   .ab-member-chip { font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary); background: var(--surface-alt); border: 1px solid var(--border); border-radius: 6px; padding: 3px 8px; }
-  .ab-chip-assoc { font-family: var(--font-body); color: var(--accent-text); background: var(--accent-dim); border-color: transparent; font-weight: 600; }
   .ab-bench { font-size: 13.5px; color: var(--text-muted); max-width: 64ch; margin-top: 8px; }
   .ab-legal { font-size: 13.5px; color: var(--text-muted); margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); max-width: 60ch; }
   .ab-legal strong { color: var(--text-secondary); font-weight: 600; }
