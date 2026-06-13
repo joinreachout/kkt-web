@@ -115,22 +115,30 @@ const partners = [
 
 const initials = (name) =>
   name.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join('').toUpperCase();
+
+// Localise: overlay translated text (focus/sector/what/scope/outcome) onto the
+// static case data, and the notes onto partners. Brand names/logos stay.
+import { useHome } from '~/i18n/home';
+import { localizePath, toLocale } from '~/i18n/config';
+const locale = toLocale(Astro.currentLocale);
+const cc = useHome(Astro.currentLocale).cases;
+const L = (p) => localizePath(p, locale);
+const yr = (y) => y.replace('present', locale === 'de' ? 'heute' : locale === 'et' ? 'praegu' : 'present');
+const byId = Object.fromEntries(cc.items.map((i) => [i.id, i]));
+const localizedCases = cases.map((c) => ({ ...c, ...(byId[c.id] || {}) }));
+const localizedPartners = partners.map((p, i) => ({ ...p, note: cc.partnerNotes[i] }));
 ---
 
 <section id="cases" class="section cases" data-cases>
   <div class="container">
     <header class="cases-head" data-reveal>
-      <p class="section-label">Our partners &amp; clients</p>
-      <h2 class="h2-section cases-title">Partners and clients.</h2>
-      <p class="cases-intro">
-        We work alongside global technology partners and with clients across fuel,
-        retail, telecom, mobility, logistics, and industry. Tap a client for the
-        full picture — what we did, the scope, and the result.
-      </p>
+      <p class="section-label">{cc.label}</p>
+      <h2 class="h2-section cases-title">{cc.title}</h2>
+      <p class="cases-intro">{cc.intro}</p>
     </header>
 
     <div class="cases-partners" data-reveal-stagger>
-      {partners.map((p) => (
+      {localizedPartners.map((p) => (
         <div class="cases-partner">
           <img class="cases-partner-logo" src={p.logo} alt={p.name} loading="lazy" />
           <span class="cases-partner-note">{p.note}</span>
@@ -139,7 +147,7 @@ const initials = (name) =>
     </div>
 
     <div class="cases-grid" data-reveal>
-      {cases.map((c) => (
+      {localizedCases.map((c) => (
         <article class="case-tile" data-id={c.id} style={`view-transition-name: ct-${c.id}`}>
           <button class="case-open" aria-expanded="false" aria-controls={`detail-${c.id}`}>
             <span class="case-brand">
@@ -153,26 +161,26 @@ const initials = (name) =>
           </button>
 
           <div class="case-detail" id={`detail-${c.id}`} hidden>
-            <div class="case-meta">{c.sector} · {c.years}</div>
+            <div class="case-meta">{c.sector} · {yr(c.years)}</div>
             <p class="case-what">{c.what}</p>
             <div class="case-cols">
               <div class="case-col">
-                <h4 class="case-col-h">What we did</h4>
+                <h4 class="case-col-h">{cc.didLabel}</h4>
                 <ul class="case-list">{c.scope.map((s) => <li>{s}</li>)}</ul>
               </div>
               <div class="case-col">
-                <h4 class="case-col-h">What changed</h4>
+                <h4 class="case-col-h">{cc.changedLabel}</h4>
                 <ul class="case-list case-list-out">{c.outcome.map((o) => <li>{o}</li>)}</ul>
               </div>
             </div>
-            <button class="case-close" type="button">Close</button>
+            <button class="case-close" type="button">{cc.close}</button>
           </div>
         </article>
       ))}
     </div>
 
     <p class="cases-tail" data-reveal>
-      <a href="/case-studies/" class="link-cta">See the full list of clients and projects</a>
+      <a href={L('/case-studies/')} class="link-cta">{cc.tail}</a>
     </p>
   </div>
 </section>

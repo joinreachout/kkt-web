@@ -5,6 +5,14 @@ import HowWeWork from '~/components/HowWeWork.astro';
 import WhyUs from '~/components/WhyUs.astro';
 import ClientCases from '~/components/ClientCases.astro';
 import CTA from '~/components/CTA.astro';
+import { useStrings } from '~/i18n/strings';
+import { useHome } from '~/i18n/home';
+import { localizePath, toLocale } from '~/i18n/config';
+
+const locale = toLocale(Astro.currentLocale);
+const who = useStrings(Astro.currentLocale).who;
+const maps = useHome(Astro.currentLocale).maps;
+const L = (p: string) => localizePath(p, locale);
 
 // Trust strip variant — flip to 'A' or 'B' if Red Petroleum consent tier shifts.
 // See WORK/briefs/alfa-oil-content-brief.md.
@@ -20,35 +28,26 @@ const trustVariant = 'C' as const;
   <!-- Who we serve -->
   <section class="section section-who" data-reveal>
     <div class="container">
-      <div class="section-label">Who we work with</div>
-      <h2 class="h2-section who-title">Mid-enterprise companies in traditional, asset-heavy industries.</h2>
-      <p class="who-lede">
-        Companies with established operations, legacy systems, and complex
-        processes — where the cost of getting things wrong is real and the value
-        of a working solution is measurable. We start from the business question,
-        not the technology.
-      </p>
+      <div class="section-label">{who.label}</div>
+      <h2 class="h2-section who-title">{who.title}</h2>
+      <p class="who-lede">{who.lede}</p>
 
       <ul class="who-industries" data-reveal-stagger>
-        <li>Oil &amp; Gas</li>
-        <li>Energy</li>
-        <li>Retail</li>
-        <li>Fuel retail</li>
-        <li>Logistics</li>
-        <li class="who-more">+ telecom, mobility, industry</li>
+        {who.industries.map((ind) => <li>{ind}</li>)}
+        <li class="who-more">{who.more}</li>
       </ul>
 
       <div class="who-maps">
-        <p class="who-maps-label">Specialized solutions</p>
-        <p class="who-maps-lede">AI Transformation Maps, built for the industries we go deepest in:</p>
+        <p class="who-maps-label">{maps.label}</p>
+        <p class="who-maps-lede">{maps.lede}</p>
         <div class="who-maps-grid">
-          <a href="/industries/retail" class="who-map">
-            <span class="who-map-name">Retail AI Canvas</span>
-            <span class="who-map-arrow">Across the retail business →</span>
+          <a href={L('/industries/retail')} class="who-map">
+            <span class="who-map-name">{maps.retail}</span>
+            <span class="who-map-arrow">{maps.retailArrow}</span>
           </a>
-          <a href="/industries/fuel-retail" class="who-map">
-            <span class="who-map-name">Fuel AI Transformation Map</span>
-            <span class="who-map-arrow">The whole fuel network economy →</span>
+          <a href={L('/industries/fuel-retail')} class="who-map">
+            <span class="who-map-name">{maps.fuel}</span>
+            <span class="who-map-arrow">{maps.fuelArrow}</span>
           </a>
         </div>
       </div>

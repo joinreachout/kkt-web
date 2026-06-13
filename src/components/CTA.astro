@@ -7,14 +7,19 @@ interface Props {
   secondaryHref?: string;
   secondaryLabel?: string;
 }
+import { useHome } from '~/i18n/home';
+import { localizePath, toLocale } from '~/i18n/config';
+const locale = toLocale(Astro.currentLocale);
+const c = useHome(Astro.currentLocale).cta;
 const {
-  heading = 'Let’s talk about your business problem.',
-  body = 'Tell us the problem you are trying to move — margin, cost, availability, customer value, or productivity. We will tell you whether data and AI can realistically help, and what the first step looks like.',
+  heading = c.heading,
+  body = c.body,
   primaryHref = '/contact',
-  primaryLabel = 'Book a diagnostic',
+  primaryLabel = c.primary,
   secondaryHref = '/case-studies/',
-  secondaryLabel = 'See our work',
+  secondaryLabel = c.secondary,
 } = Astro.props as Props;
+const L = (p: string) => localizePath(p, locale);
 ---
 
 <section class="cta-block">
@@ -22,8 +27,8 @@ const {
     <h2 class="h2-section cta-heading">{heading}</h2>
     <p class="cta-body">{body}</p>
     <div class="cta-actions">
-      <a href={primaryHref} class="btn-primary">{primaryLabel}</a>
-      <a href={secondaryHref} class="btn-ghost">{secondaryLabel}</a>
+      <a href={L(primaryHref)} class="btn-primary">{primaryLabel}</a>
+      <a href={L(secondaryHref)} class="btn-ghost">{secondaryLabel}</a>
     </div>
   </div>
 </section>

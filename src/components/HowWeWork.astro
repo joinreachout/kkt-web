@@ -4,60 +4,17 @@
 // Each step rises in via the global [data-reveal] observer; a rail line fills
 // with scroll and the numbered nodes light up as they enter view.
 
-const steps = [
-  {
-    n: '01',
-    title: 'Identify & qualify',
-    lead: 'We clarify the business question, understand the current situation, and assess whether AI, data, analytics, automation, or process redesign can realistically help.',
-    outputs: [
-      'A clear view of the business issue, its owner, and the expected result',
-      'A first check of available data, process reality, and feasibility',
-      'A recommendation to proceed, reshape the idea, or stop early',
-    ],
-  },
-  {
-    n: '02',
-    title: 'Scope & prepare',
-    lead: 'We turn a promising opportunity into a delivery-ready project that both business and technical teams can understand.',
-    outputs: [
-      'What needs to change in the process and decision flow',
-      'The data, systems, people, and rules required',
-      'A delivery plan with requirements, owners, and acceptance criteria',
-    ],
-  },
-  {
-    n: '03',
-    title: 'Execute & coordinate',
-    lead: 'We support implementation from the business side and keep technical delivery connected to business outcomes.',
-    outputs: [
-      'Coordinated work between business, vendors, and technical teams',
-      'Regular checks that the solution still solves the business problem',
-      'Testing, acceptance, stakeholder alignment, and adoption support',
-    ],
-  },
-  {
-    n: '04',
-    title: 'Close, adopt & scale',
-    lead: 'We help make the solution operational, measurable, and ready for further improvement.',
-    outputs: [
-      'A working solution embedded into the business process',
-      'Handover, user adoption, and value tracking',
-      'Clear next steps for scaling or improving the solution',
-    ],
-  },
-];
+import { useHome } from '~/i18n/home';
+const h = useHome(Astro.currentLocale).how;
+const steps = h.steps;
 ---
 
 <section id="how-we-work" class="section hww theme-dark" data-hww>
   <div class="container">
     <header class="hww-head" data-reveal>
-      <p class="section-label">How we work</p>
-      <h2 class="h2-section hww-title">From question to delivered solution.</h2>
-      <p class="hww-intro">
-        Four stages, from a business question to a solution that runs. The starting
-        point is always the objective or decision that needs to improve — technology
-        comes after that.
-      </p>
+      <p class="section-label">{h.label}</p>
+      <h2 class="h2-section hww-title">{h.title}</h2>
+      <p class="hww-intro">{h.intro}</p>
     </header>
 
     <ol class="hww-steps">

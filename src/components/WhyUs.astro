@@ -3,35 +3,17 @@
 // reference). Owner-side framing + four differentiators. Light-grey band
 // (theme-soft) for the alternating section rhythm.
 
-const points = [
-  {
-    title: 'AI tied to business economics',
-    body: 'Every initiative is tied to margin, losses, working capital, revenue, service, or team efficiency — not the fashion of technology.',
-  },
-  {
-    title: 'Quick wins, then the system',
-    body: 'We start from clear use cases and build the data, processes, models, and agents up from there.',
-  },
-  {
-    title: 'World experience, your context',
-    body: 'We bring international practice but account for data maturity, system availability, operating constraints, and local reality.',
-  },
-  {
-    title: 'From idea to implementation',
-    body: 'We define the priorities, the data, the dependencies, the pilots, and the next realistic step for your business.',
-  },
-];
+import { useHome } from '~/i18n/home';
+const w = useHome(Astro.currentLocale).why;
+const points = w.points;
 ---
 
 <section class="section whyus theme-soft" data-reveal>
   <div class="container">
     <header class="whyus-head">
-      <p class="section-label">Why us</p>
-      <h2 class="h2-section whyus-title">We sit on the owner's side of the table.</h2>
-      <p class="whyus-intro">
-        A senior team with roots in business, not just tech — so the work is shaped
-        by what moves the business, and built to keep running after we leave.
-      </p>
+      <p class="section-label">{w.label}</p>
+      <h2 class="h2-section whyus-title">{w.title}</h2>
+      <p class="whyus-intro">{w.intro}</p>
     </header>
 
     <div class="whyus-grid" data-reveal-stagger>
