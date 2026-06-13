@@ -97,15 +97,9 @@ const initials = (n) => n.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[
       <h1 class="cs-h1">What we’ve <span class="grad">delivered</span>.</h1>
       <p class="cs-lede">
         A cross-section of the work — fuel, retail, telecom, mobility, logistics,
-        industry, and enterprise AI. Filter by sector, then open a client for the
-        full picture: what we did, the scope, the result.
+        industry, and enterprise AI. Open a client for the full picture: what we
+        did, the scope, the result.
       </p>
-
-      <div class="cs-filters" role="tablist" aria-label="Filter by sector">
-        {sectors.map((s, i) => (
-          <button class={`cs-filter${i === 0 ? ' is-active' : ''}`} data-filter={s} type="button">{s}</button>
-        ))}
-      </div>
     </div>
   </section>
 
