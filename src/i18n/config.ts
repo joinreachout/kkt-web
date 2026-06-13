@@ -35,9 +35,17 @@ export function stripLocale(pathname: string): string {
 // Anything not in here falls back to English so links never 404 mid-rollout.
 export const TRANSLATED_PATHS = new Set<string>(['/', '/industries/retail', '/industries/fuel-retail', '/solutions', '/solutions/optimus', '/case-studies', '/about', '/contact', '/insights']);
 
+// Membership test against TRANSLATED_PATHS, tolerant of a trailing slash —
+// Astro.url.pathname carries one (e.g. "/solutions/optimus/") but the Set
+// entries don't, so normalise before the lookup.
+function isTranslated(base: string): boolean {
+  const key = base === '/' ? '/' : base.replace(/\/$/, '');
+  return TRANSLATED_PATHS.has(key);
+}
+
 export function hasTranslation(pathname: string, locale: Locale): boolean {
   if (locale === DEFAULT_LOCALE) return true;
-  return TRANSLATED_PATHS.has(stripLocale(pathname));
+  return isTranslated(stripLocale(pathname));
 }
 
 // Localise an EN (root) path for the given locale. EN stays unprefixed.
@@ -46,7 +54,7 @@ export function hasTranslation(pathname: string, locale: Locale): boolean {
 export function localizePath(pathname: string, locale: Locale): string {
   const base = stripLocale(pathname);
   if (locale === DEFAULT_LOCALE) return base;
-  if (!TRANSLATED_PATHS.has(base)) return base;
+  if (!isTranslated(base)) return base;
   if (base === '/') return `/${locale}/`;
   return `/${locale}${base}`;
 }
