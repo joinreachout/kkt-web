@@ -1,8 +1,9 @@
 ---
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import Hero from '~/components/Hero.astro';
+import HowWeWork from '~/components/HowWeWork.astro';
+import WhyUs from '~/components/WhyUs.astro';
 import ClientCases from '~/components/ClientCases.astro';
-import MediaSlot from '~/components/MediaSlot.astro';
 import CTA from '~/components/CTA.astro';
 
 // Trust strip variant — flip to 'A' or 'B' if Red Petroleum consent tier shifts.
@@ -11,103 +12,52 @@ const trustVariant = 'C' as const;
 ---
 
 <BaseLayout
-  title="KKT — operating systems for retail and fuel networks"
-  description="A senior data & AI team with roots in business — data foundations, ML, and AI agents, shipped into real operations. Tallinn, EU."
+  title="Kitty Kat Technologies — data & AI delivery"
+  description="We help mid-enterprise companies in traditional, asset-heavy industries move from business questions to practical solutions in data, AI, and automation. Tallinn, EU."
 >
   <Hero trustVariant={trustVariant} />
 
-  <section class="section section-industries" data-reveal>
+  <!-- Who we serve -->
+  <section class="section section-who" data-reveal>
     <div class="container">
-      <div class="section-label">Where we work</div>
-      <h2 class="h2-section">We go all the way into the business.</h2>
-      <p class="industries-lede">
-        Retail and fuel networks are where we go deepest — but we've shipped
-        data and AI across telecom, mobility, industry, risk and more.
-        Inside each, the whole operation: procurement and margin, logistics,
-        customers, finance, and the data foundation under it. Not one tool.
+      <div class="section-label">Who we work with</div>
+      <h2 class="h2-section who-title">Mid-enterprise companies in traditional, asset-heavy industries.</h2>
+      <p class="who-lede">
+        Companies with established operations, legacy systems, and complex
+        processes — where the cost of getting things wrong is real and the value
+        of a working solution is measurable. We start from the business question,
+        not the technology.
       </p>
-      <div class="industry-grid" data-reveal-stagger>
-        <a href="/industries/retail" class="industry-card">
-          <MediaSlot class="industry-media" ratio="16 / 9" kind="image" label="Retail — store, shelf, or analytics screen" src="/cases/retail-canvas.jpg" alt="Retail AI Canvas" />
-          <div class="industry-eyebrow">Retail</div>
-          <h3 class="industry-title">Mid-sized retailers</h3>
-          <p>
-            Your data is already there — POS, ERP, loyalty, stock, finance.
-            We connect it into one trusted base, then forecasting,
-            promotions, margin and loyalty on top.
-          </p>
-          <div class="industry-stat">
-            <span class="industry-stat-num">43</span>
-            <span class="industry-stat-label">services across 11 retail domains in the open playbook</span>
-          </div>
-          <span class="industry-arrow">See the playbook →</span>
-        </a>
 
-        <a href="/industries/fuel-retail" class="industry-card">
-          <MediaSlot class="industry-media" ratio="16 / 9" kind="image" label="Fuel — station, depot, or network map" src="/cases/fuel-canvas.jpg" alt="Fuel AI Transformation Map" />
-          <div class="industry-eyebrow">Fuel retail</div>
-          <h3 class="industry-title">Fuel networks</h3>
-          <p>
-            Connected data first, then AI where it earns its place — across
-            supply and procurement, logistics and the depot, station
-            operations, the shop and café, and customer loyalty.
-          </p>
-          <div class="industry-stat">
-            <span class="industry-stat-num">7</span>
-            <span class="industry-stat-label">blocks from supply and logistics to stations, customers and the data foundation</span>
-          </div>
-          <span class="industry-arrow">Explore the fuel map →</span>
-        </a>
+      <ul class="who-industries" data-reveal-stagger>
+        <li>Oil &amp; Gas</li>
+        <li>Energy</li>
+        <li>Retail</li>
+        <li>Fuel retail</li>
+        <li>Logistics</li>
+        <li class="who-more">+ telecom, mobility, industry</li>
+      </ul>
+
+      <div class="who-maps">
+        <p class="who-maps-label">Specialized solutions</p>
+        <p class="who-maps-lede">AI Transformation Maps, built for the industries we go deepest in:</p>
+        <div class="who-maps-grid">
+          <a href="/industries/retail" class="who-map">
+            <span class="who-map-name">Retail AI Canvas</span>
+            <span class="who-map-arrow">Across the retail business →</span>
+          </a>
+          <a href="/industries/fuel-retail" class="who-map">
+            <span class="who-map-name">Fuel AI Transformation Map</span>
+            <span class="who-map-arrow">The whole fuel network economy →</span>
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="section section-capabilities theme-dark" data-reveal>
-    <div class="container">
-      <div class="section-label">What we do</div>
-      <h2 class="h2-section">A full data & AI practice, shipped into real operations.</h2>
-      <p class="cap-lede">
-        A senior team with roots in business and the technical delivery to
-        back it. We work the whole path — from a low-risk prototype to a
-        production system that runs without us.
-      </p>
-      <div class="cap-grid" data-reveal-stagger>
-        <div class="cap-card">
-          <div class="cap-eyebrow">01</div>
-          <h3 class="cap-title">Data &amp; analytics</h3>
-          <p>We dive into your data — POS, ERP, loyalty, finance — surface the trends that move decisions, and stand up the warehouse, BI and text-to-SQL underneath.</p>
-        </div>
-        <div class="cap-card">
-          <div class="cap-eyebrow">02</div>
-          <h3 class="cap-title">ML models</h3>
-          <p>Segmentation, demand and price forecasting, dynamic pricing, optimisation, anomaly detection, recommendation engines — built for a decision, not a demo.</p>
-        </div>
-        <div class="cap-card">
-          <div class="cap-eyebrow">03</div>
-          <h3 class="cap-title">AI assistants &amp; automation</h3>
-          <p>LLM assistants and chatbots, OCR, computer vision, agentic workflows — plus ready-to-use AI tools fitted to your operation for quicker ROI.</p>
-        </div>
-        <div class="cap-card">
-          <div class="cap-eyebrow">04</div>
-          <h3 class="cap-title">Prototyping — test before invest</h3>
-          <p>Low-risk AI/ML prototypes that prove the value on your data before you commit to a full build.</p>
-        </div>
-        <div class="cap-card">
-          <div class="cap-eyebrow">05</div>
-          <h3 class="cap-title">AI strategy &amp; enablement</h3>
-          <p>We translate business challenges into an AI roadmap, and bring your team up to speed with practical, non-technical training.</p>
-        </div>
-        <div class="cap-card">
-          <div class="cap-eyebrow">06</div>
-          <h3 class="cap-title">AI ethics &amp; regulatory</h3>
-          <p>Guidance through AI's ethical and regulatory landscape, so adoption stays compliant.</p>
-        </div>
-      </div>
-      <p class="cap-tail">
-        <a href="/case-studies/" class="cap-link">See it in the work — fuel, retail, telecom, industry and more →</a>
-      </p>
-    </div>
-  </section>
+  <HowWeWork />
+
+  <WhyUs />
 
   <ClientCases />
 
@@ -115,6 +65,32 @@ const trustVariant = 'C' as const;
 </BaseLayout>
 
 <style>
+  /* Who we serve */
+  .section-who { padding-top: clamp(48px, 8vh, 96px); padding-bottom: clamp(48px, 7vh, 88px); }
+  .who-title { margin: 12px 0 16px; max-width: 24ch; }
+  .who-lede { font-size: clamp(17px, 1.7vw, 20px); line-height: 1.6; color: var(--text-secondary); max-width: 64ch; margin-bottom: clamp(32px, 5vh, 52px); }
+  .who-industries { list-style: none; padding: 0; margin: 0 0 clamp(40px, 6vh, 64px); display: flex; flex-wrap: wrap; gap: 10px; }
+  .who-industries li {
+    font-family: var(--font-display); font-weight: 600; font-size: clamp(15px, 1.5vw, 18px);
+    letter-spacing: -0.01em; color: var(--text-primary);
+    background: var(--surface); border: 1px solid var(--border); border-radius: 100px; padding: 10px 20px;
+  }
+  .who-industries .who-more { font-family: var(--font-body); font-weight: 400; color: var(--text-muted); background: none; border: 0; padding: 10px 4px; align-self: center; }
+
+  .who-maps { border-top: 1px solid var(--border); padding-top: clamp(28px, 4vh, 40px); }
+  .who-maps-label { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 8px; }
+  .who-maps-lede { font-size: clamp(15px, 1.5vw, 17px); color: var(--text-secondary); margin-bottom: 20px; }
+  .who-maps-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+  @media (min-width: 720px) { .who-maps-grid { grid-template-columns: 1fr 1fr; gap: 18px; } }
+  .who-map {
+    display: flex; flex-direction: column; gap: 8px; text-decoration: none;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 24px 26px;
+    transition: border-color .2s ease, transform .2s ease;
+  }
+  .who-map:hover { border-color: var(--border-hover); transform: translateY(-2px); text-decoration: none; }
+  .who-map-name { font-family: var(--font-display); font-weight: 600; font-size: clamp(18px, 1.9vw, 22px); letter-spacing: -0.015em; color: var(--text-primary); }
+  .who-map-arrow { font-size: 14px; font-weight: 500; color: var(--accent-text); }
+
   .section-industries {
     padding-top: clamp(48px, 7vh, 80px);
     padding-bottom: clamp(48px, 7vh, 80px);
