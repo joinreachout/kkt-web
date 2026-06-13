@@ -8,10 +8,10 @@ export const DEFAULT_LOCALE: Locale = 'en';
 
 // Native language names for the switcher, plus the BCP-47 tag for <html lang>
 // and hreflang.
-export const LANGS: Record<Locale, { label: string; native: string; bcp47: string }> = {
-  en: { label: 'EN', native: 'English', bcp47: 'en' },
-  de: { label: 'DE', native: 'Deutsch', bcp47: 'de' },
-  et: { label: 'ET', native: 'Eesti', bcp47: 'et' },
+export const LANGS: Record<Locale, { label: string; native: string; bcp47: string; flag: string }> = {
+  en: { label: 'EN', native: 'English', bcp47: 'en', flag: '🇬🇧' },
+  de: { label: 'DE', native: 'Deutsch', bcp47: 'de', flag: '🇩🇪' },
+  et: { label: 'ET', native: 'Eesti', bcp47: 'et', flag: '🇪🇪' },
 };
 
 export function isLocale(x: string | undefined): x is Locale {

@@ -35,15 +35,15 @@ const navItems = [
     </nav>
 
     <div class="header-actions">
-      <LanguageSwitcher />
-      <button type="button" class="advisor-trigger advisor-trigger-full" data-advisor-open aria-label="Open advisor (Cmd+K)">
+      <button type="button" class="advisor-trigger advisor-trigger-full" data-advisor-open aria-label="Ask AI Advisor (Cmd+K)">
+        <span aria-hidden="true">✦</span>
         <span class="advisor-trigger-label">{t.actions.advisor}</span>
         <span class="kbd-chip"><kbd>⌘</kbd><kbd>K</kbd></span>
       </button>
-      <button type="button" class="advisor-trigger advisor-trigger-icon" data-advisor-open aria-label="Open advisor">
+      <button type="button" class="advisor-trigger advisor-trigger-icon" data-advisor-open aria-label="Ask AI Advisor">
         <span aria-hidden="true">✦</span>
       </button>
-      <a href={L('/contact')} class="header-cta">{t.actions.diagnostic}</a>
+      <LanguageSwitcher />
       <button type="button" class="nav-toggle" aria-label={t.actions.menu} aria-expanded="false" aria-controls="mobile-nav">
         <span class="nav-toggle-bar"></span>
         <span class="nav-toggle-bar"></span>
@@ -178,6 +178,26 @@ const navItems = [
   .advisor-trigger:hover {
     border-color: var(--accent);
     color: var(--text-primary);
+  }
+  /* Primary CTA: orange gradient pill (replaces "Book a diagnostic"). */
+  .advisor-trigger-full {
+    background: var(--accent-gradient);
+    border-color: transparent;
+    color: #fff;
+    font-weight: 600;
+    padding: 8px 15px;
+    font-size: 12.5px;
+  }
+  .advisor-trigger-full > span[aria-hidden="true"] { font-size: 13px; }
+  .advisor-trigger-full:hover {
+    color: #fff;
+    border-color: transparent;
+    opacity: 0.92;
+  }
+  .advisor-trigger-full .kbd-chip kbd {
+    background: rgba(255, 255, 255, 0.22);
+    border-color: rgba(255, 255, 255, 0.34);
+    color: #fff;
   }
   .advisor-trigger-icon {
     width: 36px;

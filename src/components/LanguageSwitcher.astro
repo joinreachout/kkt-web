@@ -1,13 +1,11 @@
 ---
-// Language switcher — links to the same page in each locale. Sits in the
-// header. Uses the current path so switching keeps you on the same page.
+// Language switcher — flag dropdown. Links to the same page in each locale
+// (falls back to that locale's homepage when the page isn't translated yet).
 import { LOCALES, LANGS, localizePath, hasTranslation, toLocale, DEFAULT_LOCALE } from '~/i18n/config';
 
 const current = toLocale(Astro.currentLocale);
 const path = Astro.url.pathname;
 
-// If the current page isn't translated in a target locale yet, send the
-// switcher to that locale's homepage rather than back to English.
 const target = (loc: (typeof LOCALES)[number]) =>
   hasTranslation(path, loc)
     ? localizePath(path, loc)
@@ -16,42 +14,91 @@ const target = (loc: (typeof LOCALES)[number]) =>
       : `/${loc}/`;
 ---
 
-<div class="lang-switch" role="group" aria-label="Language">
-  {LOCALES.map((loc) => (
-    <a
-      href={target(loc)}
-      class:list={['lang-opt', { 'is-active': loc === current }]}
-      hreflang={LANGS[loc].bcp47}
-      aria-current={loc === current ? 'true' : undefined}
-      lang={LANGS[loc].bcp47}
-    >{LANGS[loc].label}</a>
-  ))}
-</div>
+<details class="lang-dd">
+  <summary class="lang-summary" aria-label="Change language">
+    <span class="lang-flag" aria-hidden="true">{LANGS[current].flag}</span>
+    <span class="lang-code">{LANGS[current].label}</span>
+    <svg class="lang-caret" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+  </summary>
+  <ul class="lang-menu">
+    {LOCALES.map((loc) => (
+      <li>
+        <a
+          href={target(loc)}
+          class:list={['lang-item', { 'is-active': loc === current }]}
+          hreflang={LANGS[loc].bcp47}
+          lang={LANGS[loc].bcp47}
+          aria-current={loc === current ? 'true' : undefined}
+        >
+          <span class="lang-flag" aria-hidden="true">{LANGS[loc].flag}</span>
+          <span>{LANGS[loc].native}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</details>
+
+<script>
+  // Close any open language dropdown on outside click or Escape.
+  document.addEventListener('click', (e) => {
+    document.querySelectorAll('details.lang-dd[open]').forEach((dd) => {
+      if (!dd.contains(e.target as Node)) (dd as HTMLDetailsElement).open = false;
+    });
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') document.querySelectorAll('details.lang-dd[open]').forEach((dd) => ((dd as HTMLDetailsElement).open = false));
+  });
+</script>
 
 <style>
-  .lang-switch {
+  .lang-dd { position: relative; }
+  .lang-summary {
     display: inline-flex;
     align-items: center;
-    gap: 2px;
+    gap: 6px;
+    list-style: none;
+    cursor: pointer;
     border: 1px solid var(--border);
     border-radius: 3px;
-    padding: 2px;
+    padding: 6px 9px;
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--text-secondary);
+    user-select: none;
+    transition: border-color .15s ease, color .15s ease;
   }
-  .lang-opt {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    line-height: 1;
-    letter-spacing: 0.04em;
-    color: var(--text-muted);
+  .lang-summary::-webkit-details-marker { display: none; }
+  .lang-summary:hover { border-color: var(--border-hover); color: var(--text-primary); }
+  .lang-flag { font-size: 14px; line-height: 1; }
+  .lang-code { font-family: var(--font-mono); letter-spacing: 0.04em; }
+  .lang-caret { transition: transform .15s ease; opacity: 0.7; }
+  .lang-dd[open] .lang-caret { transform: rotate(180deg); }
+
+  .lang-menu {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    z-index: 40;
+    min-width: 150px;
+    list-style: none;
+    margin: 0;
+    padding: 5px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+  }
+  .lang-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 8px 10px;
+    border-radius: 5px;
+    font-size: 13.5px;
+    color: var(--text-secondary);
     text-decoration: none;
-    padding: 4px 6px;
-    border-radius: 2px;
-    transition: color .15s ease, background .15s ease;
+    transition: background .12s ease, color .12s ease;
   }
-  .lang-opt:hover { color: var(--text-primary); text-decoration: none; }
-  .lang-opt.is-active {
-    color: var(--text-primary);
-    background: var(--surface-alt);
-    font-weight: 600;
-  }
+  .lang-item:hover { background: var(--surface-alt); color: var(--text-primary); text-decoration: none; }
+  .lang-item.is-active { color: var(--text-primary); font-weight: 600; }
 </style>

@@ -39,7 +39,7 @@ type Dict = {
 export const STRINGS: Record<Locale, Dict> = {
   en: {
     nav: { retail: 'Retail', fuel: 'Fuel retail', solutions: 'Our Solutions', cases: 'Case studies', insights: 'Insights', about: 'About' },
-    actions: { advisor: 'Ask the advisor', diagnostic: 'Book a diagnostic', menu: 'Open menu', switchLang: 'Language' },
+    actions: { advisor: 'Ask AI Advisor', diagnostic: 'Book a diagnostic', menu: 'Open menu', switchLang: 'Language' },
     footer: {
       tag: 'We build the operating systems your business runs on.',
       industries: 'Industries', work: 'Work', company: 'Company', contact: 'Contact',
@@ -65,7 +65,7 @@ export const STRINGS: Record<Locale, Dict> = {
 
   de: {
     nav: { retail: 'Einzelhandel', fuel: 'Kraftstoffhandel', solutions: 'Unsere Lösungen', cases: 'Fallstudien', insights: 'Einblicke', about: 'Über uns' },
-    actions: { advisor: 'Berater fragen', diagnostic: 'Diagnose buchen', menu: 'Menü öffnen', switchLang: 'Sprache' },
+    actions: { advisor: 'KI-Berater fragen', diagnostic: 'Diagnose buchen', menu: 'Menü öffnen', switchLang: 'Sprache' },
     footer: {
       tag: 'Wir bauen die operativen Systeme, auf denen Ihr Unternehmen läuft.',
       industries: 'Branchen', work: 'Projekte', company: 'Unternehmen', contact: 'Kontakt',
@@ -91,7 +91,7 @@ export const STRINGS: Record<Locale, Dict> = {
 
   et: {
     nav: { retail: 'Jaekaubandus', fuel: 'Kütuse jaemüük', solutions: 'Meie lahendused', cases: 'Juhtumiuuringud', insights: 'Ülevaated', about: 'Meist' },
-    actions: { advisor: 'Küsi nõustajalt', diagnostic: 'Broneeri diagnostika', menu: 'Ava menüü', switchLang: 'Keel' },
+    actions: { advisor: 'Küsi TI-nõustajalt', diagnostic: 'Broneeri diagnostika', menu: 'Ava menüü', switchLang: 'Keel' },
     footer: {
       tag: 'Ehitame operatsioonisüsteemid, millel teie ettevõte töötab.',
       industries: 'Tööstusharud', work: 'Tööd', company: 'Ettevõte', contact: 'Kontakt',
