@@ -106,12 +106,11 @@ const cases = [
   },
 ];
 
-// Partners — placeholder wordmark tiles for now; real logos to drop in.
 const partners = [
-  { name: 'Noventiq', note: 'Digital-transformation partner' },
-  { name: 'Microsoft', note: 'AI partner' },
-  { name: 'AWS', note: 'Solutions delivered on AWS' },
-  { name: 'Meta', note: 'Meta Tech Provider' },
+  { name: 'Noventiq', logo: '/logos/p-noventiq.svg', note: 'Digital-transformation partner' },
+  { name: 'Microsoft', logo: '/logos/p-microsoft.svg', note: 'AI partner' },
+  { name: 'AWS', logo: '/logos/p-aws.svg', note: 'Solutions delivered on AWS' },
+  { name: 'Meta', logo: '/logos/p-meta.svg', note: 'Meta Tech Provider' },
 ];
 
 const initials = (name) =>
@@ -133,7 +132,7 @@ const initials = (name) =>
     <div class="cases-partners" data-reveal-stagger>
       {partners.map((p) => (
         <div class="cases-partner">
-          <span class="cases-partner-name">{p.name}</span>
+          <img class="cases-partner-logo" src={p.logo} alt={p.name} loading="lazy" />
           <span class="cases-partner-note">{p.note}</span>
         </div>
       ))}
@@ -188,10 +187,15 @@ const initials = (name) =>
   .cases-partners { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: clamp(28px, 4vh, 40px); }
   @media (min-width: 720px) { .cases-partners { grid-template-columns: repeat(4, 1fr); gap: 14px; } }
   .cases-partner {
-    display: flex; flex-direction: column; gap: 4px; justify-content: center;
-    background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px;
+    display: flex; flex-direction: column; gap: 12px; justify-content: center;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px;
+    min-height: 96px;
   }
-  .cases-partner-name { font-family: var(--font-display); font-weight: 600; font-size: clamp(17px, 1.8vw, 21px); letter-spacing: -0.01em; color: var(--text-primary); }
+  .cases-partner-logo {
+    height: 24px; width: auto; max-width: 130px; object-fit: contain; object-position: left center;
+    filter: grayscale(1); opacity: 0.65; transition: filter .2s ease, opacity .2s ease;
+  }
+  .cases-partner:hover .cases-partner-logo { filter: none; opacity: 1; }
   .cases-partner-note { font-size: 12px; color: var(--text-muted); }
   .cases-tail { margin-top: 26px; }
 

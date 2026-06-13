@@ -57,17 +57,22 @@ const optimusFeatures = [
     </div>
   </section>
 
-  <!-- Kodu -->
-  <section class="section sol-kodu" data-reveal>
+  <!-- Codoo -->
+  <section class="section sol-codoo" data-reveal>
     <div class="container">
-      <div class="sol-kodu-card">
-        <img class="sol-kodu-logo" src="/logos/codoo.png" alt="Kodu" width="56" height="56" />
-        <p class="section-label">Kodu</p>
-        <h2 class="sol-h2 sol-kodu-h2">A guest AI assistant.</h2>
-        <p class="sol-kodu-body">
-          Kodu is our guest-assistant product. <em>Full write-up and link coming.</em>
+      <div class="sol-codoo-head">
+        <img class="sol-kodu-logo" src="/logos/codoo.png" alt="Codoo" width="56" height="56" />
+        <p class="section-label">Codoo</p>
+        <h2 class="sol-h2">A guest assistant, from booking to checkout.</h2>
+        <p class="sol-codoo-body">
+          Codoo runs on WhatsApp across Booking.com, Airbnb, and direct bookings. From
+          the moment a guest books, it handles check-in, WiFi, parking, and questions
+          in the guest’s language — and pulls in a human only when one is needed. Built
+          for short-term-rental operators.
         </p>
+        <a href="https://codoo.kittykat.tech" class="link-cta" rel="noopener">Visit codoo.kittykat.tech</a>
       </div>
+      <MediaSlot class="sol-codoo-media" ratio="16 / 9" kind="image" label="Codoo" src="/cases/codoo-site.jpg" alt="Codoo — guest assistant" />
     </div>
   </section>
 
@@ -97,11 +102,10 @@ const optimusFeatures = [
   .sol-feature-name { font-family: var(--font-display); font-weight: 600; font-size: 18px; letter-spacing: -0.01em; color: var(--text-primary); margin-bottom: 10px; }
   .sol-feature p { font-size: 14.5px; line-height: 1.55; color: var(--text-secondary); margin: 0; }
 
-  /* Kodu */
-  .sol-kodu { padding-top: clamp(48px, 7vh, 80px); padding-bottom: clamp(48px, 7vh, 80px); }
-  .sol-kodu-card { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: clamp(28px, 4vw, 44px); max-width: 760px; }
+  /* Codoo */
+  .sol-codoo { padding-top: clamp(48px, 7vh, 88px); padding-bottom: clamp(48px, 7vh, 88px); }
+  .sol-codoo-head { max-width: 64ch; margin-bottom: clamp(28px, 4vh, 40px); }
   .sol-kodu-logo { width: 56px; height: 56px; border-radius: 14px; display: block; margin-bottom: 18px; }
-  .sol-kodu-h2 { margin-top: 4px; }
-  .sol-kodu-body { font-size: clamp(16px, 1.6vw, 18px); line-height: 1.6; color: var(--text-secondary); max-width: 56ch; }
-  .sol-kodu-body em { color: var(--text-muted); font-style: italic; }
+  .sol-codoo-body { font-size: clamp(16px, 1.6vw, 18px); line-height: 1.6; color: var(--text-secondary); max-width: 60ch; margin-bottom: 18px; }
+  .sol-codoo-media { max-width: 1000px; }
 </style>
