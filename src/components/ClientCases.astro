@@ -64,8 +64,8 @@ const cases = [
   },
   {
     id: 'forrest-taxi',
-    name: 'Forrest Taxi',
-    logo: null,
+    name: 'Taxigo',
+    logo: '/logos/taxigo.jpg',
     sector: 'Mobility · ride-hailing',
     years: 'Baltics & Nordics · 2023',
     focus: 'Dynamic-pricing architecture and feasibility',
@@ -104,46 +104,14 @@ const cases = [
       'First in-house ML models in production',
     ],
   },
-  {
-    id: 'loyalty-reactivation',
-    name: 'Fuel retail loyalty',
-    logo: null,
-    sector: 'Loyalty · 380k+ members',
-    years: '2024–2025',
-    focus: 'Reactivating dormant customers through segmentation',
-    what: 'Problem framing with marketing leadership, a hybrid RFM + clustering segmentation, 11 segments deployed in the app, and A/B-tested campaigns.',
-    scope: [
-      'A hybrid RFM + GMM-clustering segmentation prototype',
-      '11 segments validated with the business',
-      'Segments deployed in the loyalty mobile app',
-      'A/B-tested campaigns and an automatic refresh pipeline handed over',
-    ],
-    outcome: [
-      '~12,000 dormant customers reactivated',
-      'Segments adopted into the next marketing cycle',
-      'An automatic ML pipeline now refreshes the programme',
-    ],
-  },
-  {
-    id: 'nl-analytics',
-    name: 'Enterprise analytics agent',
-    logo: null,
-    sector: 'Large industrial enterprise',
-    years: 'Enterprise DWH · 2025',
-    focus: 'A natural-language analytics agent for the executive team',
-    what: 'A business semantic layer, KPI grounding, a golden training set, and support for a multi-agent analytics architecture.',
-    scope: [
-      'KPI definitions, business hierarchies, and logic grounding',
-      'A golden Q&A set for accuracy tuning',
-      'Support for a specialised multi-agent architecture by question type',
-      'Preparing internal staff to maintain and extend it',
-    ],
-    outcome: [
-      '90%+ answer accuracy in production',
-      'Leadership can query enterprise data directly',
-      'Internal staff trained to run and improve the system',
-    ],
-  },
+];
+
+// Partners — placeholder wordmark tiles for now; real logos to drop in.
+const partners = [
+  { name: 'Noventiq', note: 'Digital-transformation partner' },
+  { name: 'Microsoft', note: 'AI partner' },
+  { name: 'AWS', note: 'Solutions delivered on AWS' },
+  { name: 'Meta', note: 'Meta Tech Provider' },
 ];
 
 const initials = (name) =>
@@ -153,14 +121,23 @@ const initials = (name) =>
 <section id="cases" class="section cases" data-cases>
   <div class="container">
     <header class="cases-head" data-reveal>
-      <p class="section-label">Selected work</p>
-      <h2 class="h2-section cases-title">What we’ve delivered.</h2>
+      <p class="section-label">Our partners &amp; clients</p>
+      <h2 class="h2-section cases-title">Partners and clients.</h2>
       <p class="cases-intro">
-        Selected work across fuel retail, logistics, customer analytics, industrial
-        operations, and AI for management decisions. Tap a client for the full
-        picture — what we did, the scope, and what changed.
+        We work alongside global technology partners and with clients across fuel,
+        retail, telecom, mobility, logistics, and industry. Tap a client for the
+        full picture — what we did, the scope, and the result.
       </p>
     </header>
+
+    <div class="cases-partners" data-reveal-stagger>
+      {partners.map((p) => (
+        <div class="cases-partner">
+          <span class="cases-partner-name">{p.name}</span>
+          <span class="cases-partner-note">{p.note}</span>
+        </div>
+      ))}
+    </div>
 
     <div class="cases-grid" data-reveal>
       {cases.map((c) => (
@@ -194,14 +171,29 @@ const initials = (name) =>
         </article>
       ))}
     </div>
+
+    <p class="cases-tail" data-reveal>
+      <a href="/case-studies/" class="link-cta">See the full list of clients and projects</a>
+    </p>
   </div>
 </section>
 
 <style>
   .cases { padding-top: clamp(56px, 9vh, 100px); padding-bottom: clamp(56px, 9vh, 100px); }
-  .cases-head { max-width: 46ch; margin-bottom: clamp(32px, 5vh, 56px); }
+  .cases-head { max-width: 46ch; margin-bottom: clamp(28px, 4vh, 44px); }
   .cases-title { margin: 12px 0 16px; }
   .cases-intro { font-size: clamp(16px, 1.6vw, 19px); line-height: 1.6; color: var(--text-secondary); }
+
+  /* Partners row */
+  .cases-partners { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: clamp(28px, 4vh, 40px); }
+  @media (min-width: 720px) { .cases-partners { grid-template-columns: repeat(4, 1fr); gap: 14px; } }
+  .cases-partner {
+    display: flex; flex-direction: column; gap: 4px; justify-content: center;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px;
+  }
+  .cases-partner-name { font-family: var(--font-display); font-weight: 600; font-size: clamp(17px, 1.8vw, 21px); letter-spacing: -0.01em; color: var(--text-primary); }
+  .cases-partner-note { font-size: 12px; color: var(--text-muted); }
+  .cases-tail { margin-top: 26px; }
 
   .cases-grid {
     display: grid;
