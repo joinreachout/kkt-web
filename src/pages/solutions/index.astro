@@ -94,7 +94,11 @@ const optimusFeatures = [
   /* Optimus (dark) */
   .sol-optimus { padding-top: clamp(56px, 9vh, 100px); padding-bottom: clamp(56px, 9vh, 100px); }
   .sol-optimus-lede { font-size: clamp(16px, 1.7vw, 19px); line-height: 1.6; color: var(--text-secondary); max-width: 66ch; margin-bottom: clamp(28px, 4vh, 40px); }
-  .sol-optimus-media { max-width: 1000px; margin-bottom: clamp(52px, 8vh, 88px); }
+  /* MediaSlot's <figure> carries only its own component scope, so a plain
+     `.sol-optimus-media` rule from this page never matches it (and its
+     `.mediaslot { margin: 0 }` wins). Reach the child element with :global,
+     kept under the page-scoped `.sol-optimus` so it can't leak. */
+  .sol-optimus :global(.sol-optimus-media) { max-width: 1000px; margin-bottom: clamp(88px, 13vh, 150px); }
   .sol-features { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr; gap: 14px; }
   @media (min-width: 720px) { .sol-features { grid-template-columns: 1fr 1fr; gap: 18px; } }
   @media (min-width: 1000px) { .sol-features { grid-template-columns: repeat(3, 1fr); } }
