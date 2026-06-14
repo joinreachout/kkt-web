@@ -81,7 +81,7 @@ const smaller = SMALLER.map((s) => ({ ...s, ...t.smaller.items[s.id] }));
                   <button class="cs-close" type="button">{t.close}</button>
                 </div>
                 <aside class="cs-detail-side">
-                  <MediaSlot ratio="4 / 3" kind="image" label={c.image} src={c.img} alt={c.name} />
+                  <MediaSlot ratio={c.id === 'red-petroleum' ? '16 / 10' : '4 / 3'} kind="image" label={c.image} src={c.img} alt={c.name} />
                 </aside>
               </div>
             </div>
