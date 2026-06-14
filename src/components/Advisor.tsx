@@ -140,7 +140,7 @@ const MOCK_REPLIES: MockReply[] = [
   {
     pattern: /not.*fit|not.*work|when.*say no|turn.*down|reject/i,
     reply:
-      "We would rather tell you early that we're not the best fit than sell you an engagement that won't land. We're probably not your best first call below ~$50M revenue, for strategy with no delivery behind it, with no senior internal owner to inherit the work, for a model promised in production in four weeks, in heavily regulated banking / public sector / defence, or for full outsourcing. In those cases there's usually a better-fit partner, and we'll say so.\n\nThe honest read is on /not-for-you. Reading it and still wanting to talk is one of the strongest signals we get.",
+      "We would rather tell you early that we're not the best fit than sell you an engagement that won't land. We're probably not your best first call below ~$50M revenue, for strategy with no delivery behind it, with no senior internal owner to inherit the work, for a model promised in production in four weeks, in heavily regulated banking / public sector / defence, or for full outsourcing. In those cases there's usually a better-fit partner, and we'll say so.\n\nHearing that honest read and still wanting to talk is one of the strongest signals we get.",
   },
   {
     pattern: /retail|playbook|canvas|grocery|supermarket/i,

@@ -79,6 +79,5 @@ a readout — it is a sales motion in a notebook.
 
 If you are about to receive a diagnostic readout from us, this is
 roughly what to expect. If you are about to commission one, the same
-shape applies — start there. The diagnostic spec lives on
-[/approach](/approach); the methodology behind any quantified gap
-lives on [/methods/cost-of-doing-nothing](/methods/cost-of-doing-nothing).
+shape applies — start there. The diagnostic spec — and the methodology
+behind any quantified gap — lives on [/approach](/approach).
