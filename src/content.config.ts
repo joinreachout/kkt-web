@@ -30,6 +30,7 @@ const insights = defineCollection({
     title: z.string(),
     summary: z.string().optional(),
     author: z.string(),
+    cover: z.string().optional(), // preview/OG image: full URL or /public path
     // YYYY-MM-DD. Accept either a quoted string or a YAML date (some CMS
     // editors write the date unquoted, which the YAML parser turns into a
     // Date) and normalise to a plain YYYY-MM-DD string so templates and the

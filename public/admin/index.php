@@ -105,6 +105,7 @@ if ($authed && ($_POST['action'] ?? '') === 'publish') {
         $author = trim((string)($_POST['author'] ?? ''));
         $date   = trim((string)($_POST['publishedAt'] ?? ''));
         $summary= trim((string)($_POST['summary'] ?? ''));
+        $cover  = trim((string)($_POST['cover'] ?? ''));
         $bodyMd = (string)($_POST['body'] ?? '');
         $draft  = isset($_POST['draft']) ? 'true' : 'false';
 
@@ -118,6 +119,7 @@ if ($authed && ($_POST['action'] ?? '') === 'publish') {
             $front = "---\n"
                 . 'title: ' . yaml_str($title) . "\n"
                 . ($summary !== '' ? 'summary: ' . yaml_str($summary) . "\n" : '')
+                . ($cover !== '' ? 'cover: ' . yaml_str($cover) . "\n" : '')
                 . 'author: ' . yaml_str($author) . "\n"
                 . 'publishedAt: ' . yaml_str($date) . "\n"
                 . 'draft: ' . $draft . "\n"
@@ -222,6 +224,8 @@ $today = date('Y-m-d');
     </div>
     <label>Summary</label>
     <input type="text" name="summary" placeholder="One or two sentences (list + meta description)" value="<?= e($_POST['summary'] ?? '') ?>">
+    <label>Cover image URL <span style="font-weight:400;color:var(--muted)">(optional — shown on the blog list &amp; social preview)</span></label>
+    <input type="text" name="cover" placeholder="https://… or /cases/your-image.jpg" value="<?= e($_POST['cover'] ?? '') ?>">
     <label>Body</label>
     <textarea name="body" placeholder="Markdown or raw HTML. Paste a LinkedIn 'Embed this post' &lt;iframe&gt; here to embed a post."><?= e($_POST['body'] ?? '') ?></textarea>
     <p class="hint">Markdown + raw HTML. For a LinkedIn post: open the post on LinkedIn → ··· → Embed this post → copy the <code>&lt;iframe&gt;</code> → paste it here.</p>

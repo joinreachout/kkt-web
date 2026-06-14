@@ -49,6 +49,9 @@ const visible = allPosts
           {visible.map((post) => (
             <li>
               <a href={`/insights/${post.id}`} class="post-card">
+                {post.data.cover && (
+                  <img class="post-cover" src={post.data.cover} alt="" loading="lazy" decoding="async" />
+                )}
                 <div class="post-meta">
                   <span>{post.data.author}</span>
                   <span class="post-sep">·</span>
@@ -145,6 +148,15 @@ const visible = allPosts
     transition: border-color .18s ease;
   }
   .post-card:hover { border-color: var(--border-hover); text-decoration: none; }
+  .post-cover {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    margin-bottom: 16px;
+  }
   .post-meta {
     font-size: 12px;
     color: var(--text-muted);

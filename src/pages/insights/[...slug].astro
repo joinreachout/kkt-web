@@ -22,6 +22,7 @@ const t = useInsights(Astro.currentLocale);
   pageType="article"
   articleAuthor={post.data.author}
   articlePublished={post.data.publishedAt}
+  ogImage={post.data.cover}
 >
   <article class="prose-page">
     <div class="container narrow">
