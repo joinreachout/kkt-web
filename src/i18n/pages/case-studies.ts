@@ -42,8 +42,8 @@ export const CASE_STUDIES: Record<Locale, CaseStudiesDict> = {
       label: 'Other engagements',
       lede: "More work we've delivered, across industries.",
       items: {
-        'clubtek': { region: 'Thailand', blurb: 'Premium audio, light and video integration. Top-tier event and venue work.' },
-        'khaos-marani': { region: 'Georgia', blurb: 'Winery. Advanced analytics and predictive ML to forecast wine demand, optimise pricing, and segment consumers for targeted marketing.' },
+        'clubtek': { region: 'Phuket, Thailand', blurb: 'Audio-visual systems integration — sound, video, intelligent lighting and unified automation for hotels, clubs and villas.' },
+        'khaos-marani': { region: 'Kakheti, Georgia', blurb: 'Winery. Advanced analytics and predictive ML to forecast wine demand, optimise pricing, and segment consumers for targeted marketing.' },
         'fuel-loyalty': { region: 'Fuel retail', blurb: 'Reactivating dormant customers through a hybrid RFM + clustering segmentation — ~12,000 reactivated, refreshed by an automatic ML pipeline.' },
         'enterprise-agent': { region: 'Enterprise AI', blurb: 'A natural-language analytics agent for the executive team — business semantic layer, KPI grounding, 90%+ answer accuracy in production.' },
       },
@@ -141,8 +141,8 @@ export const CASE_STUDIES: Record<Locale, CaseStudiesDict> = {
       label: 'Weitere Engagements',
       lede: 'Weitere von uns gelieferte Arbeit, über Branchen hinweg.',
       items: {
-        'clubtek': { region: 'Thailand', blurb: 'Premium-Integration von Audio, Licht und Video. Erstklassige Event- und Venue-Arbeit.' },
-        'khaos-marani': { region: 'Georgien', blurb: 'Weingut. Advanced Analytics und Predictive ML zur Prognose der Weinnachfrage, Preisoptimierung und Konsumentensegmentierung für gezieltes Marketing.' },
+        'clubtek': { region: 'Phuket, Thailand', blurb: 'Audio-Video-Systemintegration — Ton, Video, intelligente Beleuchtung und einheitliche Automatisierung für Hotels, Clubs und Villen.' },
+        'khaos-marani': { region: 'Kachetien, Georgien', blurb: 'Weingut. Advanced Analytics und Predictive ML zur Prognose der Weinnachfrage, Preisoptimierung und Konsumentensegmentierung für gezieltes Marketing.' },
         'fuel-loyalty': { region: 'Kraftstoffhandel', blurb: 'Reaktivierung inaktiver Kunden durch eine hybride RFM- + Clustering-Segmentierung — ~12.000 reaktiviert, aktualisiert durch eine automatische ML-Pipeline.' },
         'enterprise-agent': { region: 'Enterprise-KI', blurb: 'Ein natürlichsprachlicher Analytik-Agent für das Führungsteam — geschäftliche semantische Schicht, KPI-Grounding, 90%+ Antwortgenauigkeit in Produktion.' },
       },
@@ -241,8 +241,8 @@ export const CASE_STUDIES: Record<Locale, CaseStudiesDict> = {
       label: 'Muud projektid',
       lede: 'Veel meie tehtud tööd, üle erinevate valdkondade.',
       items: {
-        'clubtek': { region: 'Tai', blurb: 'Premium heli, valguse ja video integratsioon. Tipptasemel ürituste ja kohtade töö.' },
-        'khaos-marani': { region: 'Gruusia', blurb: 'Veinitööstus. Edasijõudnud analüütika ja ennustav ML veininõudluse prognoosimiseks, hinnastamise optimeerimiseks ja tarbijate segmenteerimiseks suunatud turunduse jaoks.' },
+        'clubtek': { region: 'Phuket, Tai', blurb: 'Audio-video süsteemide integratsioon — heli, video, intelligentne valgustus ja ühtne automatiseerimine hotellidele, klubidele ja villadele.' },
+        'khaos-marani': { region: 'Kahheetia, Gruusia', blurb: 'Veinitööstus. Edasijõudnud analüütika ja ennustav ML veininõudluse prognoosimiseks, hinnastamise optimeerimiseks ja tarbijate segmenteerimiseks suunatud turunduse jaoks.' },
         'fuel-loyalty': { region: 'Kütuse jaemüük', blurb: 'Uinunud klientide taasaktiveerimine hübriidse RFM + klasterdamise segmenteerimisega — ~12 000 taasaktiveeritud, värskendab automaatne ML-konveier.' },
         'enterprise-agent': { region: 'Ettevõtte TI', blurb: 'Loomuliku keele analüütika agent juhtkonnale — äriline semantiline kiht, KPI maandamine, 90%+ vastuste täpsus tootmises.' },
       },
