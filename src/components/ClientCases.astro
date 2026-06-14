@@ -226,9 +226,13 @@ const localizedPartners = partners.map((p, i) => ({ ...p, note: cc.partnerNotes[
 
   .cases-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(186px, 1fr));
-    gap: 14px;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
     align-items: start;
+  }
+  /* Desktop: all six clients on one row. */
+  @media (min-width: 1000px) {
+    .cases-grid { grid-template-columns: repeat(6, 1fr); }
   }
 
   .case-tile {
@@ -243,19 +247,19 @@ const localizedPartners = partners.map((p, i) => ({ ...p, note: cc.partnerNotes[
 
   .case-open {
     display: grid;
-    gap: 10px;
+    gap: 8px;
     width: 100%;
     text-align: left;
     background: none;
     border: 0;
-    padding: 20px 20px 18px;
+    padding: 16px 14px 14px;
     position: relative;
   }
   .case-tile:hover { border-color: var(--border-hover); }
 
-  .case-brand { display: flex; align-items: center; height: 34px; }
+  .case-brand { display: flex; align-items: center; height: 28px; }
   .case-logo {
-    max-height: 30px; max-width: 130px; object-fit: contain; object-position: left center;
+    max-height: 24px; max-width: 110px; object-fit: contain; object-position: left center;
     opacity: 1; transition: opacity .2s ease;
   }
   .case-mono {
@@ -266,13 +270,13 @@ const localizedPartners = partners.map((p, i) => ({ ...p, note: cc.partnerNotes[
     font-variant-numeric: tabular-nums;
   }
   .case-name {
-    font-family: var(--font-display); font-weight: 600; font-size: 16px;
+    font-family: var(--font-display); font-weight: 600; font-size: 15px;
     letter-spacing: -0.01em; color: var(--text-primary);
   }
-  .case-focus { font-size: 13.5px; line-height: 1.45; color: var(--text-muted); }
+  .case-focus { font-size: 12.5px; line-height: 1.4; color: var(--text-muted); }
   .case-cue {
-    position: absolute; top: 16px; right: 18px;
-    font-size: 18px; line-height: 1; color: var(--text-muted);
+    position: absolute; top: 14px; right: 14px;
+    font-size: 17px; line-height: 1; color: var(--text-muted);
     transition: transform .25s ease, color .2s ease;
   }
   .case-tile.is-open .case-cue { transform: rotate(45deg); color: var(--accent-text); }
