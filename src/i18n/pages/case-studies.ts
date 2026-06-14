@@ -39,7 +39,7 @@ export const CASE_STUDIES: Record<Locale, CaseStudiesDict> = {
     colChanged: 'What changed',
     close: 'Close',
     smaller: {
-      label: 'Smaller engagements',
+      label: 'Other engagements',
       lede: 'Listed for completeness — real shipped work, earlier or adjacent to the engagements we lead with.',
       items: {
         'clubtek': { region: 'Thailand', blurb: 'Premium audio, light and video integration. Top-tier event and venue work.' },
@@ -138,7 +138,7 @@ export const CASE_STUDIES: Record<Locale, CaseStudiesDict> = {
     colChanged: 'Was sich änderte',
     close: 'Schließen',
     smaller: {
-      label: 'Kleinere Engagements',
+      label: 'Weitere Engagements',
       lede: 'Der Vollständigkeit halber — echte ausgelieferte Arbeit, früher oder angrenzend an die Engagements, mit denen wir führen.',
       items: {
         'clubtek': { region: 'Thailand', blurb: 'Premium-Integration von Audio, Licht und Video. Erstklassige Event- und Venue-Arbeit.' },
@@ -238,7 +238,7 @@ export const CASE_STUDIES: Record<Locale, CaseStudiesDict> = {
     colChanged: 'Mis muutus',
     close: 'Sulge',
     smaller: {
-      label: 'Väiksemad projektid',
+      label: 'Muud projektid',
       lede: 'Täielikkuse huvides — päris tehtud töö, varasem või kõrvuti projektidega, millega esiplaanis oleme.',
       items: {
         'clubtek': { region: 'Tai', blurb: 'Premium heli, valguse ja video integratsioon. Tipptasemel ürituste ja kohtade töö.' },
