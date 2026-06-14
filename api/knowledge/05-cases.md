@@ -124,6 +124,58 @@ one.
   query enterprise data directly; internal staff trained to run and
   improve the system.
 
+## Major TIC company — CERTIQA — `/case-studies#tic-iso`
+
+- **Sector:** Testing, Inspection & Certification (TIC). 2025. Client confidential.
+- **Engagement:** A prototype of an AI audit-preparation assistant ("CERTIQA").
+  First version focused on **ISO 9001**, with a roadmap to automotive **ISO 16949**
+  and medical **ISO 13485**. Business discovery + process mapping of the real
+  audit-prep workflow; AI feasibility assessed with audit-domain experts; a prototype
+  with clear boundaries around expert judgment and compliance-sensitive decisions.
+- **What changed:** a broad "AI for auditors" idea turned into a practical, testable
+  pilot — defined business logic, technical boundaries, and a roadmap to ISO 16949/13485.
+- **Note:** confidential client. There are **two "Major TIC company" cards** on the
+  page — distinguish by focus: this one is the CERTIQA audit-prep product.
+
+## Major TIC company — AI strategy — `/case-studies#tic-strategy`
+
+- **Sector:** Testing, Inspection & Certification (TIC). 2025. Client confidential.
+- **Engagement:** A CEO-level AI roadmap for a global TIC firm. A TIC-industry AI
+  benchmark (real value vs hype vs competitors), then a roadmap of **six AI services
+  across three time horizons** — Smart Certificates, an internal expert AI assistant,
+  Market Intelligence, Terminal Analytics, Blending Optimisation, Contamination
+  Detection — each designed from the client's own data. Worked directly with the CTO
+  and regional Operations Directors.
+- **What changed:** a prioritised CEO-level roadmap across three horizons; a clear
+  read on real value vs hype. (The other of the two "Major TIC company" cards.)
+
+## Clubtek — `/case-studies#clubtek`
+
+- **Sector / region:** Audio & entertainment. Phuket, Thailand.
+- **Engagement:** An AI-powered customer-operations & automation platform for an audio
+  company serving nightclubs, venues, and events. An AI assistant for inquiries,
+  pre-sales and support; automated processing of briefs, technical docs, proposals,
+  contracts, equipment lists; an AI knowledge base across projects, customers,
+  equipment and suppliers; agent-based workflows tied to the team's tools.
+- **What changed:** faster summarising/classifying/routing of requests; pre-sales
+  backed by prior projects; auto-processed documents; the team can query the company
+  knowledge base; repetitive admin handled by AI agents with the team in control.
+- Also appears in "Other engagements" as audio-visual systems integration (sound,
+  video, intelligent lighting, unified automation for hotels, clubs and villas).
+
+## Khaos Marani — `/case-studies` (Other engagements)
+
+- **Sector / region:** Winery. Kakheti, Georgia.
+- **Engagement:** advanced analytics and predictive ML to forecast wine demand,
+  optimise pricing, and segment consumers for targeted marketing.
+
+## Gagra+ — `/case-studies` (Other engagements)
+
+- **Sector / region:** Food-ingredients & confectionery supply (Buona Sera shops).
+  Tbilisi, Georgia.
+- **Engagement:** a dynamic ordering and demand model for replenishment across the
+  store network.
+
 ## Clients vs partners — don't confuse them
 
 The cases above are delivered (or live) client work. Separately, KKT

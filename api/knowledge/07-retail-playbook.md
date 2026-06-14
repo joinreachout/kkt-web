@@ -7,10 +7,12 @@ External: **retail.kittykat.tech**
 A full open playbook of where AI and PMO discipline create measurable
 value across a mid-sized retailer.
 
-- **43 services** across **11 retail domains** (forecasting,
-  replenishment, supplier ops, loss prevention, customer/loyalty,
-  pricing, store ops, warehouse/transport, e-commerce, claims, AI
-  workforce assistants, etc.)
+- **46 services** across **12 retail domains** (Data Foundation, Stock &
+  Availability, Warehouse & Transport, Store Execution, Margin & Cash,
+  Supplier Performance, Reporting & Decisions, Loss Prevention, Workforce
+  & AI Assistants, Customers & Loyalty, Promotions & Pricing, Expand &
+  Monetize). The **full card-level catalog is in 07b-retail-canvas-catalog.md** —
+  answer card-level retail questions directly, or route deep browsers to the canvas.
 - Built from real engagements
 - Updated quarterly
 - Has its **own advisor** that walks the user through it
