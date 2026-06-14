@@ -44,6 +44,7 @@ export const CASE_STUDIES: Record<Locale, CaseStudiesDict> = {
       items: {
         'clubtek': { region: 'Phuket, Thailand', blurb: 'Audio-visual systems integration — sound, video, intelligent lighting and unified automation for hotels, clubs and villas.' },
         'khaos-marani': { region: 'Kakheti, Georgia', blurb: 'Winery. Advanced analytics and predictive ML to forecast wine demand, optimise pricing, and segment consumers for targeted marketing.' },
+        'gagra-plus': { region: 'Tbilisi, Georgia', blurb: 'Food-ingredients and confectionery-supply manufacturer and retailer (Buona Sera shops). A dynamic ordering and demand model for replenishment across the store network.' },
         'fuel-loyalty': { region: 'Fuel retail', blurb: 'Reactivating dormant customers through a hybrid RFM + clustering segmentation — ~12,000 reactivated, refreshed by an automatic ML pipeline.' },
         'enterprise-agent': { region: 'Enterprise AI', blurb: 'A natural-language analytics agent for the executive team — business semantic layer, KPI grounding, 90%+ answer accuracy in production.' },
       },
@@ -143,6 +144,7 @@ export const CASE_STUDIES: Record<Locale, CaseStudiesDict> = {
       items: {
         'clubtek': { region: 'Phuket, Thailand', blurb: 'Audio-Video-Systemintegration — Ton, Video, intelligente Beleuchtung und einheitliche Automatisierung für Hotels, Clubs und Villen.' },
         'khaos-marani': { region: 'Kachetien, Georgien', blurb: 'Weingut. Advanced Analytics und Predictive ML zur Prognose der Weinnachfrage, Preisoptimierung und Konsumentensegmentierung für gezieltes Marketing.' },
+        'gagra-plus': { region: 'Tiflis, Georgien', blurb: 'Hersteller und Händler von Lebensmittelzutaten und Konditoreibedarf (Buona-Sera-Läden). Ein dynamisches Bestell- und Nachfragemodell für die Nachschubsteuerung über das Filialnetz.' },
         'fuel-loyalty': { region: 'Kraftstoffhandel', blurb: 'Reaktivierung inaktiver Kunden durch eine hybride RFM- + Clustering-Segmentierung — ~12.000 reaktiviert, aktualisiert durch eine automatische ML-Pipeline.' },
         'enterprise-agent': { region: 'Enterprise-KI', blurb: 'Ein natürlichsprachlicher Analytik-Agent für das Führungsteam — geschäftliche semantische Schicht, KPI-Grounding, 90%+ Antwortgenauigkeit in Produktion.' },
       },
@@ -243,6 +245,7 @@ export const CASE_STUDIES: Record<Locale, CaseStudiesDict> = {
       items: {
         'clubtek': { region: 'Phuket, Tai', blurb: 'Audio-video süsteemide integratsioon — heli, video, intelligentne valgustus ja ühtne automatiseerimine hotellidele, klubidele ja villadele.' },
         'khaos-marani': { region: 'Kahheetia, Gruusia', blurb: 'Veinitööstus. Edasijõudnud analüütika ja ennustav ML veininõudluse prognoosimiseks, hinnastamise optimeerimiseks ja tarbijate segmenteerimiseks suunatud turunduse jaoks.' },
+        'gagra-plus': { region: 'Thbilisi, Gruusia', blurb: 'Toiduainete ja kondiitritoodete tootja ja tarnija (Buona Sera poed). Dünaamiline tellimis- ja nõudlusmudel täiendamiseks üle poodide võrgu.' },
         'fuel-loyalty': { region: 'Kütuse jaemüük', blurb: 'Uinunud klientide taasaktiveerimine hübriidse RFM + klasterdamise segmenteerimisega — ~12 000 taasaktiveeritud, värskendab automaatne ML-konveier.' },
         'enterprise-agent': { region: 'Ettevõtte TI', blurb: 'Loomuliku keele analüütika agent juhtkonnale — äriline semantiline kiht, KPI maandamine, 90%+ vastuste täpsus tootmises.' },
       },
