@@ -48,24 +48,26 @@ const visible = allPosts
         <ul class="post-list">
           {visible.map((post) => (
             <li>
-              <a href={`/insights/${post.id}`} class="post-card">
+              <a href={`/insights/${post.id}`} class={post.data.cover ? 'post-card post-card--media' : 'post-card'}>
+                <div class="post-body">
+                  <div class="post-meta">
+                    <span>{post.data.author}</span>
+                    <span class="post-sep">·</span>
+                    <time datetime={post.data.publishedAt}>
+                      {new Date(post.data.publishedAt).toLocaleDateString(t.dateLocale, {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                      })}
+                    </time>
+                  </div>
+                  <h2 class="post-title">{post.data.title}</h2>
+                  {post.data.summary && <p class="post-summary">{post.data.summary}</p>}
+                  <span class="post-arrow">{t.readArrow}</span>
+                </div>
                 {post.data.cover && (
                   <img class="post-cover" src={post.data.cover} alt="" loading="lazy" decoding="async" />
                 )}
-                <div class="post-meta">
-                  <span>{post.data.author}</span>
-                  <span class="post-sep">·</span>
-                  <time datetime={post.data.publishedAt}>
-                    {new Date(post.data.publishedAt).toLocaleDateString(t.dateLocale, {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric',
-                    })}
-                  </time>
-                </div>
-                <h2 class="post-title">{post.data.title}</h2>
-                {post.data.summary && <p class="post-summary">{post.data.summary}</p>}
-                <span class="post-arrow">{t.readArrow}</span>
               </a>
             </li>
           ))}
@@ -148,6 +150,14 @@ const visible = allPosts
     transition: border-color .18s ease;
   }
   .post-card:hover { border-color: var(--border-hover); text-decoration: none; }
+  /* With a cover: text left, preview image right. */
+  .post-card--media {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 28px;
+    align-items: center;
+  }
+  .post-body { min-width: 0; }
   .post-cover {
     display: block;
     width: 100%;
@@ -155,7 +165,11 @@ const visible = allPosts
     object-fit: cover;
     border-radius: 4px;
     border: 1px solid var(--border);
-    margin-bottom: 16px;
+    margin: 0;
+  }
+  @media (max-width: 640px) {
+    .post-card--media { grid-template-columns: 1fr; gap: 16px; }
+    .post-cover { order: -1; }
   }
   .post-meta {
     font-size: 12px;
