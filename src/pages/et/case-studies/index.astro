@@ -28,7 +28,7 @@ const initials = (n) => n.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[
 
 // Smaller / earlier engagements — structural data only; region+blurb localized.
 const SMALLER = [
-  { id: 'khaos-marani', name: 'Khaos Marani', logo: null, monogram: 'KM' },
+  { id: 'khaos-marani', name: 'Khaos Marani', logo: '/logos/khaos-marani.png', monogram: 'KM' },
   { id: 'gagra-plus', name: 'Gagra+', logo: '/logos/gagraplus.png', monogram: null },
 ];
 const smaller = SMALLER.map((s) => ({ ...s, ...t.smaller.items[s.id] }));
