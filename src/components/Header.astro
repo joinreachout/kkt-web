@@ -3,11 +3,24 @@
 import CatMark from './CatMark.astro';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 import { useStrings } from '~/i18n/strings';
-import { localizePath, toLocale } from '~/i18n/config';
+import { localizePath, toLocale, stripLocale } from '~/i18n/config';
 
 const locale = toLocale(Astro.currentLocale);
 const t = useStrings(Astro.currentLocale);
 const L = (p: string) => localizePath(p, locale);
+
+// Mark the nav item for the current section as active. Compare on the
+// locale-stripped path so /de/case-studies/ matches the same item as the EN
+// page, and match section-wide so sub-pages (e.g. /case-studies/kricon,
+// /solutions/optimus, /insights/<post>) still light up their parent.
+const here = stripLocale(Astro.url.pathname);
+const norm = (p: string) => (p === '/' ? '/' : p.replace(/\/$/, ''));
+const isActive = (href: string) => {
+  const h = norm(href);
+  const cur = norm(here);
+  if (h === '/') return cur === '/';
+  return cur === h || cur.startsWith(h + '/');
+};
 
 const navItems = [
   { href: '/industries/retail', label: t.nav.retail },
@@ -29,7 +42,13 @@ const navItems = [
     <nav aria-label="Primary">
       <ul class="nav-list">
         {navItems.map((item) => (
-          <li><a href={L(item.href)}>{item.label}</a></li>
+          <li>
+            <a
+              href={L(item.href)}
+              class={isActive(item.href) ? 'is-active' : undefined}
+              aria-current={isActive(item.href) ? 'page' : undefined}
+            >{item.label}</a>
+          </li>
         ))}
       </ul>
     </nav>
@@ -55,7 +74,13 @@ const navItems = [
   <div id="mobile-nav" class="mobile-nav" hidden>
     <ul>
       {navItems.map((item) => (
-        <li><a href={L(item.href)}>{item.label}</a></li>
+        <li>
+          <a
+            href={L(item.href)}
+            class={isActive(item.href) ? 'is-active' : undefined}
+            aria-current={isActive(item.href) ? 'page' : undefined}
+          >{item.label}</a>
+        </li>
       ))}
       <li class="mobile-nav-cta"><a href={L('/contact')}>{t.actions.diagnostic}</a></li>
     </ul>
@@ -139,14 +164,23 @@ const navItems = [
     text-transform: uppercase;
   }
 
+  /* Full-height nav so the active underline can sit on the header's bottom edge. */
+  nav[aria-label="Primary"] { align-self: stretch; }
   .nav-list {
     display: none;
+    height: 100%;
+    align-items: stretch;
     list-style: none;
     gap: 28px;
     margin: 0;
     padding: 0;
   }
+  .nav-list li { display: flex; }
   .nav-list a {
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
+    position: relative;
     font-size: 13px;
     color: var(--text-secondary);
     text-decoration: none;
@@ -154,6 +188,19 @@ const navItems = [
     transition: color .15s ease;
   }
   .nav-list a:hover { color: var(--text-primary); }
+  /* Active section: solid black text + a thin orange bar pinned to the header
+     bottom (–1px overlaps the header's 1px border so it reads as one edge). */
+  .nav-list a.is-active { color: var(--text-primary); }
+  .nav-list a.is-active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 2px;
+    background: var(--accent);
+    border-radius: 2px 2px 0 0;
+  }
 
   .header-actions {
     display: flex;
@@ -301,6 +348,12 @@ const navItems = [
     font-weight: 500;
   }
   .mobile-nav a:hover { color: var(--accent-text); }
+  .mobile-nav a.is-active {
+    color: var(--accent-text);
+    font-weight: 600;
+    box-shadow: inset 2px 0 0 var(--accent);
+    padding-left: 12px;
+  }
   .mobile-nav-cta a {
     color: var(--accent-text);
     font-weight: 600;
