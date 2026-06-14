@@ -40,7 +40,7 @@ export const CASE_STUDIES: Record<Locale, CaseStudiesDict> = {
     close: 'Close',
     smaller: {
       label: 'Other engagements',
-      lede: 'Listed for completeness — real shipped work, earlier or adjacent to the engagements we lead with.',
+      lede: "More work we've delivered, across industries.",
       items: {
         'clubtek': { region: 'Thailand', blurb: 'Premium audio, light and video integration. Top-tier event and venue work.' },
         'khaos-marani': { region: 'Georgia', blurb: 'Winery. Advanced analytics and predictive ML to forecast wine demand, optimise pricing, and segment consumers for targeted marketing.' },
@@ -139,7 +139,7 @@ export const CASE_STUDIES: Record<Locale, CaseStudiesDict> = {
     close: 'Schließen',
     smaller: {
       label: 'Weitere Engagements',
-      lede: 'Der Vollständigkeit halber — echte ausgelieferte Arbeit, früher oder angrenzend an die Engagements, mit denen wir führen.',
+      lede: 'Weitere von uns gelieferte Arbeit, über Branchen hinweg.',
       items: {
         'clubtek': { region: 'Thailand', blurb: 'Premium-Integration von Audio, Licht und Video. Erstklassige Event- und Venue-Arbeit.' },
         'khaos-marani': { region: 'Georgien', blurb: 'Weingut. Advanced Analytics und Predictive ML zur Prognose der Weinnachfrage, Preisoptimierung und Konsumentensegmentierung für gezieltes Marketing.' },
@@ -239,7 +239,7 @@ export const CASE_STUDIES: Record<Locale, CaseStudiesDict> = {
     close: 'Sulge',
     smaller: {
       label: 'Muud projektid',
-      lede: 'Täielikkuse huvides — päris tehtud töö, varasem või kõrvuti projektidega, millega esiplaanis oleme.',
+      lede: 'Veel meie tehtud tööd, üle erinevate valdkondade.',
       items: {
         'clubtek': { region: 'Tai', blurb: 'Premium heli, valguse ja video integratsioon. Tipptasemel ürituste ja kohtade töö.' },
         'khaos-marani': { region: 'Gruusia', blurb: 'Veinitööstus. Edasijõudnud analüütika ja ennustav ML veininõudluse prognoosimiseks, hinnastamise optimeerimiseks ja tarbijate segmenteerimiseks suunatud turunduse jaoks.' },
