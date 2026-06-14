@@ -58,6 +58,14 @@ export const CASE_STUDIES: Record<Locale, CaseStudiesDict> = {
         scope: ['Business discovery and process mapping of the real audit-preparation workflow', 'AI feasibility assessment with audit-domain experts', 'Prototype delivery with clear boundaries around expert judgment and compliance-sensitive decisions'],
         outcome: ['A broad “AI for auditors” idea turned into a practical, testable pilot', 'Defined business logic, technical boundaries, and a roadmap to ISO 16949 and ISO 13485'],
       },
+      'clubtek': {
+        focus: 'AI-powered customer operations & automation',
+        sector: 'Audio & entertainment', years: 'Phuket, Thailand',
+        image: 'Immersive-audio operations',
+        what: 'An AI-powered customer-operations platform for an audio company serving nightclubs, venues, events and entertainment clients — customer-request handling, document processing, an internal knowledge base, and task-oriented AI agents connected to the team’s workflows.',
+        scope: ['AI assistant for customer inquiries, pre-sales and support workflows', 'Automated processing of briefs, technical documents, proposals, contracts and equipment lists', 'An AI knowledge base across projects, customers, equipment, suppliers and internal procedures', 'Agent-based workflows connected to team tools for sales, support, operations and management', 'Drafting of customer replies, proposal outlines, checklists and project-handover notes'],
+        outcome: ['Customer requests are summarised, classified and routed faster', 'Pre-sales work is supported by previous projects, technical references and reusable knowledge', 'Documents that took manual review are now processed and summarised automatically', 'Team members can ask questions directly to the company knowledge base', 'Repetitive admin work is handled by AI agents, while the team stays in control'],
+      },
       'tic-strategy': {
         focus: 'AI strategy for a global Testing, Inspection & Certification firm',
         sector: 'Testing, Inspection & Certification', years: '2025',
@@ -166,6 +174,14 @@ export const CASE_STUDIES: Record<Locale, CaseStudiesDict> = {
         what: 'Ein Pilot-KI-Assistent zur ISO-Audit-Vorbereitung, gemeinsam mit einem vertraulichen Unternehmenskunden gebaut. Die erste Version konzentrierte sich auf ISO 9001, mit künftiger Anwendbarkeit auf spezialisiertere Standards — Automotive (ISO 16949) und Medizin (ISO 13485).',
         scope: ['Business Discovery und Prozess-Mapping des realen Audit-Vorbereitungs-Workflows', 'KI-Machbarkeitsbewertung mit Audit-Fachexperten', 'Prototyp-Lieferung mit klaren Grenzen um Expertenurteil und compliance-sensible Entscheidungen'],
         outcome: ['Aus einer breiten „KI für Auditoren“-Idee wurde ein praktischer, testbarer Pilot', 'Definierte Geschäftslogik, technische Grenzen und eine Roadmap zu ISO 16949 und ISO 13485'],
+      },
+      'clubtek': {
+        focus: 'KI-gestützte Kundenoperationen & Automatisierung',
+        sector: 'Audio & Entertainment', years: 'Phuket, Thailand',
+        image: 'Immersive-Audio-Betrieb',
+        what: 'Eine KI-gestützte Plattform für Kundenoperationen eines Audiounternehmens, das Nachtclubs, Veranstaltungsorte, Events und Entertainment-Kunden bedient — Bearbeitung von Kundenanfragen, Dokumentenverarbeitung, eine interne Wissensdatenbank und aufgabenorientierte KI-Agenten, verbunden mit den Workflows des Teams.',
+        scope: ['KI-Assistent für Kundenanfragen, Pre-Sales- und Support-Workflows', 'Automatisierte Verarbeitung von Briefings, technischen Dokumenten, Angeboten, Verträgen und Equipment-Listen', 'Eine KI-Wissensdatenbank über Projekte, Kunden, Equipment, Lieferanten und interne Abläufe', 'Agentenbasierte Workflows, verbunden mit Team-Tools für Vertrieb, Support, Betrieb und Management', 'Entwürfe von Kundenantworten, Angebotsskizzen, Checklisten und Projektübergabe-Notizen'],
+        outcome: ['Kundenanfragen werden schneller zusammengefasst, klassifiziert und weitergeleitet', 'Pre-Sales-Arbeit wird durch frühere Projekte, technische Referenzen und wiederverwendbares Wissen unterstützt', 'Dokumente, die manuelle Prüfung erforderten, werden jetzt automatisch verarbeitet und zusammengefasst', 'Teammitglieder können Fragen direkt an die Unternehmens-Wissensdatenbank stellen', 'Wiederkehrende Admin-Arbeit übernehmen KI-Agenten, während das Team die Kontrolle behält'],
       },
       'tic-strategy': {
         name: 'Großes TIC-Unternehmen',
@@ -276,6 +292,14 @@ export const CASE_STUDIES: Record<Locale, CaseStudiesDict> = {
         what: 'Piloot-TI-assistent ISO auditi ettevalmistuseks, ehitatud koos konfidentsiaalse ettevõttekliendiga. Esimene versioon keskendus ISO 9001-le, tulevase rakendatavusega spetsialiseeritumatele standarditele — autotööstus (ISO 16949) ja meditsiin (ISO 13485).',
         scope: ['Äri-avastus ja reaalse auditi-ettevalmistuse töövoo protsessikaardistus', 'TI teostatavuse hindamine auditivaldkonna ekspertidega', 'Prototüübi tarne selgete piiridega eksperthinnangu ja vastavustundlike otsuste ümber'],
         outcome: ['Lai „TI audiitoritele“ idee muudeti praktiliseks, testitavaks piloodiks', 'Määratletud äriloogika, tehnilised piirid ja teekaart ISO 16949 ja ISO 13485 suunas'],
+      },
+      'clubtek': {
+        focus: 'TI-põhised kliendioperatsioonid & automatiseerimine',
+        sector: 'Audio & meelelahutus', years: 'Phuket, Tai',
+        image: 'Immersiivse heli operatsioonid',
+        what: 'TI-põhine kliendioperatsioonide platvorm audioettevõttele, mis teenindab ööklubisid, kohti, üritusi ja meelelahutuskliente — kliendipäringute käsitlemine, dokumentide töötlemine, sisemine teadmusbaas ja ülesandepõhised TI-agendid, ühendatud meeskonna töövoogudega.',
+        scope: ['TI-assistent kliendipäringute, müügieelse töö ja toe töövoogudele', 'Briifide, tehniliste dokumentide, pakkumiste, lepingute ja seadmenimekirjade automaatne töötlemine', 'TI-teadmusbaas üle projektide, klientide, seadmete, tarnijate ja sisemiste protseduuride', 'Agendipõhised töövood, ühendatud meeskonna tööriistadega müügiks, toeks, operatsioonideks ja juhtimiseks', 'Kliendivastuste, pakkumiste mustandite, kontrollnimekirjade ja projekti üleandmise märkmete koostamine'],
+        outcome: ['Kliendipäringud võetakse kokku, klassifitseeritakse ja suunatakse kiiremini', 'Müügieelset tööd toetavad varasemad projektid, tehnilised viited ja korduvkasutatav teadmus', 'Dokumendid, mis nõudsid käsitsi ülevaatust, töödeldakse ja võetakse nüüd automaatselt kokku', 'Meeskonnaliikmed saavad küsida küsimusi otse ettevõtte teadmusbaasist', 'Korduvat haldustööd teevad TI-agendid, samal ajal kui meeskond säilitab kontrolli'],
       },
       'tic-strategy': {
         name: 'Suur TIC-ettevõte',

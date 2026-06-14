@@ -18,6 +18,7 @@ const CASES = [
   { id: 'red-petroleum', name: 'Red Petroleum', logo: '/logos/red-petroleum.png', img: '/screens/optimus-procurement-advisor.jpg' },
   { id: 'tic-iso', name: 'Major TIC company', logo: '/logos/certiqa-dark.png', img: '/cases/tic-certiqa.jpg' },
   { id: 'tic-strategy', name: 'Major TIC company', logo: null, img: '/cases/tic-strategy.jpg' },
+  { id: 'clubtek', name: 'Clubtek', logo: '/logos/clubtek.png', img: '/cases/clubtek.jpg' },
 ];
 const cases = CASES.map((c) => {
   const tx = t.cases[c.id];
@@ -27,7 +28,6 @@ const initials = (n) => n.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[
 
 // Smaller / earlier engagements — structural data only; region+blurb localized.
 const SMALLER = [
-  { id: 'clubtek', name: 'Clubtek', logo: '/logos/clubtek.png', monogram: null },
   { id: 'khaos-marani', name: 'Khaos Marani', logo: null, monogram: 'KM' },
   { id: 'gagra-plus', name: 'Gagra+', logo: '/logos/gagraplus.png', monogram: null },
 ];
