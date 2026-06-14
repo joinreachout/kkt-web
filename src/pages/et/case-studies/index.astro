@@ -24,6 +24,13 @@ const cases = CASES.map((c) => {
   return { ...c, ...tx, name: tx.name ?? c.name };
 });
 const initials = (n) => n.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join('').toUpperCase();
+
+// Smaller / earlier engagements — structural data only; region+blurb localized.
+const SMALLER = [
+  { id: 'clubtek', name: 'Clubtek', logo: '/logos/clubtek.png', monogram: null },
+  { id: 'khaos-marani', name: 'Khaos Marani', logo: null, monogram: 'KM' },
+];
+const smaller = SMALLER.map((s) => ({ ...s, ...t.smaller.items[s.id] }));
 ---
 
 <BaseLayout
@@ -82,6 +89,31 @@ const initials = (n) => n.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[
       </div>
     </div>
   </section>
+
+  {smaller.length > 0 && (
+    <section data-reveal class="section smaller-section">
+      <div class="container">
+        <div class="section-label">{t.smaller.label}</div>
+        <p class="smaller-lede">{t.smaller.lede}</p>
+        <ul class="smaller-grid" data-reveal-stagger>
+          {smaller.map((s) => (
+            <li class="smaller-card">
+              <div class="smaller-logo">
+                {s.logo
+                  ? <img src={s.logo} alt={`${s.name} logo`} loading="lazy" />
+                  : <span class="smaller-monogram" aria-hidden="true">{s.monogram}</span>}
+              </div>
+              <div class="smaller-meta">
+                <div class="smaller-name">{s.name}</div>
+                <div class="smaller-region">{s.region}</div>
+              </div>
+              <p class="smaller-blurb">{s.blurb}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
 
   <CTA />
 </BaseLayout>
@@ -147,6 +179,20 @@ const initials = (n) => n.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[
   }
 
   @media (prefers-reduced-motion: reduce) { .cs-detail { animation: none; } .cs-tile, .cs-cue, .cs-logo { transition: none; } }
+
+  /* Smaller engagements */
+  .smaller-section { padding-top: 0; padding-bottom: clamp(56px, 9vh, 100px); }
+  .smaller-section .section-label { margin-bottom: 14px; }
+  .smaller-lede { max-width: 60ch; margin-bottom: 28px; color: var(--text-secondary); font-size: clamp(15px, 1.5vw, 17px); line-height: 1.6; }
+  .smaller-grid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 720px) { .smaller-grid { grid-template-columns: 1fr 1fr; } }
+  .smaller-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 22px 24px; display: grid; grid-template-columns: 60px 1fr; column-gap: 16px; row-gap: 8px; align-items: start; }
+  .smaller-logo { grid-row: 1 / span 2; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; }
+  .smaller-logo img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
+  .smaller-monogram { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 12px; background: var(--accent-dim); color: var(--accent-text); font-family: var(--font-display); font-weight: 700; font-size: 16px; letter-spacing: 0.04em; }
+  .smaller-name { font-family: var(--font-display); font-weight: 600; font-size: 19px; letter-spacing: -0.01em; color: var(--text-primary); line-height: 1.2; }
+  .smaller-region { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.12em; font-weight: 600; margin-top: 2px; }
+  .smaller-blurb { grid-column: 1 / -1; font-size: 14px; line-height: 1.55; color: var(--text-secondary); margin: 0; max-width: 56ch; }
 </style>
 
 <script is:inline>

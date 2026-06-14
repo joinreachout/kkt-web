@@ -22,6 +22,7 @@ export type CaseStudiesDict = {
   colDid: string;
   colChanged: string;
   close: string;
+  smaller: { label: string; lede: string; items: Record<string, { region: string; blurb: string }> };
   cases: Record<string, CaseText>;
 };
 
@@ -37,6 +38,14 @@ export const CASE_STUDIES: Record<Locale, CaseStudiesDict> = {
     colDid: 'What we did',
     colChanged: 'What changed',
     close: 'Close',
+    smaller: {
+      label: 'Smaller engagements',
+      lede: 'Listed for completeness — real shipped work, earlier or adjacent to the engagements we lead with.',
+      items: {
+        'clubtek': { region: 'Thailand', blurb: 'Premium audio, light and video integration. Top-tier event and venue work.' },
+        'khaos-marani': { region: 'Georgia', blurb: 'Winery. Advanced analytics and predictive ML to forecast wine demand, optimise pricing, and segment consumers for targeted marketing.' },
+      },
+    },
     cases: {
       'click-grow': {
         focus: 'Customer analytics for a D2C smart-garden brand',
@@ -118,6 +127,14 @@ export const CASE_STUDIES: Record<Locale, CaseStudiesDict> = {
     colDid: 'Was wir getan haben',
     colChanged: 'Was sich änderte',
     close: 'Schließen',
+    smaller: {
+      label: 'Kleinere Engagements',
+      lede: 'Der Vollständigkeit halber — echte ausgelieferte Arbeit, früher oder angrenzend an die Engagements, mit denen wir führen.',
+      items: {
+        'clubtek': { region: 'Thailand', blurb: 'Premium-Integration von Audio, Licht und Video. Erstklassige Event- und Venue-Arbeit.' },
+        'khaos-marani': { region: 'Georgien', blurb: 'Weingut. Advanced Analytics und Predictive ML zur Prognose der Weinnachfrage, Preisoptimierung und Konsumentensegmentierung für gezieltes Marketing.' },
+      },
+    },
     cases: {
       'click-grow': {
         focus: 'Kundenanalytik für eine D2C-Smart-Garden-Marke',
@@ -199,6 +216,14 @@ export const CASE_STUDIES: Record<Locale, CaseStudiesDict> = {
     colDid: 'Mida me tegime',
     colChanged: 'Mis muutus',
     close: 'Sulge',
+    smaller: {
+      label: 'Väiksemad projektid',
+      lede: 'Täielikkuse huvides — päris tehtud töö, varasem või kõrvuti projektidega, millega esiplaanis oleme.',
+      items: {
+        'clubtek': { region: 'Tai', blurb: 'Premium heli, valguse ja video integratsioon. Tipptasemel ürituste ja kohtade töö.' },
+        'khaos-marani': { region: 'Gruusia', blurb: 'Veinitööstus. Edasijõudnud analüütika ja ennustav ML veininõudluse prognoosimiseks, hinnastamise optimeerimiseks ja tarbijate segmenteerimiseks suunatud turunduse jaoks.' },
+      },
+    },
     cases: {
       'click-grow': {
         focus: 'Kliendianalüütika D2C nutiaia brändile',
