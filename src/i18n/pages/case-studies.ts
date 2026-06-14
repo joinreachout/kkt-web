@@ -44,9 +44,19 @@ export const CASE_STUDIES: Record<Locale, CaseStudiesDict> = {
       items: {
         'clubtek': { region: 'Thailand', blurb: 'Premium audio, light and video integration. Top-tier event and venue work.' },
         'khaos-marani': { region: 'Georgia', blurb: 'Winery. Advanced analytics and predictive ML to forecast wine demand, optimise pricing, and segment consumers for targeted marketing.' },
+        'fuel-loyalty': { region: 'Fuel retail', blurb: 'Reactivating dormant customers through a hybrid RFM + clustering segmentation — ~12,000 reactivated, refreshed by an automatic ML pipeline.' },
+        'enterprise-agent': { region: 'Enterprise AI', blurb: 'A natural-language analytics agent for the executive team — business semantic layer, KPI grounding, 90%+ answer accuracy in production.' },
       },
     },
     cases: {
+      'tic-iso': {
+        focus: 'Prototype of an AI audit-preparation assistant',
+        sector: 'Testing, Inspection & Certification', years: '2025',
+        image: 'ISO audit-preparation assistant',
+        what: 'A pilot AI assistant for ISO audit preparation, built with a confidential enterprise client. The first version focused on ISO 9001, with future applicability to more specialized standards — automotive (ISO 16949) and medical (ISO 13485).',
+        scope: ['Business discovery and process mapping of the real audit-preparation workflow', 'AI feasibility assessment with audit-domain experts', 'Prototype delivery with clear boundaries around expert judgment and compliance-sensitive decisions'],
+        outcome: ['A broad “AI for auditors” idea turned into a practical, testable pilot', 'Defined business logic, technical boundaries, and a roadmap to ISO 16949 and ISO 13485'],
+      },
       'click-grow': {
         focus: 'Customer analytics for a D2C smart-garden brand',
         sector: 'Retail / D2C', years: 'EU · 2022–2023',
@@ -133,9 +143,20 @@ export const CASE_STUDIES: Record<Locale, CaseStudiesDict> = {
       items: {
         'clubtek': { region: 'Thailand', blurb: 'Premium-Integration von Audio, Licht und Video. Erstklassige Event- und Venue-Arbeit.' },
         'khaos-marani': { region: 'Georgien', blurb: 'Weingut. Advanced Analytics und Predictive ML zur Prognose der Weinnachfrage, Preisoptimierung und Konsumentensegmentierung für gezieltes Marketing.' },
+        'fuel-loyalty': { region: 'Kraftstoffhandel', blurb: 'Reaktivierung inaktiver Kunden durch eine hybride RFM- + Clustering-Segmentierung — ~12.000 reaktiviert, aktualisiert durch eine automatische ML-Pipeline.' },
+        'enterprise-agent': { region: 'Enterprise-KI', blurb: 'Ein natürlichsprachlicher Analytik-Agent für das Führungsteam — geschäftliche semantische Schicht, KPI-Grounding, 90%+ Antwortgenauigkeit in Produktion.' },
       },
     },
     cases: {
+      'tic-iso': {
+        name: 'Großes TIC-Unternehmen',
+        focus: 'Prototyp eines KI-Assistenten zur Audit-Vorbereitung',
+        sector: 'Prüfung, Inspektion & Zertifizierung', years: '2025',
+        image: 'KI-Assistent zur ISO-Audit-Vorbereitung',
+        what: 'Ein Pilot-KI-Assistent zur ISO-Audit-Vorbereitung, gemeinsam mit einem vertraulichen Unternehmenskunden gebaut. Die erste Version konzentrierte sich auf ISO 9001, mit künftiger Anwendbarkeit auf spezialisiertere Standards — Automotive (ISO 16949) und Medizin (ISO 13485).',
+        scope: ['Business Discovery und Prozess-Mapping des realen Audit-Vorbereitungs-Workflows', 'KI-Machbarkeitsbewertung mit Audit-Fachexperten', 'Prototyp-Lieferung mit klaren Grenzen um Expertenurteil und compliance-sensible Entscheidungen'],
+        outcome: ['Aus einer breiten „KI für Auditoren“-Idee wurde ein praktischer, testbarer Pilot', 'Definierte Geschäftslogik, technische Grenzen und eine Roadmap zu ISO 16949 und ISO 13485'],
+      },
       'click-grow': {
         focus: 'Kundenanalytik für eine D2C-Smart-Garden-Marke',
         sector: 'Einzelhandel / D2C', years: 'EU · 2022–2023',
@@ -222,9 +243,20 @@ export const CASE_STUDIES: Record<Locale, CaseStudiesDict> = {
       items: {
         'clubtek': { region: 'Tai', blurb: 'Premium heli, valguse ja video integratsioon. Tipptasemel ürituste ja kohtade töö.' },
         'khaos-marani': { region: 'Gruusia', blurb: 'Veinitööstus. Edasijõudnud analüütika ja ennustav ML veininõudluse prognoosimiseks, hinnastamise optimeerimiseks ja tarbijate segmenteerimiseks suunatud turunduse jaoks.' },
+        'fuel-loyalty': { region: 'Kütuse jaemüük', blurb: 'Uinunud klientide taasaktiveerimine hübriidse RFM + klasterdamise segmenteerimisega — ~12 000 taasaktiveeritud, värskendab automaatne ML-konveier.' },
+        'enterprise-agent': { region: 'Ettevõtte TI', blurb: 'Loomuliku keele analüütika agent juhtkonnale — äriline semantiline kiht, KPI maandamine, 90%+ vastuste täpsus tootmises.' },
       },
     },
     cases: {
+      'tic-iso': {
+        name: 'Suur TIC-ettevõte',
+        focus: 'TI-põhise auditi-ettevalmistuse assistendi prototüüp',
+        sector: 'Testimine, inspekteerimine & sertifitseerimine', years: '2025',
+        image: 'ISO auditi-ettevalmistuse assistent',
+        what: 'Piloot-TI-assistent ISO auditi ettevalmistuseks, ehitatud koos konfidentsiaalse ettevõttekliendiga. Esimene versioon keskendus ISO 9001-le, tulevase rakendatavusega spetsialiseeritumatele standarditele — autotööstus (ISO 16949) ja meditsiin (ISO 13485).',
+        scope: ['Äri-avastus ja reaalse auditi-ettevalmistuse töövoo protsessikaardistus', 'TI teostatavuse hindamine auditivaldkonna ekspertidega', 'Prototüübi tarne selgete piiridega eksperthinnangu ja vastavustundlike otsuste ümber'],
+        outcome: ['Lai „TI audiitoritele“ idee muudeti praktiliseks, testitavaks piloodiks', 'Määratletud äriloogika, tehnilised piirid ja teekaart ISO 16949 ja ISO 13485 suunas'],
+      },
       'click-grow': {
         focus: 'Kliendianalüütika D2C nutiaia brändile',
         sector: 'Jaemüük / D2C', years: 'EL · 2022–2023',

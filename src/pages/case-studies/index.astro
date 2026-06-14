@@ -16,8 +16,7 @@ const CASES = [
   { id: 'forrest-taxi', name: 'Taxigo', logo: '/logos/taxigo.jpg', img: '/cases/forrest-taxi.jpg' },
   { id: 'kricon', name: 'Kricon', logo: '/logos/kricon.png', img: '/cases/kricon-top.jpg' },
   { id: 'red-petroleum', name: 'Red Petroleum', logo: '/logos/red-petroleum.png', img: '/screens/optimus-procurement-advisor.jpg' },
-  { id: 'loyalty-reactivation', name: 'Fuel retail loyalty', logo: null, img: undefined },
-  { id: 'nl-analytics', name: 'Enterprise analytics agent', logo: null, img: undefined },
+  { id: 'tic-iso', name: 'Major TIC company', logo: null, img: undefined },
 ];
 const cases = CASES.map((c) => {
   const tx = t.cases[c.id];
@@ -29,6 +28,8 @@ const initials = (n) => n.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[
 const SMALLER = [
   { id: 'clubtek', name: 'Clubtek', logo: '/logos/clubtek.png', monogram: null },
   { id: 'khaos-marani', name: 'Khaos Marani', logo: null, monogram: 'KM' },
+  { id: 'fuel-loyalty', name: 'Fuel retail loyalty', logo: null, monogram: 'FR' },
+  { id: 'enterprise-agent', name: 'Enterprise analytics agent', logo: null, monogram: 'EA' },
 ];
 const smaller = SMALLER.map((s) => ({ ...s, ...t.smaller.items[s.id] }));
 ---
