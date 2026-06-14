@@ -58,6 +58,14 @@ export const CASE_STUDIES: Record<Locale, CaseStudiesDict> = {
         scope: ['Business discovery and process mapping of the real audit-preparation workflow', 'AI feasibility assessment with audit-domain experts', 'Prototype delivery with clear boundaries around expert judgment and compliance-sensitive decisions'],
         outcome: ['A broad “AI for auditors” idea turned into a practical, testable pilot', 'Defined business logic, technical boundaries, and a roadmap to ISO 16949 and ISO 13485'],
       },
+      'tic-strategy': {
+        focus: 'AI strategy for a global Testing, Inspection & Certification firm',
+        sector: 'Testing, Inspection & Certification', years: '2025',
+        image: 'AI strategy roadmap',
+        what: 'An AI strategy for a global Testing, Inspection & Certification firm — a benchmark of where AI actually creates value in TIC, turned into a CEO-level roadmap built on the firm’s own data and operations.',
+        scope: ['TIC-industry AI benchmark — where the real value is, what competitors are doing, what’s hype', 'A CEO-level strategic roadmap: six AI services across three time horizons — from Smart Certificates and an internal expert AI assistant to Market Intelligence, Terminal Analytics, Blending Optimisation and Contamination Detection', 'Each service designed from the client’s own data and business reality, not off-the-shelf ideas', 'Worked directly with the CTO and regional Operations Directors to align the roadmap with the firm’s data-infrastructure buildout and commercial boundaries'],
+        outcome: ['A prioritised, CEO-level AI roadmap across three horizons the firm can act on', 'A clear read on where the real value is — versus hype — benchmarked against competitors'],
+      },
       'click-grow': {
         focus: 'Customer analytics for a D2C smart-garden brand',
         sector: 'Retail / D2C', years: 'EU · 2022–2023',
@@ -159,6 +167,15 @@ export const CASE_STUDIES: Record<Locale, CaseStudiesDict> = {
         scope: ['Business Discovery und Prozess-Mapping des realen Audit-Vorbereitungs-Workflows', 'KI-Machbarkeitsbewertung mit Audit-Fachexperten', 'Prototyp-Lieferung mit klaren Grenzen um Expertenurteil und compliance-sensible Entscheidungen'],
         outcome: ['Aus einer breiten „KI für Auditoren“-Idee wurde ein praktischer, testbarer Pilot', 'Definierte Geschäftslogik, technische Grenzen und eine Roadmap zu ISO 16949 und ISO 13485'],
       },
+      'tic-strategy': {
+        name: 'Großes TIC-Unternehmen',
+        focus: 'KI-Strategie für ein globales Prüf-, Inspektions- und Zertifizierungsunternehmen',
+        sector: 'Prüfung, Inspektion & Zertifizierung', years: '2025',
+        image: 'KI-Strategie-Roadmap',
+        what: 'Eine KI-Strategie für ein globales Prüf-, Inspektions- und Zertifizierungsunternehmen — ein Benchmark, wo KI in der TIC-Branche tatsächlich Wert schafft, übersetzt in eine Roadmap auf CEO-Ebene, aufgebaut auf den eigenen Daten und dem Betrieb des Unternehmens.',
+        scope: ['KI-Benchmark der TIC-Branche — wo der echte Wert liegt, was Wettbewerber tun, was Hype ist', 'Eine strategische Roadmap auf CEO-Ebene: sechs KI-Services über drei Zeithorizonte — von Smart Certificates und einem internen Experten-KI-Assistenten bis zu Market Intelligence, Terminal Analytics, Blending Optimisation und Contamination Detection', 'Jeder Service aus den eigenen Daten und der Geschäftsrealität des Kunden entworfen, nicht von der Stange', 'Direkt mit dem CTO und den regionalen Operations Directors gearbeitet, um die Roadmap mit dem Aufbau der Dateninfrastruktur und den kommerziellen Grenzen abzustimmen'],
+        outcome: ['Eine priorisierte KI-Roadmap auf CEO-Ebene über drei Horizonte, die das Unternehmen umsetzen kann', 'Ein klares Bild, wo der echte Wert liegt — versus Hype — im Wettbewerbsvergleich'],
+      },
       'click-grow': {
         focus: 'Kundenanalytik für eine D2C-Smart-Garden-Marke',
         sector: 'Einzelhandel / D2C', years: 'EU · 2022–2023',
@@ -259,6 +276,15 @@ export const CASE_STUDIES: Record<Locale, CaseStudiesDict> = {
         what: 'Piloot-TI-assistent ISO auditi ettevalmistuseks, ehitatud koos konfidentsiaalse ettevõttekliendiga. Esimene versioon keskendus ISO 9001-le, tulevase rakendatavusega spetsialiseeritumatele standarditele — autotööstus (ISO 16949) ja meditsiin (ISO 13485).',
         scope: ['Äri-avastus ja reaalse auditi-ettevalmistuse töövoo protsessikaardistus', 'TI teostatavuse hindamine auditivaldkonna ekspertidega', 'Prototüübi tarne selgete piiridega eksperthinnangu ja vastavustundlike otsuste ümber'],
         outcome: ['Lai „TI audiitoritele“ idee muudeti praktiliseks, testitavaks piloodiks', 'Määratletud äriloogika, tehnilised piirid ja teekaart ISO 16949 ja ISO 13485 suunas'],
+      },
+      'tic-strategy': {
+        name: 'Suur TIC-ettevõte',
+        focus: 'TI-strateegia globaalsele testimise, inspekteerimise ja sertifitseerimise firmale',
+        sector: 'Testimine, inspekteerimine & sertifitseerimine', years: '2025',
+        image: 'TI-strateegia teekaart',
+        what: 'TI-strateegia globaalsele testimise, inspekteerimise ja sertifitseerimise firmale — võrdlus sellest, kus TI TIC-valdkonnas tegelikult väärtust loob, muudetud CEO-tasandi teekaardiks, mis põhineb firma enda andmetel ja tegevusel.',
+        scope: ['TIC-tööstuse TI-võrdlus — kus on tegelik väärtus, mida konkurendid teevad, mis on hüp', 'CEO-tasandi strateegiline teekaart: kuus TI-teenust kolmes ajahorisondis — Smart Certificates ja sisemine eksperdi-TI-assistent kuni Market Intelligence, Terminal Analytics, Blending Optimisation ja Contamination Detection', 'Iga teenus kavandatud kliendi enda andmetest ja äri reaalsusest, mitte valmislahendustest', 'Töötasime otse CTO ja piirkondlike tegevusdirektoritega, et joondada teekaart firma andmetaristu ülesehituse ja äriliste piiridega'],
+        outcome: ['Prioriseeritud CEO-tasandi TI-teekaart kolmes horisondis, mida firma saab ellu viia', 'Selge arusaam, kus on tegelik väärtus — vs hüp — konkurentide suhtes võrreldud'],
       },
       'click-grow': {
         focus: 'Kliendianalüütika D2C nutiaia brändile',
