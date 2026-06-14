@@ -20,7 +20,7 @@ declare(strict_types=1);
 session_start();
 
 const REPO = 'joinreachout/kkt-web';
-const POST_DIR = 'main-site/src/content/insights';
+const POST_DIR = 'src/content/insights';
 const DEFAULT_BRANCH = 'main';
 
 // ── env (reads /htdocs/.env, one dir up from /admin) ────────────────────────
