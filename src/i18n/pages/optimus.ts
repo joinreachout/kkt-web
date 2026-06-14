@@ -23,6 +23,7 @@ export type OptimusDict = {
     operatorChip: string; operatorT: string; operatorS: string;
     note: string; caption: string; ariaLabel: string;
   };
+  advisor: { label: string; h2: string; lede: string; imgAlt: string; imgCaption: string };
   morning: { label: string; h2: string; steps: Step[] };
   changes: { label: string; h2: string; outcomes: TitleBody[]; note: string };
   how: { label: string; h2: string; lede: string; clusters: Cluster[] };
@@ -56,6 +57,13 @@ export const OPTIMUS: Record<Locale, OptimusDict> = {
       note: 'Critical alerts mirror to a Telegram group all day — independent of the web interface.',
       caption: 'Daily pulse: data lands at 03:30, the head of supply opens Optimus at 08:00, ten to fifteen minutes later the day’s procurement decisions are issued.',
       ariaLabel: 'Optimus daily pulse: ERP import at 03:30, forecast engine, procurement advisor, operator at 08:00; critical alerts mirror to Telegram independently of the web.',
+    },
+    advisor: {
+      label: 'The daily driver',
+      h2: 'Procurement, scored every morning.',
+      lede: 'The Procurement Advisor ranks every position by urgency — critical, needs ordering, or covered — with the recommended tonnage, the best supplier, and the order-by date already worked out. The operator reviews; it does the maths.',
+      imgAlt: 'Optimus Procurement Advisor — Critical / Order / OK status pills with a 14-day stockout timeline and per-route supplier ranking',
+      imgCaption: 'Procurement Advisor — every position ranked by urgency, with the recommended order and supplier.',
     },
     morning: {
       label: "A morning at the operator's desk",
@@ -172,6 +180,13 @@ export const OPTIMUS: Record<Locale, OptimusDict> = {
       caption: 'Täglicher Takt: die Daten landen um 03:30, der Leiter der Versorgung öffnet Optimus um 08:00, zehn bis fünfzehn Minuten später sind die Beschaffungsentscheidungen des Tages ausgelöst.',
       ariaLabel: 'Täglicher Optimus-Takt: ERP-Import um 03:30, Prognose-Engine, Beschaffungsberater, Operator um 08:00; kritische Warnungen werden unabhängig vom Web nach Telegram gespiegelt.',
     },
+    advisor: {
+      label: 'Der tägliche Begleiter',
+      h2: 'Beschaffung, jeden Morgen bewertet.',
+      lede: 'Der Beschaffungsberater ordnet jede Position nach Dringlichkeit — kritisch, bestellpflichtig oder gedeckt — mit empfohlener Tonnage, bestem Lieferanten und Bestellfrist bereits ermittelt. Der Operator prüft; das Rechnen übernimmt das System.',
+      imgAlt: 'Optimus Beschaffungsberater — Status-Pills Critical / Order / OK mit 14-Tage-Fehlbestand-Zeitleiste und Lieferanten-Ranking je Route',
+      imgCaption: 'Beschaffungsberater — jede Position nach Dringlichkeit, mit empfohlener Bestellung und Lieferant.',
+    },
     morning: {
       label: 'Ein Morgen am Operator-Arbeitsplatz',
       h2: 'Zehn bis fünfzehn Minuten, dann beginnt der Tag.',
@@ -286,6 +301,13 @@ export const OPTIMUS: Record<Locale, OptimusDict> = {
       note: 'Kriitilised teated peegelduvad terve päeva Telegrami gruppi — sõltumatult veebiliidesest.',
       caption: 'Päevarütm: andmed saabuvad 03:30, varustusjuht avab Optimuse 08:00, kümme kuni viisteist minutit hiljem on päeva hankeotsused väljastatud.',
       ariaLabel: 'Optimuse päevarütm: ERP-import 03:30, prognoosimootor, hankenõustaja, operaator 08:00; kriitilised teated peegelduvad Telegrami veebist sõltumatult.',
+    },
+    advisor: {
+      label: 'Igapäevane tööriist',
+      h2: 'Hanked, igal hommikul hinnatud.',
+      lede: 'Hankenõustaja järjestab iga positsiooni kiireloomulisuse järgi — kriitiline, vajab tellimist või kaetud — koos soovitatud koguse, parima tarnija ja tellimistähtajaga. Operaator vaatab üle; arvutab süsteem.',
+      imgAlt: 'Optimus Hankenõustaja — staatuse pillid Critical / Order / OK koos 14-päevase laovähesuse ajatelje ja tarnijate pingereaga marsruudi kohta',
+      imgCaption: 'Hankenõustaja — iga positsioon kiireloomulisuse järgi, koos soovitatud tellimuse ja tarnijaga.',
     },
     morning: {
       label: 'Hommik operaatori laua taga',
