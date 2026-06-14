@@ -41,7 +41,7 @@ export const STRINGS: Record<Locale, Dict> = {
     nav: { retail: 'Retail', fuel: 'Fuel retail', solutions: 'Our Solutions', cases: 'Case studies', insights: 'Insights', about: 'About' },
     actions: { advisor: 'Ask AI Advisor', diagnostic: 'Book a diagnostic', menu: 'Open menu', switchLang: 'Language' },
     footer: {
-      tag: 'We build the operating systems your business runs on.',
+      tag: 'Data, AI and automation that run in your operations.',
       industries: 'Industries', work: 'Work', company: 'Company', contact: 'Contact',
       legal: (y) => `© ${y} Kitty Kat Technologies OÜ · Jõe 7, 10151 Tallinn, Estonia`,
     },
@@ -67,7 +67,7 @@ export const STRINGS: Record<Locale, Dict> = {
     nav: { retail: 'Einzelhandel', fuel: 'Kraftstoffhandel', solutions: 'Unsere Lösungen', cases: 'Fallstudien', insights: 'Einblicke', about: 'Über uns' },
     actions: { advisor: 'KI-Berater fragen', diagnostic: 'Diagnose buchen', menu: 'Menü öffnen', switchLang: 'Sprache' },
     footer: {
-      tag: 'Wir bauen die operativen Systeme, auf denen Ihr Unternehmen läuft.',
+      tag: 'Daten, KI und Automatisierung, die in Ihrem Betrieb laufen.',
       industries: 'Branchen', work: 'Projekte', company: 'Unternehmen', contact: 'Kontakt',
       legal: (y) => `© ${y} Kitty Kat Technologies OÜ · Jõe 7, 10151 Tallinn, Estland`,
     },
@@ -93,7 +93,7 @@ export const STRINGS: Record<Locale, Dict> = {
     nav: { retail: 'Jaekaubandus', fuel: 'Kütuse jaemüük', solutions: 'Meie lahendused', cases: 'Juhtumiuuringud', insights: 'Ülevaated', about: 'Meist' },
     actions: { advisor: 'Küsi TI-nõustajalt', diagnostic: 'Broneeri diagnostika', menu: 'Ava menüü', switchLang: 'Keel' },
     footer: {
-      tag: 'Ehitame operatsioonisüsteemid, millel teie ettevõte töötab.',
+      tag: 'Andmed, TI ja automatiseerimine, mis töötavad teie igapäevatöös.',
       industries: 'Tööstusharud', work: 'Tööd', company: 'Ettevõte', contact: 'Kontakt',
       legal: (y) => `© ${y} Kitty Kat Technologies OÜ · Jõe 7, 10151 Tallinn, Eesti`,
     },
