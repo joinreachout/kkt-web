@@ -4,7 +4,7 @@ import type { Locale } from '../config';
 export type SolutionsDict = {
   meta: { title: string; description: string };
   introLabel: string; h1: string; lede: string;
-  optimusLabel: string; optimusTitle: string; optimusLede: string; optimusImg: string;
+  optimusLabel: string; optimusTitle: string; optimusLede: string; optimusImg: string; optimusLink: string;
   features: { name: string; body: string }[];
   codooLabel: string; codooTitle: string; codooBody: string; codooLink: string;
   ctaHeading: string; ctaBody: string;
@@ -18,6 +18,7 @@ export const SOLUTIONS: Record<Locale, SolutionsDict> = {
     optimusLabel: 'Optimus', optimusTitle: 'Operating intelligence for fuel-distribution networks.',
     optimusLede: 'Procurement, margin, stockouts, and working capital — on connected data, in one operational picture. Optimus turns daily fuel-supply decisions into a controlled workflow: forecast the shortage, recommend the order, manage distribution, reconcile against the ERP. In pilot at Red Petroleum, an independent fuel network in Kyrgyzstan.',
     optimusImg: 'Optimus — procurement advisor',
+    optimusLink: 'See how Optimus works',
     features: [
       { name: 'AI Briefing', body: 'A plain-language daily situation summary — what needs action, where the savings are — with free-form questions answered from live data.' },
       { name: 'Procurement Advisor', body: 'Concrete order recommendations: supplier, tonnage, deadline, price. Statuses from CRITICAL to OK, with one-click PO creation.' },
@@ -39,6 +40,7 @@ export const SOLUTIONS: Record<Locale, SolutionsDict> = {
     optimusLabel: 'Optimus', optimusTitle: 'Operative Intelligenz für Tankstellennetze.',
     optimusLede: 'Beschaffung, Marge, Fehlbestände und Working Capital — auf vernetzten Daten, in einem operativen Bild. Optimus macht aus täglichen Kraftstoff-Versorgungsentscheidungen einen kontrollierten Ablauf: Engpass prognostizieren, Bestellung empfehlen, Verteilung steuern, gegen das ERP abstimmen. Im Pilotbetrieb bei Red Petroleum, einem unabhängigen Tankstellennetz in Kirgisistan.',
     optimusImg: 'Optimus — Beschaffungsberater',
+    optimusLink: 'So funktioniert Optimus',
     features: [
       { name: 'KI-Briefing', body: 'Eine tägliche Lageübersicht in Klartext — was zu tun ist, wo die Einsparungen liegen — mit freien Fragen, die aus Live-Daten beantwortet werden.' },
       { name: 'Beschaffungsberater', body: 'Konkrete Bestellempfehlungen: Lieferant, Tonnage, Frist, Preis. Status von CRITICAL bis OK, mit Ein-Klick-Bestellerstellung.' },
@@ -60,6 +62,7 @@ export const SOLUTIONS: Record<Locale, SolutionsDict> = {
     optimusLabel: 'Optimus', optimusTitle: 'Tegevusintelligentsus kütusevõrkudele.',
     optimusLede: 'Hanked, marginaal, laovähesus ja käibekapital — ühendatud andmetel, ühes tegevuspildis. Optimus muudab igapäevased kütusetarne otsused kontrollitud töövooks: prognoosi puudujääk, soovita tellimus, halda jaotust, võrdle ERP-iga. Piloodis Red Petroleumis, sõltumatus kütusevõrgus Kõrgõzstanis.',
     optimusImg: 'Optimus — hankenõustaja',
+    optimusLink: 'Vaata, kuidas Optimus töötab',
     features: [
       { name: 'TI-briifing', body: 'Igapäevane olukorra kokkuvõte selges keeles — mis vajab tegutsemist, kus on kokkuhoid — vabade küsimustega, millele vastatakse live-andmetest.' },
       { name: 'Hankenõustaja', body: 'Konkreetsed tellimissoovitused: tarnija, tonnaaž, tähtaeg, hind. Staatused CRITICAL kuni OK, ühe klikiga tellimuse loomine.' },

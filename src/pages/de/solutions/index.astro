@@ -3,9 +3,11 @@ import BaseLayout from '~/layouts/BaseLayout.astro';
 import MediaSlot from '~/components/MediaSlot.astro';
 import CTA from '~/components/CTA.astro';
 import { useSolutions } from '~/i18n/pages/solutions';
+import { localizePath, toLocale } from '~/i18n/config';
 
 const s = useSolutions(Astro.currentLocale);
 const optimusFeatures = s.features;
+const optimusHref = localizePath('/solutions/optimus', toLocale(Astro.currentLocale));
 ---
 
 <BaseLayout
@@ -39,6 +41,8 @@ const optimusFeatures = s.features;
           </li>
         ))}
       </ul>
+
+      <a href={optimusHref} class="link-cta sol-optimus-link">{s.optimusLink}</a>
     </div>
   </section>
 
@@ -76,6 +80,7 @@ const optimusFeatures = s.features;
      `.mediaslot { margin: 0 }` wins). Reach the child element with :global,
      kept under the page-scoped `.sol-optimus` so it can't leak. */
   .sol-optimus :global(.sol-optimus-media) { max-width: 1000px; margin-bottom: clamp(88px, 13vh, 150px); }
+  .sol-optimus-link { display: inline-block; margin-top: clamp(28px, 4vh, 40px); }
   .sol-features { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr; gap: 14px; }
   @media (min-width: 720px) { .sol-features { grid-template-columns: 1fr 1fr; gap: 18px; } }
   @media (min-width: 1000px) { .sol-features { grid-template-columns: repeat(3, 1fr); } }
