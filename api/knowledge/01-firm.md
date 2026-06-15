@@ -45,8 +45,8 @@ KKT publishes detailed AI Transformation Maps for the industries it goes deepest
 
 ## Partners
 - **Noventiq** — non-exclusive cooperation (global digital-transformation and cybersecurity provider) to bring data & AI into operations across EMEA, Central Asia and South-East Asia. Co-marketing, not a delivery dependency.
-- **Microsoft** — AI partner.
-- **AWS** — solutions delivered on AWS.
+- **Microsoft** — Microsoft AI Cloud Partner.
+- **AWS** — AWS Partner Network member.
 - **Meta** — Meta Tech Provider.
 
 ## Contact
