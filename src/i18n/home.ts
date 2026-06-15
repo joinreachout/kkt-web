@@ -57,7 +57,7 @@ export const HOME: Record<Locale, HomeDict> = {
     cases: {
       label: 'Our partners & clients', title: 'Partners and clients.',
       intro: 'We work alongside global technology partners and with clients across fuel, retail, telecom, mobility, logistics, and industry. Tap a client for the full picture — what we did, the scope, and the result.',
-      partnerNotes: ['Digital-transformation partner', 'AI partner', 'Solutions delivered on AWS', 'Meta Tech Provider'],
+      partnerNotes: ['Digital-transformation partner', 'Microsoft AI Cloud Partner', 'AWS Partner Network member', 'Meta Tech Provider'],
       didLabel: 'What we did', changedLabel: 'What changed', close: 'Close',
       tail: 'See the full list of clients and projects',
       items: [
@@ -108,7 +108,7 @@ export const HOME: Record<Locale, HomeDict> = {
     cases: {
       label: 'Unsere Partner & Kunden', title: 'Partner und Kunden.',
       intro: 'Wir arbeiten mit globalen Technologiepartnern und mit Kunden aus den Bereichen Kraftstoff, Einzelhandel, Telekommunikation, Mobilität, Logistik und Industrie. Tippen Sie auf einen Kunden für das ganze Bild — was wir gemacht haben, den Umfang und das Ergebnis.',
-      partnerNotes: ['Partner für digitale Transformation', 'KI-Partner', 'Lösungen auf AWS umgesetzt', 'Meta Tech Provider'],
+      partnerNotes: ['Partner für digitale Transformation', 'Microsoft AI Cloud Partner', 'AWS Partner Network member', 'Meta Tech Provider'],
       didLabel: 'Was wir gemacht haben', changedLabel: 'Was sich verändert hat', close: 'Schließen',
       tail: 'Die vollständige Liste der Kunden und Projekte ansehen',
       items: [
@@ -159,7 +159,7 @@ export const HOME: Record<Locale, HomeDict> = {
     cases: {
       label: 'Meie partnerid ja kliendid', title: 'Partnerid ja kliendid.',
       intro: 'Töötame koos globaalsete tehnoloogiapartneritega ja klientidega kütuse, jaekaubanduse, telekommunikatsiooni, liikuvuse, logistika ja tööstuse valdkondades. Puuduta klienti, et näha tervikpilti — mida tegime, ulatust ja tulemust.',
-      partnerNotes: ['Digitaalse transformatsiooni partner', 'Tehisintellekti partner', 'Lahendused teostatud AWS-il', 'Meta Tech Provider'],
+      partnerNotes: ['Digitaalse transformatsiooni partner', 'Microsoft AI Cloud Partner', 'AWS Partner Network member', 'Meta Tech Provider'],
       didLabel: 'Mida me tegime', changedLabel: 'Mis muutus', close: 'Sulge',
       tail: 'Vaata klientide ja projektide täielikku nimekirja',
       items: [
