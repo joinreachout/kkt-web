@@ -36,6 +36,7 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '';
 const locale = toLocale(Astro.currentLocale);
 const langTag = LANGS[locale].bcp47;
 const ogLocale = { en: 'en_US', de: 'de_DE', et: 'et_EE' }[locale];
+const ogType = pageType === 'article' ? 'article' : 'website';
 const hreflangs = alternates(Astro.url.pathname, Astro.site);
 
 // Schema.org JSON-LD. Always emits an Organization graph node + a
@@ -52,6 +53,14 @@ const schemaGraph: Record<string, unknown>[] = [
     logo: 'https://kittykat.tech/favicon.svg',
     email: 'hello@kittykat.tech',
     telephone: '+372 5555 3621',
+    areaServed: ['Europe', 'Central Asia'],
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'sales',
+      email: 'hello@kittykat.tech',
+      telephone: '+372 5555 3621',
+      availableLanguage: ['en', 'de', 'et'],
+    },
     sameAs: [
       'https://www.linkedin.com/company/kittykattech/',
     ],
@@ -100,6 +109,7 @@ if (pageType === 'article') {
     '@type': 'Article',
     headline: title,
     description,
+    inLanguage: langTag,
     image: ogImageUrl,
     url: canonicalUrl,
     author: articleAuthor
@@ -117,6 +127,7 @@ if (pageType === 'article') {
     name: title,
     description,
     url: canonicalUrl,
+    inLanguage: langTag,
     isPartOf: { '@id': 'https://kittykat.tech/#org' },
     primaryImageOfPage: { '@type': 'ImageObject', url: ogImageUrl },
   });
@@ -206,13 +217,16 @@ if (pathname === '/solutions/optimus') {
 // ItemList for /case-studies — named client engagements. Descriptions
 // drawn only from existing case-study content.
 if (pathname === '/case-studies') {
-  const caseItem = (position: number, name: string, slug: string, description: string) => ({
+  // Cases are consolidated onto /case-studies/ and expand in place; the
+  // per-case URLs are noindex redirect stubs. Point structured data at the
+  // canonical on-page anchor (anchor id, not the slug — they can differ).
+  const caseItem = (position: number, name: string, anchor: string, description: string) => ({
     '@type': 'ListItem',
     position,
     item: {
       '@type': 'Article',
       name,
-      url: `https://kittykat.tech/case-studies/${slug}/`,
+      url: `https://kittykat.tech/case-studies/#${anchor}`,
       description,
       publisher: { '@id': 'https://kittykat.tech/#org' },
     },
@@ -224,7 +238,7 @@ if (pathname === '/case-studies') {
     description: 'Named client engagements delivered by Kitty Kat Technologies.',
     itemListElement: [
       caseItem(1, 'Red Petroleum — piloting Optimus across the network', 'red-petroleum', 'Fuel retail, Kyrgyzstan. A 250-station network with Optimus in pilot for procurement and margin.'),
-      caseItem(2, 'Click & Grow — ML segmentation for Eastern Europe and CIS', 'click-and-grow', 'B2C smart indoor gardens. Customer analytics and ML segmentation models for targeted growth.'),
+      caseItem(2, 'Click & Grow — ML segmentation for Eastern Europe and CIS', 'click-grow', 'B2C smart indoor gardens. Customer analytics and ML segmentation models for targeted growth.'),
       caseItem(3, 'GTE — reporting and ML for compressor manufacturing', 'gte', 'Industrial compressor manufacturer. Finance and manufacturing reporting, plus ML for anomaly detection and energy-consumption optimisation.'),
       caseItem(4, 'Kricon — operational visibility for international logistics', 'kricon', 'International logistics. Reporting infrastructure, anomaly detection, and clustering models for ops-level signals.'),
       caseItem(5, 'CSC Telecom — customer and product analytics', 'csc-telecom', 'Mid-sized telecom provider. Customer and product analytics studies; several insights adopted and shipped.'),
@@ -255,7 +269,7 @@ const schemaJsonLd = JSON.stringify({
     {hreflangs.map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
 
     <!-- Open Graph -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
@@ -264,6 +278,16 @@ const schemaJsonLd = JSON.stringify({
     <meta property="og:image" content={ogImageUrl} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+
+    {pageType === 'article' && articlePublished && (
+      <>
+        <meta property="article:published_time" content={articlePublished} />
+        <meta property="article:modified_time" content={articlePublished} />
+        {articleAuthor && <meta property="article:author" content={articleAuthor} />}
+        <meta property="article:section" content="Insights" />
+        <meta property="article:publisher" content="https://kittykat.tech/" />
+      </>
+    )}
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
