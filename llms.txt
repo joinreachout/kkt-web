@@ -1,32 +1,29 @@
 # KKT — Kitty Kat Technologies
 
-> Senior PMO and AI delivery for mid-sized retailers ($50M–$500M) and fuel networks. Based in Tallinn, Estonia (EU). We build and ship operating systems, not decks. Marquee deployment: Optimus, in pilot at Alfa Oil — a 250-station independent fuel network in Kyrgyzstan.
+> Business-first data & AI delivery for mid-enterprise companies in traditional, asset-heavy industries — oil & gas, energy, retail, fuel retail, logistics. Based in Tallinn, Estonia (EU). We start from the business question, not the technology, and ship solutions that run in real operations. Marquee deployment: Optimus, in pilot at Red Petroleum — a 250-station independent fuel network in Kyrgyzstan.
 
-Kitty Kat Technologies OÜ (public brand: KKT) is an AI delivery and programme-management firm registered in Tallinn, Estonia. The firm works with mid-sized retailers and fuel networks across Central Europe, the EU, and Central Asia. Every engagement starts with a two-week diagnostic. Delivery follows a three-stage model: strengthen the core, optimize and grow, expand and monetize. The exit criterion — the system runs without KKT — is written into the engagement from week one.
+Kitty Kat Technologies OÜ (public brand: KKT) is a data, AI, and automation delivery firm registered in Tallinn, Estonia. It works with mid-enterprise companies — roughly $100M–$1B in revenue — that have established operations, legacy systems, and complex processes, where the cost of getting things wrong is real and the value of a working solution is measurable. Domain expertise and technical delivery sit in one team, so an engagement runs from the business question to a solution that operates in production.
 
-The flagship product is Optimus — the embodiment of a fuel-procurement optimization system: it turns buying from a decision made on experience and availability into one made on data — demand forecast, the right volume and moment, honest supplier comparison, and the full landed cost of a batch. It is in pilot at Alfa Oil, a 250-station independent fuel network in Kyrgyzstan. Optimus is one part of a broader picture: KKT's fuel work spans the whole network economy — procurement and margin, logistics, stations and shops, customers, finance and control — built bottom-up, data and control first, then AI where it earns its place.
+Every engagement that KKT accepts starts with a fixed two-week diagnostic: kick-off, investigation, and synthesis, ending in a readout. Delivery is held together by senior PMO discipline — scope, sequencing, and ownership — and follows a four-stage arc from a business question to a system that keeps running without KKT. Strong AI capability is treated as the baseline; the rigor is in the programme management around it.
 
-KKT avoids vendor-hype language. Outcomes are stated in measurable terms — margin, cash, availability, customer value, productivity — or not stated at all. The firm is candid about poor fit: it turns down work below ~$50M revenue, pure strategy without delivery, engagements with no senior internal owner, regulated banking/public-sector/defence work, and full outsourcing.
+The flagship product is Optimus — a procurement-and-margin engine for fuel networks. It turns buying from a decision made on experience and availability into one made on data: demand forecast, the right volume and moment, honest supplier comparison, and the full landed cost of a batch. Optimus is in pilot at Red Petroleum, a 250-station independent fuel network in Kyrgyzstan. It is one embodiment of KKT's broader fuel work, which spans the whole network economy — procurement and margin, logistics, stations and shops, customers, finance and control — built bottom-up, connected data and control first, then AI where it earns its place.
+
+KKT avoids vendor-hype language. Outcomes are stated in measurable terms — margin, cash, availability, customer value, productivity — or not stated at all. The firm is candid about poor fit: it declines pure strategy without delivery, engagements with no senior internal owner, and full outsourcing.
 
 ## Pages
 
-- [Home](https://kittykat.tech/): Positioning, the two industries served, featured Alfa Oil case, delivery-model summary.
-- [About](https://kittykat.tech/about/): Firm profile. Registered as Kitty Kat Technologies OÜ, Jõe 7, Tallinn, Estonia. Four operating beliefs. Team — Nageye Ibrahim Rascid (Cloud Expert, 20 years), George Shevardenidze (Data Scientist, 15 years), Dennis Nepomniashy (Data-driven Marketing).
-- [Approach](https://kittykat.tech/approach/): The two-week diagnostic (kick-off days 1–3, investigation days 4–9, synthesis days 10–12, readout day 14) and the three-stage delivery model.
-- [Is this a fit?](https://kittykat.tech/not-for-you/): An honest read on where KKT is and is not the right partner — seven specific conditions.
-- [Optimus](https://kittykat.tech/solutions/optimus/): The product page. Optimus is the procurement-and-margin engine for fuel networks — one embodiment of KKT's fuel work; in pilot at Alfa Oil.
+- [Home](https://kittykat.tech/): Positioning, who KKT serves, how it works, selected client work, and the two industries it goes deepest in.
+- [About](https://kittykat.tech/about/): Firm profile. Registered as Kitty Kat Technologies OÜ, Jõe 7, 10151 Tallinn, Estonia. A senior team split into a domain group and a technical group, drawn from industry and consulting backgrounds.
+- [Approach](https://kittykat.tech/approach/): The method — a fixed two-week diagnostic and a four-stage delivery model, with senior PMO discipline throughout and an explicit exit: the system runs without KKT.
+- [Solutions](https://kittykat.tech/solutions/): The solutions overview, including the Optimus product line for fuel networks.
+- [Optimus](https://kittykat.tech/solutions/optimus/): The product page. Optimus is the procurement-and-margin engine for fuel networks — one embodiment of KKT's fuel work; in pilot at Red Petroleum.
 - [Fuel retail](https://kittykat.tech/industries/fuel-retail/): The fuel positioning — connected data first, AI on built foundations, bottom-up across the whole network economy. Optimus is one embodiment.
-- [Retail](https://kittykat.tech/industries/retail/): Mid-sized retailer starting points. Links to the open retail playbook (43 services across 11 domains).
-- [Alfa Oil case study](https://kittykat.tech/case-studies/alfa-oil/): Fuel retail, Kyrgyzstan. A 250-station independent network with Optimus in pilot for procurement and margin.
-- [Click & Grow case study](https://kittykat.tech/case-studies/click-and-grow/): B2C smart indoor gardens. Customer analytics and ML segmentation for Eastern Europe / CIS growth.
-- [GTE case study](https://kittykat.tech/case-studies/gte/): Industrial compressor manufacturer. Finance/manufacturing reporting plus ML for anomaly detection and energy-consumption optimisation.
-- [Kricon case study](https://kittykat.tech/case-studies/kricon/): International logistics. Operational visibility — reporting infrastructure, anomaly detection, and clustering models.
-- [CSC Telecom case study](https://kittykat.tech/case-studies/csc-telecom/): Mid-sized telecom provider. Customer and product analytics; several insights adopted and shipped.
-- [Cost of Doing Nothing — methodology](https://kittykat.tech/methods/cost-of-doing-nothing/): A public, dated methodology (v0.1, 2026-05-07) for a fuel-retail P&L gap calculator. Seven principles; five benchmark source tiers including public annual reports (MOL, OMV, Couche-Tard, EG Group, Shell, BP, ENI) and KKT internal aggregated benchmarks (2022–2026, minimum n=5).
+- [Retail](https://kittykat.tech/industries/retail/): Mid-enterprise retailer starting points. Links to the open Retail AI Canvas playbook.
+- [Case studies](https://kittykat.tech/case-studies/): Named client engagements, expanded in place. Includes Red Petroleum (fuel retail, Kyrgyzstan — 250-station network, Optimus in pilot for procurement and margin), Click & Grow (B2C smart indoor gardens — customer analytics and ML segmentation for Eastern Europe / CIS), GTE (industrial compressor manufacturer — finance/manufacturing reporting plus ML for anomaly detection and energy-consumption optimisation), Kricon (international logistics — operational visibility, anomaly detection, clustering), CSC Telecom (mid-sized telecom — customer and product analytics), Taxigo, Clubtek, a major TIC company, and smaller engagements.
 - [Insights](https://kittykat.tech/insights/): A working-in-public column from named authors at KKT.
 - [Contact](https://kittykat.tech/contact/): hello@kittykat.tech · +372 5555 3621 · Jõe 7, 10151 Tallinn, Estonia.
 
 ## Optional
 
-- [Retail AI Canvas (external)](https://retail.kittykat.tech): The open retail playbook — 43 services across 11 retail domains, updated quarterly.
-- [Cost of Doing Nothing — tool preview](https://kittykat.tech/tools/cost-of-doing-nothing/): An interactive calculator in v0 preview (placeholder benchmarks; calibrated launch in a later phase). Not for board use yet.
+- [Retail AI Canvas (external)](https://retail.kittykat.tech): The open retail playbook — AI solutions mapped across the retail business, by domain.
+- [Fuel AI Transformation Map (external)](https://fuelretail.kittykat.tech): Where data and AI deliver measurable results across a fuel-retail network — mapped across the whole network economy.
