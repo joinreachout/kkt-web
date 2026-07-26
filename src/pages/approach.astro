@@ -13,12 +13,25 @@ const phases = [
   { meta: 'Days 10–12', name: 'Synthesis', body: 'What to ship, what to leave alone, what proof to commit. A sequenced backlog with effort and impact ranges, and the exit criteria for whichever stage you actually need.' },
   { meta: 'Day 14', name: 'Readout', body: 'A concrete recommendation, presented to the senior team. Decision-ready: enough detail to commit, scoped to avoid over-promising. If the case is not there, we say so.' },
 ];
+
+// FAQ — visible on-page Q&A; the same array feeds FAQPage JSON-LD via BaseLayout.
+// Answers are grounded in this page's own copy (method, diagnostic, exit) and the
+// positioning; keep them in sync if the wording above changes.
+const faqs = [
+  { q: 'How does KKT actually deliver?', a: 'From a business question to a system that runs after we leave — on a four-step runbook: Identify, Scope, Execute, Close. Strong AI capability is the baseline; PMO discipline — scope, sequencing, ownership, shipping under constraint — is what makes it run in production instead of on slides.' },
+  { q: 'Are you a fit for a mid-sized retailer?', a: 'Yes. We work with mid-enterprise companies in traditional, asset-heavy industries — deepest in retail and fuel networks. We start from the business question you are trying to move, not from the technology.' },
+  { q: 'What does a two-week diagnostic look like?', a: 'Every engagement we accept starts with a fixed, two-week diagnostic. It has one output: a sharp picture of what to ship, what to leave alone, and what proof you need before committing to a build.' },
+  { q: 'Why would you turn down work?', a: "If the diagnostic shows the case isn't there, we say so. We don't take engagements we can't ship into production, and engagement length is shaped by what is real to ship — not by a default contract." },
+  { q: 'What is Optimus?', a: 'Our daily operating-intelligence system for fuel-distribution networks: procurement, margin, stockouts and working capital, on connected data. In pilot at Red Petroleum, a 250-station network in Kyrgyzstan.' },
+  { q: 'What happens after you ship?', a: 'We design for the exit from week one. When the system is running and your senior counterpart is operating it, we leave — it keeps running without us.' },
+];
 ---
 
 <BaseLayout
   title="Approach — KKT"
   description="How we run an engagement: a clear method from business question to a system that runs without us, starting with a fixed two-week diagnostic, with senior PMO discipline throughout."
   ogImage="/og/approach.png"
+  faq={faqs}
 >
   <!-- Intro -->
   <section class="section ap-intro" data-reveal>
@@ -101,6 +114,22 @@ const phases = [
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section class="section ap-faq" data-reveal>
+    <div class="container">
+      <p class="section-label">Common questions</p>
+      <h2 class="ap-h2">Straight answers.</h2>
+      <dl class="faq-list" data-reveal-stagger>
+        {faqs.map((f) => (
+          <div class="faq-item">
+            <dt class="faq-q">{f.q}</dt>
+            <dd class="faq-a">{f.a}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
   <CTA />
 </BaseLayout>
 
@@ -163,4 +192,15 @@ const phases = [
   .ap-after { padding-top: clamp(56px, 9vh, 100px); padding-bottom: clamp(56px, 9vh, 100px); }
   .ap-after-h2 { max-width: 24ch; }
   .ap-after-body { font-size: clamp(16px, 1.7vw, 19px); line-height: 1.6; color: var(--text-secondary); max-width: 64ch; margin-bottom: 16px; }
+
+  /* FAQ */
+  .ap-faq { padding-top: clamp(56px, 9vh, 100px); padding-bottom: clamp(56px, 9vh, 100px); }
+  .faq-list { margin: clamp(24px, 4vh, 40px) 0 0; padding: 0; max-width: 820px; }
+  .faq-item { padding: 22px 0; border-top: 1px solid var(--border); }
+  .faq-item:last-child { border-bottom: 1px solid var(--border); }
+  .faq-q {
+    font-family: var(--font-display); font-weight: 600; font-size: clamp(17px, 1.9vw, 21px);
+    line-height: 1.3; letter-spacing: -0.01em; color: var(--text-primary); margin: 0 0 10px;
+  }
+  .faq-a { font-size: clamp(15px, 1.5vw, 17px); line-height: 1.6; color: var(--text-secondary); margin: 0; max-width: 68ch; }
 </style>
