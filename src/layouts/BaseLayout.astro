@@ -44,7 +44,7 @@ const hreflangs = alternates(Astro.url.pathname, Astro.site);
 // graph; we keep both nodes lightweight and accurate.
 const schemaGraph: Record<string, unknown>[] = [
   {
-    '@type': 'Organization',
+    '@type': ['Organization', 'ProfessionalService'],
     '@id': 'https://kittykat.tech/#org',
     name: 'Kitty Kat Technologies',
     legalName: 'Kitty Kat Technologies OÜ',
@@ -81,26 +81,42 @@ const schemaGraph: Record<string, unknown>[] = [
       'Retail analytics',
       'Operating-intelligence systems',
     ],
-    member: [
-      {
-        '@type': 'Person',
-        name: 'Nageye Ibrahim Rascid',
-        jobTitle: 'Cloud Expert',
-        sameAs: 'https://www.linkedin.com/in/nageyerascid/',
-      },
-      {
-        '@type': 'Person',
-        name: 'George Shevardenidze',
-        jobTitle: 'Data Scientist',
-        sameAs: 'https://www.linkedin.com/in/george-shevardenidze-017a3999/',
-      },
-      {
-        '@type': 'Person',
-        name: 'Dennis Nepomniashy',
-        jobTitle: 'HoReCa & Business Informatics',
-        sameAs: 'https://www.linkedin.com/in/dennisnepomniashy/',
-      },
+    founder: [
+      { '@id': 'https://kittykat.tech/#person-dennis' },
+      { '@id': 'https://kittykat.tech/#person-george' },
     ],
+    member: [
+      { '@id': 'https://kittykat.tech/#person-nageye' },
+      { '@id': 'https://kittykat.tech/#person-george' },
+      { '@id': 'https://kittykat.tech/#person-dennis' },
+    ],
+  },
+  {
+    '@type': 'Person',
+    '@id': 'https://kittykat.tech/#person-dennis',
+    name: 'Dennis Nepomniashy',
+    jobTitle: 'Data-driven Marketing',
+    description: 'Marketing and software-integration project management, run from the data. Certified in Business IT and MCSI.',
+    worksFor: { '@id': 'https://kittykat.tech/#org' },
+    sameAs: 'https://www.linkedin.com/in/dennisnepomniashy/',
+  },
+  {
+    '@type': 'Person',
+    '@id': 'https://kittykat.tech/#person-george',
+    name: 'George Shevardenidze',
+    jobTitle: 'Data Scientist',
+    description: 'Fifteen years in global B2B technical consultancy. Three years pulling data analytics and AI into running businesses. Certified by Microsoft AI, IBM, and Google.',
+    worksFor: { '@id': 'https://kittykat.tech/#org' },
+    sameAs: 'https://www.linkedin.com/in/george-shevardenidze-017a3999/',
+  },
+  {
+    '@type': 'Person',
+    '@id': 'https://kittykat.tech/#person-nageye',
+    name: 'Nageye Ibrahim Rascid',
+    jobTitle: 'Cloud Expert',
+    description: 'Twenty years across Cisco Meraki, Snowflake, and Microsoft. Cloud architecture, big data, and machine learning at the scale where decisions cost real money.',
+    worksFor: { '@id': 'https://kittykat.tech/#org' },
+    sameAs: 'https://www.linkedin.com/in/nageyerascid/',
   },
 ];
 
