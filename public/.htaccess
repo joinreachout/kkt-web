@@ -37,5 +37,12 @@ RedirectMatch 403 ^/\.git(/|$)
     AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml
 </IfModule>
 
+# Insights → Blog rename (2026-07). 301 old URLs to preserve link equity.
+# Covers the index, individual posts, and the /de /et locale variants.
+RedirectMatch 301 ^/insights/?$ /blog/
+RedirectMatch 301 ^/insights/(.+)$ /blog/$1
+RedirectMatch 301 ^/(de|et)/insights/?$ /$1/blog/
+RedirectMatch 301 ^/(de|et)/insights/(.+)$ /$1/blog/$2
+
 # Custom 404 — Astro emits 404.html at root.
 ErrorDocument 404 /404.html

@@ -9,7 +9,7 @@ export async function GET(context: APIContext) {
     .sort((a, b) => +new Date(b.data.publishedAt) - +new Date(a.data.publishedAt));
 
   return rss({
-    title: 'KKT — Insights',
+    title: 'KKT — Blog',
     description:
       'Working in Public — notes from inside KKT engagements. Two named authors, one post a month.',
     site: context.site!,
@@ -17,7 +17,7 @@ export async function GET(context: APIContext) {
       title: post.data.title,
       pubDate: new Date(post.data.publishedAt),
       description: post.data.summary ?? '',
-      link: `/insights/${post.id}/`,
+      link: `/blog/${post.id}/`,
       author: post.data.author,
     })),
     customData: '<language>en-us</language>',

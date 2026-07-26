@@ -17,7 +17,7 @@ const t = useInsights(Astro.currentLocale);
 ---
 
 <BaseLayout
-  title={`${post.data.title} — KKT Insights`}
+  title={`${post.data.title} — KKT Blog`}
   description={post.data.summary}
   pageType="article"
   articleAuthor={post.data.author}
@@ -51,7 +51,7 @@ const t = useInsights(Astro.currentLocale);
 
       <footer class="post-foot">
         <p class="back">
-          <a href="/insights">{t.backAll}</a>
+          <a href="/blog">{t.backAll}</a>
         </p>
         <p class="rss-hint">
           {t.rssPre}<a href="/rss.xml">{t.rssLink}</a>

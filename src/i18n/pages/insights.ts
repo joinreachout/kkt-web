@@ -19,16 +19,17 @@ export type InsightsDict = {
   readArrow: string;
   backAll: string;
   rssPre: string; rssLink: string; advisorBtn: string;
+  linkedin: { label: string; note: string; cta: string };
   dateLocale: string;
 };
 
 export const INSIGHTS: Record<Locale, InsightsDict> = {
   en: {
     meta: {
-      title: 'Insights — KKT',
+      title: 'Blog — KKT',
       description: 'Working in public. Notes from the inside of mid-sized retail and fuel-retail engagements.',
     },
-    sectionLabel: 'Insights — Working in Public',
+    sectionLabel: 'Blog — Working in Public',
     h1: 'Notes from inside the engagements.',
     lede: 'Two named authors, one post a month, no marketing fluff. What we are actually shipping, what is not working, and what we have changed our minds about.',
     emptyP1: 'First posts ship with the public site. Two named authors, one post a month — what we are actually shipping, what is not working, what we have changed our minds about.',
@@ -39,17 +40,22 @@ export const INSIGHTS: Record<Locale, InsightsDict> = {
       solutionsTitle: 'Our Solutions', solutionsDesc: 'Optimus and Codoo — products we built and run.',
     },
     readArrow: 'Read →',
-    backAll: '← All insights',
+    backAll: '← All posts',
     rssPre: 'Subscribe via ', rssLink: 'RSS', advisorBtn: 'Ask the advisor',
+    linkedin: {
+      label: 'From LinkedIn',
+      note: 'We post there more often than here — shorter takes from live engagements.',
+      cta: 'Follow KKT on LinkedIn',
+    },
     dateLocale: 'en-GB',
   },
 
   de: {
     meta: {
-      title: 'Einblicke — KKT',
+      title: 'Blog — KKT',
       description: 'Öffentlich arbeiten. Notizen aus dem Inneren von Einzelhandels- und Tankstellen-Engagements im Mittelstand.',
     },
-    sectionLabel: 'Einblicke — Öffentlich arbeiten',
+    sectionLabel: 'Blog — Öffentlich arbeiten',
     h1: 'Notizen aus dem Inneren der Projekte.',
     lede: 'Zwei namentlich genannte Autoren, ein Beitrag pro Monat, kein Marketing-Geschwätz. Was wir tatsächlich liefern, was nicht funktioniert und wobei wir unsere Meinung geändert haben.',
     emptyP1: 'Die ersten Beiträge erscheinen mit der öffentlichen Website. Zwei namentlich genannte Autoren, ein Beitrag pro Monat — was wir tatsächlich liefern, was nicht funktioniert, wobei wir unsere Meinung geändert haben.',
@@ -60,17 +66,22 @@ export const INSIGHTS: Record<Locale, InsightsDict> = {
       solutionsTitle: 'Unsere Lösungen', solutionsDesc: 'Optimus und Codoo — Produkte, die wir gebaut haben und betreiben.',
     },
     readArrow: 'Lesen →',
-    backAll: '← Alle Einblicke',
+    backAll: '← Alle Beiträge',
     rssPre: 'Abonnieren via ', rssLink: 'RSS', advisorBtn: 'KI-Berater fragen',
+    linkedin: {
+      label: 'Auf LinkedIn',
+      note: 'Dort posten wir häufiger als hier — kürzere Notizen aus laufenden Projekten.',
+      cta: 'KKT auf LinkedIn folgen',
+    },
     dateLocale: 'de-DE',
   },
 
   et: {
     meta: {
-      title: 'Ülevaated — KKT',
+      title: 'Blogi — KKT',
       description: 'Avalikult töötamine. Märkmed keskmise suurusega jaemüügi ja kütuse jaemüügi projektide seest.',
     },
-    sectionLabel: 'Ülevaated — Avalikult töötamine',
+    sectionLabel: 'Blogi — Avalikult töötamine',
     h1: 'Märkmed projektide seest.',
     lede: 'Kaks nimelist autorit, üks postitus kuus, ilma turundusmürata. Mida me tegelikult tarnime, mis ei toimi ja mille osas oleme meelt muutnud.',
     emptyP1: 'Esimesed postitused ilmuvad koos avaliku saidiga. Kaks nimelist autorit, üks postitus kuus — mida me tegelikult tarnime, mis ei toimi, mille osas oleme meelt muutnud.',
@@ -81,8 +92,13 @@ export const INSIGHTS: Record<Locale, InsightsDict> = {
       solutionsTitle: 'Meie lahendused', solutionsDesc: 'Optimus ja Codoo — tooted, mille me ehitasime ja mida käitame.',
     },
     readArrow: 'Loe →',
-    backAll: '← Kõik ülevaated',
+    backAll: '← Kõik postitused',
     rssPre: 'Telli ', rssLink: 'RSS', advisorBtn: 'Küsi TI-nõustajalt',
+    linkedin: {
+      label: 'LinkedInis',
+      note: 'Postitame seal sagedamini kui siin — lühemad mõtted käimasolevatest projektidest.',
+      cta: 'Jälgi KKT-d LinkedInis',
+    },
     dateLocale: 'et-EE',
   },
 };

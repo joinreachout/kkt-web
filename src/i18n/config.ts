@@ -33,7 +33,7 @@ export function stripLocale(pathname: string): string {
 
 // Paths that currently have de/et versions. Grows as pages are localised.
 // Anything not in here falls back to English so links never 404 mid-rollout.
-export const TRANSLATED_PATHS = new Set<string>(['/', '/industries/retail', '/industries/fuel-retail', '/solutions', '/solutions/optimus', '/case-studies', '/about', '/contact', '/insights']);
+export const TRANSLATED_PATHS = new Set<string>(['/', '/industries/retail', '/industries/fuel-retail', '/solutions', '/solutions/optimus', '/case-studies', '/about', '/contact', '/blog']);
 
 // Membership test against TRANSLATED_PATHS, tolerant of a trailing slash —
 // Astro.url.pathname carries one (e.g. "/solutions/optimus/") but the Set

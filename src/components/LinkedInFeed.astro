@@ -1,0 +1,96 @@
+---
+// "From LinkedIn" strip on /blog. Shows a follow CTA to the KKT company page and,
+// when src/data/linkedin.ts holds any embed URLs, a grid of native LinkedIn post
+// embeds. Locale copy comes from the insights (blog) dictionary.
+import { useInsights } from '~/i18n/pages/insights';
+import { LINKEDIN_EMBEDS } from '~/data/linkedin';
+
+const t = useInsights(Astro.currentLocale);
+const COMPANY_URL = 'https://www.linkedin.com/company/kittykattech/';
+const embeds = LINKEDIN_EMBEDS;
+---
+
+<section class="li-strip" aria-labelledby="li-strip-label">
+  <div class="container">
+    <div class="li-head">
+      <div class="li-head-text">
+        <div class="section-label" id="li-strip-label">{t.linkedin.label}</div>
+        <p class="li-note">{t.linkedin.note}</p>
+      </div>
+      <a class="li-follow" href={COMPANY_URL} target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+        {t.linkedin.cta} ↗
+      </a>
+    </div>
+
+    {embeds.length > 0 && (
+      <div class="li-grid">
+        {embeds.map((src) => (
+          <iframe
+            class="li-embed"
+            src={src}
+            height="430"
+            frameborder="0"
+            allowfullscreen
+            loading="lazy"
+            title="LinkedIn post"
+          ></iframe>
+        ))}
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .li-strip {
+    border-top: 1px solid var(--border);
+    padding-top: clamp(32px, 5vh, 56px);
+    margin-top: clamp(40px, 7vh, 72px);
+  }
+  .li-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .li-head-text { min-width: 0; }
+  .section-label { margin-bottom: 10px; }
+  .li-note {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    max-width: 52ch;
+    margin: 0;
+  }
+  .li-follow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    text-decoration: none;
+    padding: 10px 16px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    transition: border-color .18s ease, color .18s ease;
+  }
+  .li-follow svg { color: var(--text-muted); transition: color .18s ease; }
+  .li-follow:hover { border-color: var(--border-hover); color: var(--accent-text); }
+  .li-follow:hover svg { color: var(--accent); }
+
+  .li-grid {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 16px;
+  }
+  .li-embed {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--surface);
+  }
+</style>

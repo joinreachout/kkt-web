@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import CTA from '~/components/CTA.astro';
+import LinkedInFeed from '~/components/LinkedInFeed.astro';
 import { getCollection } from 'astro:content';
 import { useInsights } from '~/i18n/pages/insights';
 import { localizePath, toLocale } from '~/i18n/config';
@@ -48,7 +49,7 @@ const visible = allPosts
         <ul class="post-list">
           {visible.map((post) => (
             <li>
-              <a href={`/insights/${post.id}`} class={post.data.cover ? 'post-card post-card--media' : 'post-card'}>
+              <a href={`/blog/${post.id}`} class={post.data.cover ? 'post-card post-card--media' : 'post-card'}>
                 <div class="post-body">
                   <div class="post-meta">
                     <span>{post.data.author}</span>
@@ -74,6 +75,8 @@ const visible = allPosts
         </ul>
       )}
     </div>
+
+    <LinkedInFeed />
 
     <CTA />
   </article>
