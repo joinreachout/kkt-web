@@ -4,7 +4,7 @@
  *
  * Posts a Markdown file to src/content/insights/<slug>.md in the GitHub repo
  * (joinreachout/kkt-web) via the GitHub API; the push triggers the normal
- * build & deploy, so the post appears on /insights in ~1–2 minutes.
+ * build & deploy, so the post appears on /blog in ~1–2 minutes.
  *
  * One-time server setup (in /htdocs/.env, same file advisor.php reads — NOT in
  * the repo):
@@ -141,7 +141,7 @@ if ($authed && ($_POST['action'] ?? '') === 'publish') {
 
             $res = gh_request('PUT', $url, $GITHUB_TOKEN, $payload);
             if ($res['code'] === 200 || $res['code'] === 201) {
-                $publishOk = ($sha ? 'Updated' : 'Published') . ' "' . $title . '". Live on /insights in ~1–2 min.';
+                $publishOk = ($sha ? 'Updated' : 'Published') . ' "' . $title . '". Live on /blog in ~1–2 min.';
                 $_SESSION['csrf'] = bin2hex(random_bytes(16));
                 $csrf = $_SESSION['csrf'];
             } else {
@@ -204,7 +204,7 @@ $today = date('Y-m-d');
   </form>
 <?php else: ?>
   <div class="top"><h1>New post</h1><a href="?logout=1">Sign out</a></div>
-  <p class="sub">Publishes to <code>kittykat.tech/insights</code> via GitHub. Live in ~1–2 min after publishing.</p>
+  <p class="sub">Publishes to <code>kittykat.tech/blog</code> via GitHub. Live in ~1–2 min after publishing.</p>
   <?php if ($publishOk): ?><div class="msg ok"><?= e($publishOk) ?></div><?php endif; ?>
   <?php if ($publishErr): ?><div class="msg err"><?= e($publishErr) ?></div><?php endif; ?>
   <form method="post">

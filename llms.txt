@@ -20,7 +20,7 @@ KKT avoids vendor-hype language. Outcomes are stated in measurable terms — mar
 - [Fuel retail](https://kittykat.tech/industries/fuel-retail/): The fuel positioning — connected data first, AI on built foundations, bottom-up across the whole network economy. Optimus is one embodiment.
 - [Retail](https://kittykat.tech/industries/retail/): Mid-enterprise retailer starting points. Links to the open Retail AI Canvas playbook.
 - [Case studies](https://kittykat.tech/case-studies/): Named client engagements, expanded in place. Includes Red Petroleum (fuel retail, Kyrgyzstan — 250-station network, Optimus in pilot for procurement and margin), Click & Grow (B2C smart indoor gardens — customer analytics and ML segmentation for Eastern Europe / CIS), GTE (industrial compressor manufacturer — finance/manufacturing reporting plus ML for anomaly detection and energy-consumption optimisation), Kricon (international logistics — operational visibility, anomaly detection, clustering), CSC Telecom (mid-sized telecom — customer and product analytics), Taxigo, Clubtek, a major TIC company, and smaller engagements.
-- [Insights](https://kittykat.tech/insights/): A working-in-public column from named authors at KKT.
+- [Blog](https://kittykat.tech/blog/): A working-in-public column from named authors at KKT.
 - [Contact](https://kittykat.tech/contact/): hello@kittykat.tech · +372 5555 3621 · Jõe 7, 10151 Tallinn, Estonia.
 
 ## Optional
