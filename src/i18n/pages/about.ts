@@ -26,7 +26,7 @@ export const ABOUT: Record<Locale, AboutDict> = {
     },
     introLabel: 'About',
     h1Accent: 'Kitty Kat', h1Rest: ' Technologies.',
-    lede: 'A senior data & AI delivery firm, headquartered in Tallinn, Estonia, with affiliates in Bangkok and Georgia. We combine domain expertise with the technical delivery to put data and AI to work — and keep it running.',
+    lede: 'Kitty Kat Technologies is a data and AI advisory and implementation firm specialising in fuel retail and mid-sized retail. We help operators improve customer revenue, inventory and availability, margins, loss control and management productivity — starting from the business question, and leading the work from business case and solution architecture through to deployment, adoption, and a system your team runs. Headquartered in Tallinn, Estonia (EU), with affiliates in Bangkok and Georgia.',
     statLabels: ['Tallinn HQ · EU entity', 'AI & ML projects delivered', 'large-scale AI & data transformations', 'typical client revenue'],
     partnersLabel: 'Partnerships',
     partnersH2: 'Who we work alongside.',

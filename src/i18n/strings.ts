@@ -56,9 +56,9 @@ export const STRINGS: Record<Locale, Dict> = {
     },
     who: {
       label: 'Who we work with',
-      title: 'Mid-enterprise companies in traditional, asset-heavy industries.',
-      lede: 'Companies with established operations, legacy systems, and complex processes — where the cost of getting things wrong is real and the value of a working solution is measurable. We start from the business question, not the technology.',
-      industries: ['Oil & Gas', 'Energy', 'Retail', 'Fuel retail', 'Logistics'],
+      title: 'Mid-sized fuel-retail networks and retailers.',
+      lede: 'We specialise in fuel retail and mid-sized retail — and work with adjacent asset-heavy operators — with established operations, legacy systems, and complex processes, where the cost of getting things wrong is real and the value of a working solution is measurable.',
+      industries: ['Fuel retail', 'Retail', 'Energy', 'Oil & Gas', 'Logistics'],
       more: '+ telecom, mobility, industry',
     },
   },
