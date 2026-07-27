@@ -7,12 +7,12 @@
 - **Affiliates:** Bangkok and Georgia.
 
 ## What KKT does
-A senior data & AI delivery firm. We help companies move from business questions to practical solutions in **data, AI, and automation** — and keep them running. We combine domain expertise with the technical delivery to put data and AI to work.
+A data and AI **advisory and implementation** firm specialising in **fuel retail and mid-sized retail** (and adjacent asset-heavy operations). We help operators improve customer revenue, inventory and availability, margins, loss control and management productivity — leading the work from business case and solution architecture through to deployment, adoption, and a system the team runs. We combine domain expertise with the technical delivery to put data and AI to work.
 
 We start from the business question, not the technology.
 
 ## Who we work with
-**Mid-enterprise companies in traditional, asset-heavy industries** — companies with established operations, legacy systems, and complex processes, where the cost of getting things wrong is real and a working solution is measurable.
+**Mid-sized fuel-retail networks and retail businesses** first — and adjacent mid-enterprise operators in asset-heavy industries — with established operations, legacy systems, and complex processes, where the cost of getting things wrong is real and a working solution is measurable.
 
 - **Typical client revenue:** $100M–$1B.
 - **Focus industries:** Oil & Gas, Energy, Retail, Fuel retail, Logistics — and, more broadly, telecom, mobility, and industry.
