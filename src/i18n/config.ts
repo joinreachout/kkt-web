@@ -23,10 +23,14 @@ export function toLocale(x: string | undefined): Locale {
   return isLocale(x) ? x : DEFAULT_LOCALE;
 }
 
-// Strip any leading /de or /et prefix → the canonical EN path (always starts
-// with "/", trailing slash preserved).
+// Strip any leading non-default locale prefix (/de, /et, /th, …) → the
+// canonical EN path (always starts with "/", trailing slash preserved). The
+// prefix set is derived from LOCALES, so adding a locale can never trap the
+// switcher on that language (omitting a prefix here makes the "English" target
+// resolve back to the prefixed path instead of "/").
+const PREFIX_RE = new RegExp(`^/(${LOCALES.filter((l) => l !== DEFAULT_LOCALE).join('|')})(/|$)`);
 export function stripLocale(pathname: string): string {
-  const m = pathname.match(/^\/(de|et)(\/|$)/);
+  const m = pathname.match(PREFIX_RE);
   if (!m) return pathname || '/';
   const rest = pathname.slice(m[1].length + 1);
   return rest.startsWith('/') ? rest : '/' + rest;
