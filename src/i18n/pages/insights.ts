@@ -101,6 +101,33 @@ export const INSIGHTS: Record<Locale, InsightsDict> = {
     },
     dateLocale: 'et-EE',
   },
+
+  // Thai — first pass, PENDING native review.
+  th: {
+    meta: {
+      title: 'บล็อก — KKT',
+      description: 'ทำงานอย่างเปิดเผย บันทึกจากภายในงานค้าปลีกและค้าปลีกน้ำมันขนาดกลาง',
+    },
+    sectionLabel: 'บล็อก — ทำงานอย่างเปิดเผย',
+    h1: 'บันทึกจากภายในงานจริง',
+    lede: 'ผู้เขียนสองคนที่ระบุชื่อ เดือนละหนึ่งโพสต์ ไม่มีน้ำท่วมทุ่งการตลาด สิ่งที่เราส่งมอบจริง สิ่งที่ยังไม่เวิร์ก และสิ่งที่เราเปลี่ยนใจ',
+    emptyP1: 'โพสต์แรก ๆ มาพร้อมกับเว็บไซต์สาธารณะ ผู้เขียนสองคนที่ระบุชื่อ เดือนละหนึ่งโพสต์ — สิ่งที่เราส่งมอบจริง สิ่งที่ยังไม่เวิร์ก สิ่งที่เราเปลี่ยนใจ',
+    emptyP2: 'ก่อนคอลัมน์จะเริ่ม งานที่เปิดอยู่อยู่ที่นี่:',
+    links: {
+      retailTitle: 'Retail AI Canvas — playbook แบบเปิด ↗', retailDesc: '43 บริการ ครอบคลุม 11 โดเมนค้าปลีก อัปเดตทุกไตรมาส',
+      fuelTitle: 'Fuel AI Transformation Map ↗', fuelDesc: 'ทั้งระบบเศรษฐกิจของเครือข่ายปั๊มน้ำมันในเจ็ดบล็อก',
+      solutionsTitle: 'โซลูชันของเรา', solutionsDesc: 'Optimus และ Codoo — ผลิตภัณฑ์ที่เราสร้างและดูแลเอง',
+    },
+    readArrow: 'อ่าน →',
+    backAll: '← โพสต์ทั้งหมด',
+    rssPre: 'ติดตามผ่าน ', rssLink: 'RSS', advisorBtn: 'ถามที่ปรึกษา',
+    linkedin: {
+      label: 'จาก LinkedIn',
+      note: 'เราโพสต์ที่นั่นบ่อยกว่าที่นี่ — ความเห็นสั้น ๆ จากงานจริง',
+      cta: 'ติดตาม KKT บน LinkedIn',
+    },
+    dateLocale: 'th-TH',
+  },
 };
 
 export function useInsights(locale: string | undefined): InsightsDict {

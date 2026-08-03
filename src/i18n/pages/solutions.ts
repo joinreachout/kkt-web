@@ -76,6 +76,29 @@ export const SOLUTIONS: Record<Locale, SolutionsDict> = {
     ctaHeading: 'Soovite sellist oma tegevusse?',
     ctaBody: 'Optimus on ehitatud kütusevõrkudele; selle taga olev lähenemine kehtib kõikjal, kus korduv tegevusotsus on väärt korra lahendamist ja käitamist. Öelge meile, millise otsuse soovite kontrolli alla saada.',
   },
+
+  // Thai — first pass, PENDING native review.
+  th: {
+    meta: { title: 'โซลูชันของเรา — KKT', description: 'ผลิตภัณฑ์ของ KKT เอง: Optimus ปัญญาเชิงปฏิบัติการสำหรับเครือข่ายจ่ายน้ำมัน และ Codoo' },
+    introLabel: 'โซลูชันของเรา', h1: 'ผลิตภัณฑ์ที่เราสร้างและดูแลเอง',
+    lede: 'นอกจากงานให้ลูกค้า เราสร้างผลิตภัณฑ์ของเราเอง — เมื่อปัญหาที่เกิดซ้ำในอุตสาหกรรมของเราคุ้มค่าที่จะแก้ครั้งเดียวและดูแลเอง',
+    optimusLabel: 'Optimus', optimusTitle: 'ปัญญาเชิงปฏิบัติการสำหรับเครือข่ายจ่ายน้ำมัน',
+    optimusLede: 'การจัดซื้อ มาร์จิน สินค้าขาดสต็อก และเงินทุนหมุนเวียน — บนข้อมูลที่เชื่อมโยงกัน ในภาพปฏิบัติการเดียว Optimus เปลี่ยนการตัดสินใจจัดหาน้ำมันประจำวันให้เป็นเวิร์กโฟลว์ที่ควบคุมได้: พยากรณ์การขาด แนะนำการสั่งซื้อ จัดการการกระจาย กระทบยอดกับ ERP อยู่ระหว่างนำร่องที่ Red Petroleum เครือข่ายปั๊มน้ำมันอิสระในคีร์กีซสถาน',
+    optimusImg: 'Optimus — ที่ปรึกษาการจัดซื้อ',
+    optimusLink: 'ดูวิธีการทำงานของ Optimus',
+    features: [
+      { name: 'AI Briefing', body: 'สรุปสถานการณ์ประจำวันเป็นภาษาที่เข้าใจง่าย — อะไรต้องลงมือ ประหยัดได้ตรงไหน — พร้อมตอบคำถามอิสระจากข้อมูลสด' },
+      { name: 'Procurement Advisor', body: 'คำแนะนำการสั่งซื้อที่ชัดเจน: ผู้จำหน่าย ปริมาณ กำหนดเวลา ราคา สถานะตั้งแต่ CRITICAL ถึง OK สร้างใบสั่งซื้อได้ในคลิกเดียว' },
+      { name: 'Stockout Forecast', body: 'จำนวนวันที่เหลือก่อนถึงระดับวิกฤตต่อสถานีและชนิดน้ำมัน รวมถึงที่กำลังขนส่งและการโอนแบบแยกตู้' },
+      { name: 'ตัวช่วยแก้ความขัดแย้งการจัดส่ง', body: 'Auto-Distribute เปลี่ยนเส้นทางตู้ที่ล้นไปยังสถานีใกล้ที่สุดที่มีพื้นที่ว่าง พร้อมบันทึกตรวจสอบครบถ้วน' },
+      { name: 'Working Capital', body: 'เงินที่จมอยู่ในสต็อกและควรปลดล็อกตรงไหน — ต่อชนิดน้ำมันและต่อภูมิภาค' },
+    ],
+    codooLabel: 'Codoo', codooTitle: 'ผู้ช่วยดูแลผู้เข้าพัก ตั้งแต่จองจนถึงเช็คเอาต์',
+    codooBody: 'Codoo ทำงานบน WhatsApp ครอบคลุม Booking.com, Airbnb และการจองตรง ตั้งแต่วินาทีที่แขกจอง มันดูแลการเช็คอิน WiFi ที่จอดรถ และคำถามต่าง ๆ ในภาษาของแขก — และดึงคนเข้ามาเฉพาะเมื่อจำเป็น สร้างมาเพื่อผู้ให้บริการที่พักระยะสั้น',
+    codooLink: 'เยี่ยมชม codoo.kittykat.tech',
+    ctaHeading: 'อยากได้อย่างใดอย่างหนึ่งนี้ในงานของคุณไหม?',
+    ctaBody: 'Optimus สร้างมาเพื่อเครือข่ายปั๊มน้ำมัน แต่แนวทางเบื้องหลังใช้ได้ทุกที่ที่การตัดสินใจปฏิบัติการซ้ำ ๆ คุ้มค่าที่จะแก้ครั้งเดียวและดูแลต่อ บอกเราว่าการตัดสินใจไหนที่คุณอยากควบคุมให้ได้',
+  },
 };
 
 export function useSolutions(locale: string | undefined): SolutionsDict {
