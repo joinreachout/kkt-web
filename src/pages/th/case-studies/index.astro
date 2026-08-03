@@ -1,0 +1,252 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import MediaSlot from '~/components/MediaSlot.astro';
+import CTA from '~/components/CTA.astro';
+import { useCaseStudies } from '~/i18n/pages/case-studies';
+
+// One page, cases expand in place (View Transitions morph) — no page per case.
+// Structural per-case data (id, brand name, logo, image src) is language-
+// invariant and lives here; all translatable text comes from t.cases[id].
+// Red Petroleum sits mid-grid at equal weight.
+const t = useCaseStudies(Astro.currentLocale);
+const CASES = [
+  { id: 'click-grow', name: 'Click & Grow', logo: '/logos/click-and-grow.png', img: '/cases/click-and-grow-new.jpg' },
+  { id: 'csc-telecom', name: 'CSC Telecom', logo: '/logos/csc-telecom.png', img: '/cases/travelsim.jpg' },
+  { id: 'gte', name: 'GTE', logo: '/logos/gte.png', img: '/cases/gte.jpg' },
+  { id: 'forrest-taxi', name: 'Taxigo', logo: '/logos/taxigo.jpg', img: '/cases/forrest-taxi.jpg' },
+  { id: 'kricon', name: 'Kricon', logo: '/logos/kricon.png', img: '/cases/kricon-top.jpg' },
+  { id: 'red-petroleum', name: 'Red Petroleum', logo: '/logos/red-petroleum.png', img: '/screens/optimus-procurement-advisor-en-v3.jpg' },
+  { id: 'tic-iso', name: 'Major TIC company', logo: '/logos/certiqa-dark.png', img: '/cases/tic-certiqa.jpg' },
+  { id: 'tic-strategy', name: 'Major TIC company', logo: null, img: '/cases/tic-strategy.jpg' },
+  { id: 'clubtek', name: 'Clubtek', logo: '/logos/clubtek.png', img: '/cases/clubtek.jpg' },
+];
+const cases = CASES.map((c) => {
+  const tx = t.cases[c.id];
+  return { ...c, ...tx, name: tx.name ?? c.name };
+});
+const initials = (n) => n.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join('').toUpperCase();
+
+// Smaller / earlier engagements — structural data only; region+blurb localized.
+const SMALLER = [
+  { id: 'khaos-marani', name: 'Khaos Marani', logo: '/logos/khaos-marani.png', monogram: 'KM' },
+  { id: 'gagra-plus', name: 'Gagra+', logo: '/logos/gagraplus.png', monogram: null },
+];
+const smaller = SMALLER.map((s) => ({ ...s, ...t.smaller.items[s.id] }));
+---
+
+<BaseLayout
+  title={t.meta.title}
+  description={t.meta.description}
+  ogImage="/og/home.png"
+>
+  <section class="section cs-intro" data-reveal>
+    <div class="container">
+      <p class="section-label">{t.introLabel}</p>
+      <h1 class="cs-h1">{t.h1Pre}<span class="grad">{t.h1Accent}</span>{t.h1Post}</h1>
+      <p class="cs-lede">{t.lede}</p>
+    </div>
+  </section>
+
+  <section class="section cs-grid-section" data-cases data-reveal>
+    <div class="container">
+      <div class="cs-grid">
+        {cases.map((c) => (
+          <article class="cs-tile" data-id={c.id} data-sector={c.sector} id={c.id} style={`view-transition-name: cs-${c.id}`}>
+            <button class="cs-open" aria-expanded="false" aria-controls={`d-${c.id}`}>
+              <span class="cs-brand">
+                {c.logo
+                  ? <img class="cs-logo" src={c.logo} alt={c.name} loading="lazy" />
+                  : <span class="cs-mono" aria-hidden="true">{initials(c.name)}</span>}
+              </span>
+              <span class="cs-name">{c.name}</span>
+              <span class="cs-focus">{c.focus}</span>
+              <span class="cs-cue" aria-hidden="true">+</span>
+            </button>
+
+            <div class="cs-detail" id={`d-${c.id}`} hidden>
+              <div class="cs-detail-grid">
+                <div class="cs-detail-main">
+                  <div class="cs-meta">{c.sector} · {c.years}</div>
+                  <p class="cs-what">{c.what}</p>
+                  <div class="cs-cols">
+                    <div>
+                      <h4 class="cs-col-h">{t.colDid}</h4>
+                      <ul class="cs-list">{c.scope.map((s) => <li>{s}</li>)}</ul>
+                    </div>
+                    <div>
+                      <h4 class="cs-col-h">{t.colChanged}</h4>
+                      <ul class="cs-list cs-list-out">{c.outcome.map((o) => <li>{o}</li>)}</ul>
+                    </div>
+                  </div>
+                  <button class="cs-close" type="button">{t.close}</button>
+                </div>
+                <aside class="cs-detail-side">
+                  <MediaSlot ratio={c.id === 'red-petroleum' ? '16 / 10' : '4 / 3'} kind="image" label={c.image} src={c.img} alt={c.name} />
+                </aside>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {smaller.length > 0 && (
+    <section data-reveal class="section smaller-section">
+      <div class="container">
+        <div class="section-label">{t.smaller.label}</div>
+        <p class="smaller-lede">{t.smaller.lede}</p>
+        <ul class="smaller-grid" data-reveal-stagger>
+          {smaller.map((s) => (
+            <li class="smaller-card">
+              <div class="smaller-logo">
+                {s.logo
+                  ? <img src={s.logo} alt={`${s.name} logo`} loading="lazy" />
+                  : <span class="smaller-monogram" aria-hidden="true">{s.monogram}</span>}
+              </div>
+              <div class="smaller-meta">
+                <div class="smaller-name">{s.name}</div>
+                <div class="smaller-region">{s.region}</div>
+              </div>
+              <p class="smaller-blurb">{s.blurb}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <CTA />
+</BaseLayout>
+
+<style>
+  .section-label { margin-bottom: 16px; }
+  .grad { background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
+
+  .cs-intro { padding-top: clamp(48px, 8vh, 104px); padding-bottom: clamp(28px, 4vh, 44px); }
+  .cs-h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(36px, 5.4vw, 66px); line-height: 1.05; letter-spacing: -0.03em; color: var(--text-primary); margin-bottom: 22px; }
+  .cs-lede { font-size: clamp(17px, 1.8vw, 21px); line-height: 1.55; color: var(--text-secondary); max-width: 64ch; margin-bottom: 28px; }
+
+  .cs-filters { display: flex; flex-wrap: wrap; gap: 8px; }
+  .cs-filter {
+    font-size: 13px; font-weight: 500; color: var(--text-secondary);
+    background: var(--surface); border: 1px solid var(--border); border-radius: 100px;
+    padding: 8px 16px; transition: border-color .18s ease, color .18s ease, background .18s ease;
+  }
+  .cs-filter:hover { border-color: var(--border-hover); color: var(--text-primary); }
+  .cs-filter.is-active { color: #fff; background: var(--accent-gradient); border-color: transparent; }
+
+  .cs-grid-section { padding-top: clamp(20px, 3vh, 32px); padding-bottom: clamp(56px, 9vh, 100px); }
+  .cs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(208px, 1fr)); gap: 14px; align-items: start; }
+
+  .cs-tile { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; transition: opacity .3s ease, filter .3s ease, border-color .2s ease; }
+  .cs-tile[hidden] { display: none; }
+  .cs-grid.has-open .cs-tile:not(.is-open) { opacity: 0.4; filter: grayscale(1); }
+  .cs-tile:hover { border-color: var(--border-hover); }
+
+  .cs-open { display: grid; gap: 10px; width: 100%; text-align: left; background: none; border: 0; padding: 20px 20px 18px; position: relative; }
+  .cs-brand { display: flex; align-items: center; height: 32px; }
+  .cs-logo { max-height: 28px; max-width: 124px; object-fit: contain; object-position: left center; opacity: 1; transition: opacity .2s ease; }
+  .cs-mono { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 9px; background: var(--accent-dim); color: var(--accent-text); font-weight: 700; font-size: 12.5px; }
+  .cs-name { font-family: var(--font-display); font-weight: 600; font-size: 16px; letter-spacing: -0.01em; color: var(--text-primary); }
+  .cs-focus { font-size: 13px; line-height: 1.45; color: var(--text-muted); }
+  .cs-result-chip { font-size: 11px; font-weight: 700; letter-spacing: 0.04em; color: var(--accent-text); margin-top: 2px; }
+  .cs-cue { position: absolute; top: 16px; right: 18px; font-size: 18px; line-height: 1; color: var(--text-muted); transition: transform .25s ease, color .2s ease; }
+  .cs-tile.is-open .cs-cue { transform: rotate(45deg); color: var(--accent-text); }
+  .cs-open:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; border-radius: 14px; }
+
+  .cs-tile.is-open { grid-column: 1 / -1; border-color: var(--border-hover); }
+  .cs-detail[hidden] { display: none; }
+  .cs-detail { padding: 4px 24px 26px; border-top: 1px solid var(--border); margin-top: 4px; animation: csIn .32s ease both; }
+  @keyframes csIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  .cs-detail-grid { display: grid; grid-template-columns: 1fr; gap: clamp(24px, 4vw, 44px); padding-top: 20px; }
+  @media (min-width: 880px) { .cs-detail-grid { grid-template-columns: 1.4fr 0.9fr; } }
+  .cs-meta { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 14px; }
+  .cs-what { font-size: clamp(16px, 1.6vw, 18px); line-height: 1.55; color: var(--text-primary); max-width: 64ch; margin-bottom: 24px; }
+  .cs-cols { display: grid; grid-template-columns: 1fr; gap: 22px; }
+  @media (min-width: 640px) { .cs-cols { grid-template-columns: 1fr 1fr; gap: 36px; } }
+  .cs-col-h { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; }
+  .cs-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 9px; }
+  .cs-list li { position: relative; padding-left: 20px; font-size: 14.5px; line-height: 1.55; color: var(--text-secondary); }
+  .cs-list li::before { content: ''; position: absolute; left: 2px; top: 9px; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); opacity: 0.5; }
+  .cs-list-out li::before { border-radius: 2px; opacity: 0.85; }
+  .cs-close { margin-top: 24px; background: none; border: 1px solid var(--border-hover); color: var(--text-secondary); border-radius: 980px; padding: 8px 18px; font-size: 14px; font-weight: 500; transition: border-color .18s ease, color .18s ease; }
+  .cs-close:hover { border-color: var(--accent); color: var(--accent-text); }
+
+  .cs-detail-side { display: flex; flex-direction: column; gap: 16px; }
+  .cs-result-num {
+    font-family: var(--font-display); font-weight: 600; font-size: clamp(30px, 4vw, 46px); line-height: 1.05; letter-spacing: -0.02em;
+    background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+
+  @media (prefers-reduced-motion: reduce) { .cs-detail { animation: none; } .cs-tile, .cs-cue, .cs-logo { transition: none; } }
+
+  /* Smaller engagements */
+  .smaller-section { padding-top: 0; padding-bottom: clamp(56px, 9vh, 100px); }
+  .smaller-section .section-label { margin-bottom: 14px; }
+  .smaller-lede { max-width: 60ch; margin-bottom: 28px; color: var(--text-secondary); font-size: clamp(15px, 1.5vw, 17px); line-height: 1.6; }
+  .smaller-grid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 720px) { .smaller-grid { grid-template-columns: 1fr 1fr; } }
+  .smaller-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 22px 24px; display: grid; grid-template-columns: 60px 1fr; column-gap: 16px; row-gap: 8px; align-items: start; }
+  .smaller-logo { grid-row: 1 / span 2; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; }
+  .smaller-logo img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
+  .smaller-monogram { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 12px; background: var(--accent-dim); color: var(--accent-text); font-family: var(--font-display); font-weight: 700; font-size: 16px; letter-spacing: 0.04em; }
+  .smaller-name { font-family: var(--font-display); font-weight: 600; font-size: 19px; letter-spacing: -0.01em; color: var(--text-primary); line-height: 1.2; }
+  .smaller-region { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.12em; font-weight: 600; margin-top: 2px; }
+  .smaller-blurb { grid-column: 1 / -1; font-size: 14px; line-height: 1.55; color: var(--text-secondary); margin: 0; max-width: 56ch; }
+</style>
+
+<script is:inline>
+  (function () {
+    var sec = document.querySelector('[data-cases]');
+    if (!sec) return;
+    var grid = sec.querySelector('.cs-grid');
+    var tiles = Array.prototype.slice.call(sec.querySelectorAll('.cs-tile'));
+    var filters = Array.prototype.slice.call(document.querySelectorAll('.cs-filter'));
+    var openId = null, activeFilter = 'All';
+
+    function renderOpen() {
+      grid.classList.toggle('has-open', !!openId);
+      tiles.forEach(function (t) {
+        var o = t.getAttribute('data-id') === openId;
+        t.classList.toggle('is-open', o);
+        t.querySelector('.cs-open').setAttribute('aria-expanded', o ? 'true' : 'false');
+        t.querySelector('.cs-detail').hidden = !o;
+      });
+    }
+    function renderFilter() {
+      tiles.forEach(function (t) {
+        var show = activeFilter === 'All' || t.getAttribute('data-sector') === activeFilter;
+        t.hidden = !show;
+        if (!show && t.getAttribute('data-id') === openId) { openId = null; }
+      });
+      renderOpen();
+    }
+    function run(fn) { if (document.startViewTransition) document.startViewTransition(fn); else fn(); }
+
+    tiles.forEach(function (t) {
+      var id = t.getAttribute('data-id');
+      t.querySelector('.cs-open').addEventListener('click', function () {
+        openId = (openId === id) ? null : id;
+        run(renderOpen);
+        if (openId) setTimeout(function () { t.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); }, 80);
+      });
+      var cb = t.querySelector('.cs-close');
+      if (cb) cb.addEventListener('click', function () { openId = null; run(renderOpen); });
+    });
+    filters.forEach(function (f) {
+      f.addEventListener('click', function () {
+        activeFilter = f.getAttribute('data-filter');
+        filters.forEach(function (x) { x.classList.toggle('is-active', x === f); });
+        run(renderFilter);
+      });
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && openId) { openId = null; run(renderOpen); } });
+
+    // Deep-link: /case-studies/#<id> opens that case (old per-case URLs redirect here).
+    if (location.hash) {
+      var el = document.getElementById(location.hash.slice(1));
+      if (el && el.classList.contains('cs-tile')) { openId = el.getAttribute('data-id'); renderOpen(); setTimeout(function(){ el.scrollIntoView({block:'center'}); }, 120); }
+    }
+  })();
+</script>

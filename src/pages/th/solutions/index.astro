@@ -1,0 +1,97 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import MediaSlot from '~/components/MediaSlot.astro';
+import CTA from '~/components/CTA.astro';
+import { useSolutions } from '~/i18n/pages/solutions';
+import { localizePath, toLocale } from '~/i18n/config';
+
+const s = useSolutions(Astro.currentLocale);
+const optimusFeatures = s.features;
+const optimusHref = localizePath('/solutions/optimus', toLocale(Astro.currentLocale));
+---
+
+<BaseLayout
+  title={s.meta.title}
+  description={s.meta.description}
+  ogImage="/og/optimus.png"
+>
+  <!-- Intro -->
+  <section class="section sol-intro" data-reveal>
+    <div class="container">
+      <p class="section-label">{s.introLabel}</p>
+      <h1 class="sol-h1">{s.h1}</h1>
+      <p class="sol-lede">{s.lede}</p>
+    </div>
+  </section>
+
+  <!-- Optimus -->
+  <section class="section sol-optimus theme-dark" data-reveal>
+    <div class="container">
+      <p class="section-label">{s.optimusLabel}</p>
+      <h2 class="sol-h2">{s.optimusTitle}</h2>
+      <p class="sol-optimus-lede">{s.optimusLede}</p>
+
+      <MediaSlot class="sol-optimus-media" ratio="16 / 9" kind="image" label={s.optimusImg} src="/screens/optimus-procurement-advisor-en-v3.jpg" alt="Optimus procurement advisor" />
+
+      <ul class="sol-features" data-reveal-stagger>
+        {optimusFeatures.map((f) => (
+          <li class="sol-feature">
+            <h3 class="sol-feature-name">{f.name}</h3>
+            <p>{f.body}</p>
+          </li>
+        ))}
+      </ul>
+
+      <a href={optimusHref} class="link-cta sol-optimus-link">{s.optimusLink}</a>
+    </div>
+  </section>
+
+  <!-- Codoo -->
+  <section class="section sol-codoo" data-reveal>
+    <div class="container">
+      <div class="sol-codoo-head">
+        <img class="sol-codoo-logo" src="/logos/codoo.png" alt="Codoo" width="56" height="56" />
+        <p class="section-label">{s.codooLabel}</p>
+        <h2 class="sol-h2">{s.codooTitle}</h2>
+        <p class="sol-codoo-body">{s.codooBody}</p>
+        <a href="https://codoo.kittykat.tech" class="link-cta" rel="noopener">{s.codooLink}</a>
+      </div>
+      <MediaSlot class="sol-codoo-media" ratio="16 / 9" kind="image" label="Codoo" src="/cases/codoo-site-en.jpg" alt="Codoo — guest assistant" />
+    </div>
+  </section>
+
+  <CTA heading={s.ctaHeading} body={s.ctaBody} />
+</BaseLayout>
+
+<style>
+  .section-label { margin-bottom: 16px; }
+
+  /* Intro */
+  .sol-intro { padding-top: clamp(48px, 8vh, 104px); padding-bottom: clamp(32px, 5vh, 56px); }
+  .sol-h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(36px, 5.4vw, 66px); line-height: 1.05; letter-spacing: -0.03em; color: var(--text-primary); margin-bottom: 22px; max-width: 18ch; }
+  .sol-lede { font-size: clamp(17px, 1.8vw, 21px); line-height: 1.55; color: var(--text-secondary); max-width: 62ch; }
+  .sol-h2 { font-family: var(--font-display); font-weight: 600; font-size: clamp(24px, 3.2vw, 38px); letter-spacing: -0.02em; line-height: 1.14; color: var(--text-primary); margin: 12px 0 16px; max-width: 24ch; }
+
+  /* Optimus (dark) */
+  .sol-optimus { padding-top: clamp(56px, 9vh, 100px); padding-bottom: clamp(56px, 9vh, 100px); }
+  .sol-optimus-lede { font-size: clamp(16px, 1.7vw, 19px); line-height: 1.6; color: var(--text-secondary); max-width: 66ch; margin-bottom: clamp(28px, 4vh, 40px); }
+  /* MediaSlot's <figure> carries only its own component scope, so a plain
+     `.sol-optimus-media` rule from this page never matches it (and its
+     `.mediaslot { margin: 0 }` wins). Reach the child element with :global,
+     kept under the page-scoped `.sol-optimus` so it can't leak. */
+  .sol-optimus :global(.sol-optimus-media) { max-width: 1000px; margin-bottom: clamp(88px, 13vh, 150px); }
+  .sol-optimus-link { display: inline-block; margin-top: clamp(28px, 4vh, 40px); }
+  .sol-features { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr; gap: 14px; }
+  @media (min-width: 720px) { .sol-features { grid-template-columns: 1fr 1fr; gap: 18px; } }
+  @media (min-width: 1000px) { .sol-features { grid-template-columns: repeat(3, 1fr); } }
+  .sol-feature { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 22px 24px 24px; }
+  .sol-feature-name { font-family: var(--font-display); font-weight: 600; font-size: 18px; letter-spacing: -0.01em; color: var(--text-primary); margin-bottom: 10px; }
+  .sol-feature p { font-size: 14.5px; line-height: 1.55; color: var(--text-secondary); margin: 0; }
+
+  /* Codoo */
+  .sol-codoo { padding-top: clamp(48px, 7vh, 88px); padding-bottom: clamp(48px, 7vh, 88px); }
+  .sol-codoo-head { max-width: 64ch; margin-bottom: clamp(28px, 4vh, 40px); }
+  .sol-codoo-logo { width: 56px; height: 56px; border-radius: 14px; display: block; margin-bottom: 18px; }
+  .sol-codoo-body { font-size: clamp(16px, 1.6vw, 18px); line-height: 1.6; color: var(--text-secondary); max-width: 60ch; margin-bottom: 18px; }
+  .sol-codoo-media { max-width: 1000px; }
+</style>

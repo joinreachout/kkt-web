@@ -1,0 +1,146 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import { useContact } from '~/i18n/pages/contact';
+
+const t = useContact(Astro.currentLocale);
+// Contact values are language-invariant; labels come from the dict.
+const details = [
+  { label: t.detailLabels.phone, value: '+372 5555 3621', href: 'tel:+37255553621' },
+  { label: t.detailLabels.office, value: 'Jõe 7, 10151 Tallinn, Estonia' },
+  { label: t.detailLabels.linkedin, value: 'linkedin.com/company/kittykattech', href: 'https://www.linkedin.com/company/kittykattech/', external: true },
+  { label: t.detailLabels.legal, value: 'Kitty Kat Technologies OÜ' },
+];
+
+const steps = t.steps.map((s, i) => ({ n: ['01', '02', '03'][i], ...s }));
+---
+
+<BaseLayout
+  title={t.meta.title}
+  description={t.meta.description}
+  ogImage="/og/contact.png"
+>
+  <!-- Intro + reach card -->
+  <section class="section ct-intro" data-reveal>
+    <div class="container ct-grid">
+      <div class="ct-lead">
+        <p class="section-label">{t.introLabel}</p>
+        <h1 class="ct-h1">{t.h1Pre}<span class="grad">{t.h1Accent}</span>{t.h1Post}</h1>
+        <p class="ct-lede">{t.lede}</p>
+      </div>
+
+      <aside class="ct-card">
+        <p class="ct-card-label">{t.cardLabel}</p>
+        <a class="ct-email" href="mailto:hello@kittykat.tech">hello@kittykat.tech</a>
+        <a class="btn-primary ct-email-btn" href="mailto:hello@kittykat.tech">{t.emailBtn}</a>
+
+        <dl class="ct-details">
+          {details.map((d) => (
+            <div class="ct-detail">
+              <dt>{d.label}</dt>
+              <dd>
+                {d.href
+                  ? <a href={d.href} {...(d.external ? { rel: 'noopener', target: '_blank' } : {})}>{d.value}</a>
+                  : d.value}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <!-- What happens next (dark band) -->
+  <section class="section ct-next theme-dark" data-reveal>
+    <div class="container">
+      <p class="section-label">{t.nextLabel}</p>
+      <h2 class="ct-next-h2">{t.nextH2}</h2>
+      <ol class="ct-steps" data-reveal-stagger>
+        {steps.map((s, i) => (
+          <li class={`ct-step${i === steps.length - 1 ? ' ct-step-last' : ''}`}>
+            <span class="ct-step-num">{s.n}</span>
+            <h3 class="ct-step-name">{s.name}</h3>
+            <p>{s.body}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Honest close -->
+  <section class="section ct-close" data-reveal>
+    <div class="container">
+      <blockquote class="ct-quote">
+        <p>{t.quote}</p>
+      </blockquote>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .section-label { margin-bottom: 16px; }
+  .grad {
+    background: var(--accent-gradient);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+  }
+
+  /* Intro + reach card */
+  .ct-intro { padding-top: clamp(48px, 8vh, 104px); padding-bottom: clamp(48px, 7vh, 80px); }
+  .ct-grid { display: grid; grid-template-columns: 1fr; gap: clamp(32px, 5vw, 56px); align-items: start; }
+  @media (min-width: 880px) { .ct-grid { grid-template-columns: 1.15fr 0.85fr; gap: clamp(40px, 5vw, 72px); } }
+  .ct-h1 {
+    font-family: var(--font-display); font-weight: 600;
+    font-size: clamp(36px, 5.2vw, 62px); line-height: 1.05; letter-spacing: -0.03em;
+    color: var(--text-primary); max-width: 15ch; margin-bottom: 22px;
+  }
+  .ct-lede { font-size: clamp(17px, 1.8vw, 21px); line-height: 1.55; color: var(--text-secondary); max-width: 54ch; margin-bottom: 28px; }
+  .ct-note { font-size: 14px; line-height: 1.6; color: var(--text-muted); max-width: 52ch; }
+  .ct-note a, .ct-step p a { color: var(--accent-text); font-weight: 500; text-decoration: none; }
+  .ct-note a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+  .ct-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 18px;
+    padding: clamp(26px, 3vw, 36px);
+  }
+  .ct-card-label { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 14px; }
+  .ct-email {
+    display: block; font-family: var(--font-display); font-weight: 600;
+    font-size: clamp(20px, 2.4vw, 26px); letter-spacing: -0.02em; color: var(--text-primary);
+    text-decoration: none; margin-bottom: 18px; word-break: break-word;
+  }
+  .ct-email:hover { text-decoration: none; }
+  .ct-email-btn { width: 100%; }
+  .ct-details { margin: 24px 0 0; padding-top: 20px; border-top: 1px solid var(--border); display: grid; gap: 14px; }
+  .ct-detail { display: grid; grid-template-columns: 84px 1fr; gap: 14px; align-items: baseline; }
+  .ct-detail dt { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; color: var(--text-muted); }
+  .ct-detail dd { margin: 0; font-size: 15px; color: var(--text-primary); line-height: 1.45; }
+  .ct-detail dd a { color: var(--text-primary); text-decoration: none; }
+  .ct-detail dd a:hover { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--accent); }
+
+  /* What happens next (dark) */
+  .ct-next { padding-top: clamp(56px, 9vh, 100px); padding-bottom: clamp(56px, 9vh, 100px); }
+  .ct-next-h2 {
+    font-family: var(--font-display); font-weight: 600; font-size: clamp(26px, 3.4vw, 38px);
+    letter-spacing: -0.02em; color: var(--text-primary); margin: 12px 0 clamp(28px, 4vh, 44px);
+  }
+  .ct-steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 760px) { .ct-steps { grid-template-columns: repeat(3, 1fr); gap: 18px; } }
+  .ct-step { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 24px 24px 26px; }
+  .ct-step-last { border: 1.5px solid transparent; background: linear-gradient(var(--surface), var(--surface)) padding-box, var(--accent-gradient) border-box; }
+  .ct-step-num {
+    display: inline-block; font-family: var(--font-mono); font-size: 13px; font-weight: 700;
+    color: transparent; background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text;
+    margin-bottom: 14px;
+  }
+  .ct-step-name { font-family: var(--font-display); font-weight: 600; font-size: 18px; letter-spacing: -0.01em; color: var(--text-primary); margin-bottom: 10px; line-height: 1.25; }
+  .ct-step p { font-size: 14px; line-height: 1.55; color: var(--text-secondary); margin: 0; }
+
+  /* Close */
+  .ct-close { padding-top: clamp(48px, 7vh, 80px); padding-bottom: clamp(48px, 8vh, 96px); }
+  .ct-quote { margin: 0; padding: 0; max-width: 760px; }
+  .ct-quote p {
+    font-family: var(--font-display); font-weight: 600; font-size: clamp(22px, 3vw, 34px);
+    line-height: 1.25; letter-spacing: -0.02em; color: var(--text-primary); margin: 0; max-width: 26ch;
+    padding-left: 24px; border-left: 3px solid transparent; border-image: var(--accent-gradient) 1;
+  }
+</style>

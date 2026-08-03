@@ -2,7 +2,7 @@
 // German and Estonian live under /de/ and /et/. Astro sets Astro.currentLocale
 // from the URL; these helpers handle link localisation and hreflang alternates.
 
-export const LOCALES = ['en', 'de', 'et'] as const;
+export const LOCALES = ['en', 'de', 'et', 'th'] as const;
 export type Locale = (typeof LOCALES)[number];
 export const DEFAULT_LOCALE: Locale = 'en';
 
@@ -12,6 +12,7 @@ export const LANGS: Record<Locale, { label: string; native: string; bcp47: strin
   en: { label: 'EN', native: 'English', bcp47: 'en', flag: '🇬🇧' },
   de: { label: 'DE', native: 'Deutsch', bcp47: 'de', flag: '🇩🇪' },
   et: { label: 'ET', native: 'Eesti', bcp47: 'et', flag: '🇪🇪' },
+  th: { label: 'TH', native: 'ไทย', bcp47: 'th', flag: '🇹🇭' },
 };
 
 export function isLocale(x: string | undefined): x is Locale {

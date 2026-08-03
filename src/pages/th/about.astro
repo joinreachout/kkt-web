@@ -1,0 +1,145 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import CTA from '~/components/CTA.astro';
+import { useAbout } from '~/i18n/pages/about';
+
+// Team mirrors the fuel-retail runbook. Who-we-serve and how-we-work live on the
+// homepage / its sections — About stays short: the firm, the offices, the team.
+// Personal names, company chips and stat figures are language-invariant and stay
+// here; role lines, labels and prose come from the i18n dict (keyed by name).
+const t = useAbout(Astro.currentLocale);
+const statNums = ['EU', '10+', '2', '$100M–1B'];
+
+const teamGroups = [
+  {
+    title: t.groupDomain,
+    members: [
+      { name: 'Pavel Mityshkin', chips: ['PepsiCo', 'Philip Morris', 'Bonduelle', 'Efes'], assoc: true, initials: 'PM', photo: '/team/pavel-mityshkin.jpg' },
+      { name: 'Yana Kujrikhina', chips: ['EY', 'Gazprom Oil'], initials: 'YK', photo: '/team/yana-kujrikhina.jpg' },
+      { name: 'Nikolay Terentyev', chips: ['Gazprombank'], initials: 'NT', photo: '/team/nikolay-terentyev.png' },
+      { name: 'Pavel Gabaidullin', chips: ['SIBUR', 'Rosatom / NovaWind', 'United Wagon Company', 'Bombardier JV'], initials: 'PG', photo: '/team/pavel-gabaidullin.jpg' },
+      { name: 'Levan Buachidze', chips: ['Deutsche Bahn', 'Daily Group'], initials: 'LB', photo: '/team/levan-buachidze.jpg' },
+      { name: 'George Shevardenidze', chips: ['Lukoil', 'DNV', 'TUV Rheinland'], initials: 'GS', photo: '/team/george-shevardenidze.jpg' },
+      { name: 'Dennis Nepomniashy', chips: ['HP', 'Business IT', 'MCSI'], initials: 'DN', photo: '/team/dennis-nepomniashy.jpg' },
+    ],
+  },
+  {
+    title: t.groupTechnical,
+    members: [
+      { name: 'Nageye Rascid', chips: ['Microsoft', 'Snowflake', 'Cisco', 'Confluent', 'Upbound'], assoc: true, initials: 'NR', photo: '/team/nageye-rascid.jpg' },
+      { name: 'Denis Perov', chips: ['Aviasales'], initials: 'DP', photo: '/team/denis-perov.jpg' },
+      { name: 'Igor Trifonov', chips: ['Customertimes', 'Sberbank', 'ATON'], assoc: true, initials: 'IT', photo: '/team/igor-trifonov.png' },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title={t.meta.title}
+  description={t.meta.description}
+  ogImage="/og/about.png"
+>
+  <!-- Intro -->
+  <section class="section ab-intro" data-reveal>
+    <div class="container">
+      <p class="section-label">{t.introLabel}</p>
+      <h1 class="ab-h1"><span class="grad">{t.h1Accent}</span>{t.h1Rest}</h1>
+      <p class="ab-lede">{t.lede}</p>
+      <div class="ab-stats" data-reveal-stagger>
+        {statNums.map((num, i) => (
+          <div class="ab-stat">
+            <div class="ab-stat-num">{num}</div>
+            <div class="ab-stat-label">{t.statLabels[i]}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Partnerships (soft band) -->
+  <section class="section ab-partners theme-soft" data-reveal>
+    <div class="container">
+      <p class="section-label">{t.partnersLabel}</p>
+      <h2 class="ab-h2">{t.partnersH2}</h2>
+      <p class="ab-partners-body" set:html={t.partnersBodyHtml}></p>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="section ab-team" data-reveal>
+    <div class="container">
+      <p class="section-label">{t.teamLabel}</p>
+      <h2 class="ab-h2 ab-team-h2">{t.teamH2}</h2>
+      {teamGroups.map((g) => (
+        <div class="ab-team-group">
+          <div class="ab-team-group-title">{g.title}</div>
+          <div class="ab-team-grid" data-reveal-stagger>
+            {g.members.map((m) => (
+              <article class="ab-member">
+                {m.photo
+                  ? <img class="ab-member-photo" src={m.photo} alt={`${m.name} portrait`} loading="lazy" />
+                  : <div class="ab-member-photo ab-member-initials" aria-hidden="true">{m.initials}</div>}
+                <div class="ab-member-name">{m.name}</div>
+                <div class="ab-member-line">{t.lines[m.name]}</div>
+                <div class="ab-member-chips">
+                  {m.assoc && <span class="ab-member-chip">{t.assocChip}</span>}
+                  {m.chips.map((c) => <span class="ab-member-chip">{c}</span>)}
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      ))}
+      <p class="ab-bench">{t.benchNote}</p>
+      <p class="ab-legal" set:html={t.legalHtml}></p>
+    </div>
+  </section>
+
+  <CTA />
+</BaseLayout>
+
+<style>
+  .section-label { margin-bottom: 16px; }
+  .grad { background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
+  .ab-h2 {
+    font-family: var(--font-display); font-weight: 600; font-size: clamp(24px, 3.2vw, 38px);
+    letter-spacing: -0.02em; line-height: 1.14; color: var(--text-primary); margin: 12px 0 16px; max-width: 24ch;
+  }
+
+  /* Intro */
+  .ab-intro { padding-top: clamp(48px, 8vh, 104px); padding-bottom: clamp(48px, 7vh, 80px); }
+  .ab-h1 {
+    font-family: var(--font-display); font-weight: 600; font-size: clamp(36px, 5.4vw, 66px);
+    line-height: 1.05; letter-spacing: -0.03em; color: var(--text-primary); margin-bottom: 22px;
+  }
+  .ab-lede { font-size: clamp(17px, 1.8vw, 21px); line-height: 1.55; color: var(--text-secondary); max-width: 64ch; margin-bottom: clamp(32px, 5vh, 48px); }
+  .ab-stats { display: flex; flex-wrap: wrap; gap: clamp(24px, 4vw, 48px); padding-top: 28px; border-top: 1px solid var(--border); }
+  .ab-stat-num {
+    font-family: var(--font-display); font-weight: 600; font-size: clamp(24px, 3vw, 34px); line-height: 1;
+    background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .ab-stat-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.12em; font-weight: 600; max-width: 22ch; margin-top: 8px; }
+
+  /* Partners (soft) */
+  .ab-partners { padding-top: clamp(48px, 7vh, 88px); padding-bottom: clamp(48px, 7vh, 88px); }
+  .ab-partners-body { font-size: clamp(16px, 1.6vw, 18px); line-height: 1.65; color: var(--text-secondary); max-width: 64ch; }
+  .ab-partners-body strong { color: var(--text-primary); font-weight: 600; }
+
+  /* Team */
+  .ab-team { padding-top: clamp(56px, 9vh, 96px); padding-bottom: clamp(48px, 7vh, 80px); }
+  .ab-team-h2 { margin-bottom: clamp(28px, 4vh, 44px); max-width: 26ch; }
+  .ab-team-group { margin-bottom: 36px; }
+  .ab-team-group-title { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.14em; font-weight: 700; margin-bottom: 16px; }
+  .ab-team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(248px, 1fr)); gap: 16px; }
+  .ab-member { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 22px; transition: border-color .2s ease, transform .2s ease; }
+  .ab-member:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+  .ab-member-photo { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; margin-bottom: 14px; }
+  .ab-member-initials { display: flex; align-items: center; justify-content: center; background: var(--accent-dim); border: 0; font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--accent-text); }
+  .ab-member-name { font-family: var(--font-display); font-weight: 600; font-size: 19px; letter-spacing: -0.01em; color: var(--text-primary); line-height: 1.2; }
+  .ab-member-line { font-size: 13.5px; color: var(--text-secondary); line-height: 1.5; margin-top: 7px; }
+  .ab-member-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 13px; width: fit-content; }
+  .ab-member-chip { font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary); background: var(--surface-alt); border: 1px solid var(--border); border-radius: 6px; padding: 3px 8px; }
+  .ab-bench { font-size: 13.5px; color: var(--text-muted); max-width: 64ch; margin-top: 8px; }
+  .ab-legal { font-size: 13.5px; color: var(--text-muted); margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); max-width: 60ch; }
+  .ab-legal strong { color: var(--text-secondary); font-weight: 600; }
+</style>

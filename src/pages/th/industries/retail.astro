@@ -1,0 +1,183 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import CTA from '~/components/CTA.astro';
+import MediaSlot from '~/components/MediaSlot.astro';
+import { useRetail } from '~/i18n/pages/retail';
+
+// Content from the Retail AI Canvas, localized in src/i18n/pages/retail.ts.
+const r = useRetail(Astro.currentLocale);
+const stages = r.stages;
+const domains = r.domains;
+const pressures = r.pressures;
+// Which stage each of the 12 domains belongs to (for the "Stage N" chip).
+const DOMAIN_STAGES = [1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3];
+---
+
+<BaseLayout
+  title={r.meta.title}
+  description={r.meta.description}
+  ogImage="/og/retail.png"
+>
+  <!-- Intro -->
+  <section class="section rt-intro" data-reveal>
+    <div class="container">
+      <p class="section-label">{r.introLabel}</p>
+      <h1 class="rt-h1">{r.h1a}<span class="grad">{r.h1grad}</span>.</h1>
+      <p class="rt-lede">{r.lede}</p>
+      <MediaSlot class="rt-intro-media" ratio="16 / 7" kind="image" src="/industries/retail-v3.jpg" alt={r.imgAlt} label={r.imgLabel} />
+    </div>
+  </section>
+
+  <!-- Staged path (dark band) -->
+  <section class="section rt-path theme-dark" data-reveal>
+    <div class="container">
+      <p class="section-label">{r.pathLabel}</p>
+      <h2 class="rt-path-title">{r.pathTitle}</h2>
+      <p class="rt-path-lede">{r.pathLede}</p>
+
+      <ol class="rt-stages" data-reveal-stagger>
+        {stages.map((s, i) => (
+          <li class={`rt-stage${i === stages.length - 1 ? ' rt-stage-frontier' : ''}`}>
+            <span class="rt-stage-tag">{s.tag}</span>
+            <h3 class="rt-stage-name">{s.name}</h3>
+            <p>{s.body}</p>
+            {i < stages.length - 1 && <span class="rt-stage-arrow" aria-hidden="true">→</span>}
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- What we cover — the 12 canvas domains -->
+  <section class="section rt-domains" data-reveal>
+    <div class="container">
+      <p class="section-label">{r.coverLabel}</p>
+      <h2 class="rt-domains-title">{r.coverTitle}</h2>
+      <p class="rt-domains-lede">{r.coverLede}</p>
+
+      <div class="rt-domain-grid" data-reveal-stagger>
+        {domains.map((d, i) => (
+          <article class="rt-domain">
+            <span class="rt-domain-tag">{r.stageTag(DOMAIN_STAGES[i])}</span>
+            <h3 class="rt-domain-name">{d.title}</h3>
+            <p class="rt-domain-sub">{d.sub}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Pressures (entry points) + playbook (soft band) -->
+  <section class="section rt-playbook theme-soft" data-reveal>
+    <div class="container">
+      <div class="rt-pb-grid">
+        <div>
+          <p class="section-label">{r.pressureLabel}</p>
+          <ul class="rt-pressures" data-reveal-stagger>
+            {pressures.map((p) => <li>{p}</li>)}
+          </ul>
+        </div>
+        <div class="rt-playbook-card">
+          <p class="rt-playbook-tag">{r.pbTag}</p>
+          <h2 class="rt-playbook-title">{r.pbTitle}</h2>
+          <p class="rt-playbook-body">{r.pbBody}</p>
+          <a href="https://retail.kittykat.tech" class="btn-primary" rel="noopener">{r.pbCta}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA heading={r.ctaHeading} body={r.ctaBody} />
+</BaseLayout>
+
+<style>
+  .section-label { margin-bottom: 16px; }
+  .grad {
+    background: var(--accent-gradient);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+  }
+
+  /* Intro */
+  .rt-intro { padding-top: clamp(48px, 8vh, 104px); padding-bottom: clamp(40px, 6vh, 72px); }
+  .rt-h1 {
+    font-family: var(--font-display); font-weight: 600;
+    font-size: clamp(36px, 5.4vw, 66px); line-height: 1.05; letter-spacing: -0.03em;
+    color: var(--text-primary); max-width: 16ch; margin-bottom: 22px;
+  }
+  .rt-lede {
+    font-size: clamp(17px, 1.8vw, 21px); line-height: 1.55; color: var(--text-secondary);
+    max-width: 64ch; margin-bottom: clamp(32px, 5vh, 56px);
+  }
+  .rt-intro-media { max-width: 1000px; }
+
+  /* Staged path (dark) */
+  .rt-path { padding-top: clamp(56px, 9vh, 104px); padding-bottom: clamp(56px, 9vh, 104px); }
+  .rt-path-title {
+    font-family: var(--font-display); font-weight: 600;
+    font-size: clamp(26px, 3.4vw, 40px); line-height: 1.14; letter-spacing: -0.02em;
+    color: var(--text-primary); max-width: 24ch; margin: 12px 0 16px;
+  }
+  .rt-path-lede { font-size: clamp(16px, 1.6vw, 19px); line-height: 1.6; color: var(--text-secondary); max-width: 62ch; margin-bottom: clamp(32px, 5vh, 52px); }
+  .rt-stages { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr; gap: 14px; }
+  @media (min-width: 760px) { .rt-stages { grid-template-columns: repeat(3, 1fr); gap: 18px; } }
+  .rt-stage {
+    position: relative; background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 24px 24px 26px;
+  }
+  .rt-stage-frontier { border: 1.5px solid transparent; background: linear-gradient(var(--surface), var(--surface)) padding-box, var(--accent-gradient) border-box; }
+  .rt-stage-tag {
+    display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--accent-text); margin-bottom: 12px;
+  }
+  .rt-stage-name {
+    font-family: var(--font-display); font-weight: 600; font-size: clamp(19px, 2vw, 23px);
+    letter-spacing: -0.015em; color: var(--text-primary); margin-bottom: 10px; line-height: 1.2;
+  }
+  .rt-stage p { font-size: 15px; line-height: 1.55; color: var(--text-secondary); margin: 0; }
+  .rt-stage-arrow {
+    position: absolute; right: -13px; top: 50%; transform: translateY(-50%);
+    color: var(--accent); font-size: 18px; line-height: 1; z-index: 1;
+  }
+  @media (max-width: 759px) {
+    .rt-stage-arrow { right: 50%; top: auto; bottom: -13px; transform: translateX(50%) rotate(90deg); }
+  }
+
+  /* Domains */
+  .rt-domains { padding-top: clamp(56px, 9vh, 100px); padding-bottom: clamp(48px, 7vh, 88px); }
+  .rt-domains-title {
+    font-family: var(--font-display); font-weight: 600; font-size: clamp(26px, 3.4vw, 40px);
+    letter-spacing: -0.02em; color: var(--text-primary); margin: 12px 0 16px;
+  }
+  .rt-domains-lede { font-size: clamp(16px, 1.6vw, 19px); line-height: 1.6; color: var(--text-secondary); max-width: 66ch; margin-bottom: clamp(32px, 5vh, 52px); }
+  .rt-domain-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+  @media (min-width: 640px) { .rt-domain-grid { grid-template-columns: 1fr 1fr; gap: 16px; } }
+  @media (min-width: 1000px) { .rt-domain-grid { grid-template-columns: repeat(3, 1fr); } }
+  .rt-domain {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    padding: 22px 24px 24px; transition: border-color .2s ease, transform .2s ease;
+  }
+  .rt-domain:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+  .rt-domain-tag { display: inline-block; font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 10px; }
+  .rt-domain-name { font-family: var(--font-display); font-weight: 600; font-size: 18px; letter-spacing: -0.01em; color: var(--text-primary); margin-bottom: 8px; line-height: 1.2; }
+  .rt-domain-sub { font-size: 14px; line-height: 1.55; color: var(--text-secondary); margin: 0; }
+
+  /* Pressures + playbook (soft) */
+  .rt-playbook { padding-top: clamp(48px, 7vh, 88px); padding-bottom: clamp(48px, 7vh, 88px); }
+  .rt-pb-grid { display: grid; grid-template-columns: 1fr; gap: clamp(28px, 4vw, 48px); align-items: start; }
+  @media (min-width: 880px) { .rt-pb-grid { grid-template-columns: 1fr 1fr; } }
+  .rt-pressures { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+  .rt-pressures li {
+    position: relative; padding: 11px 14px 11px 34px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    font-size: 14px; line-height: 1.4; color: var(--text-primary);
+  }
+  .rt-pressures li::before { content: '→'; position: absolute; left: 14px; top: 11px; color: var(--accent); font-weight: 600; }
+  .rt-playbook-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 18px;
+    padding: clamp(26px, 3.5vw, 40px); align-self: start;
+  }
+  .rt-playbook-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 14px; }
+  .rt-playbook-title { font-family: var(--font-display); font-weight: 600; font-size: clamp(22px, 2.6vw, 30px); letter-spacing: -0.02em; color: var(--text-primary); margin-bottom: 14px; line-height: 1.16; max-width: 20ch; }
+  .rt-playbook-body { font-size: clamp(15px, 1.5vw, 17px); line-height: 1.6; color: var(--text-secondary); max-width: 52ch; margin-bottom: 24px; }
+</style>

@@ -21,7 +21,7 @@ export default defineConfig({
   // src/i18n/ dictionaries keyed by Astro.currentLocale.
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'de', 'et'],
+    locales: ['en', 'de', 'et', 'th'],
     routing: {
       prefixDefaultLocale: false,
       redirectToDefaultLocale: false,

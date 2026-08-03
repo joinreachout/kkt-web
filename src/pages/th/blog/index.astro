@@ -1,0 +1,194 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import CTA from '~/components/CTA.astro';
+import LinkedInFeed from '~/components/LinkedInFeed.astro';
+import { getCollection } from 'astro:content';
+import { useInsights } from '~/i18n/pages/insights';
+import { localizePath, toLocale } from '~/i18n/config';
+
+const t = useInsights(Astro.currentLocale);
+const locale = toLocale(Astro.currentLocale);
+
+const allPosts = await getCollection('insights');
+const visible = allPosts
+  .filter((p) => p.data.draft !== true)
+  .sort((a, b) => +new Date(b.data.publishedAt) - +new Date(a.data.publishedAt));
+---
+
+<BaseLayout
+  title={t.meta.title}
+  description={t.meta.description}
+  ogImage="/og/insights.png"
+>
+  <article class="prose-page">
+    <div class="container">
+      <div class="section-label">{t.sectionLabel}</div>
+      <h1 class="h1-page">{t.h1}</h1>
+      <p class="lede">{t.lede}</p>
+
+      {visible.length === 0 ? (
+        <div class="empty">
+          <p>{t.emptyP1}</p>
+          <p>{t.emptyP2}</p>
+          <ul class="empty-links" data-reveal-stagger>
+            <li>
+              <a href="https://retail.kittykat.tech" rel="noopener">{t.links.retailTitle}</a>
+              <span>{t.links.retailDesc}</span>
+            </li>
+            <li>
+              <a href="https://fuelretail.kittykat.tech" rel="noopener">{t.links.fuelTitle}</a>
+              <span>{t.links.fuelDesc}</span>
+            </li>
+            <li>
+              <a href={localizePath('/solutions', locale)}>{t.links.solutionsTitle}</a>
+              <span>{t.links.solutionsDesc}</span>
+            </li>
+          </ul>
+        </div>
+      ) : (
+        <ul class="post-list">
+          {visible.map((post) => (
+            <li>
+              <a href={`/blog/${post.id}`} class={post.data.cover ? 'post-card post-card--media' : 'post-card'}>
+                <div class="post-body">
+                  <div class="post-meta">
+                    <span>{post.data.author}</span>
+                    <span class="post-sep">·</span>
+                    <time datetime={post.data.publishedAt}>
+                      {new Date(post.data.publishedAt).toLocaleDateString(t.dateLocale, {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                      })}
+                    </time>
+                  </div>
+                  <h2 class="post-title">{post.data.title}</h2>
+                  {post.data.summary && <p class="post-summary">{post.data.summary}</p>}
+                  <span class="post-arrow">{t.readArrow}</span>
+                </div>
+                {post.data.cover && (
+                  <img class="post-cover" src={post.data.cover} alt="" loading="lazy" decoding="async" />
+                )}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+
+    <LinkedInFeed />
+
+    <CTA />
+  </article>
+</BaseLayout>
+
+<style>
+  .prose-page { padding-top: clamp(40px, 6vh, 72px); }
+  .section-label { margin-bottom: 18px; }
+  .h1-page {
+    font-family: var(--font-display);
+    font-style: normal;
+    font-weight: 600;
+    font-size: clamp(32px, 4.5vw, 48px);
+    line-height: 1.16;
+    margin-bottom: 18px;
+    letter-spacing: -0.01em;
+    max-width: 24ch;
+  }
+  .lede {
+    font-size: clamp(17px, 2vw, 20px);
+    color: var(--text-secondary);
+    line-height: 1.55;
+    max-width: 60ch;
+    margin-bottom: 40px;
+  }
+  .empty {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 32px;
+    max-width: 720px;
+  }
+  .empty p { margin: 0 0 14px; max-width: 60ch; font-size: 15px; }
+  .empty-links {
+    list-style: none;
+    padding: 0;
+    margin: 18px 0 0;
+    display: grid;
+    gap: 14px;
+    border-top: 1px solid var(--border);
+    padding-top: 18px;
+  }
+  .empty-links li {
+    display: grid;
+    gap: 4px;
+  }
+  .empty-links a {
+    color: var(--text-primary);
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 15px;
+  }
+  .empty-links a:hover { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--accent); }
+  .empty-links span {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .post-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 14px;
+  }
+  .post-card {
+    display: block;
+    padding: 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color .18s ease;
+  }
+  .post-card:hover { border-color: var(--border-hover); text-decoration: none; }
+  /* With a cover: text left, preview image right. */
+  .post-card--media {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 28px;
+    align-items: center;
+  }
+  .post-body { min-width: 0; }
+  .post-cover {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    margin: 0;
+  }
+  @media (max-width: 640px) {
+    .post-card--media { grid-template-columns: 1fr; gap: 16px; }
+    .post-cover { order: -1; }
+  }
+  .post-meta {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    letter-spacing: 0.02em;
+  }
+  .post-sep { margin: 0 6px; }
+  .post-title {
+    font-family: var(--font-display);
+    font-style: normal;
+    font-size: 22px;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .post-summary { margin-bottom: 12px; max-width: 60ch; font-size: 15px; }
+  .post-arrow { font-size: 13px; color: var(--text-primary); font-weight: 500; }
+</style>
