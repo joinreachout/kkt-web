@@ -35,7 +35,7 @@ const ADVISOR_ENDPOINT = '/api/advisor.php';
 const ALLOWED_DOC_TYPES = ['.txt', '.md', '.pdf'];
 const MAX_DOC_BYTES = 1_500_000; // 1.5 MB — bigger than typical audit doc, smaller than upload limit
 
-type Locale = 'en' | 'de' | 'et';
+type Locale = 'en' | 'de' | 'et' | 'th';
 
 // UI chrome strings per locale. The backend (advisor.php) answers in the
 // user's language via the LLM; this only localises the widget shell.
@@ -111,6 +111,21 @@ const UI: Record<Locale, UIStrings> = {
     unsupported: (t) => `Toetamata failitüüp. Aktsepteerime ${t}.`,
     tooLarge: (kb, max) => `Fail on liiga suur (${kb} KB). Max ${max} KB.`,
     connDropped: 'Ühendus katkes vastamise ajal. Proovi uuesti — tavaliselt töötab teisel korral.',
+  },
+  th: {
+    eyebrow: 'Advisor', status: 'ถามอะไรก็ได้',
+    emptyTitle: 'มีอะไรอยากถาม?',
+    emptyBody: 'ถามได้เลยว่าเราส่งมอบงานอย่างไร ทำงานกับใคร เมื่อไรที่เราจะปฏิเสธงาน การวินิจฉัยเป็นอย่างไร — ทุกอย่างเกี่ยวกับ KKT หรือ retail playbook แนบเอกสารกลยุทธ์หรือ RFP มาก็ได้ ผมจะช่วยตรวจให้ด้วยภาษาที่เข้าใจง่าย',
+    suggested: ['KKT ส่งมอบงานจริง ๆ อย่างไร?', 'เหมาะกับผู้ค้าปลีกขนาดกลางไหม?', 'การวินิจฉัยสองสัปดาห์เป็นอย่างไร?', 'ทำไมถึงปฏิเสธงานบางอย่าง?'],
+    you: 'คุณ', moreOn: 'อ่านเพิ่มเติม:', why: 'ทำไมจึงตอบแบบนี้?',
+    placeholder: 'พิมพ์คำถาม แล้วกด Enter เพื่อส่ง', placeholderAttach: 'คำถามเพิ่มเติม — กด Enter เพื่อส่ง',
+    send: 'ส่ง', footClose: 'ปิด', footToggle: 'สลับ',
+    panelAria: 'ที่ปรึกษา KKT', closeAria: 'ปิดที่ปรึกษา', attachAria: 'แนบเอกสาร',
+    attachTitle: 'แนบเอกสาร (.txt, .md, .pdf)', removeAria: 'ลบไฟล์แนบ', sendAria: 'ส่ง', inputAria: 'คำถามถึงที่ปรึกษา',
+    auditDoc: (n) => `ตรวจเอกสารนี้: ${n}`,
+    unsupported: (t) => `ไม่รองรับไฟล์ประเภทนี้ เรารองรับ ${t}`,
+    tooLarge: (kb, max) => `ไฟล์ใหญ่เกินไป (${kb} KB) สูงสุด ${max} KB`,
+    connDropped: 'การเชื่อมต่อหลุดระหว่างตอบ ลองอีกครั้ง — ปกติลองใหม่ก็ใช้ได้',
   },
 };
 
