@@ -211,7 +211,7 @@ export const HOME: Record<Locale, HomeDict> = {
     cases: {
       label: 'พันธมิตรและลูกค้าของเรา', title: 'พันธมิตรและลูกค้า',
       intro: 'เราทำงานร่วมกับพันธมิตรเทคโนโลยีระดับโลก และกับลูกค้าในกลุ่มน้ำมัน ค้าปลีก โทรคมนาคม โมบิลิตี้ โลจิสติกส์ และอุตสาหกรรม แตะที่ลูกค้าเพื่อดูภาพเต็ม — สิ่งที่เราทำ ขอบเขต และผลลัพธ์',
-      partnerNotes: ['พันธมิตรด้านดิจิทัลทรานส์ฟอร์เมชัน', 'Microsoft AI Cloud Partner', 'AWS Partner Network member', 'Meta Tech Provider'],
+      partnerNotes: ['พันธมิตรด้านดิจิทัลทรานส์ฟอร์เมชัน', 'Microsoft AI Cloud Partner', 'สมาชิก AWS Partner Network', 'Meta Tech Provider'],
       didLabel: 'สิ่งที่เราทำ', changedLabel: 'สิ่งที่เปลี่ยนไป', close: 'ปิด',
       tail: 'ดูรายชื่อลูกค้าและโปรเจกต์ทั้งหมด',
       items: [
