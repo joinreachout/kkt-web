@@ -8,15 +8,28 @@ import { localizePath, toLocale } from '~/i18n/config';
 const locale = toLocale(Astro.currentLocale);
 const t = useStrings(Astro.currentLocale);
 const L = (p: string) => localizePath(p, locale);
+
+// Thai has no inter-word spaces, so the browser's dictionary line-breaker splits
+// compounds mid-word (รายได้ → ราย|ได้). word-break: keep-all does not cover Thai
+// in Chrome, so wrap each space-delimited chunk in a nowrap span: the line then
+// breaks only at the spaces we authored. Latin locales are left untouched.
+const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const nb = (s: string) => locale === 'th'
+  ? esc(s).replace(/\S+/g, (w) => `<span class="nb">${w}</span>`)
+  : esc(s);
+const titleHtml =
+  nb(t.hero.titleA) +
+  `<span class="hero-accent">${nb(t.hero.titleAccent1)}</span>` +
+  nb(t.hero.titleB) +
+  `<span class="hero-accent">${nb(t.hero.titleAccent2)}</span>` +
+  (locale === 'th' ? '' : '.');
 ---
 
 <section class="hero">
   <div class="container hero-inner fade-up" data-parallax>
     <p class="hero-eyebrow">{t.hero.eyebrow}</p>
 
-    <h1 class="hero-title">
-      {t.hero.titleA}<span class="hero-accent">{t.hero.titleAccent1}</span>{t.hero.titleB}<span class="hero-accent">{t.hero.titleAccent2}</span>.
-    </h1>
+    <h1 class="hero-title" set:html={titleHtml} />
 
     <p class="hero-sub">{t.hero.sub}</p>
 
@@ -61,7 +74,14 @@ const L = (p: string) => localizePath(p, locale);
     text-wrap: balance;
     margin-bottom: 26px;
   }
-  .hero-accent {
+  .hero-title :global(.nb) { white-space: nowrap; }
+  /* Thai chunks cannot break, so the longest one ("การปรับปรุงกระบวนการ") sets the
+     minimum width. Lower the clamp floor so it still fits a 320px screen; the
+     vw term and the max are unchanged, so desktop is identical to the other locales. */
+  :global(html[lang='th']) .hero-title { font-size: clamp(24px, 6.2vw, 76px); }
+  /* :global — the title is rendered via set:html, so these spans carry no
+     astro scoping attribute and a plain .hero-accent rule would not match. */
+  .hero-title :global(.hero-accent) {
     background: var(--accent-gradient);
     -webkit-background-clip: text;
     background-clip: text;
