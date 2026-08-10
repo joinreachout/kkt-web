@@ -32,7 +32,7 @@ const navItems = [
 ];
 ---
 
-<header class="site-header">
+<header class="site-header" data-lang={locale}>
   <div class="container header-inner">
     <a href={L('/')} class="wordmark" aria-label="KKT — home">
       <CatMark size={26} />
@@ -357,6 +357,18 @@ const navItems = [
   .mobile-nav-cta a {
     color: var(--accent-text);
     font-weight: 600;
+  }
+
+  /* German and Estonian labels are long: between 880px and ~1180px the desktop
+     header wrapped onto a second line. Tighten the gap and stop the links from
+     breaking mid-item for those locales only — English and Thai are unaffected. */
+  @media (min-width: 880px) and (max-width: 1180px) {
+    .site-header[data-lang='de'] .nav-list,
+    .site-header[data-lang='et'] .nav-list { gap: 16px; }
+    .site-header[data-lang='de'] .nav-list a,
+    .site-header[data-lang='et'] .nav-list a { white-space: nowrap; font-size: 13.5px; }
+    .site-header[data-lang='de'] .advisor-trigger-full,
+    .site-header[data-lang='et'] .advisor-trigger-full { white-space: nowrap; }
   }
 
   @media (min-width: 880px) {

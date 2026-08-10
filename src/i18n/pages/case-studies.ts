@@ -161,7 +161,7 @@ export const CASE_STUDIES: Record<Locale, CaseStudiesDict> = {
         'clubtek': { region: 'Phuket, Thailand', blurb: 'Audio-Video-Systemintegration — Ton, Video, intelligente Beleuchtung und einheitliche Automatisierung für Hotels, Clubs und Villen.' },
         'khaos-marani': { region: 'Kachetien, Georgien', blurb: 'Weingut. Advanced Analytics und Predictive ML zur Prognose der Weinnachfrage, Preisoptimierung und Konsumentensegmentierung für gezieltes Marketing.' },
         'gagra-plus': { region: 'Tiflis, Georgien', blurb: 'Hersteller und Händler von Lebensmittelzutaten und Konditoreiwaren (Buona-Sera-Läden). Ein heuristisches und Operations-Research-Modell zur Optimierung der Produktverteilung zwischen Lieferanten und Filialen — unter Berücksichtigung von Nachfrage, Verfügbarkeit, Lieferantenrestriktionen und Filialbedarf. Bessere Bestandszuteilung, weniger manuelle Planung und klarere Sicht auf Logistikentscheidungen.' },
-        'fuel-loyalty': { region: 'Kraftstoffhandel', blurb: 'Reaktivierung inaktiver Kunden durch eine hybride RFM- + Clustering-Segmentierung — ~12.000 reaktiviert, aktualisiert durch eine automatische ML-Pipeline.' },
+        'fuel-loyalty': { region: 'Tankstellengeschäft', blurb: 'Reaktivierung inaktiver Kunden durch eine hybride RFM- + Clustering-Segmentierung — ~12.000 reaktiviert, aktualisiert durch eine automatische ML-Pipeline.' },
         'enterprise-agent': { region: 'Enterprise-KI', blurb: 'Ein natürlichsprachlicher Analytik-Agent für das Führungsteam — geschäftliche semantische Schicht, KPI-Grounding, 90%+ Antwortgenauigkeit in Produktion.' },
       },
     },

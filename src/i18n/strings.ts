@@ -64,7 +64,10 @@ export const STRINGS: Record<Locale, Dict> = {
   },
 
   de: {
-    nav: { retail: 'Einzelhandel', fuel: 'Kraftstoffhandel', solutions: 'Unsere Lösungen', cases: 'Fallstudien', insights: 'Blog', about: 'Über uns' },
+    // Nav uses the short "Tankstellen" — the full "Tankstellengeschäft" pushed the
+    // German header into a second line at ~1024px. The full term stays in page
+    // titles, meta and sector labels.
+    nav: { retail: 'Einzelhandel', fuel: 'Tankstellen', solutions: 'Unsere Lösungen', cases: 'Fallstudien', insights: 'Blog', about: 'Über uns' },
     actions: { advisor: 'KI-Berater fragen', diagnostic: 'Diagnose buchen', menu: 'Menü öffnen', switchLang: 'Sprache' },
     footer: {
       tag: 'Daten, KI und Automatisierung, die in Ihrem Betrieb laufen.',
@@ -84,7 +87,7 @@ export const STRINGS: Record<Locale, Dict> = {
       label: 'Mit wem wir arbeiten',
       title: 'Mittelständische Unternehmen in traditionellen, anlagenintensiven Branchen.',
       lede: 'Unternehmen mit etablierten Abläufen, Altsystemen und komplexen Prozessen — wo Fehler echte Kosten verursachen und der Wert einer funktionierenden Lösung messbar ist. Wir beginnen bei der geschäftlichen Frage, nicht bei der Technologie.',
-      industries: ['Öl & Gas', 'Energie', 'Einzelhandel', 'Kraftstoffhandel', 'Logistik'],
+      industries: ['Öl & Gas', 'Energie', 'Einzelhandel', 'Tankstellengeschäft', 'Logistik'],
       more: '+ Telekommunikation, Mobilität, Industrie',
     },
   },

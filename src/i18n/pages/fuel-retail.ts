@@ -48,8 +48,8 @@ export const FUEL: Record<Locale, FuelDict> = {
   },
 
   de: {
-    meta: { title: 'Kraftstoffhandel — KKT', description: 'KI und Daten für unabhängige Tankstellennetze — Beschaffung und Marge, Logistik, Stationen, Kunden, Finanzen und Kontrolle. Bottom-up, auf den Daten, die Sie bereits haben.' },
-    introLabel: 'Branchen — Kraftstoffhandel', h1a: 'Für unabhängige ', h1grad: 'Tankstellennetze',
+    meta: { title: 'Tankstellengeschäft — KKT', description: 'KI und Daten für unabhängige Tankstellennetze — Beschaffung und Marge, Logistik, Stationen, Kunden, Finanzen und Kontrolle. Bottom-up, auf den Daten, die Sie bereits haben.' },
+    introLabel: 'Branchen — Tankstellengeschäft', h1a: 'Für unabhängige ', h1grad: 'Tankstellennetze',
     lede: 'Ihr Netz hat die Daten bereits — ERP, POS, Loyalty, GPS, Depots, BI, Tabellen. Was meist fehlt, ist die Vernetzung: Das Netz läuft auf Menschen, Anrufen, manueller Abstimmung und der Erfahrung einzelner Manager, während die angehäuften Daten noch nicht für Ihre Entscheidungen arbeiten.',
     imgAlt: 'Tankstellenvorplatz in der Abenddämmerung beleuchtet', imgLabel: 'Kraftstoff — Vorplatz, Depot oder das Netz auf einen Blick',
     pathLabel: 'Wie der Weg verläuft', pathTitle: 'KI verdient ihren Platz auf einem Fundament — daher verläuft der Weg von unten nach oben.',
