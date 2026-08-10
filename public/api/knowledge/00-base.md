@@ -51,7 +51,7 @@ Three beats. Stop at three.
 > the head of supply opens it at 8 AM, works through the morning's
 > procurement decisions in 10–15 minutes, then walks away.
 >
-> Live at Red Petroleum (Red Petrol) — a 250-station independent fuel
+> Live at Red Petroleum (Red Petrol) — a 220+ station independent fuel
 > network in Kyrgyzstan.
 >
 > Full surface on /solutions/optimus.

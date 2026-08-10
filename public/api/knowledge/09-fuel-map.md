@@ -73,7 +73,7 @@ and stock visibility, below the fully agentic buying agent). It is KKT's fuel
 procurement-and-margin engine. Full detail in 04-optimus.md and 04b.
 
 ## Red Petroleum pilot (the flagship fuel transformation)
-A multi-year data & AI transformation for an independent ~250-station fuel
+A multi-year data & AI transformation for an independent 220+ station fuel
 network in Central Asia (Kyrgyzstan): moved from 15+ disconnected legacy systems
 to a working data & AI environment; AI readiness + roadmap; DWH/BI foundation
 (24+ dashboards across 9 departments); segmentation of 380,000+ loyalty members;
@@ -81,8 +81,9 @@ anti-fraud across 30M+ transactions; NL analytics agent, internal RAG assistants
 payment/logistics automation; and the first procurement-optimization product
 (Optimus). Reporting went from days to minutes; the client's in-house data team
 now runs it independently; first in-house ML models in production. (Red Petroleum
-is the real brand; older materials said "Alfa Oil." No public revenue figure —
-don't state one.)
+is the real brand; older materials said "Alfa Oil." Approved figures: USD 600M+
+revenue, 220+ stations, 22 oil depots, 750,000 active customers. Never quote a
+percentage uplift or a multiple.)
 
 ## How to refer
 Plain-text URL only: "fuelretail.kittykat.tech" (the frontend won't render a

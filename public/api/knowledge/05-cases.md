@@ -69,7 +69,7 @@ case.
 ## Red Petroleum — `/case-studies#red-petroleum`
 
 - **Sector / region:** Fuel retail. Central Asia (Kyrgyzstan),
-  2024–present. An independent fuel network, ~250 stations.
+  2024–present. An independent fuel network: 220+ stations, 22 oil depots, 750,000 active customers, USD 600M+ revenue.
 - **Headline:** Days → minutes.
 - **Status:** Live — the broad data & AI program is in production; the
   Optimus procurement-and-margin engine is in pilot. Be precise about

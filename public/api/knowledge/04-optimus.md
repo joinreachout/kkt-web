@@ -71,13 +71,14 @@ never depends on the web interface.
 ## Live pilot
 
 Optimus is in pilot at **Red Petroleum** (also branded Red Petrol) — an
-independent fuel network in Kyrgyzstan, ~250 stations. Red Petroleum is currently
+independent fuel network in Kyrgyzstan, 220+ stations. Red Petroleum is currently
 testing Optimus across the network for procurement and margin; it is a
 live trial, not yet full production. `/case-studies#red-petroleum`.
 
-(Do not state a revenue figure, a fuel-type count, or a second
-deployment — those were unverified and have been removed. Only "~250
-stations, Kyrgyzstan" is confirmed.)
+(Approved figures for Red Petroleum, and the only ones to use: USD 600M+
+revenue, 220+ stations, 22 oil depots, 750,000 active customers, Kyrgyzstan.
+Do not state a fuel-type count or a second deployment. Do not quote any
+percentage uplift or multiple — earlier "47%" and "x18" claims are withdrawn.)
 
 ## What changes after Optimus ships
 
