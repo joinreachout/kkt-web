@@ -12,6 +12,10 @@ const NOINDEX_PATHS = [
   '/404.html',
   '/security',
   '/security/',
+  // RU-черновик новой страницы Optimus (концепция Яны, 20.08.2026).
+  // Живёт в EN-слоте до перевода — из индекса и карты сайта исключён.
+  '/solutions/optimus-v2',
+  '/solutions/optimus-v2/',
 ];
 
 export default defineConfig({
