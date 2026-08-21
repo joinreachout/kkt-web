@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>HomePro × KKT — customer-growth canvas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:            #FFFFFF;
+    --surface-alt:   #F5F5F7;
+    --card:          #FFFFFF;
+    --border:        rgba(0,0,0,0.11);
+    --border-strong: rgba(0,0,0,0.24);
+    --text:          #1D1D1F;
+    --text-2:        #515257;
+    --text-3:        #86868B;
+    --accent:        #FF6A00;
+    --accent-dim:    rgba(255,106,0,0.10);
+    --accent-text:   #C2410C;
+    --confirmed:     #1F7A5A;
+    --confirmed-bg:  rgba(31,122,90,0.09);
+    --assumption:    #B45309;
+    --assumption-bg: rgba(180,83,9,0.08);
+    --question:      #1D4ED8;
+    --question-bg:   rgba(29,78,216,0.07);
+    --risk:          #B42318;
+    --font: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    --max: 1440px;
+  }
+
+  html, body { height: 100%; }
+  body {
+    font-family: var(--font); color: var(--text); background: var(--bg);
+    -webkit-font-smoothing: antialiased; line-height: 1.5;
+    display: flex; flex-direction: column; min-height: 100vh;
+  }
+  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+  a { color: var(--accent-text); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+  /* ---------------- top bar ---------------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 40; background: rgba(255,255,255,0.92);
+    backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .topbar-in {
+    max-width: var(--max); margin: 0 auto; padding: 10px clamp(16px, 3vw, 40px);
+    display: flex; align-items: center; gap: 20px;
+  }
+  .brand { font-weight: 700; letter-spacing: -0.01em; white-space: nowrap; display: flex; align-items: center; gap: 9px; }
+  .brand .brandmark { height: 26px; width: auto; display: block; }
+  .brand .partnermark { height: 24px; width: auto; display: block; }
+  .heropair { display: flex; align-items: center; gap: 18px; margin-bottom: 20px; }
+  .heropair .heromark { margin: 0; }
+  .heropair .heropartner { height: 40px; width: auto; display: block; }
+  .heropair .hx { color: var(--text-3); font-size: 20px; font-weight: 500; }
+  .brand .bx { color: var(--text-3); font-weight: 500; }
+  .nav { display: flex; gap: 2px; margin-left: auto; flex-wrap: wrap; }
+  .nav button {
+    padding: 7px 13px; border-radius: 999px; font-size: 14px; font-weight: 500;
+    color: var(--text-2); white-space: nowrap; transition: background .15s, color .15s;
+  }
+  .nav button:hover { background: var(--surface-alt); color: var(--text); }
+  .nav button[aria-current="true"] { background: var(--text); color: #fff; font-weight: 600; }
+  .nav button .num { opacity: .5; margin-right: 6px; font-variant-numeric: tabular-nums; }
+  .tools { display: flex; gap: 6px; }
+  .tool {
+    padding: 7px 12px; border: 1px solid var(--border); border-radius: 8px;
+    font-size: 13px; font-weight: 500; color: var(--text-2); white-space: nowrap;
+  }
+  .tool:hover { border-color: var(--border-strong); color: var(--text); }
+
+  /* ---------------- stage ---------------- */
+  .stage { flex: 1; max-width: var(--max); width: 100%; margin: 0 auto; padding: clamp(20px, 3vw, 40px) clamp(16px, 3vw, 40px) 64px; }
+  .section { display: none; animation: rise .32s ease both; }
+  .section.is-active { display: block; }
+  @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+  .heromark { height: 44px; width: auto; display: block; margin-bottom: 20px; }
+  .kicker { font-size: 12.5px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 10px; }
+  h1 { font-size: clamp(30px, 3.6vw, 46px); line-height: 1.1; letter-spacing: -0.02em; font-weight: 600; margin-bottom: 14px; }
+  h2 { font-size: clamp(24px, 2.6vw, 34px); line-height: 1.15; letter-spacing: -0.015em; font-weight: 600; margin-bottom: 12px; }
+  h3 { font-size: 17px; font-weight: 600; margin-bottom: 6px; }
+  .lead { font-size: clamp(16px, 1.35vw, 19px); color: var(--text-2); max-width: 78ch; }
+  .note { font-size: 13.5px; color: var(--text-3); margin-top: 10px; }
+  .eyebrow { font-size: 12.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text-3); margin: 26px 0 12px; }
+
+  .grid { display: grid; gap: 14px; }
+  .g2 { grid-template-columns: repeat(2, 1fr); }
+  .g3 { grid-template-columns: repeat(3, 1fr); }
+  .g4 { grid-template-columns: repeat(4, 1fr); }
+  .g5 { grid-template-columns: repeat(5, 1fr); }
+
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 16px 18px; transition: border-color .18s, box-shadow .18s, opacity .18s;
+  }
+  .card p { font-size: 14.5px; color: var(--text-2); }
+  .card.tint { background: var(--surface-alt); border-color: transparent; }
+
+  /* evidence badges */
+  .badge {
+    display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 600;
+    letter-spacing: .03em; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; margin-bottom: 9px;
+  }
+  .badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+  .badge.confirmed  { color: var(--confirmed);  background: var(--confirmed-bg); }
+  .badge.assumption { color: var(--assumption); background: var(--assumption-bg); border: 1px dashed rgba(180,83,9,.45); }
+  .badge.question   { color: var(--question);   background: var(--question-bg); }
+
+  .srcbtn {
+    margin-top: 10px; font-size: 12.5px; font-weight: 600; color: var(--accent-text);
+    display: inline-flex; align-items: center; gap: 5px;
+  }
+  .srcbtn:hover { text-decoration: underline; }
+
+  .qlist { list-style: none; display: grid; gap: 9px; }
+  .qlist li {
+    display: flex; gap: 11px; font-size: 15px; color: var(--text-2);
+    background: var(--question-bg); border-left: 2px solid var(--question); border-radius: 0 8px 8px 0; padding: 10px 14px;
+  }
+  .qlist .n { color: var(--question); font-weight: 700; font-variant-numeric: tabular-nums; }
+
+  .principle {
+    margin-top: 16px; padding: 14px 18px; border-left: 3px solid var(--accent);
+    background: var(--accent-dim); border-radius: 0 10px 10px 0; font-size: 16px; font-weight: 500;
+  }
+
+  /* ---------------- diagram primitives ---------------- */
+  .ico { width: 22px; height: 22px; flex: none; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .ico-lg { width: 26px; height: 26px; }
+  .card .cardhead { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 6px; }
+  .card .cardhead h3 { margin: 0; }
+  .card .cardhead .ico { color: var(--accent); margin-top: 1px; }
+
+  /* four-step flow */
+  .flowrow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; align-items: stretch; }
+  .flowstep { position: relative; padding: 16px 20px 16px 0; }
+  .flowstep + .flowstep { padding-left: 26px; }
+  .flowstep::before {
+    content: ''; position: absolute; left: 0; right: 0; top: 34px; height: 2px;
+    background: repeating-linear-gradient(90deg, var(--border-strong) 0 6px, transparent 6px 12px);
+  }
+  .flowstep:first-child::before { left: 14px; }
+  .flowstep:last-child::before  { right: calc(100% - 14px); }
+  .flowdot {
+    position: relative; z-index: 1; width: 28px; height: 28px; border-radius: 50%;
+    background: var(--text); color: #fff; display: grid; place-items: center;
+    font-size: 12.5px; font-weight: 700; margin-bottom: 12px; box-shadow: 0 0 0 5px #fff;
+  }
+  .flowstep h3 { font-size: 15px; }
+  .flowstep p { font-size: 13.5px; color: var(--text-2); }
+
+  /* evidence ledger */
+  .ledger { display: flex; gap: 10px; flex-wrap: wrap; margin: 4px 0 6px; }
+  .ledger .lg {
+    display: flex; align-items: center; gap: 9px; padding: 9px 14px; border-radius: 10px; font-size: 13.5px; font-weight: 500;
+  }
+  .ledger .lg b { font-size: 19px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .ledger .lg.confirmed  { background: var(--confirmed-bg);  color: var(--confirmed); }
+  .ledger .lg.assumption { background: var(--assumption-bg); color: var(--assumption); border: 1px dashed rgba(180,83,9,.4); }
+  .ledger .lg.question   { background: var(--question-bg);   color: var(--question); }
+
+  /* ---------------- capability map ---------------- */
+  .map-note { font-size: 13.5px; color: var(--text-3); margin: 14px 0 18px; }
+  .maprail { position: relative; }
+  .maprail::before {
+    content: ''; position: absolute; left: 4%; right: 4%; top: 30px; height: 2px;
+    background: repeating-linear-gradient(90deg, var(--border-strong) 0 7px, transparent 7px 14px);
+  }
+  .layers { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; align-items: stretch; position: relative; }
+  .layer .lhead { display: flex; align-items: center; gap: 9px; }
+  .layer .lbadge {
+    width: 26px; height: 26px; border-radius: 50%; background: var(--text); color: #fff;
+    display: grid; place-items: center; font-size: 12px; font-weight: 700; flex: none;
+    box-shadow: 0 0 0 5px var(--bg); position: relative; z-index: 1;
+  }
+  .layer.is-focus .lbadge { background: var(--accent-gradient, var(--accent)); }
+  .layer .ico { color: var(--text-3); margin-left: auto; }
+  .layer:hover .ico, .layer.is-focus .ico { color: var(--accent); }
+  .hubtie { display: grid; grid-template-columns: repeat(5, 1fr); height: 14px; }
+  .hubtie span { border-left: 2px dashed var(--border-strong); margin: 0 auto; width: 0; height: 100%; }
+  .layer {
+    text-align: left; background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 14px 15px; display: flex; flex-direction: column; gap: 8px; min-height: 168px;
+    transition: border-color .18s, box-shadow .18s, transform .18s, opacity .18s;
+  }
+  .layer:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+  .layer .lnum { font-size: 12px; font-weight: 700; color: var(--text-3); font-variant-numeric: tabular-nums; }
+  .layer .ltitle { font-size: 15.5px; font-weight: 600; line-height: 1.25; }
+  .layer .lq { font-size: 13.5px; color: var(--text-2); flex: 1; }
+  .layer .lstatus {
+    align-self: flex-start; font-size: 11.5px; font-weight: 600; padding: 3px 9px; border-radius: 999px;
+    border: 1px solid var(--border); color: var(--text-3);
+  }
+  .layer[data-status="in_place"]    .lstatus { color: var(--confirmed);  border-color: var(--confirmed);  background: var(--confirmed-bg); }
+  .layer[data-status="in_progress"] .lstatus { color: var(--assumption); border-color: var(--assumption); background: var(--assumption-bg); }
+  .layer[data-status="possible_gap"].lstatus,
+  .layer[data-status="possible_gap"] .lstatus { color: var(--accent-text); border-color: var(--accent); background: var(--accent-dim); }
+  .map.has-focus .layer:not(.is-focus) { opacity: .42; }
+  .layer.is-focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
+
+  .hub {
+    margin-top: 12px; background: var(--text); color: #fff; border-radius: 12px; padding: 16px 20px;
+    display: flex; gap: 18px; align-items: center; flex-wrap: wrap;
+  }
+  .hub h3 { color: #fff; margin: 0; }
+  .hub p { font-size: 14px; opacity: .8; flex: 1; min-width: 320px; }
+  .hub button { border: 1px solid rgba(255,255,255,.35); border-radius: 8px; padding: 7px 13px; font-size: 13px; font-weight: 600; }
+  .hub button:hover { background: rgba(255,255,255,.12); }
+
+  .init { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .init button {
+    text-align: left; background: var(--surface-alt); border: 1px solid transparent; border-radius: 12px; padding: 15px 17px;
+    transition: border-color .18s, background .18s;
+  }
+  .init button:hover { border-color: var(--accent); background: var(--accent-dim); }
+  .init .ilabel { font-size: 12px; font-weight: 700; color: var(--accent-text); letter-spacing: .06em; }
+  .init .ititle { font-size: 15.5px; font-weight: 600; margin: 4px 0 6px; }
+  .init p { font-size: 13.5px; color: var(--text-2); }
+
+  /* ---------------- KKT role ---------------- */
+  .frank {
+    background: var(--surface-alt); border-radius: 12px; padding: 20px 24px; margin-bottom: 6px;
+    font-size: clamp(17px, 1.7vw, 21px); font-weight: 500; line-height: 1.35;
+  }
+  .then { font-size: 16px; font-weight: 600; margin: 14px 0 14px; }
+  .rolecard { display: flex; gap: 14px; }
+  .rolecard .n {
+    flex: none; width: 30px; height: 30px; border-radius: 50%; background: var(--text); color: #fff;
+    display: grid; place-items: center; font-size: 14px; font-weight: 700;
+  }
+  .routes { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+  .route {
+    border: 1px solid var(--border); border-radius: 999px; padding: 8px 15px; font-size: 14px; font-weight: 500; color: var(--text-2);
+  }
+  .route[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-dim); color: var(--accent-text); font-weight: 600; }
+
+  /* ---------------- beyond ---------------- */
+  .acc { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 10px; }
+  .acc > button {
+    width: 100%; text-align: left; padding: 15px 18px; display: flex; align-items: center; gap: 12px; font-weight: 600; font-size: 16px;
+  }
+  .acc > button:hover { background: var(--surface-alt); }
+  .acc .chev { margin-left: auto; color: var(--text-3); transition: transform .2s; }
+  .acc[open] .chev, .acc.is-open .chev { transform: rotate(90deg); }
+  .acc .body { padding: 0 18px 18px; display: none; }
+  .acc.is-open .body { display: block; }
+  .acc .summary { font-size: 15px; color: var(--text-2); margin-bottom: 12px; }
+  .caution {
+    border-left: 3px solid var(--risk); background: rgba(180,35,24,.05); border-radius: 0 8px 8px 0;
+    padding: 11px 14px; font-size: 13.5px; color: var(--text-2); margin-top: 12px;
+  }
+  .vendor {
+    border: 1px dashed var(--border-strong); border-radius: 10px; padding: 12px 15px; font-size: 13.5px; color: var(--text-2); margin-top: 12px;
+  }
+  .rail { display: grid; gap: 8px; margin-top: 6px; }
+  .rail div { font-size: 14px; color: var(--text-2); }
+  .rail b { color: var(--text); }
+  .boundary { margin-top: 14px; font-size: 14.5px; color: var(--text-2); border-left: 2px solid var(--border-strong); padding-left: 14px; }
+
+  /* ---------------- next step ---------------- */
+  .opt { border: 1px solid var(--border); border-radius: 14px; padding: 20px 22px; transition: border-color .18s, box-shadow .18s; }
+  .opt:hover { border-color: var(--border-strong); }
+  .opt .olabel { font-size: 12px; font-weight: 700; letter-spacing: .07em; color: var(--accent-text); text-transform: uppercase; }
+  .opt h3 { font-size: 19px; margin: 6px 0 8px; }
+  .opt p { font-size: 14.5px; color: var(--text-2); }
+  .fork { display: flex; align-items: center; gap: 14px; margin: 6px 0 18px; color: var(--text-3); font-size: 13.5px; }
+  .fork svg { flex: none; }
+  .closing {
+    margin-top: 22px; padding: 22px 26px; background: var(--text); color: #fff; border-radius: 14px;
+    font-size: clamp(17px, 1.8vw, 22px); font-weight: 500; line-height: 1.35;
+  }
+
+  ul.plain { list-style: none; display: grid; gap: 6px; }
+  ul.plain li { font-size: 14px; color: var(--text-2); padding-left: 15px; position: relative; }
+  ul.plain li::before { content: ''; position: absolute; left: 0; top: .62em; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+
+  /* ---------------- drawer ---------------- */
+  .scrim { position: fixed; inset: 0; background: rgba(0,0,0,.28); z-index: 50; opacity: 0; pointer-events: none; transition: opacity .22s; }
+  .scrim.is-open { opacity: 1; pointer-events: auto; }
+  .drawer {
+    position: fixed; top: 0; right: 0; height: 100%; width: min(680px, 94vw); background: #fff; z-index: 51;
+    transform: translateX(100%); transition: transform .26s cubic-bezier(.32,.72,0,1);
+    display: flex; flex-direction: column; box-shadow: -20px 0 60px rgba(0,0,0,.12);
+  }
+  .drawer.is-open { transform: none; }
+  .drawer header {
+    padding: 18px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 14px;
+  }
+  .drawer header h3 { font-size: 20px; margin: 0; }
+  .drawer .dclose { margin-left: auto; flex: none; font-size: 13px; font-weight: 600; color: var(--text-2); border: 1px solid var(--border); border-radius: 8px; padding: 6px 12px; }
+  .drawer .dbody { padding: 20px 24px 40px; overflow-y: auto; }
+  .dfield { margin-bottom: 18px; }
+  .dfield .dlabel { font-size: 11.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--text-3); margin-bottom: 6px; }
+  .dfield p { font-size: 14.5px; color: var(--text-2); }
+  .dquestion { font-size: 17px; font-weight: 600; line-height: 1.3; margin-bottom: 4px; }
+  .dsummary { font-size: 15px; color: var(--text-2); background: var(--surface-alt); border-radius: 10px; padding: 13px 16px; }
+  .dnote { border-left: 3px solid var(--accent); background: var(--accent-dim); border-radius: 0 8px 8px 0; padding: 12px 15px; font-size: 14px; }
+  .drole { border: 1px solid var(--accent); background: var(--accent-dim); border-radius: 10px; padding: 13px 16px; font-size: 14.5px; }
+  .dcompletion { border: 1px solid var(--confirmed); background: var(--confirmed-bg); border-radius: 10px; padding: 13px 16px; font-size: 14.5px; }
+  .statusrow { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+  .statusrow button { border: 1px solid var(--border); border-radius: 999px; padding: 6px 13px; font-size: 13px; font-weight: 500; color: var(--text-2); }
+  .statusrow button[aria-pressed="true"] { border-color: var(--text); background: var(--text); color: #fff; font-weight: 600; }
+
+  /* source list */
+  .src { border-bottom: 1px solid var(--border); padding: 14px 0; }
+  .src:last-child { border-bottom: 0; }
+  .src .sid { font-size: 11.5px; font-weight: 700; color: var(--text-3); font-variant-numeric: tabular-nums; }
+  .src .stitle { font-size: 15px; font-weight: 600; margin: 2px 0 4px; }
+  .src .smeta { font-size: 13px; color: var(--text-2); }
+  .src .scav { font-size: 13px; color: var(--assumption); margin-top: 5px; }
+
+  .footer { border-top: 1px solid var(--border); padding: 14px clamp(16px,3vw,40px); font-size: 12.5px; color: var(--text-3); display: flex; gap: 14px; }
+  .footer .right { margin-left: auto; }
+
+  @media (max-width: 1180px) {
+    .layers { grid-template-columns: repeat(3, 1fr); }
+    .g5, .g4 { grid-template-columns: repeat(2, 1fr); }
+    .init { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 860px) {
+    .layers, .g3, .g2 { grid-template-columns: 1fr; }
+    .nav { order: 3; width: 100%; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+  }
+
+  /* ---------------- print ---------------- */
+  @media print {
+    .topbar, .tools, .scrim, .drawer, .footer, .statusrow, .srcbtn { display: none !important; }
+    .heromark { height: 36px; }
+    .section { display: block !important; page-break-after: always; animation: none; }
+    .map.has-focus .layer:not(.is-focus) { opacity: 1; }
+    body { font-size: 11pt; }
+    .hub, .closing { background: #fff !important; color: var(--text) !important; border: 1px solid #999; }
+    .card, .opt, .layer, .acc, .qlist li, .src, .principle, .frank { break-inside: avoid; page-break-inside: avoid; }
+    .acc .body { display: block !important; }
+    .eyebrow, h2, h3 { break-after: avoid; page-break-after: avoid; }
+    .hub p { opacity: 1; }
+    a::after { content: ' (' attr(href) ')'; font-size: 9pt; color: #666; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <div class="brand" id="brand"></div>
+    <nav class="nav" id="nav" aria-label="Canvas sections"></nav>
+    <div class="tools">
+      <button class="tool" id="btn-sources">Sources</button>
+      <button class="tool" id="btn-reset">Reset discussion</button>
+      <button class="tool" id="btn-print">Print view</button>
+    </div>
+  </div>
+</header>
+
+<main class="stage" id="stage"></main>
+
+<footer class="footer">
+  <span id="foot-meeting"></span>
+  <span class="right" id="foot-contact"></span>
+</footer>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" tabindex="-1">
+  <header>
+    <div>
+      <div class="dfield" style="margin:0"><div class="dlabel" id="drawer-kicker"></div></div>
+      <h3 id="drawer-title"></h3>
+    </div>
+    <button class="dclose" id="drawer-close">Close</button>
+  </header>
+  <div class="dbody" id="drawer-body"></div>
+</aside>
+
+<script src="content.js"></script>
+<script>
+(function () {
+  'use strict';
+  var C = window.HOMEPRO_CANVAS;
+  var stage = document.getElementById('stage');
+  var nav = document.getElementById('nav');
+  var drawer = document.getElementById('drawer');
+  var scrim = document.getElementById('scrim');
+  var lastFocused = null;
+
+  /* status is meeting-local and ephemeral: never persisted, never transmitted */
+  var status = {};
+  C.map.layers.forEach(function (l) { status[l.id] = 'unknown'; });
+
+  /* Simple line icons — used only where they add meaning (spec §8.10). */
+  var I = {
+    value:   '<path d="M3 17l5-5 4 3 8-8"/><path d="M20 4h-5m5 0v5"/>',
+    route:   '<path d="M6 20V9a3 3 0 013-3h6"/><path d="M12 3l3 3-3 3"/><circle cx="6" cy="20" r="1.6"/>',
+    use:     '<rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4M7 12l3-3 3 3 4-5"/>',
+    prove:   '<path d="M4 12l4 4L20 5"/><path d="M4 19h16"/>',
+    people:  '<circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0112 0"/><path d="M16 11a3 3 0 100-6"/><path d="M18 20a6 6 0 00-3-5.2"/>',
+    basket:  '<path d="M3 8h18l-2 11H5L3 8z"/><path d="M8 8V6a4 4 0 018 0v2"/>',
+    repeat:  '<path d="M4 12a8 8 0 0113.7-5.7L20 8"/><path d="M20 4v4h-4"/><path d="M20 12a8 8 0 01-13.7 5.7L4 16"/><path d="M4 20v-4h4"/>',
+    tag:     '<path d="M3 12V4h8l9 9-8 8-9-9z"/><circle cx="7.5" cy="7.5" r="1.4"/>',
+    link:    '<path d="M9 15l6-6"/><path d="M11 6l1-1a4 4 0 016 6l-1 1"/><path d="M13 18l-1 1a4 4 0 01-6-6l1-1"/>',
+    l1:      '<path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/>',
+    l2:      '<circle cx="7" cy="8" r="3.2"/><circle cx="16" cy="8" r="3.2"/><circle cx="11.5" cy="16" r="3.2"/>',
+    l3:      '<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 4v3M12 17v3M4 12h3M17 12h3"/>',
+    l4:      '<path d="M12 3v5M12 8L6 13M12 8l6 5"/><rect x="3" y="13" width="6" height="6" rx="1.5"/><rect x="15" y="13" width="6" height="6" rx="1.5"/>',
+    l5:      '<rect x="4" y="7" width="16" height="11" rx="2.5"/><path d="M9 12h.01M15 12h.01M12 4v3M8 18v2M16 18v2"/>',
+    hub:     '<circle cx="12" cy="12" r="3"/><path d="M12 3v6M12 15v6M3 12h6M15 12h6"/>',
+    fork:    '<path d="M4 12h6M10 12l4-6h6M10 12l4 6h6"/>'
+  };
+  function icon(name, cls) {
+    return '<svg class="ico ' + (cls || '') + '" viewBox="0 0 24 24" aria-hidden="true">' + (I[name] || '') + '</svg>';
+  }
+  var LAYER_ICON = { l1: 'l1', l2: 'l2', l3: 'l3', l4: 'l4', l5: 'l5' };
+  var HOW_ICON = ['value', 'route', 'use', 'prove'];
+  var OUTCOME_ICON = ['value', 'basket', 'repeat', 'tag', 'people'];
+
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+  function list(items, cls) {
+    return '<ul class="' + (cls || 'plain') + '">' + items.map(function (i) {
+      return '<li>' + esc(i) + '</li>';
+    }).join('') + '</ul>';
+  }
+  function field(label, html) {
+    return '<div class="dfield"><div class="dlabel">' + esc(label) + '</div>' + html + '</div>';
+  }
+
+  /* ---------------- navigation ---------------- */
+  document.getElementById('brand').innerHTML =
+    '<img src="kkt-mark.svg" alt="Kitty Kat Technologies" class="brandmark">' +
+    '<span class="bx">×</span>' +
+    (C.permissions.showHomeProLogo
+      ? '<img src="homepro-logo.svg" alt="HomePro" class="partnermark">'
+      : '<span>HomePro</span>');
+
+  nav.innerHTML = C.nav.map(function (n, i) {
+    return '<button type="button" data-go="' + n.id + '" aria-current="' + (i === 0) + '">' +
+           '<span class="num">' + (i + 1) + '</span>' + esc(n.label) + '</button>';
+  }).join('');
+
+  function go(id) {
+    document.querySelectorAll('.section').forEach(function (s) {
+      s.classList.toggle('is-active', s.dataset.section === id);
+    });
+    nav.querySelectorAll('button').forEach(function (b) {
+      b.setAttribute('aria-current', String(b.dataset.go === id));
+    });
+    window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+  }
+  nav.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-go]'); if (b) go(b.dataset.go);
+  });
+
+  /* ---------------- sections ---------------- */
+  function cardEvidence(c, badgeKind) {
+    var src = (c.sources || []).length
+      ? '<button class="srcbtn" data-src="' + c.sources.join(',') + '">Source ' + c.sources.join(', ') + ' →</button>' : '';
+    return '<div class="card"><span class="badge ' + badgeKind + '">' + esc(C.ui.badge[badgeKind]) + '</span>' +
+           '<h3>' + esc(c.title) + '</h3><p>' + esc(c.body) + '</p>' + src + '</div>';
+  }
+
+  var html = '';
+
+  /* 1 — intro */
+  html += '<section class="section is-active" data-section="intro">' +
+    (C.permissions.showHomeProLogo
+      ? '<div class="heropair"><img src="kkt-mark.svg" alt="Kitty Kat Technologies" class="heromark">' +
+        '<span class="hx">×</span><img src="homepro-logo.svg" alt="HomePro" class="heropartner"></div>'
+      : '<img src="kkt-mark.svg" alt="Kitty Kat Technologies" class="heromark">') +
+    '<div class="kicker">' + esc(C.meeting.kicker) + '</div>' +
+    '<h1>' + esc(C.meeting.title) + '</h1>' +
+    '<p class="lead">' + esc(C.meeting.subtitle) + '</p>' +
+    '<p class="note">' + esc(C.meeting.note) + '</p>' +
+    '<div class="eyebrow">' + esc(C.intro.heading) + '</div>' +
+    '<div class="grid g2">' +
+      '<div class="card tint"><h3>' + esc(C.intro.whoWeAre.label) + '</h3><p>' + esc(C.intro.whoWeAre.body) + '</p></div>' +
+      '<div class="card tint"><h3>' + esc(C.intro.whatWeDo.label) + '</h3><p>' + esc(C.intro.whatWeDo.body) + '</p></div>' +
+    '</div>' +
+    '<div class="eyebrow">' + esc(C.intro.howWeWork.label) + '</div>' +
+    '<div class="flowrow">' + C.intro.howWeWork.cards.map(function (c, i) {
+      return '<div class="flowstep"><div class="flowdot">' + (i + 1) + '</div>' +
+        '<h3>' + icon(HOW_ICON[i]) + ' ' + esc(c.title) + '</h3><p>' + esc(c.body) + '</p></div>';
+    }).join('') + '</div>' +
+    '<div class="eyebrow">' + esc(C.intro.proofPoint.label) + '</div>' +
+    '<div class="card" style="border-color:var(--confirmed);background:var(--confirmed-bg)"><p style="color:var(--text);font-size:15.5px">' +
+      esc(C.intro.proofPoint.body) + '</p></div>' +
+    '<p class="note">' + esc(C.permissions.nameClients ? C.intro.credentialsNamed : C.intro.credentialsSafe) + '</p>' +
+  '</section>';
+
+  /* 2 — HomePro view */
+  html += '<section class="section" data-section="view">' +
+    '<h2>' + esc(C.view.heading) + '</h2>' +
+    '<p class="lead">' + esc(C.view.lead) + '</p>' +
+    '<div class="ledger">' +
+      '<div class="lg confirmed"><b>' + C.view.confirmed.cards.length + '</b> publicly confirmed facts</div>' +
+      '<div class="lg assumption"><b>' + C.view.assumptions.cards.length + '</b> working assumptions to test</div>' +
+      '<div class="lg question"><b>' + C.view.questions.items.length + '</b> questions for you</div>' +
+    '</div>' +
+    '<div class="eyebrow">' + esc(C.view.confirmed.label) + '</div>' +
+    '<div class="grid g3">' + C.view.confirmed.cards.map(function (c) { return cardEvidence(c, 'confirmed'); }).join('') + '</div>' +
+    '<div class="eyebrow">' + esc(C.view.assumptions.label) + '</div>' +
+    '<div class="grid g3">' + C.view.assumptions.cards.map(function (c) { return cardEvidence(c, 'assumption'); }).join('') + '</div>' +
+    '<div class="eyebrow">' + esc(C.view.questions.label) + '</div>' +
+    '<ul class="qlist">' + C.view.questions.items.map(function (q, i) {
+      return '<li><span class="n">' + (i + 1) + '</span><span>' + esc(q) + '</span></li>';
+    }).join('') + '</ul>' +
+  '</section>';
+
+  /* 3 — capability map (outcomes above, per spec §8.4) */
+  html += '<section class="section" data-section="map">' +
+    '<h2>' + esc(C.outcomes.heading) + '</h2>' +
+    '<div class="grid g5">' + C.outcomes.cards.map(function (c, i) {
+      return '<div class="card tint"><div class="cardhead">' + icon(OUTCOME_ICON[i]) + '<h3>' + esc(c.title) + '</h3></div>' +
+        '<p>' + esc(c.body) + '</p></div>';
+    }).join('') + '</div>' +
+    '<div class="principle">' + esc(C.outcomes.principle) + '</div>' +
+    '<div class="eyebrow">' + esc(C.map.heading) + '</div>' +
+    '<p class="lead">' + esc(C.map.intro) + '</p>' +
+    '<p class="map-note">' + esc(C.map.statusHint) + '</p>' +
+    '<div class="map" id="map"><div class="maprail"><div class="layers">' + C.map.layers.map(function (l) {
+      return '<button type="button" class="layer" data-layer="' + l.id + '" data-status="unknown">' +
+        '<span class="lhead"><span class="lbadge">' + l.order + '</span>' + icon(LAYER_ICON[l.id]) + '</span>' +
+        '<span class="ltitle">' + esc(l.title) + '</span>' +
+        '<span class="lq">' + esc(l.question) + '</span>' +
+        '<span class="lstatus">' + esc(C.statusLabels.unknown) + '</span>' +
+      '</button>';
+    }).join('') + '</div></div>' +
+    '<div class="hubtie">' + '<span></span><span></span><span></span><span></span><span></span>' + '</div></div>' +
+    '<div class="hub"><div style="display:flex;align-items:center;gap:10px">' + icon('hub', 'ico-lg') + '<h3>' + esc(C.map.hub.heading) + '</h3></div><p>' + esc(C.map.hub.definition) + '</p>' +
+      '<button type="button" data-hub="1">What it is and is not →</button></div>' +
+    '<div class="eyebrow">' + esc(C.map.initiatives.heading) + ' — ' + esc(C.map.initiatives.note) + '</div>' +
+    '<div class="init">' + C.map.initiatives.items.map(function (it) {
+      return '<button type="button" data-init="' + it.id + '">' +
+        '<span class="ilabel">Initiative ' + it.id + '</span>' +
+        '<div class="ititle">' + esc(it.title) + '</div>' +
+        '<p>' + esc(it.commercialQuestion) + '</p></button>';
+    }).join('') + '</div>' +
+  '</section>';
+
+  /* 4 — KKT role */
+  html += '<section class="section" data-section="role">' +
+    '<h2>' + esc(C.role.heading) + '</h2>' +
+    '<div class="frank">' + esc(C.role.frankStatement) + '</div>' +
+    '<div class="then">' + esc(C.role.thenLine) + '</div>' +
+    '<div class="grid g2">' + C.role.cards.map(function (c) {
+      return '<div class="card"><div class="rolecard"><div class="n">' + c.n + '</div><div>' +
+        '<h3>' + esc(c.title) + '</h3><p>' + esc(c.body) + '</p></div></div></div>';
+    }).join('') + '</div>' +
+    '<div class="principle">' + esc(C.role.supportingLine) + '</div>' +
+    '<div class="eyebrow">' + esc(C.role.routes.label) + '</div>' +
+    '<div class="routes">' + C.role.routes.items.map(function (r, i) {
+      return '<button type="button" class="route" data-route="' + i + '" aria-pressed="false">' + esc(r) + '</button>';
+    }).join('') + '</div>' +
+  '</section>';
+
+  /* 5 — beyond */
+  html += '<section class="section" data-section="beyond">' +
+    '<h2>' + esc(C.beyond.heading) + '</h2>' +
+    '<p class="note" style="margin-bottom:18px">' + esc(C.beyond.note) + '</p>' +
+    C.beyond.blocks.map(function (b) {
+      var body = '<div class="summary">' + esc(b.summary) + '</div>' +
+        '<div class="dlabel" style="font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);margin-bottom:6px">' + esc(b.listLabel) + '</div>' +
+        list(b.list) +
+        (b.notLabel ? '<div class="dlabel" style="font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);margin:14px 0 6px">' + esc(b.notLabel) + '</div>' + list(b.notList) : '') +
+        (b.prerequisites ? '<p style="font-size:13.5px;color:var(--text-2);margin-top:12px"><b>Prerequisites.</b> ' + esc(b.prerequisites) + '</p>' : '') +
+        (b.vendorNote ? '<div class="vendor">' + esc(b.vendorNote) +
+            (b.vendorSources ? ' <button class="srcbtn" data-src="' + b.vendorSources.join(',') + '">Source ' + b.vendorSources.join(', ') + ' →</button>' : '') + '</div>' : '') +
+        (b.evidenceNote ? '<div class="vendor">' + esc(b.evidenceNote) +
+            (b.vendorSources ? ' <button class="srcbtn" data-src="' + b.vendorSources.join(',') + '">Source ' + b.vendorSources.join(', ') + ' →</button>' : '') + '</div>' : '') +
+        (b.caution ? '<div class="caution"><b>Caution.</b> ' + esc(b.caution) + '</div>' : '');
+      return '<div class="acc" data-acc="' + b.id + '"><button type="button" aria-expanded="false">' + esc(b.title) +
+        '<span class="chev">›</span></button><div class="body">' + body + '</div></div>';
+    }).join('') +
+    '<div class="eyebrow">' + esc(C.beyond.otherRail.label) + '</div>' +
+    '<div class="rail">' + C.beyond.otherRail.items.map(function (i) {
+      return '<div><b>' + esc(i.title) + '</b> — ' + esc(i.body) + '</div>';
+    }).join('') + '</div>' +
+    '<div class="boundary">' + esc(C.beyond.boundary) + '</div>' +
+  '</section>';
+
+  /* 6 — next step */
+  html += '<section class="section" data-section="next">' +
+    '<h2>' + esc(C.next.heading) + '</h2>' +
+    '<div class="fork">' + icon('fork', 'ico-lg') + '<span>Two concrete choices — or the conclusion that no action is needed.</span></div>' +
+    '<div class="grid g2">' + C.next.options.map(function (o) {
+      return '<div class="opt"><div class="olabel">' + esc(o.label) + '</div><h3>' + esc(o.title) + '</h3>' +
+        '<p>' + esc(o.body) + '</p>' +
+        '<div class="eyebrow" style="margin:16px 0 8px">' + esc(o.outputLabel) + '</div>' + list(o.output) +
+        (o.duration ? '<p class="note">' + esc(o.duration) + '</p>' : '') +
+        (o.candidates ? '<div class="eyebrow" style="margin:16px 0 8px">' + esc(o.candidatesLabel) + '</div>' + list(o.candidates) : '') +
+        '</div>';
+    }).join('') + '</div>' +
+    '<div class="closing">' + esc(C.next.closingQuestion) + '</div>' +
+  '</section>';
+
+  stage.innerHTML = html;
+  document.getElementById('foot-meeting').textContent = C.meeting.kicker;
+  document.getElementById('foot-contact').textContent = C.ui.contact;
+
+  /* ---------------- drawer ---------------- */
+  function openDrawer(kicker, title, body) {
+    lastFocused = document.activeElement;
+    document.getElementById('drawer-kicker').textContent = kicker;
+    document.getElementById('drawer-title').textContent = title;
+    document.getElementById('drawer-body').innerHTML = body;
+    drawer.classList.add('is-open'); scrim.classList.add('is-open');
+    drawer.focus();
+  }
+  function closeDrawer() {
+    drawer.classList.remove('is-open'); scrim.classList.remove('is-open');
+    document.querySelectorAll('.layer.is-focus').forEach(function (l) { l.classList.remove('is-focus'); });
+    var map = document.getElementById('map'); if (map) map.classList.remove('has-focus');
+    if (lastFocused) lastFocused.focus();
+  }
+  document.getElementById('drawer-close').addEventListener('click', closeDrawer);
+  scrim.addEventListener('click', closeDrawer);
+
+  function miniMap(activeOrder) {
+    return '<div style="display:flex;gap:6px;margin-bottom:16px">' + C.map.layers.map(function (x) {
+      var on = x.order === activeOrder;
+      return '<div style="flex:1;text-align:center;padding:7px 4px;border-radius:8px;font-size:11px;font-weight:600;' +
+        (on ? 'background:var(--accent);color:#fff' : 'background:var(--surface-alt);color:var(--text-3)') + '">' +
+        x.order + '</div>';
+    }).join('') + '</div>';
+  }
+
+  function layerBody(l) {
+    var s = miniMap(l.order);
+    s += '<div class="dquestion">' + esc(l.question) + '</div>';
+    s += '<div class="dsummary" style="margin-bottom:18px">' + esc(l.summary) + '</div>';
+    s += field('Status in this discussion',
+      '<div class="statusrow" data-statusfor="' + l.id + '">' +
+      ['unknown', 'in_place', 'in_progress', 'possible_gap'].map(function (k) {
+        return '<button type="button" data-set="' + k + '" aria-pressed="' + (status[l.id] === k) + '">' + esc(C.statusLabels[k]) + '</button>';
+      }).join('') + '</div>');
+    s += field('What this can produce', list(l.outputs));
+    s += field('Methods that may be used', list(l.methods));
+    if (l.illustrative) s += field(l.illustrative.label, list(l.illustrative.items));
+    if (l.distinction) s += '<div class="dfield"><div class="dnote"><b>Important distinction.</b> ' + esc(l.distinction) + '</div></div>';
+    if (l.mustNotImply) s += field(l.mustNotImply.label, list(l.mustNotImply.items));
+    if (l.operatingModel) s += field(l.operatingModel.label, list(l.operatingModel.items));
+    s += field('Minimum useful data', list(l.minimumData));
+    s += field('Measures', list(l.measures));
+    s += field('Questions for HomePro', list(l.homeProQuestions));
+    s += field('Possible KKT role', '<div class="drole">' + esc(l.kktRole) + '</div>');
+    s += field('Completion criterion', '<div class="dcompletion">' + esc(l.completion) + '</div>');
+    return s;
+  }
+
+  function initiativeBody(it) {
+    var s = '';
+    s += '<div class="dquestion">' + esc(it.commercialQuestion) + '</div>';
+    s += field(it.rationaleLabel, list(it.rationale));
+    s += field('Illustrative scope', list(it.scope));
+    s += field('Minimum data', '<p>' + esc(it.minimumData) + '</p>');
+    s += field('Primary KPI', '<div class="drole">' + esc(it.primaryKpi) + '</div>');
+    s += field('Guardrails', '<p>' + esc(it.guardrails) + '</p>');
+    s += field('Discovery questions', list(it.discovery));
+    return s;
+  }
+
+  function sourcesBody(ids) {
+    var pick = ids ? C.sources.filter(function (s) { return ids.indexOf(s.id) > -1; }) : C.sources;
+    return (ids ? '' : '<p class="note" style="margin:0 0 14px">' + esc(C.ui.sourcesIntro) + '</p>') +
+      pick.map(function (s) {
+        return '<div class="src"><div class="sid">' + esc(s.id) + ' · ' + esc(C.ui.badge[s.status === 'confirmed' ? 'confirmed' : 'assumption']) + '</div>' +
+          '<div class="stitle">' + esc(s.title) + '</div>' +
+          '<div class="smeta">' + esc(s.supports) + '</div>' +
+          '<div class="smeta" style="margin-top:5px">' + esc(s.publisher) + ' · accessed ' + esc(s.accessed) +
+            ' · <a href="' + esc(s.url) + '" target="_blank" rel="noopener noreferrer">open source ↗</a></div>' +
+          (s.caveat ? '<div class="scav">Caveat: ' + esc(s.caveat) + '</div>' : '') + '</div>';
+      }).join('');
+  }
+
+  /* ---------------- interactions ---------------- */
+  stage.addEventListener('click', function (e) {
+    var t = e.target;
+
+    var layerBtn = t.closest('[data-layer]');
+    if (layerBtn) {
+      var l = C.map.layers.filter(function (x) { return x.id === layerBtn.dataset.layer; })[0];
+      document.querySelectorAll('.layer').forEach(function (x) { x.classList.remove('is-focus'); });
+      layerBtn.classList.add('is-focus');
+      document.getElementById('map').classList.add('has-focus');
+      openDrawer('Layer ' + l.order, l.title, layerBody(l));
+      return;
+    }
+
+    var initBtn = t.closest('[data-init]');
+    if (initBtn) {
+      var it = C.map.initiatives.items.filter(function (x) { return x.id === initBtn.dataset.init; })[0];
+      openDrawer('Initiative ' + it.id, it.title, initiativeBody(it));
+      return;
+    }
+
+    if (t.closest('[data-hub]')) {
+      openDrawer('Cross-layer foundation', C.map.hub.heading,
+        '<div class="dsummary" style="margin-bottom:18px">' + esc(C.map.hub.definition) + '</div>' +
+        field('What it includes', list(C.map.hub.includes)) +
+        '<div class="dfield"><div class="dnote"><b>What it is not.</b> ' + esc(C.map.hub.isNot) + '</div></div>');
+      return;
+    }
+
+    var srcBtn = t.closest('[data-src]');
+    if (srcBtn) { openDrawer(C.ui.sourcesTitle, 'Supporting sources', sourcesBody(srcBtn.dataset.src.split(','))); return; }
+
+    var acc = t.closest('.acc > button');
+    if (acc) {
+      var box = acc.parentElement;
+      var open = box.classList.toggle('is-open');
+      acc.setAttribute('aria-expanded', String(open));
+      return;
+    }
+
+    var route = t.closest('[data-route]');
+    if (route) { route.setAttribute('aria-pressed', route.getAttribute('aria-pressed') === 'true' ? 'false' : 'true'); }
+  });
+
+  drawer.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-set]');
+    if (!b) return;
+    var wrap = b.closest('[data-statusfor]');
+    var id = wrap.dataset.statusfor;
+    status[id] = b.dataset.set;
+    wrap.querySelectorAll('button').forEach(function (x) {
+      x.setAttribute('aria-pressed', String(x.dataset.set === status[id]));
+    });
+    var card = document.querySelector('[data-layer="' + id + '"]');
+    card.dataset.status = status[id];
+    card.querySelector('.lstatus').textContent = C.statusLabels[status[id]];
+  });
+
+  document.getElementById('btn-sources').addEventListener('click', function () {
+    openDrawer(C.ui.sourcesTitle, C.ui.sourcesTitle, sourcesBody(null));
+  });
+  document.getElementById('btn-print').addEventListener('click', function () { window.print(); });
+  document.getElementById('btn-reset').addEventListener('click', function () {
+    C.map.layers.forEach(function (l) {
+      status[l.id] = 'unknown';
+      var card = document.querySelector('[data-layer="' + l.id + '"]');
+      card.dataset.status = 'unknown';
+      card.querySelector('.lstatus').textContent = C.statusLabels.unknown;
+      card.classList.remove('is-focus');
+    });
+    document.getElementById('map').classList.remove('has-focus');
+    document.querySelectorAll('.acc.is-open').forEach(function (a) {
+      a.classList.remove('is-open'); a.querySelector('button').setAttribute('aria-expanded', 'false');
+    });
+    document.querySelectorAll('[data-route]').forEach(function (r) { r.setAttribute('aria-pressed', 'false'); });
+    closeDrawer();
+    go('intro');
+  });
+
+  /* keyboard: 1-6 jump to a section, Escape closes the drawer */
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && drawer.classList.contains('is-open')) { closeDrawer(); return; }
+    if (e.target.closest('input, textarea')) return;
+    var n = parseInt(e.key, 10);
+    if (n >= 1 && n <= C.nav.length) go(C.nav[n - 1].id);
+  });
+})();
+</script>
+</body>
+</html>
