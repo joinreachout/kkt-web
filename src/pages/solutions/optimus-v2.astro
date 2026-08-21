@@ -87,7 +87,7 @@ import CTA from '~/components/CTA.astro';
               </g>
             </svg>
 
-            <div class="duo-node" style="--x:50%; --y:11%;">Отдел поставок</div>
+            <div class="duo-node duo-node-accent" style="--x:50%; --y:11%;">Отдел поставок</div>
             <div class="duo-node" style="--x:16%; --y:24%;">Нефтебаза</div>
             <div class="duo-node" style="--x:84%; --y:24%;">Поставщик</div>
             <div class="duo-node" style="--x:16%; --y:76%;">Порт / ЖД</div>
@@ -99,7 +99,7 @@ import CTA from '~/components/CTA.astro';
               <b>Ручная сводка</b><span>Excel, звонки, почта</span>
             </div>
             <div class="duo-core duo-core-order" style="--x:50%; --y:92%;">
-              <b>Optimus</b><span>ночной пересчёт всей сети</span>
+              <b>Optimus</b><span>пересчёт всей сети в реальном времени</span>
             </div>
 
             <div class="chip chip-a" style="--x:30%; --y:19%;">Разрозненные системы</div>
@@ -145,7 +145,7 @@ import CTA from '~/components/CTA.astro';
             <button class="proc-step is-active" role="tab" aria-selected="true" data-step="1">
               <span class="proc-num">01</span>
               <span class="proc-name">Автоматическое планирование</span>
-              <span class="proc-brief">Каждую ночь Optimus получает свежие остатки и расход, считает, когда запас дойдёт до критического уровня, и формирует предложение по заказу.</span>
+              <span class="proc-brief">Optimus получает свежие остатки и расход в режиме реального времени, считает, когда запас дойдёт до критического уровня, и формирует предложение по заказу.</span>
             </button>
             <button class="proc-step" role="tab" aria-selected="false" data-step="2">
               <span class="proc-num">02</span>
@@ -165,7 +165,7 @@ import CTA from '~/components/CTA.astro';
             <button class="proc-step" role="tab" aria-selected="false" data-step="4">
               <span class="proc-num">04</span>
               <span class="proc-name">Приёмка на нефтебазе</span>
-              <span class="proc-brief">Топливо слито в резервуары, поставка зафиксирована. На следующую ночь остатки пересчитываются заново.</span>
+              <span class="proc-brief">Топливо слито в резервуары, поставка зафиксирована. Остатки пересчитываются сразу.</span>
             </button>
           </div>
 
@@ -181,54 +181,6 @@ import CTA from '~/components/CTA.astro';
       </div>
     </section>
 
-    <!-- СКРИНШОТ TITAN-STYLE: СОВЕТНИК -->
-    <section data-reveal class="section section-shot">
-      <div class="container">
-        <div class="section-label">Интерфейс</div>
-        <h2 class="h2-section">Советник по закупкам — главный экран планирования</h2>
-        <p class="sec-lede">
-          Каждая строка — нефтебаза и вид топлива: сколько осталось, когда остатков будет
-          критически мало, сколько и у кого заказать. Справа — обоснование предлагаемого решения.
-        </p>
-        <figure class="shot shot-annot">
-          <div class="ann ann-top" style="--ax:6%; --nudge:120px;">Критично / заказать / в норме — вся сеть одним списком</div>
-          <div class="ann ann-top" style="--ax:55%;">Объём кратен цистерне, поставщик и крайняя дата заказа</div>
-          <div class="ann ann-top" style="--ax:84%;">Обоснование решения — словами, с рисками</div>
-          <div class="ann ann-bottom" style="--ax:76%;">Поставщик не успевает? Система предложит привезти с нефтебазы с избытком</div>
-          <div class="shot-frame">
-            <img src="/screens/v2/advisor-ru.png" alt="Советник по закупкам Optimus: критичные позиции, рекомендации по заказам, поставщики и сроки" loading="lazy" decoding="async"/>
-            <div class="lead lead-v" style="--x:6%;  --y1:-18px; --y2:10%; --d:0s;"></div>
-            <div class="lead lead-v" style="--x:55%; --y1:-18px; --y2:26%; --d:0.25s;"></div>
-            <div class="lead lead-v" style="--x:84%; --y1:-18px; --y2:50%; --d:0.5s;"></div>
-            <div class="lead lead-v" style="--x:76%; --y1:90%; --y2:calc(100% + 28px); --d:0.75s; transform-origin: bottom;"></div>
-            <i class="ann-dot" style="--x:6%; --y:10%; --d:0.45s;"></i>
-            <i class="ann-dot" style="--x:55%; --y:26%; --d:0.7s;"></i>
-            <i class="ann-dot" style="--x:84%; --y:50%; --d:0.95s;"></i>
-            <i class="ann-dot" style="--x:76%; --y:90%; --d:1.2s;"></i>
-          </div>
-          <figcaption>Советник по закупкам: что критично, что заказать, у кого и когда</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <!-- СКРИНШОТ TITAN-STYLE: ЛЕНТА ПОСТАВОК -->
-    <section data-reveal class="section section-shot section-shot-alt">
-      <div class="container">
-        <h2 class="h2-section">Лента поставок — всё, что уже едет</h2>
-        <figure class="shot shot-annot">
-          <div class="ann ann-top" style="--ax:76%;">35 поставок, 208 вагонов — и только 2 конфликта, найденных заранее</div>
-          <div class="ann ann-bottom" style="--ax:30%;">Каждая партия: статус и «поместится ли в бак в день прибытия»</div>
-          <div class="shot-frame">
-            <img src="/screens/v2/supply-feed-ru.png" alt="Лента поставок Optimus: хронология подтверждённых поставок по станциям и дням со статусами" loading="lazy" decoding="async"/>
-            <div class="lead lead-v" style="--x:76%; --y1:-18px; --y2:13%; --d:0s;"></div>
-            <div class="lead lead-v" style="--x:30%; --y1:44%; --y2:calc(100% + 28px); --d:0.35s; transform-origin: bottom;"></div>
-            <i class="ann-dot" style="--x:76%; --y:13%; --d:0.35s;"></i>
-            <i class="ann-dot" style="--x:30%; --y:44%; --d:0.95s;"></i>
-          </div>
-          <figcaption>Лента поставок: статус каждой партии и риск не поместиться в бак</figcaption>
-        </figure>
-      </div>
-    </section>
 
     <!-- 03 · ПОТОКИ ДАННЫХ -->
     <section data-reveal class="section section-data">
@@ -240,60 +192,62 @@ import CTA from '~/components/CTA.astro';
           считает решение и возвращает готовый результат обратно.
         </p>
 
-        <img class="flow-art" src="/screens/v2/optimus-dataflow-iso.jpg"
-             alt="Данные из учётных систем стекаются в Optimus и возвращаются в ERP и на дашборды"
-             loading="lazy" decoding="async"/>
+        <div class="dflow">
+          <div class="dmid">
+            <img class="dflow-art" src="/screens/v2/optimus-dataflow-iso.jpg"
+                 alt="Данные из учётных систем стекаются в Optimus и возвращаются в ERP и на дашборды"
+                 loading="lazy" decoding="async"/>
+            <div class="dcore">Optimus</div>
+          </div>
 
-        <div class="flow">
-          <div class="flow-col">
-            <div class="flow-title">На входе</div>
-            <div class="flow-card"><b>ERP</b><span>Остатки на нефтебазе, заказы на поставку</span></div>
-            <div class="flow-card"><b>TMS</b><span>Данные по логистике</span></div>
-            <div class="flow-card"><b>DWH</b><span>Любые структурированные данные</span></div>
-            <div class="flow-card"><b>Рыночные цены</b><span>Внешние котировки — для сравнения предложений поставщиков</span></div>
+          <div class="dcol dcol-in">
+            <div class="dcol-title">На входе</div>
+            <div class="dtag"><b>ERP</b><span>Остатки на нефтебазе, заказы на поставку</span></div>
+            <div class="dtag"><b>TMS</b><span>Данные по логистике</span></div>
+            <div class="dtag"><b>DWH</b><span>Любые структурированные данные</span></div>
+            <div class="dtag"><b>Рыночные цены</b><span>Внешние котировки для сравнения поставщиков</span></div>
           </div>
-          <div class="flow-mid">
-            <div class="flow-arrow" aria-hidden="true">→</div>
-            <div class="flow-core">
-              <div class="flow-core-name">Optimus</div>
-              <div class="flow-core-sub">Настраиваемые параметры: нефтебазы и резервуары · критические остатки · поставщики, сроки и стоимость</div>
-            </div>
-            <div class="flow-arrow" aria-hidden="true">→</div>
+
+          <div class="dcol dcol-out">
+            <div class="dcol-title">На выходе</div>
+            <div class="dtag"><b>ERP</b><span>Обновлённые остатки и заказы</span></div>
+            <div class="dtag"><b>Дашборды и аналитика</b><span>Прогноз остатков, оборот запасов, капитал в запасах</span></div>
           </div>
-          <div class="flow-col">
-            <div class="flow-title">На выходе</div>
-            <div class="flow-card"><b>ERP</b><span>Обновлённые остатки и заказы</span></div>
-            <div class="flow-card"><b>Дашборды и аналитика</b><span>Прогноз остатков на неделю вперёд · скорость оборота запасов · рекомендации по капиталу в запасах</span></div>
-          </div>
+
         </div>
 
-        <div class="analytics-row" data-reveal-stagger>
-          <figure class="mini-shot">
-            <img src="/screens/v2/turnover-ru.png" alt="Скорость оборота запасов по видам топлива: дни на руках и капитал в запасе" loading="lazy" decoding="async"/>
-            <figcaption>Скорость оборота запасов по видам топлива</figcaption>
-          </figure>
-          <figure class="mini-shot">
-            <img src="/screens/v2/scenarios-ru.png" alt="Сравнение сценариев закупки: Standard Safety, Cost Optimization, Crisis — и их влияние на капитал" loading="lazy" decoding="async"/>
-            <figcaption>Сравнение сценариев закупки и их влияние на капитал</figcaption>
-          </figure>
-        </div>
+        <ul class="gains" data-reveal-stagger>
+          <li><b>Быстрое решение.</b> Сотруднику остаётся оценить готовое предложение — не считать вручную десятки сочетаний нефтебаз и видов топлива.</li>
+          <li><b>Экономия денег.</b> Меньше капитала заморожено в лишних запасах, меньше потерь от простоев и пересохших резервуаров.</li>
+          <li><b>Меньше ручной работы.</b> Расчёт идёт по всей сети непрерывно: пришли новые данные — через секунды готово обновлённое предложение.</li>
+        </ul>
+        <p class="draftnote">Черновик: Яна пришлёт финальный список преимуществ — блок под замену.</p>
+      </div>
+    </section>
 
-        <div class="benefits" data-reveal-stagger>
-          <div class="benefit">
-            <div class="benefit-title">Быстрое решение</div>
-            <p>Человеку остаётся оценить готовое предложение — не считать вручную десятки сочетаний станций и видов топлива.</p>
+    <!-- ИНТЕРФЕЙС — карусель -->
+    <section data-reveal class="section section-ui">
+      <div class="container">
+        <div class="section-label">Интерфейс</div>
+        <h2 class="h2-section">Как это выглядит в системе</h2>
+        <p class="sec-lede">
+          Шесть рабочих экранов Optimus. Листайте стрелками или точками.
+        </p>
+
+        <div class="carousel" id="carousel">
+          <div class="car-viewport">
+            <div class="car-track" id="car-track"><!-- слайды рисует скрипт --></div>
           </div>
-          <div class="benefit">
-            <div class="benefit-title">Экономия денег</div>
-            <p>Меньше денег заморожено в лишних запасах и меньше потерь от простоев и пересохших станций.</p>
-          </div>
+          <button class="car-nav car-prev" id="car-prev" aria-label="Предыдущий экран">‹</button>
+          <button class="car-nav car-next" id="car-next" aria-label="Следующий экран">›</button>
+          <div class="car-dots" id="car-dots"></div>
         </div>
       </div>
     </section>
 
     <CTA
       heading="Посмотрите Optimus на живой сети"
-      body="Демо-стенд работает на полной модели сети: станции, нефтебазы, поставщики, ночной пересчёт. Покажем на ваших сценариях."
+      body="Демо-стенд работает на полной модели сети: нефтебазы, резервуары, поставщики, живой пересчёт. Покажем на ваших сценариях."
       primaryLabel="Запросить демо"
       primaryHref="/contact?subject=Optimus%20demo"
       secondaryLabel="Кейс внедрения"
@@ -314,10 +268,6 @@ import CTA from '~/components/CTA.astro';
         'Поставщик выбирается не только по цене, но и с поправкой на сроки и надёжность поставки',
         'Дополнительный заказ можно разместить вручную в любой момент',
       ],
-      images: [
-        { src: '/screens/v2/advisor-ru.png', caption: 'Советник по закупкам: что критично, что заказать, у кого и когда' },
-        { src: '/screens/v2/fill-levels-ru.png', caption: 'Заполнение станций по каждому виду топлива, с прогнозом до критического уровня' },
-      ],
     },
     '2': {
       label: 'Шаг 02', title: 'Согласование заказа',
@@ -326,7 +276,6 @@ import CTA from '~/components/CTA.astro';
         'Предложение можно скорректировать вручную перед подтверждением',
         'Это единственный обязательный шаг с участием сотрудника во всём процессе',
       ],
-      images: [],
     },
     '3': {
       label: 'Шаг 03', title: 'Закупка и поставка',
@@ -334,9 +283,6 @@ import CTA from '~/components/CTA.astro';
         'Optimus отслеживает поставку и заранее оценивает загрузку резервуаров с учётом топлива, которое уже в дороге',
         'Учитывается скорость слива и время отбора проб, чтобы не включать это время в простой',
         'Если к приезду резервуар окажется полон — система предложит сценарии распределения',
-      ],
-      images: [
-        { src: '/screens/v2/supply-feed-ru.png', caption: 'Лента поставок: статус каждой партии и риск не поместиться в бак' },
       ],
     },
     'exc': {
@@ -347,19 +293,47 @@ import CTA from '~/components/CTA.astro';
         'Для каждого случая она считает: через сколько суток освободится место, сколько цистерн не поместится, сколько дней они простоят и во что это обойдётся',
         'Если на одной нефтебазе излишек, а на другой нехватка — дешевле перевезти топливо между ними, чем заказывать новое',
       ],
-      images: [
-        { src: '/screens/v2/conflicts-ru.png', caption: 'Конфликты поставок: что не влезает и во сколько обойдётся ожидание' },
-      ],
     },
     '4': {
       label: 'Шаг 04', title: 'Приёмка на нефтебазе',
       bullets: [
         'Факт доставки фиксируется в системе',
-        'Остатки обновляются, и на следующую ночь весь расчёт выполняется заново',
+        'Остатки обновляются, и расчёт по сети выполняется заново',
         'Данные передаются обратно в ERP и на дашборды',
       ],
-      images: [],
     },
+  };
+
+
+  /* Изометрические пиктограммы шагов — в стиле иллюстраций страницы */
+  /* Заглушки под пиктограммы шагов. Dennis генерит в nanobanana,
+   * затем сюда подставляются пути к картинкам вместо блока-заглушки. */
+  const PICTO: Record<string, { file: string; what: string; prompt: string }> = {
+    '1': {
+      file: 'step-1-planning.jpg',
+      what: 'Монитор с растущим графиком остатка и линией критического уровня; рядом маленький значок «обновление в реальном времени».',
+      prompt: 'Isometric 3D illustration, matte dark charcoal #1D1D1F objects, glowing orange #FF6A00 accent lines, pure white background, soft shadows. A single flat monitor on a small platform showing a simple line chart declining toward a marked threshold line. No text, no letters, no numbers, no people, no logos. Square composition.'
+    },
+    '2': {
+      file: 'step-2-approval.jpg',
+      what: 'Карточка заказа и крупная галочка подтверждения — единственный шаг, где нужен человек.',
+      prompt: 'Isometric 3D illustration, matte dark charcoal #1D1D1F objects, glowing orange #FF6A00 accent lines, pure white background, soft shadows. A single document card on a small platform with a large glowing orange checkmark hovering above it. No text, no letters, no numbers, no people, no logos. Square composition.'
+    },
+    '3': {
+      file: 'step-3-supply.jpg',
+      what: 'Цистерна на рельсах в движении, оранжевая линия маршрута к нефтебазе.',
+      prompt: 'Isometric 3D illustration, matte dark charcoal #1D1D1F objects, glowing orange #FF6A00 accent lines, pure white background, soft shadows. A single rail tank car on a short piece of track, with a glowing orange route line running ahead of it. No text, no letters, no numbers, no people, no logos. Square composition.'
+    },
+    'exc': {
+      file: 'step-exc-conflict.jpg',
+      what: 'Полный резервуар и ждущая рядом цистерна; сверху значок времени — груз приехал, а места нет.',
+      prompt: 'Isometric 3D illustration, matte dark charcoal #1D1D1F objects, glowing orange #FF6A00 accent lines, pure white background, soft shadows. A storage tank filled to the top next to a waiting rail tank car, with a small glowing orange hourglass floating above. No text, no letters, no numbers, no people, no logos. Square composition.'
+    },
+    '4': {
+      file: 'step-4-receiving.jpg',
+      what: 'Резервуар, который наполняется: уровень поднимается, стрелка вниз в горловину.',
+      prompt: 'Isometric 3D illustration, matte dark charcoal #1D1D1F objects, glowing orange #FF6A00 accent lines, pure white background, soft shadows. A storage tank being filled, the fuel level glowing orange inside it and an arrow pointing down into its inlet. No text, no letters, no numbers, no people, no logos. Square composition.'
+    }
   };
 
   const panel = document.getElementById('proc-panel')!;
@@ -372,11 +346,13 @@ import CTA from '~/components/CTA.astro';
       <div class="pp-label">${d.label}</div>
       <h3 class="pp-title">${d.title}</h3>
       <ul class="pp-bullets">${d.bullets.map((b) => `<li>${b}</li>`).join('')}</ul>
-      ${d.images.map((im) => `
-        <figure class="pp-fig">
-          <img src="${im.src}" alt="${im.caption}" loading="lazy" decoding="async"/>
-          <figcaption>${im.caption}</figcaption>
-        </figure>`).join('')}
+      ${PICTO[key] ? `
+        <div class="pp-slot">
+          <div class="pp-slot-tag">Пиктограмма · заглушка</div>
+          <div class="pp-slot-what">${PICTO[key].what}</div>
+          <div class="pp-slot-file">/screens/v2/${PICTO[key].file}</div>
+          <details class="pp-slot-prompt"><summary>Промпт для nanobanana</summary><code>${PICTO[key].prompt}</code></details>
+        </div>` : ''}
     `;
   }
 
@@ -387,6 +363,69 @@ import CTA from '~/components/CTA.astro';
     });
   });
   render('1');
+
+  /* ---------------- карусель экранов ---------------- */
+  const SLIDES = [
+    { src: '/screens/v2/advisor-ru.png',
+      caption: 'Советник по закупкам: что критично, что заказать, у кого и когда',
+      alt: 'Советник по закупкам Optimus: критичные позиции, рекомендации по заказам, поставщики и сроки',
+      anns: [
+        { x: 6,  y: 10, side: 'top', text: 'Критично / заказать / в норме — вся сеть одним списком' },
+        { x: 55, y: 26, side: 'top', text: 'Объём кратен цистерне, поставщик и крайняя дата заказа' },
+        { x: 84, y: 50, side: 'top', text: 'Обоснование решения — словами, с рисками' }
+      ] },
+    { src: '/screens/v2/fill-levels-ru.png',
+      caption: 'Заполнение по каждому виду топлива, с прогнозом до критического уровня',
+      alt: 'Заполнение резервуаров Optimus по видам топлива с прогнозом до критического уровня', anns: [] },
+    { src: '/screens/v2/supply-feed-ru.png',
+      caption: 'Лента поставок: статус каждой партии и риск не поместиться в резервуар',
+      alt: 'Лента поставок Optimus: хронология подтверждённых поставок по дням со статусами',
+      anns: [
+        { x: 76, y: 13, side: 'top',    text: '35 поставок, 208 цистерн — и только 2 конфликта, найденных заранее' },
+        { x: 30, y: 44, side: 'bottom', text: 'Каждая партия: статус и «поместится ли в резервуар в день прибытия»' }
+      ] },
+    { src: '/screens/v2/conflicts-ru.png',
+      caption: 'Конфликты поставок: что не влезает и во сколько обойдётся ожидание',
+      alt: 'Конфликты поставок Optimus: цистерны, которые не помещаются, и стоимость простоя', anns: [] },
+    { src: '/screens/v2/turnover-ru.png',
+      caption: 'Скорость оборота запасов по видам топлива',
+      alt: 'Оборот запасов Optimus: дни запаса и капитал по видам топлива', anns: [] },
+    { src: '/screens/v2/scenarios-ru.png',
+      caption: 'Сравнение сценариев закупки и их влияние на капитал',
+      alt: 'Сравнение сценариев закупки Optimus и их влияние на капитал в запасах', anns: [] }
+  ];
+
+  const track = document.getElementById('car-track');
+  const dots = document.getElementById('car-dots');
+  if (track && dots) {
+    track.innerHTML = SLIDES.map((sl) => `
+      <figure class="car-slide">
+        <div class="shot-frame">
+          <img src="${sl.src}" alt="${sl.alt}" loading="lazy" decoding="async"/>
+          ${sl.anns.map((a) => `<i class="ann-dot" style="--x:${a.x}%; --y:${a.y}%"></i>`).join('')}
+          ${sl.anns.map((a) => `<div class="ann ann-${a.side}" style="--ax:${a.x}%">${a.text}</div>`).join('')}
+        </div>
+        <figcaption>${sl.caption}</figcaption>
+      </figure>`).join('');
+    dots.innerHTML = SLIDES.map((_, i) => `<button type="button" data-slide="${i}" aria-current="${i === 0}" aria-label="Экран ${i + 1}"></button>`).join('');
+
+    let idx = 0;
+    const show = (n) => {
+      idx = (n + SLIDES.length) % SLIDES.length;
+      track.style.transform = `translateX(-${idx * 100}%)`;
+      dots.querySelectorAll('button').forEach((b, i) => b.setAttribute('aria-current', String(i === idx)));
+    };
+    document.getElementById('car-prev').addEventListener('click', () => show(idx - 1));
+    document.getElementById('car-next').addEventListener('click', () => show(idx + 1));
+    dots.addEventListener('click', (e) => {
+      const b = e.target.closest('[data-slide]'); if (b) show(Number(b.dataset.slide));
+    });
+    document.getElementById('carousel').addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') show(idx - 1);
+      if (e.key === 'ArrowRight') show(idx + 1);
+    });
+  }
+
 
   // Поводки колаутов: запуск отрисовки при появлении в вьюпорте
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -460,6 +499,10 @@ import CTA from '~/components/CTA.astro';
     .pkt { display: none; }
   }
   .duo-node, .duo-core, .chip { position: absolute; left: var(--x); top: var(--y); transform: translate(-50%, -50%); }
+  .duo-node-accent {
+    background: var(--accent-gradient) !important; color: #fff; border-color: transparent !important;
+    box-shadow: 0 8px 22px rgba(255,106,0,0.28) !important;
+  }
   .duo-node {
     background: var(--card); border: 1px solid var(--border); border-radius: 999px;
     padding: 14px 26px; font: 600 16px var(--font-display); box-shadow: 0 6px 18px rgba(0,0,0,0.05); white-space: nowrap;
@@ -525,6 +568,110 @@ import CTA from '~/components/CTA.astro';
   .proc-note {
     margin-top: 28px; padding: 14px 18px; border-left: 2px solid var(--border);
     color: var(--text-muted); font-size: 14px; line-height: 1.55; max-width: 760px;
+  }
+
+
+  /* --- заглушки под пиктограммы шагов --- */
+  .proc-panel :global(.pp-slot) {
+    margin-top: 18px; border: 1px dashed var(--accent); background: var(--accent-dim);
+    border-radius: 12px; padding: 16px 18px; text-align: left;
+  }
+  .proc-panel :global(.pp-slot-tag) {
+    font: 700 11px var(--font-display); letter-spacing: .09em; text-transform: uppercase;
+    color: var(--accent-text); margin-bottom: 7px;
+  }
+  .proc-panel :global(.pp-slot-what) { font-size: 14px; color: var(--text-primary); line-height: 1.5; }
+  .proc-panel :global(.pp-slot-file) {
+    margin-top: 8px; font-family: var(--font-mono, monospace); font-size: 12px; color: var(--text-muted);
+  }
+  .proc-panel :global(.pp-slot-prompt) { margin-top: 10px; }
+  .proc-panel :global(.pp-slot-prompt summary) {
+    font-size: 12.5px; font-weight: 600; color: var(--accent-text); cursor: pointer;
+  }
+  .proc-panel :global(.pp-slot-prompt code) {
+    display: block; margin-top: 8px; font-size: 11.5px; line-height: 1.5; color: var(--text-secondary);
+    background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; white-space: pre-wrap;
+  }
+
+  /* --- потоки данных: схема поверх иллюстрации --- */
+  .dflow { display: grid; grid-template-columns: 1fr auto 1fr; gap: clamp(12px, 2vw, 28px); align-items: center; margin-bottom: 34px; }
+  .dmid { grid-column: 2; grid-row: 1; position: relative; display: flex; justify-content: center; }
+  .dflow-art { width: min(440px, 36vw); border-radius: 16px; mix-blend-mode: multiply; display: block; }
+  .dcol { display: grid; gap: 9px; align-content: center; }
+  .dcol-in { grid-column: 1; grid-row: 1; justify-items: end; text-align: right; }
+  .dcol-out { grid-column: 3; grid-row: 1; }
+  .dcol-title { font: 600 12px var(--font-display); letter-spacing: .08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 2px; }
+  .dtag {
+    background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 9px 13px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.05); max-width: 260px;
+  }
+  .dtag b { display: block; font: 600 14px var(--font-display); }
+  .dtag span { font-size: 12.5px; color: var(--text-secondary); line-height: 1.4; }
+  .dcore {
+    position: absolute; left: 50%; top: 52%; transform: translate(-50%, -50%);
+    background: var(--accent-gradient); color: #fff; font: 700 17px var(--font-display);
+    padding: 9px 22px; border-radius: 999px; box-shadow: 0 10px 26px rgba(255,106,0,.32);
+  }
+  .gains { list-style: none; display: grid; gap: 10px; max-width: 900px; }
+  .gains li { position: relative; padding-left: 30px; font-size: 15.5px; color: var(--text-secondary); line-height: 1.55; }
+  .gains li::before {
+    content: '✓'; position: absolute; left: 0; top: 0; width: 21px; height: 21px; border-radius: 50%;
+    background: var(--accent-dim); color: var(--accent-text); font-size: 12px; font-weight: 700;
+    display: grid; place-items: center;
+  }
+  .gains b { color: var(--text-primary); }
+  .draftnote {
+    margin-top: 18px; font-size: 13px; color: var(--accent-text); background: var(--accent-dim);
+    border: 1px dashed var(--accent); border-radius: 8px; padding: 8px 12px; display: inline-block;
+  }
+
+  /* --- карусель экранов --- */
+  .carousel { position: relative; }
+  .car-viewport { overflow: hidden; border-radius: 16px; }
+  .car-track { display: flex; transition: transform .45s cubic-bezier(.32,.72,0,1); }
+  /* слайды вставляет скрипт → стили только через :global, иначе Astro их не применит */
+  .carousel :global(.car-slide) {
+    flex: 0 0 100%; box-sizing: border-box; padding: 66px 4px 78px; position: relative; margin: 0;
+  }
+  .carousel :global(.car-slide .shot-frame) {
+    position: relative; border: 1px solid var(--border); border-radius: 14px;
+    box-shadow: 0 16px 44px rgba(0,0,0,0.09);
+  }
+  .carousel :global(.car-slide .shot-frame img) { width: 100%; display: block; border-radius: 14px; }
+  .carousel :global(.car-slide figcaption) { text-align: center; color: var(--text-muted); font-size: 14px; margin-top: 16px; }
+  .carousel :global(.car-slide .ann) {
+    position: absolute; left: clamp(128px, var(--ax), calc(100% - 128px)); transform: translateX(-50%);
+    background: #FFF4ED; border: 1px solid rgba(255, 106, 0, 0.4); border-radius: 10px;
+    padding: 9px 13px; font: 500 13px/1.4 var(--font-body); color: #7C2D12;
+    box-shadow: 0 6px 20px rgba(255, 106, 0, 0.16); width: max-content; max-width: 250px; z-index: 2;
+  }
+  .carousel :global(.car-slide .ann-top) { top: 0; }
+  .carousel :global(.car-slide .ann-bottom) { bottom: 4px; }
+  .carousel :global(.car-slide .ann::after) {
+    content: ''; position: absolute; left: 50%; width: 1.5px; height: 22px; background: var(--accent); transform: translateX(-50%);
+  }
+  .carousel :global(.car-slide .ann-top::after) { top: 100%; }
+  .carousel :global(.car-slide .ann-bottom::after) { bottom: 100%; }
+  .carousel :global(.car-slide .ann-dot) {
+    position: absolute; left: var(--x); top: var(--y); width: 10px; height: 10px; margin: -5px 0 0 -5px;
+    border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px var(--accent-dim); z-index: 2;
+  }
+  .car-nav {
+    position: absolute; top: 44%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%;
+    background: var(--card); border: 1px solid var(--border); font-size: 22px; line-height: 1; color: var(--text-primary);
+    box-shadow: 0 6px 20px rgba(0,0,0,.10); cursor: pointer; z-index: 3;
+  }
+  .car-nav:hover { border-color: var(--accent); color: var(--accent-text); }
+  .car-prev { left: -14px; } .car-next { right: -14px; }
+  .car-dots { display: flex; gap: 7px; justify-content: center; margin-top: 18px; }
+  .car-dots button { width: 8px; height: 8px; border-radius: 50%; border: 0; background: var(--border-hover); cursor: pointer; padding: 0; }
+  .car-dots button[aria-current="true"] { background: var(--accent); width: 22px; border-radius: 999px; }
+  @media (max-width: 900px) {
+    .dflow { grid-template-columns: 1fr; }
+    .dmid { grid-column: 1; grid-row: auto; }
+    .dflow-art { width: 100%; }
+    .dcol-in, .dcol-out { grid-column: 1; grid-row: auto; justify-items: stretch; text-align: left; }
+    .car-prev { left: 2px; } .car-next { right: 2px; }
   }
 
   /* Аннотированные скриншоты (приём Titan) */
