@@ -347,12 +347,9 @@ import CTA from '~/components/CTA.astro';
       <h3 class="pp-title">${d.title}</h3>
       <ul class="pp-bullets">${d.bullets.map((b) => `<li>${b}</li>`).join('')}</ul>
       ${PICTO[key] ? `
-        <div class="pp-slot">
-          <div class="pp-slot-tag">Пиктограмма · заглушка</div>
-          <div class="pp-slot-what">${PICTO[key].what}</div>
-          <div class="pp-slot-file">/screens/v2/${PICTO[key].file}</div>
-          <details class="pp-slot-prompt"><summary>Промпт для nanobanana</summary><code>${PICTO[key].prompt}</code></details>
-        </div>` : ''}
+        <figure class="pp-art">
+          <img src="/screens/v2/${PICTO[key].file}" alt="${PICTO[key].what}" loading="lazy" decoding="async"/>
+        </figure>` : ''}
     `;
   }
 
@@ -591,26 +588,10 @@ import CTA from '~/components/CTA.astro';
   }
 
 
-  /* --- заглушки под пиктограммы шагов --- */
-  .proc-panel :global(.pp-slot) {
-    margin-top: 18px; border: 1px dashed var(--accent); background: var(--accent-dim);
-    border-radius: 12px; padding: 16px 18px; text-align: left;
-  }
-  .proc-panel :global(.pp-slot-tag) {
-    font: 700 11px var(--font-display); letter-spacing: .09em; text-transform: uppercase;
-    color: var(--accent-text); margin-bottom: 7px;
-  }
-  .proc-panel :global(.pp-slot-what) { font-size: 14px; color: var(--text-primary); line-height: 1.5; }
-  .proc-panel :global(.pp-slot-file) {
-    margin-top: 8px; font-family: var(--font-mono, monospace); font-size: 12px; color: var(--text-muted);
-  }
-  .proc-panel :global(.pp-slot-prompt) { margin-top: 10px; }
-  .proc-panel :global(.pp-slot-prompt summary) {
-    font-size: 12.5px; font-weight: 600; color: var(--accent-text); cursor: pointer;
-  }
-  .proc-panel :global(.pp-slot-prompt code) {
-    display: block; margin-top: 8px; font-size: 11.5px; line-height: 1.5; color: var(--text-secondary);
-    background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; white-space: pre-wrap;
+  /* --- иллюстрации шагов --- */
+  .proc-panel :global(.pp-art) { margin: 18px 0 0; display: flex; justify-content: center; }
+  .proc-panel :global(.pp-art img) {
+    width: 100%; max-width: 340px; height: auto; display: block; mix-blend-mode: multiply;
   }
 
   /* --- потоки данных: схема поверх иллюстрации --- */
