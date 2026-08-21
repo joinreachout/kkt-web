@@ -355,34 +355,52 @@ import CTA from '~/components/CTA.astro';
   render('1');
 
   /* ---------------- карусель экранов ---------------- */
+  /* Скриншоты сняты одним окном 1600×900 — все кадры одного размера.
+   * SHOT_LANG определяет язык интерфейса на скриншотах: русская версия
+   * страницы показывает русские экраны, остальные локали — английские. */
+  const SHOT_LANG = 'ru';
+  const shot = (n) => `/screens/v2/${n}-${SHOT_LANG}.jpg`;
+
   const SLIDES = [
-    { src: '/screens/v2/advisor-ru.png',
-      caption: 'Советник по закупкам: что критично, что заказать, у кого и когда',
-      alt: 'Советник по закупкам Optimus: критичные позиции, рекомендации по заказам, поставщики и сроки',
+    { src: shot('ui-1-briefing'),
+      caption: 'Дашборд: система объясняет, что критично и почему',
+      alt: 'Дашборд Optimus: брифинг с критичными позициями и объяснением решения',
       anns: [
-        { x: 6,  y: 10, side: 'top', text: 'Критично / заказать / в норме — вся сеть одним списком' },
-        { x: 55, y: 26, side: 'top', text: 'Объём кратен цистерне, поставщик и крайняя дата заказа' },
-        { x: 84, y: 50, side: 'top', text: 'Обоснование решения — словами, с рисками' }
+        { x: 33, y: 47, side: 'top',    text: 'Решение объяснено словами, а не таблицей' },
+        { x: 10, y: 60, side: 'bottom', text: '31 позиция требует действия' }
       ] },
-    { src: '/screens/v2/fill-levels-ru.png',
-      caption: 'Заполнение по каждому виду топлива, с прогнозом до критического уровня',
-      alt: 'Заполнение резервуаров Optimus по видам топлива с прогнозом до критического уровня', anns: [] },
-    { src: '/screens/v2/supply-feed-ru.png',
-      caption: 'Лента поставок: статус каждой партии и риск не поместиться в резервуар',
-      alt: 'Лента поставок Optimus: хронология подтверждённых поставок по дням со статусами',
+    { src: shot('ui-2-matrix'),
+      caption: 'Матрица нефтебаз: вся сеть × виды топлива на одном экране',
+      alt: 'Матрица нефтебаз Optimus: все нефтебазы и виды топлива, цвет по срочности',
       anns: [
-        { x: 76, y: 13, side: 'top',    text: '35 поставок, 208 цистерн — и только 2 конфликта, найденных заранее' },
-        { x: 30, y: 44, side: 'bottom', text: 'Каждая партия: статус и «поместится ли в резервуар в день прибытия»' }
+        { x: 20, y: 27, side: 'top',    text: 'Критично · заказать · в норме — по всей сети' },
+        { x: 55, y: 62, side: 'bottom', text: 'Дней до критического, заполнение и остаток в тоннах' }
       ] },
-    { src: '/screens/v2/conflicts-ru.png',
-      caption: 'Конфликты поставок: что не влезает и во сколько обойдётся ожидание',
-      alt: 'Конфликты поставок Optimus: цистерны, которые не помещаются, и стоимость простоя', anns: [] },
-    { src: '/screens/v2/turnover-ru.png',
-      caption: 'Скорость оборота запасов по видам топлива',
-      alt: 'Оборот запасов Optimus: дни запаса и капитал по видам топлива', anns: [] },
-    { src: '/screens/v2/scenarios-ru.png',
-      caption: 'Сравнение сценариев закупки и их влияние на капитал',
-      alt: 'Сравнение сценариев закупки Optimus и их влияние на капитал в запасах', anns: [] }
+    { src: shot('ui-3-history'),
+      caption: 'Рекомендации: сколько заказать и у какого поставщика',
+      alt: 'История рекомендаций Optimus: остаток, дни до критического, рекомендованный объём',
+      anns: [
+        { x: 80, y: 45, side: 'top', text: 'Рекомендованный объём и лучший поставщик' }
+      ] },
+    { src: shot('ui-4-capital'),
+      caption: 'Возможности: перемещения и капитал, который можно высвободить',
+      alt: 'Экран возможностей Optimus: предложенные трансферы и высвобождение оборотного капитала',
+      anns: [
+        { x: 14, y: 24, side: 'top',    text: 'Трансферы, которые никто не запрашивал' },
+        { x: 76, y: 42, side: 'bottom', text: 'Сколько капитала заморожено сверх цели' }
+      ] },
+    { src: shot('ui-5-transit'),
+      caption: 'Заказы: всё, что уже едет, с датами и поставщиками',
+      alt: 'Заказы Optimus: поставки в пути из ERP со статусами и датами доставки',
+      anns: [
+        { x: 21, y: 29, side: 'top', text: '234 поставки в пути, статусы тянутся из ERP' }
+      ] },
+    { src: shot('ui-6-scenarios'),
+      caption: 'Стратегия: пять режимов закупки в сравнении',
+      alt: 'Стратегия и сценарии Optimus: сравнение пяти режимов оптимизации',
+      anns: [
+        { x: 52, y: 66, side: 'bottom', text: 'Один расчёт, пять стратегий — и цена каждой' }
+      ] }
   ];
 
   const track = document.getElementById('car-track');
@@ -625,8 +643,8 @@ import CTA from '~/components/CTA.astro';
   .car-track { display: flex; transition: transform .45s cubic-bezier(.32,.72,0,1); }
   /* слайды вставляет скрипт → стили только через :global, иначе Astro их не применит */
   .carousel :global(.car-slide) {
-    flex: 0 0 100%; box-sizing: border-box; padding: 0 4px; position: relative; margin: 0;
-    display: grid; grid-template-rows: var(--band) auto var(--band) auto; --band: 84px;
+    flex: 0 0 100%; box-sizing: border-box; padding: 0 4px 8px; position: relative; margin: 0;
+    display: grid; grid-template-rows: var(--band) auto var(--band) auto; --band: 96px;
   }
   /* все кадры одного размера независимо от исходника */
   .carousel :global(.car-slide .shot-frame) {
@@ -663,8 +681,8 @@ import CTA from '~/components/CTA.astro';
     padding: 9px 13px; font: 500 13px/1.4 var(--font-body); color: #7C2D12;
     box-shadow: 0 6px 20px rgba(255, 106, 0, 0.16); width: max-content; max-width: 250px; z-index: 2;
   }
-  .carousel :global(.ann-band-top .ann)    { bottom: 30px; }
-  .carousel :global(.ann-band-bottom .ann) { top: 30px; }
+  .carousel :global(.ann-band-top .ann)    { bottom: 34px; }
+  .carousel :global(.ann-band-bottom .ann) { top: 34px; }
   .carousel :global(.car-slide.is-live .ann) { opacity: 1; transform: translate(-50%, 0); }
   .carousel :global(.car-slide .ann-dot) {
     position: absolute; left: var(--x); top: var(--y); width: 10px; height: 10px; margin: -5px 0 0 -5px;
