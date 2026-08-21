@@ -398,23 +398,42 @@ import CTA from '~/components/CTA.astro';
   const track = document.getElementById('car-track');
   const dots = document.getElementById('car-dots');
   if (track && dots) {
-    track.innerHTML = SLIDES.map((sl) => `
+    track.innerHTML = SLIDES.map((sl) => {
+      const top = sl.anns.filter((a) => a.side === 'top');
+      const bottom = sl.anns.filter((a) => a.side === 'bottom');
+      const band = (items, side) => `
+        <div class="ann-band ann-band-${side}">
+          ${items.map((a, i) => `
+            <div class="ann" style="--ax:${a.x}%; --d:${0.15 + i * 0.18}s">${a.text}</div>
+            <span class="lead-out" style="--ax:${a.x}%; --d:${0.15 + i * 0.18}s"></span>`).join('')}
+        </div>`;
+      return `
       <figure class="car-slide">
+        ${band(top, 'top')}
         <div class="shot-frame">
           <img src="${sl.src}" alt="${sl.alt}" loading="lazy" decoding="async"/>
-          ${sl.anns.map((a) => `<i class="ann-dot" style="--x:${a.x}%; --y:${a.y}%"></i>`).join('')}
-          ${sl.anns.map((a) => `<div class="ann ann-${a.side}" style="--ax:${a.x}%">${a.text}</div>`).join('')}
+          ${sl.anns.map((a, i) => `
+            <span class="lead-in lead-in-${a.side}" style="--x:${a.x}%; --y:${a.y}%; --d:${0.22 + i * 0.18}s"></span>
+            <i class="ann-dot" style="--x:${a.x}%; --y:${a.y}%; --d:${0.32 + i * 0.18}s"></i>`).join('')}
         </div>
+        ${band(bottom, 'bottom')}
         <figcaption>${sl.caption}</figcaption>
-      </figure>`).join('');
+      </figure>`;
+    }).join('');
     dots.innerHTML = SLIDES.map((_, i) => `<button type="button" data-slide="${i}" aria-current="${i === 0}" aria-label="Экран ${i + 1}"></button>`).join('');
 
     let idx = 0;
+    const slides = Array.from(track.querySelectorAll('.car-slide'));
     const show = (n) => {
       idx = (n + SLIDES.length) % SLIDES.length;
       track.style.transform = `translateX(-${idx * 100}%)`;
       dots.querySelectorAll('button').forEach((b, i) => b.setAttribute('aria-current', String(i === idx)));
+      slides.forEach((sl, i) => sl.classList.toggle('is-live', i === idx));
     };
+    // первый слайд оживает, когда секция попадает в экран
+    new IntersectionObserver((entries, obs) => {
+      entries.forEach((e) => { if (e.isIntersecting) { slides[0].classList.add('is-live'); obs.disconnect(); } });
+    }, { threshold: 0.3 }).observe(document.getElementById('carousel'));
     document.getElementById('car-prev').addEventListener('click', () => show(idx - 1));
     document.getElementById('car-next').addEventListener('click', () => show(idx + 1));
     dots.addEventListener('click', (e) => {
@@ -628,30 +647,58 @@ import CTA from '~/components/CTA.astro';
   .car-track { display: flex; transition: transform .45s cubic-bezier(.32,.72,0,1); }
   /* слайды вставляет скрипт → стили только через :global, иначе Astro их не применит */
   .carousel :global(.car-slide) {
-    flex: 0 0 100%; box-sizing: border-box; padding: 66px 4px 78px; position: relative; margin: 0;
+    flex: 0 0 100%; box-sizing: border-box; padding: 0 4px; position: relative; margin: 0;
+    display: grid; grid-template-rows: var(--band) auto var(--band) auto; --band: 84px;
   }
+  /* все кадры одного размера независимо от исходника */
   .carousel :global(.car-slide .shot-frame) {
-    position: relative; border: 1px solid var(--border); border-radius: 14px;
+    position: relative; aspect-ratio: 16 / 9; background: var(--surface-alt);
+    border: 1px solid var(--border); border-radius: 14px; overflow: hidden;
     box-shadow: 0 16px 44px rgba(0,0,0,0.09);
   }
-  .carousel :global(.car-slide .shot-frame img) { width: 100%; display: block; border-radius: 14px; }
+  .carousel :global(.car-slide .shot-frame img) {
+    width: 100%; height: 100%; object-fit: contain; object-position: center top; display: block;
+  }
+  /* полосы для колаутов — колауты живут ЗА рамкой */
+  .carousel :global(.ann-band) { position: relative; }
+  .carousel :global(.ann-band-top) { grid-row: 1; }
+  .carousel :global(.ann-band-bottom) { grid-row: 3; }
+  .carousel :global(.lead-out) {
+    position: absolute; left: clamp(4px, var(--ax), calc(100% - 4px)); width: 1.5px; height: 26px;
+    background: var(--accent); transform: scaleY(0); transition: transform .4s ease var(--d);
+  }
+  .carousel :global(.ann-band-top .lead-out)    { bottom: 0; transform-origin: top; }
+  .carousel :global(.ann-band-bottom .lead-out) { top: 0;    transform-origin: bottom; }
+  .carousel :global(.car-slide.is-live .lead-out) { transform: scaleY(1); }
+  .carousel :global(.lead-in) {
+    position: absolute; left: var(--x); width: 1.5px; background: var(--accent); z-index: 1;
+    transform: scaleY(0); transition: transform .45s ease var(--d);
+  }
+  .carousel :global(.lead-in-top)    { top: 0;    height: var(--y); transform-origin: top; }
+  .carousel :global(.lead-in-bottom) { top: var(--y); bottom: 0; transform-origin: bottom; }
+  .carousel :global(.car-slide.is-live .lead-in) { transform: scaleY(1); }
   .carousel :global(.car-slide figcaption) { text-align: center; color: var(--text-muted); font-size: 14px; margin-top: 16px; }
   .carousel :global(.car-slide .ann) {
-    position: absolute; left: clamp(128px, var(--ax), calc(100% - 128px)); transform: translateX(-50%);
+    position: absolute; left: clamp(128px, var(--ax), calc(100% - 128px));
+    transform: translate(-50%, 6px); opacity: 0; transition: opacity .4s var(--d), transform .4s var(--d);
     background: #FFF4ED; border: 1px solid rgba(255, 106, 0, 0.4); border-radius: 10px;
     padding: 9px 13px; font: 500 13px/1.4 var(--font-body); color: #7C2D12;
     box-shadow: 0 6px 20px rgba(255, 106, 0, 0.16); width: max-content; max-width: 250px; z-index: 2;
   }
-  .carousel :global(.car-slide .ann-top) { top: 0; }
-  .carousel :global(.car-slide .ann-bottom) { bottom: 4px; }
-  .carousel :global(.car-slide .ann::after) {
-    content: ''; position: absolute; left: 50%; width: 1.5px; height: 22px; background: var(--accent); transform: translateX(-50%);
-  }
-  .carousel :global(.car-slide .ann-top::after) { top: 100%; }
-  .carousel :global(.car-slide .ann-bottom::after) { bottom: 100%; }
+  .carousel :global(.ann-band-top .ann)    { bottom: 30px; }
+  .carousel :global(.ann-band-bottom .ann) { top: 30px; }
+  .carousel :global(.car-slide.is-live .ann) { opacity: 1; transform: translate(-50%, 0); }
   .carousel :global(.car-slide .ann-dot) {
     position: absolute; left: var(--x); top: var(--y); width: 10px; height: 10px; margin: -5px 0 0 -5px;
     border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px var(--accent-dim); z-index: 2;
+    transform: scale(0); transition: transform .35s cubic-bezier(.34,1.56,.64,1) var(--d);
+  }
+  .carousel :global(.car-slide.is-live .ann-dot) { transform: scale(1); }
+  @media (prefers-reduced-motion: reduce) {
+    .carousel :global(.ann), .carousel :global(.ann-dot), .carousel :global(.lead-out), .carousel :global(.lead-in) {
+      opacity: 1 !important; transform: none !important; transition: none !important;
+    }
+    .carousel :global(.ann) { transform: translateX(-50%) !important; }
   }
   .car-nav {
     position: absolute; top: 44%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%;
