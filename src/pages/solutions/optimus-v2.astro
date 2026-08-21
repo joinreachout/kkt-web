@@ -453,7 +453,7 @@ import CTA from '~/components/CTA.astro';
 
 <style>
   .prose-page { padding-top: clamp(40px, 6vh, 72px); }
-  .hero-grid { display: grid; grid-template-columns: minmax(420px, 1.1fr) 1fr; gap: clamp(24px, 4vw, 56px); align-items: center; padding-bottom: clamp(48px, 8vh, 96px); }
+  .hero-grid { display: grid; grid-template-columns: minmax(420px, 1.1fr) 1fr; gap: clamp(24px, 4vw, 56px); align-items: end; padding-bottom: clamp(48px, 8vh, 96px); }
   .hero-art { width: 100%; border-radius: 18px; }
   .duo-art { position: absolute; left: 50%; top: 47%; transform: translate(-50%, -50%); width: 30%; mix-blend-mode: multiply; transition: opacity 0.45s; }
   .duo.is-order .duo-art { opacity: 0; }
@@ -620,10 +620,6 @@ import CTA from '~/components/CTA.astro';
     display: grid; place-items: center;
   }
   .gains b { color: var(--text-primary); }
-  .draftnote {
-    margin-top: 18px; font-size: 13px; color: var(--accent-text); background: var(--accent-dim);
-    border: 1px dashed var(--accent); border-radius: 8px; padding: 8px 12px; display: inline-block;
-  }
 
   /* --- карусель экранов --- */
   .carousel { position: relative; }
