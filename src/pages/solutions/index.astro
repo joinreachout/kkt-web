@@ -1,13 +1,41 @@
 ---
 import BaseLayout from '~/layouts/BaseLayout.astro';
-import MediaSlot from '~/components/MediaSlot.astro';
 import CTA from '~/components/CTA.astro';
 import { useSolutions } from '~/i18n/pages/solutions';
 import { localizePath, toLocale } from '~/i18n/config';
 
+// One tile per solution, all of equal weight. Structural data (mark, preview,
+// where the tile points) is language-invariant and lives here; every string
+// comes from the dictionary. A new solution is one entry in this list plus one
+// `items` entry per locale — the grid reflows on its own, nothing to lay out.
+// Product feature detail lives on each product's own page.
+const locale = toLocale(Astro.currentLocale);
 const s = useSolutions(Astro.currentLocale);
-const optimusFeatures = s.features;
-const optimusHref = localizePath('/solutions/optimus', toLocale(Astro.currentLocale));
+
+const SOLUTIONS_LIST = [
+  {
+    id: 'optimus' as const,
+    name: 'Optimus',
+    monogram: 'O',           // no wordmark of its own yet
+    logo: null,
+    img: '/screens/optimus-procurement-advisor-en-v3.jpg',
+    href: localizePath('/solutions/optimus', locale),
+    external: false,
+    tone: 'pilot' as const,
+  },
+  {
+    id: 'codoo' as const,
+    name: 'Codoo',
+    monogram: 'C',
+    logo: '/logos/codoo.png',
+    img: '/cases/codoo-site-en.jpg',
+    href: 'https://codoo.kittykat.tech',
+    external: true,
+    tone: 'live' as const,
+  },
+];
+
+const tiles = SOLUTIONS_LIST.map((x) => ({ ...x, ...s.items[x.id] }));
 ---
 
 <BaseLayout
@@ -24,39 +52,46 @@ const optimusHref = localizePath('/solutions/optimus', toLocale(Astro.currentLoc
     </div>
   </section>
 
-  <!-- Optimus -->
-  <section class="section sol-optimus theme-dark" data-reveal>
+  <!-- Solution tiles -->
+  <section class="section sol-grid-section" data-reveal>
     <div class="container">
-      <p class="section-label">{s.optimusLabel}</p>
-      <h2 class="sol-h2">{s.optimusTitle}</h2>
-      <p class="sol-optimus-lede">{s.optimusLede}</p>
-
-      <MediaSlot class="sol-optimus-media" ratio="16 / 9" kind="image" label={s.optimusImg} src="/screens/optimus-procurement-advisor-en-v3.jpg" alt="Optimus procurement advisor" />
-
-      <ul class="sol-features" data-reveal-stagger>
-        {optimusFeatures.map((f) => (
-          <li class="sol-feature">
-            <h3 class="sol-feature-name">{f.name}</h3>
-            <p>{f.body}</p>
+      <ul class="sol-grid" style={`--cols:${Math.min(tiles.length, 3)}`} data-reveal-stagger>
+        {tiles.map((t) => (
+          <li>
+            <a
+              class="sol-card"
+              href={t.href}
+              rel={t.external ? 'noopener' : undefined}
+              aria-label={`${t.name} — ${t.kind}`}
+            >
+              <div class="sol-shot">
+                <img src={t.img} alt={`${t.name} — ${t.kind}`} loading="lazy" decoding="async" width="800" height="500" />
+              </div>
+              <div class="sol-body">
+                <div class="sol-head">
+                  {t.logo
+                    ? <img class="sol-mark sol-mark-img" src={t.logo} alt="" width="40" height="40" />
+                    : <span class="sol-mark" aria-hidden="true">{t.monogram}</span>}
+                  <div>
+                    <h2 class="sol-name">{t.name}</h2>
+                    <p class="sol-kind">{t.kind}</p>
+                  </div>
+                </div>
+                <p class="sol-desc">{t.body}</p>
+                <div class="sol-foot">
+                  <span class:list={['sol-chip', { 'is-live': t.tone === 'live' }]}>
+                    <span class="sol-dot" aria-hidden="true"></span>{t.status}
+                  </span>
+                  <span class="sol-link">
+                    {t.link}
+                    <span class="sol-arrow" aria-hidden="true">{t.external ? '↗' : '→'}</span>
+                  </span>
+                </div>
+              </div>
+            </a>
           </li>
         ))}
       </ul>
-
-      <a href={optimusHref} class="link-cta sol-optimus-link">{s.optimusLink}</a>
-    </div>
-  </section>
-
-  <!-- Codoo -->
-  <section class="section sol-codoo" data-reveal>
-    <div class="container">
-      <div class="sol-codoo-head">
-        <img class="sol-codoo-logo" src="/logos/codoo.png" alt="Codoo" width="56" height="56" />
-        <p class="section-label">{s.codooLabel}</p>
-        <h2 class="sol-h2">{s.codooTitle}</h2>
-        <p class="sol-codoo-body">{s.codooBody}</p>
-        <a href="https://codoo.kittykat.tech" class="link-cta" rel="noopener">{s.codooLink}</a>
-      </div>
-      <MediaSlot class="sol-codoo-media" ratio="16 / 9" kind="image" label="Codoo" src="/cases/codoo-site-en.jpg" alt="Codoo — guest assistant" />
     </div>
   </section>
 
@@ -67,31 +102,50 @@ const optimusHref = localizePath('/solutions/optimus', toLocale(Astro.currentLoc
   .section-label { margin-bottom: 16px; }
 
   /* Intro */
-  .sol-intro { padding-top: clamp(48px, 8vh, 104px); padding-bottom: clamp(32px, 5vh, 56px); }
+  .sol-intro { padding-top: clamp(48px, 8vh, 104px); padding-bottom: clamp(28px, 4vh, 48px); }
   .sol-h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(36px, 5.4vw, 66px); line-height: 1.05; letter-spacing: -0.03em; color: var(--text-primary); margin-bottom: 22px; max-width: 18ch; }
   .sol-lede { font-size: clamp(17px, 1.8vw, 21px); line-height: 1.55; color: var(--text-secondary); max-width: 62ch; }
-  .sol-h2 { font-family: var(--font-display); font-weight: 600; font-size: clamp(24px, 3.2vw, 38px); letter-spacing: -0.02em; line-height: 1.14; color: var(--text-primary); margin: 12px 0 16px; max-width: 24ch; }
 
-  /* Optimus (dark) */
-  .sol-optimus { padding-top: clamp(56px, 9vh, 100px); padding-bottom: clamp(56px, 9vh, 100px); }
-  .sol-optimus-lede { font-size: clamp(16px, 1.7vw, 19px); line-height: 1.6; color: var(--text-secondary); max-width: 66ch; margin-bottom: clamp(28px, 4vh, 40px); }
-  /* MediaSlot's <figure> carries only its own component scope, so a plain
-     `.sol-optimus-media` rule from this page never matches it (and its
-     `.mediaslot { margin: 0 }` wins). Reach the child element with :global,
-     kept under the page-scoped `.sol-optimus` so it can't leak. */
-  .sol-optimus :global(.sol-optimus-media) { max-width: 1000px; margin-bottom: clamp(88px, 13vh, 150px); }
-  .sol-optimus-link { display: inline-block; margin-top: clamp(28px, 4vh, 40px); }
-  .sol-features { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr; gap: 14px; }
-  @media (min-width: 720px) { .sol-features { grid-template-columns: 1fr 1fr; gap: 18px; } }
-  @media (min-width: 1000px) { .sol-features { grid-template-columns: repeat(3, 1fr); } }
-  .sol-feature { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 22px 24px 24px; }
-  .sol-feature-name { font-family: var(--font-display); font-weight: 600; font-size: 18px; letter-spacing: -0.01em; color: var(--text-primary); margin-bottom: 10px; }
-  .sol-feature p { font-size: 14.5px; line-height: 1.55; color: var(--text-secondary); margin: 0; }
+  /* Grid. Column count comes from the number of solutions, capped at three, so
+     two tiles fill the row instead of leaving an empty track — and a fourth
+     solution wraps underneath without any layout decision. */
+  .sol-grid-section { padding-top: clamp(24px, 4vh, 44px); padding-bottom: clamp(56px, 9vh, 100px); }
+  .sol-grid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr; gap: clamp(18px, 2.2vw, 26px); }
+  @media (min-width: 700px) { .sol-grid { grid-template-columns: repeat(min(var(--cols), 2), 1fr); } }
+  @media (min-width: 1040px) { .sol-grid { grid-template-columns: repeat(var(--cols), 1fr); } }
+  .sol-grid > li { display: flex; }
 
-  /* Codoo */
-  .sol-codoo { padding-top: clamp(48px, 7vh, 88px); padding-bottom: clamp(48px, 7vh, 88px); }
-  .sol-codoo-head { max-width: 64ch; margin-bottom: clamp(28px, 4vh, 40px); }
-  .sol-codoo-logo { width: 56px; height: 56px; border-radius: 14px; display: block; margin-bottom: 18px; }
-  .sol-codoo-body { font-size: clamp(16px, 1.6vw, 18px); line-height: 1.6; color: var(--text-secondary); max-width: 60ch; margin-bottom: 18px; }
-  .sol-codoo-media { max-width: 1000px; }
+  /* Tile */
+  .sol-card {
+    display: flex; flex-direction: column; width: 100%;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    overflow: hidden; text-decoration: none; color: inherit;
+    transition: border-color .25s ease, transform .25s cubic-bezier(.2,.7,.3,1), box-shadow .25s ease;
+  }
+  .sol-card:hover { border-color: var(--border-hover); transform: translateY(-3px); box-shadow: 0 18px 40px -28px rgba(0, 0, 0, .45); text-decoration: none; }
+  .sol-card:hover .sol-arrow { transform: translateX(4px); }
+  .sol-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  .sol-shot { aspect-ratio: 16 / 10; background: var(--surface-alt); border-bottom: 1px solid var(--border); overflow: hidden; }
+  .sol-shot img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+
+  .sol-body { display: flex; flex-direction: column; gap: 12px; padding: 22px 24px 24px; flex: 1; }
+  .sol-head { display: flex; align-items: center; gap: 13px; }
+  .sol-mark { width: 40px; height: 40px; border-radius: 10px; flex: none; display: grid; place-items: center; font-family: var(--font-display); font-weight: 700; font-size: 16px; letter-spacing: -0.02em; color: #fff; background: var(--accent-gradient); }
+  .sol-mark-img { object-fit: cover; background: var(--surface-alt); border: 1px solid var(--border); }
+  .sol-name { font-family: var(--font-display); font-weight: 600; font-size: 20px; letter-spacing: -0.02em; color: var(--text-primary); margin: 0; line-height: 1.2; }
+  .sol-kind { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); margin: 4px 0 0; }
+  .sol-desc { font-size: 14.5px; line-height: 1.6; color: var(--text-secondary); margin: 0; }
+
+  .sol-foot { margin-top: auto; padding-top: 16px; display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+  .sol-chip { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .07em; text-transform: uppercase; padding: 4px 10px; border-radius: 100px; border: 1px solid var(--border); color: var(--text-muted); }
+  .sol-chip.is-live { color: var(--accent-text); border-color: rgba(255, 106, 0, .35); background: var(--accent-dim); }
+  .sol-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; opacity: .85; }
+  .sol-link { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: var(--accent-text); }
+  .sol-arrow { display: inline-block; transition: transform .25s cubic-bezier(.2,.7,.3,1); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sol-card, .sol-arrow { transition: none; }
+    .sol-card:hover { transform: none; }
+  }
 </style>
