@@ -3,7 +3,7 @@
 // Brand/company names (Click & Grow, CSC Telecom, GTE, Taxigo, Red Petroleum,
 // Noventiq, Microsoft, AWS, Meta) stay untranslated.
 
-import type { Locale } from './config';
+import type { Locale, PartialLocaleDict } from './config';
 
 type Step = { n: string; title: string; lead: string; outputs: string[] };
 type Point = { title: string; body: string };
@@ -24,7 +24,7 @@ export type HomeDict = {
 
 const CASE_IDS = ['click-grow', 'csc-telecom', 'kricon', 'gte', 'forrest-taxi', 'red-petroleum'];
 
-export const HOME: Record<Locale, HomeDict> = {
+export const HOME: PartialLocaleDict<HomeDict> = {
   en: {
     maps: {
       label: 'Specialized solutions',
@@ -229,10 +229,23 @@ export const HOME: Record<Locale, HomeDict> = {
       primary: 'จองเซสชันวิเคราะห์', secondary: 'ดูผลงานของเรา',
     },
   },
+
+  // Partial locale — Russian exists for the Optimus page, which renders the
+  // shared CTA block. Everything else falls back to English (see useHome).
+  ru: {
+    cta: {
+      heading: 'Расскажите о задаче, которую хотите сдвинуть.',
+      body: 'Маржа, издержки, доступность товара, ценность клиента или производительность — скажите, что именно нужно сдвинуть. Мы ответим, могут ли здесь реально помочь данные и ИИ, и как выглядит первый шаг.',
+      primary: 'Записаться на диагностику', secondary: 'Смотреть наши работы',
+    },
+  },
 };
 
+// Partial locales carry only the groups they need (Russian ships the shared
+// CTA block, which the Optimus page renders); the rest falls back to English.
 export function useHome(locale: string | undefined): HomeDict {
-  return HOME[(locale as Locale)] ?? HOME.en;
+  const over = HOME[(locale as Locale)];
+  return over ? { ...HOME.en, ...over } : HOME.en;
 }
 
 export { CASE_IDS };

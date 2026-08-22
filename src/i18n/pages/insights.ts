@@ -2,7 +2,7 @@
 // Post bodies are authored content (currently English) and are NOT translated
 // here — only the listing/article chrome is localized. Post links resolve to the
 // canonical (unprefixed) post URL regardless of locale.
-import type { Locale } from '../config';
+import type { Locale, LocaleDict } from '../config';
 
 export type InsightsDict = {
   meta: { title: string; description: string };
@@ -23,7 +23,7 @@ export type InsightsDict = {
   dateLocale: string;
 };
 
-export const INSIGHTS: Record<Locale, InsightsDict> = {
+export const INSIGHTS: LocaleDict<InsightsDict> = {
   en: {
     meta: {
       title: 'Blog — KKT',

@@ -1,7 +1,7 @@
 ---
 // Language switcher — flag dropdown. Links to the same page in each locale
 // (falls back to that locale's homepage when the page isn't translated yet).
-import { LOCALES, LANGS, localizePath, hasTranslation, toLocale, DEFAULT_LOCALE } from '~/i18n/config';
+import { LOCALES, LANGS, localizePath, hasTranslation, toLocale, DEFAULT_LOCALE, isPartialLocale } from '~/i18n/config';
 
 const current = toLocale(Astro.currentLocale);
 const path = Astro.url.pathname;
@@ -16,7 +16,15 @@ const FLAG_SVG: Record<string, string> = {
   de: `<svg ${FLAG_ATTRS} viewBox="0 0 5 3"><rect width="5" height="3" fill="#000"/><rect y="1" width="5" height="2" fill="#DD0000"/><rect y="2" width="5" height="1" fill="#FFCE00"/></svg>`,
   et: `<svg ${FLAG_ATTRS} viewBox="0 0 5 3"><rect width="5" height="1" fill="#0072CE"/><rect y="1" width="5" height="1" fill="#000"/><rect y="2" width="5" height="1" fill="#fff"/></svg>`,
   th: `<svg ${FLAG_ATTRS} viewBox="0 0 6 6"><rect width="6" height="6" fill="#A51931"/><rect y="1" width="6" height="4" fill="#F4F5F8"/><rect y="2" width="6" height="2" fill="#2D2A4A"/></svg>`,
+  ru: `<svg ${FLAG_ATTRS} viewBox="0 0 9 6"><rect width="9" height="6" fill="#fff"/><rect y="2" width="9" height="2" fill="#0039A6"/><rect y="4" width="9" height="2" fill="#D52B1E"/></svg>`,
 };
+
+// A partial locale (Russian, which covers the Optimus page only) is offered
+// where that page exists and stays out of the menu everywhere else, so the
+// switcher can never send anyone to a page that was never translated.
+const offered = LOCALES.filter(
+  (loc) => !isPartialLocale(loc) || loc === current || hasTranslation(path, loc),
+);
 
 const target = (loc: (typeof LOCALES)[number]) =>
   hasTranslation(path, loc)
@@ -33,7 +41,7 @@ const target = (loc: (typeof LOCALES)[number]) =>
     <svg class="lang-caret" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
   </summary>
   <ul class="lang-menu">
-    {LOCALES.map((loc) => (
+    {offered.map((loc) => (
       <li>
         <a
           href={target(loc)}

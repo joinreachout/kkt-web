@@ -1,7 +1,7 @@
 // /case-studies content. German careful; Estonian first pass (verify).
 // Invariant per-case data (id, name, logo, img) stays in the page; this module
 // holds only translatable text, keyed by case id.
-import type { Locale } from '../config';
+import type { Locale, LocaleDict } from '../config';
 
 export type CaseText = {
   name?: string;   // overrides the structural name when the case has no brand (descriptive title)
@@ -26,7 +26,7 @@ export type CaseStudiesDict = {
   cases: Record<string, CaseText>;
 };
 
-export const CASE_STUDIES: Record<Locale, CaseStudiesDict> = {
+export const CASE_STUDIES: LocaleDict<CaseStudiesDict> = {
   en: {
     meta: {
       title: 'Case studies — KKT',

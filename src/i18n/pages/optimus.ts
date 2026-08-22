@@ -1,5 +1,5 @@
 // /solutions/optimus content. German careful; Estonian first pass (verify).
-import type { Locale } from '../config';
+import type { Locale, LocaleDict } from '../config';
 
 type NameBody = { name: string; body: string };
 type TitleBody = { title: string; body: string };
@@ -34,7 +34,7 @@ export type OptimusDict = {
   cta: { heading: string; body: string; primary: string; secondary: string };
 };
 
-export const OPTIMUS: Record<Locale, OptimusDict> = {
+export const OPTIMUS: LocaleDict<OptimusDict> = {
   en: {
     meta: {
       title: 'Optimus — KKT',

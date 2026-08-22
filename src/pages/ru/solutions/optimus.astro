@@ -1,7 +1,9 @@
 ---
-// ЧЕРНОВИК (RU) новой страницы Optimus по концепции Яны, 20.08.2026.
-// noindex, в навигации не участвует. После согласования: тексты → i18n
-// словари, страница заменяет /solutions/optimus/.
+// Русская страница Optimus по концепции Яны (20.08.2026). Русский —
+// частичный язык: он покрывает ровно этот путь (PARTIAL_LOCALE_PATHS в
+// src/i18n/config.ts), поэтому флаг RU появляется в переключателе только
+// здесь. Тексты пока лежат в разметке; при переводе на английский они
+// уезжают в словари i18n, и английская версия заменяет /solutions/optimus/.
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import CTA from '~/components/CTA.astro';
 ---
@@ -10,7 +12,6 @@ import CTA from '~/components/CTA.astro';
   title="Optimus — управление запасами топлива"
   description="Optimus отслеживает запасы топлива на каждой нефтебазе, рассчитывает, когда и в каком объёме заказать, и заранее предупреждает, если план поставки нужно скорректировать."
   ogImage="/og/optimus.png"
-  noindex={true}
 >
   <article class="prose-page">
     <!-- HERO -->

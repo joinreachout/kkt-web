@@ -12,20 +12,18 @@ const NOINDEX_PATHS = [
   '/404.html',
   '/security',
   '/security/',
-  // RU-черновик новой страницы Optimus (концепция Яны, 20.08.2026).
-  // Живёт в EN-слоте до перевода — из индекса и карты сайта исключён.
-  '/solutions/optimus-v2',
-  '/solutions/optimus-v2/',
 ];
 
 export default defineConfig({
   site: 'https://kittykat.tech',
-  // i18n: English at the root (no prefix), German and Estonian under /de/ and
-  // /et/. Localized pages live in src/pages/de|et/ and pull their copy from
-  // src/i18n/ dictionaries keyed by Astro.currentLocale.
+  // i18n: English at the root (no prefix), the other languages prefixed.
+  // Localized pages live in src/pages/<locale>/ and pull their copy from
+  // src/i18n/ dictionaries keyed by Astro.currentLocale. Russian is a partial
+  // locale — it covers the Optimus page alone (PARTIAL_LOCALE_PATHS in
+  // src/i18n/config.ts), so /ru/ holds one page and no more.
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'de', 'et', 'th'],
+    locales: ['en', 'de', 'et', 'th', 'ru'],
     routing: {
       prefixDefaultLocale: false,
       redirectToDefaultLocale: false,

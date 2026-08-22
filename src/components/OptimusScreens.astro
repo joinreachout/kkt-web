@@ -30,7 +30,7 @@ const { variant, hero, picks } = Astro.props as Props;
 const locale = toLocale(Astro.currentLocale);
 
 // "Live in production" badge on the hero variant, per locale.
-const LIVE_TAG: Record<Locale, string> = {
+const LIVE_TAG: Partial<Record<Locale, string>> & { en: string } = {
   en: 'Live in production',
   de: 'Live im Produktivbetrieb',
   et: 'Live tootmises',
@@ -38,7 +38,7 @@ const LIVE_TAG: Record<Locale, string> = {
 
 // Localised caption + alt overrides keyed by slug. EN is the base (ALL);
 // de/et fall back to EN for any slug not listed.
-const LOCALIZED: Record<Exclude<Locale, 'en'>, Record<string, { alt: string; caption: string }>> = {
+const LOCALIZED: Partial<Record<Locale, Record<string, { alt: string; caption: string }>>> = {
   de: {
     'procurement-advisor': { caption: 'Beschaffungsberater', alt: 'Optimus Beschaffungsberater — Status-Pills Critical / Need Order / Overflow / OK mit 14-Tage-Fehlbestand-Zeitleiste und Lieferanten-Ranking' },
     'fuel-forecast': { caption: 'Füllstand-Prognose', alt: 'Optimus Füllstand-Prognose — Liniendiagramm der Bestandsprojektion je Station × Kraftstoffsorte mit Regionalfiltern' },

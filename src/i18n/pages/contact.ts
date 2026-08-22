@@ -1,7 +1,7 @@
 // /contact content. German careful; Estonian first pass (verify).
 // Contact values (phone, address, email, LinkedIn URL, legal name) are
 // language-invariant and stay in the page; only labels and prose translate.
-import type { Locale } from '../config';
+import type { Locale, LocaleDict } from '../config';
 
 export type ContactDict = {
   meta: { title: string; description: string };
@@ -15,7 +15,7 @@ export type ContactDict = {
   quote: string;
 };
 
-export const CONTACT: Record<Locale, ContactDict> = {
+export const CONTACT: LocaleDict<ContactDict> = {
   en: {
     meta: {
       title: 'Contact — KKT',

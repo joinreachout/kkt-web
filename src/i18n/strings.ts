@@ -6,7 +6,7 @@
 // and the homepage hero + "who we serve". The remaining homepage sections and
 // other pages are being rolled out next.
 
-import type { Locale } from './config';
+import type { Locale, PartialLocaleDict } from './config';
 
 type Dict = {
   nav: { retail: string; fuel: string; solutions: string; cases: string; insights: string; about: string };
@@ -36,7 +36,7 @@ type Dict = {
   };
 };
 
-export const STRINGS: Record<Locale, Dict> = {
+export const STRINGS: PartialLocaleDict<Dict> = {
   en: {
     nav: { retail: 'Retail', fuel: 'Fuel retail', solutions: 'Our Solutions', cases: 'Case studies', insights: 'Blog', about: 'About' },
     actions: { advisor: 'Ask AI Advisor', diagnostic: 'Book a diagnostic', menu: 'Open menu', switchLang: 'Language' },
@@ -144,8 +144,25 @@ export const STRINGS: Record<Locale, Dict> = {
       more: '+ โทรคมนาคม โมบิลิตี้ อุตสาหกรรม',
     },
   },
+
+  // Russian is a partial locale: it exists for the Optimus page only, so it
+  // ships the shared chrome and nothing else. Anything absent here falls back
+  // to English (see useStrings).
+  ru: {
+    nav: { retail: 'Ритейл', fuel: 'Топливный ритейл', solutions: 'Наши решения', cases: 'Кейсы', insights: 'Блог', about: 'О нас' },
+    actions: { advisor: 'Спросить AI-советника', diagnostic: 'Записаться на диагностику', menu: 'Открыть меню', switchLang: 'Язык' },
+    footer: {
+      tag: 'Данные, ИИ и автоматизация, которые работают в ваших операциях.',
+      industries: 'Отрасли', work: 'Работы', company: 'Компания', contact: 'Контакты',
+      legal: (y) => `© ${y} Kitty Kat Technologies OÜ · Jõe 7, 10151 Таллинн, Эстония`,
+    },
+  },
 };
 
+// A partial locale may carry only some groups (Russian ships the chrome —
+// nav, actions, footer — and nothing else), so merge it over English rather
+// than replacing it. Groups are overridden whole.
 export function useStrings(locale: string | undefined): Dict {
-  return STRINGS[(locale as Locale)] ?? STRINGS.en;
+  const over = STRINGS[(locale as Locale)];
+  return over ? { ...STRINGS.en, ...over } : STRINGS.en;
 }

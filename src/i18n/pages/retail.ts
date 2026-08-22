@@ -1,6 +1,6 @@
 // /industries/retail content. German careful; Estonian first pass (to verify).
 // Stage/domain/pressure copy mirrors the Retail AI Canvas.
-import type { Locale } from '../config';
+import type { Locale, LocaleDict } from '../config';
 
 export type RetailDict = {
   meta: { title: string; description: string };
@@ -14,7 +14,7 @@ export type RetailDict = {
   ctaHeading: string; ctaBody: string;
 };
 
-export const RETAIL: Record<Locale, RetailDict> = {
+export const RETAIL: LocaleDict<RetailDict> = {
   en: {
     meta: { title: 'Retail — KKT', description: 'AI and data for mid-sized retailers — strengthen core operations, optimize and grow, then expand and monetize. The full Retail AI Canvas at retail.kittykat.tech.' },
     introLabel: 'Industries — Retail', h1a: 'Data & AI for ', h1grad: 'retail',

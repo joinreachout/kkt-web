@@ -1,5 +1,5 @@
 // /industries/fuel-retail content. German careful; Estonian first pass (verify).
-import type { Locale } from '../config';
+import type { Locale, LocaleDict } from '../config';
 
 export type FuelDict = {
   meta: { title: string; description: string };
@@ -13,7 +13,7 @@ export type FuelDict = {
   ctaHeading: string; ctaBody: string;
 };
 
-export const FUEL: Record<Locale, FuelDict> = {
+export const FUEL: LocaleDict<FuelDict> = {
   en: {
     meta: { title: 'Fuel retail — KKT', description: 'AI and data for independent fuel networks — procurement and margin, logistics, stations, customers, finance and control. Bottom-up, on the data you already have.' },
     introLabel: 'Industries — Fuel retail', h1a: 'For independent ', h1grad: 'fuel networks',

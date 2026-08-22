@@ -1,7 +1,7 @@
 // /about content. German careful; Estonian first pass (verify).
 // Personal names, company chips, and the legal entity name stay verbatim;
 // only labels, role lines, and prose are translated.
-import type { Locale } from '../config';
+import type { Locale, LocaleDict } from '../config';
 
 export type AboutDict = {
   meta: { title: string; description: string };
@@ -18,7 +18,7 @@ export type AboutDict = {
   lines: Record<string, string>;   // role line keyed by member name
 };
 
-export const ABOUT: Record<Locale, AboutDict> = {
+export const ABOUT: LocaleDict<AboutDict> = {
   en: {
     meta: {
       title: 'About — KKT',

@@ -35,6 +35,8 @@ const ADVISOR_ENDPOINT = '/api/advisor.php';
 const ALLOWED_DOC_TYPES = ['.txt', '.md', '.pdf'];
 const MAX_DOC_BYTES = 1_500_000; // 1.5 MB — bigger than typical audit doc, smaller than upload limit
 
+// The widget ships its own strings for the four full-site locales. A partial
+// locale (ru, Optimus page only) falls back to English chrome.
 type Locale = 'en' | 'de' | 'et' | 'th';
 
 // UI chrome strings per locale. The backend (advisor.php) answers in the
@@ -186,8 +188,8 @@ function findMockReply(input: string): string {
 
 let nextId = 1;
 
-export default function Advisor({ locale = 'en' }: { locale?: Locale }) {
-  const t = UI[locale] ?? UI.en;
+export default function Advisor({ locale = 'en' }: { locale?: string }) {
+  const t = UI[locale as Locale] ?? UI.en;
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');

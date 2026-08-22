@@ -6,7 +6,7 @@
 // preview image, href). Adding a solution = one entry here per locale plus one
 // entry in SOLUTIONS_LIST in the page. Product feature detail belongs on each
 // product's own page, not on this index.
-import type { Locale } from '../config';
+import type { Locale, LocaleDict } from '../config';
 
 export type SolutionItem = {
   /** Who it is built for — one short line under the name. */
@@ -26,7 +26,7 @@ export type SolutionsDict = {
   ctaHeading: string; ctaBody: string;
 };
 
-export const SOLUTIONS: Record<Locale, SolutionsDict> = {
+export const SOLUTIONS: LocaleDict<SolutionsDict> = {
   en: {
     meta: { title: 'Our Solutions — KKT', description: "KKT's own products: Optimus, operating intelligence for fuel-distribution networks, and Codoo, a guest assistant for short-term rentals." },
     introLabel: 'Our solutions', h1: 'Products we built and run.',
