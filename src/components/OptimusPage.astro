@@ -1,0 +1,682 @@
+---
+// The rebuilt Optimus page (Яна's concept, 20.08.2026), shared by the English
+// /solutions/optimus and the Russian /ru/solutions/optimus. All copy comes
+// from src/i18n/pages/optimus-page.ts; this file owns the structure — layout,
+// callout coordinates, illustration files and slide order — so a translation
+// can never move a callout or drop a screen.
+//
+// Two things the client-side script needs are handed to it as JSON in a
+// <script type="application/json"> block: an Astro module script cannot read
+// the frontmatter directly, and the panels and slides are built by hand from
+// innerHTML (which is also why their CSS lives under :global — see the style
+// block at the foot of this file).
+import CTA from '~/components/CTA.astro';
+import { useOptimusPage } from '~/i18n/pages/optimus-page';
+import { toLocale } from '~/i18n/config';
+
+const locale = toLocale(Astro.currentLocale);
+const t = useOptimusPage(Astro.currentLocale);
+
+// Screenshots exist in Russian and English; every other locale gets English.
+const shotLang = locale === 'ru' ? 'ru' : 'en';
+
+// Illustration per process step — structural, shared by both languages.
+const STEP_ART: Record<string, string> = {
+  '1': 'step-1-planning-v2.jpg',
+  '2': 'step-2-approval-v2.jpg',
+  '3': 'step-3-supply-v2.jpg',
+  'exc': 'step-exc-conflict-v2.jpg',
+  '4': 'step-4-receiving-v2.jpg',
+};
+
+// Callout anchors per slide: where the dot sits on the screenshot and which
+// band the label hangs in. Order matches `ui.slides[n].anns`.
+// Step number shown on the rail; '!' marks the exception branch.
+const STEP_NUM: Record<string, string> = { '1': '01', '2': '02', '3': '03', 'exc': '!', '4': '04' };
+
+// Where the eight "today" chips and the six "with Optimus" chips sit.
+const CHIPS_TODAY_POS = [[30, 19], [70, 19], [22, 41], [78, 41], [22, 61], [78, 61], [24, 90], [76, 90]];
+const CHIPS_OPTIMUS_POS = [[30, 19], [70, 19], [26, 41], [74, 41], [26, 61], [74, 61]];
+const DTAG_IN_Y = ['17%', '39%', '61%', '83%'];
+const DTAG_OUT_Y = ['32%', '62%'];
+
+const SLIDE_SHOTS = ['ui-1-action', 'ui-2-matrix', 'ui-3-history', 'ui-4-capital', 'ui-5-transit', 'ui-6-scenarios'];
+const SLIDE_ANCHORS: { x: number; y: number; side: 'top' | 'bottom' }[][] = [
+  [{ x: 30, y: 22, side: 'top' }, { x: 46, y: 47, side: 'bottom' }],
+  [{ x: 20, y: 27, side: 'top' }, { x: 55, y: 62, side: 'bottom' }],
+  [{ x: 80, y: 45, side: 'top' }],
+  [{ x: 14, y: 24, side: 'top' }, { x: 76, y: 42, side: 'bottom' }],
+  [{ x: 21, y: 29, side: 'top' }],
+  [{ x: 52, y: 66, side: 'bottom' }],
+];
+
+const clientData = {
+  panels: t.process.steps.map((s) => ({
+    key: s.key,
+    ...t.process.panels[s.key],
+    art: STEP_ART[s.key],
+    artAlt: t.process.picto[s.key],
+  })),
+  slides: t.ui.slides.map((sl, i) => ({
+    src: `/screens/v2/${SLIDE_SHOTS[i]}-${shotLang}.jpg`,
+    caption: sl.caption,
+    alt: sl.alt,
+    anns: sl.anns.map((text, j) => ({ ...SLIDE_ANCHORS[i][j], text })),
+  })),
+  slideAria: t.ui.slideAria,
+};
+---
+
+  <article class="prose-page">
+    <!-- HERO -->
+    <div class="container hero-grid">
+      <div>
+        <div class="section-label">{t.hero.label}</div>
+        <h1 class="h1-page">{t.hero.h1}</h1>
+        <p class="lede">{t.hero.lede}</p>
+        <div class="cta-row">
+          <a href="/contact?subject=Optimus%20demo" class="btn-primary">{t.hero.ctaDemo}</a>
+          <a href="/case-studies#red-petroleum" class="btn-ghost">{t.hero.ctaCase}</a>
+        </div>
+      </div>
+      <img class="hero-art" src="/screens/v2/optimus-network-iso-v2.jpg"
+           alt={t.hero.alt}
+           fetchpriority="high" decoding="async"/>
+    </div>
+
+    <!-- 01 · ПРОБЛЕМАТИКА -->
+    <section data-reveal class="section section-problem">
+      <div class="container">
+        <div class="section-label">{t.problem.label}</div>
+        <h2 class="h2-section">{t.problem.h2}</h2>
+        <p class="sec-lede">{t.problem.lede}</p>
+
+        <div class="duo" id="duo">
+          <div class="duo-toggle" role="tablist" aria-label={t.problem.toggleAria}>
+            <button class="duo-btn is-on" data-mode="chaos" role="tab" aria-selected="true">{t.problem.tabToday}</button>
+            <button class="duo-btn" data-mode="order" role="tab" aria-selected="false">{t.problem.tabOptimus}</button>
+          </div>
+
+          <div class="duo-stage">
+            <svg viewBox="0 0 1120 540" preserveAspectRatio="none" aria-hidden="true">
+              <g class="lines lines-chaos">
+                <path d="M560 60 C 420 60, 260 80, 180 120"/>
+                <path d="M560 60 C 700 60, 860 80, 940 120"/>
+                <path d="M180 120 C 130 230, 130 330, 180 420"/>
+                <path d="M940 120 C 990 230, 990 330, 940 420"/>
+                <path d="M180 120 C 420 200, 700 90, 940 130"/>
+                <path d="M180 420 C 440 330, 690 460, 940 420"/>
+                <path d="M180 120 C 430 260, 700 380, 940 430"/>
+                <path d="M180 420 C 420 300, 700 160, 940 125"/>
+                <path d="M560 70 C 540 160, 580 190, 560 240"/>
+                <path d="M185 425 C 340 380, 470 320, 545 285"/>
+              </g>
+              <g class="lines lines-order">
+                <path id="ln-office" d="M572 90 L 572 145"/>
+                <path id="ln-depot" d="M255 145 L 452 232"/>
+                <path id="ln-supplier" d="M865 145 L 670 232"/>
+                <path id="ln-port" d="M255 400 L 448 288"/>
+                <path id="ln-trucks" d="M865 400 L 674 288"/>
+              </g>
+              <g class="pkt-layer">
+                <g class="pkt"><circle class="pkt-halo" r="8"/><circle class="pkt-dot" r="3.5"/>
+                  <animateMotion dur="2.2s" begin="0s" repeatCount="indefinite"><mpath href="#ln-depot"/></animateMotion></g>
+                <g class="pkt"><circle class="pkt-halo" r="8"/><circle class="pkt-dot" r="3.5"/>
+                  <animateMotion dur="2.2s" begin="0.55s" repeatCount="indefinite"><mpath href="#ln-supplier"/></animateMotion></g>
+                <g class="pkt"><circle class="pkt-halo" r="8"/><circle class="pkt-dot" r="3.5"/>
+                  <animateMotion dur="2.2s" begin="1.1s" repeatCount="indefinite"><mpath href="#ln-port"/></animateMotion></g>
+                <g class="pkt"><circle class="pkt-halo" r="8"/><circle class="pkt-dot" r="3.5"/>
+                  <animateMotion dur="2.2s" begin="1.65s" repeatCount="indefinite"><mpath href="#ln-trucks"/></animateMotion></g>
+                <g class="pkt"><circle class="pkt-halo" r="8"/><circle class="pkt-dot" r="3.5"/>
+                  <animateMotion dur="2s" begin="0.8s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#ln-office"/></animateMotion></g>
+              </g>
+            </svg>
+
+            <div class="duo-node duo-node-accent" style="--x:50%; --y:11%;">{t.problem.nodes.office}</div>
+            <div class="duo-node" style="--x:16%; --y:24%;">{t.problem.nodes.depot}</div>
+            <div class="duo-node" style="--x:84%; --y:24%;">{t.problem.nodes.supplier}</div>
+            <div class="duo-node" style="--x:16%; --y:76%;">{t.problem.nodes.port}</div>
+            <div class="duo-node" style="--x:84%; --y:76%;">{t.problem.nodes.trucks}</div>
+
+            <img class="duo-art" src="/screens/v2/optimus-dispatcher-iso-v2.jpg" alt="" aria-hidden="true"/>
+            <img class="duo-art duo-art-happy" src="/screens/v2/optimus-dispatcher-happy-iso-v2.jpg" alt="" aria-hidden="true"/>
+            <div class="duo-core duo-core-chaos" style="--x:50%; --y:90%;">
+              <b>{t.problem.coreChaos.title}</b><span>{t.problem.coreChaos.sub}</span>
+            </div>
+            <div class="duo-core duo-core-order" style="--x:50%; --y:92%;">
+              <b>{t.problem.coreOrder.title}</b><span>{t.problem.coreOrder.sub}</span>
+            </div>
+
+            {t.problem.chipsToday.map((text, i) => (
+              <div class="chip chip-a" style={`--x:${CHIPS_TODAY_POS[i][0]}%; --y:${CHIPS_TODAY_POS[i][1]}%;`}>{text}</div>
+            ))}
+
+            {t.problem.chipsOptimus.map((text, i) => (
+              <div class="chip chip-b" style={`--x:${CHIPS_OPTIMUS_POS[i][0]}%; --y:${CHIPS_OPTIMUS_POS[i][1]}%;`}>{text}</div>
+            ))}
+          </div>
+
+          <div class="duo-strip duo-strip-chaos">
+            <b>{t.problem.stripToday.lead}</b>{t.problem.stripToday.rest}
+          </div>
+          <div class="duo-strip duo-strip-order">
+            <b>{t.problem.stripOptimus.lead}</b>{t.problem.stripOptimus.rest}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 · ПРОЦЕСС -->
+    <section data-reveal class="section section-process">
+      <div class="container">
+        <div class="section-label">{t.process.label}</div>
+        <h2 class="h2-section">{t.process.h2}</h2>
+        <p class="sec-lede">{t.process.lede}</p>
+
+        <div class="proc" id="proc">
+          <div class="proc-rail" role="tablist" aria-label={t.process.railAria}>
+            {t.process.steps.map((step, i) => (
+              <button
+                class:list={['proc-step', { 'is-active': i === 0, 'proc-step-exc': step.key === 'exc' }]}
+                role="tab"
+                aria-selected={i === 0 ? 'true' : 'false'}
+                data-step={step.key}
+              >
+                <span class="proc-num">{STEP_NUM[step.key]}</span>
+                <span class="proc-name">{step.name}</span>
+                <span class="proc-brief">{step.brief}</span>
+              </button>
+            ))}
+          </div>
+
+          <div class="proc-panel" id="proc-panel" role="tabpanel">
+            <!-- built by the script from the JSON block below -->
+          </div>
+        </div>
+
+        <p class="proc-note">{t.process.note}</p>
+      </div>
+    </section>
+
+
+    <!-- 03 · ПОТОКИ ДАННЫХ -->
+    <section data-reveal class="section section-data">
+      <div class="container">
+        <div class="section-label">{t.data.label}</div>
+        <h2 class="h2-section">{t.data.h2}</h2>
+        <p class="sec-lede">{t.data.lede}</p>
+
+        <div class="dflow">
+          <img class="dflow-art" src="/screens/v2/optimus-dataflow-iso-v2.jpg"
+               alt={t.data.alt}
+               loading="lazy" decoding="async"/>
+
+          {t.data.inputs.map((d, i) => (
+            <div class="dtag dtag-in" style={`--y:${DTAG_IN_Y[i]}`}><b>{d.name}</b><span>{d.note}</span></div>
+          ))}
+
+          {t.data.outputs.map((d, i) => (
+            <div class="dtag dtag-out" style={`--y:${DTAG_OUT_Y[i]}`}><b>{d.name}</b><span>{d.note}</span></div>
+          ))}
+
+          <div class="dcap dcap-in">{t.data.capIn}</div>
+          <div class="dcap dcap-out">{t.data.capOut}</div>
+        </div>
+
+        <ul class="gains" data-reveal-stagger>
+          {t.data.gains.map((g) => (<li><b>{g.lead}</b>{g.rest}</li>))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- ИНТЕРФЕЙС — карусель -->
+    <section data-reveal class="section section-ui">
+      <div class="container">
+        <div class="section-label">{t.ui.label}</div>
+        <h2 class="h2-section">{t.ui.h2}</h2>
+        <p class="sec-lede">{t.ui.lede}</p>
+
+        <div class="carousel" id="carousel">
+          <div class="car-viewport">
+            <div class="car-track" id="car-track"><!-- slides are drawn by the script --></div>
+          </div>
+          <button class="car-nav car-prev" id="car-prev" aria-label={t.ui.prevAria}>‹</button>
+          <button class="car-nav car-next" id="car-next" aria-label={t.ui.nextAria}>›</button>
+          <div class="car-dots" id="car-dots"></div>
+        </div>
+      </div>
+    </section>
+
+    <CTA
+      heading={t.cta.heading}
+      body={t.cta.body}
+      primaryLabel={t.cta.primary}
+      primaryHref="/contact?subject=Optimus%20demo"
+      secondaryLabel={t.cta.secondary}
+      secondaryHref="/case-studies#red-petroleum"
+    />
+
+    <script type="application/json" id="optimus-i18n" set:html={JSON.stringify(clientData)}></script>
+  </article>
+
+<script>
+  /* Copy for the step panels and the carousel arrives as JSON from the
+   * component — an Astro module script cannot read frontmatter — so English
+   * and Russian share this code. Structure (coordinates, image files, order)
+   * comes from the same block and is identical in both languages. */
+  type Ann = { x: number; y: number; side: 'top' | 'bottom'; text: string };
+  type Panel = { key: string; label: string; title: string; bullets: string[]; art: string; artAlt: string };
+  type Slide = { src: string; caption: string; alt: string; anns: Ann[] };
+
+  const raw = document.getElementById('optimus-i18n')?.textContent ?? '{}';
+  const I18N: { panels: Panel[]; slides: Slide[]; slideAria: string } = JSON.parse(raw);
+  const PANELS: Record<string, Panel> = Object.fromEntries(I18N.panels.map((d) => [d.key, d]));
+
+  const panel = document.getElementById('proc-panel')!;
+  const steps = Array.from(document.querySelectorAll<HTMLButtonElement>('.proc-step'));
+
+  function render(key: string) {
+    const d = PANELS[key];
+    if (!d) return;
+    panel.innerHTML = `
+      <div class="pp-label">${d.label}</div>
+      <h3 class="pp-title">${d.title}</h3>
+      <ul class="pp-bullets">${d.bullets.map((b) => `<li>${b}</li>`).join('')}</ul>
+      ${d.art ? `
+        <figure class="pp-art">
+          <img src="/screens/v2/${d.art}" alt="${d.artAlt}" loading="lazy" decoding="async"/>
+        </figure>` : ''}
+    `;
+  }
+
+  steps.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      steps.forEach((b) => { b.classList.toggle('is-active', b === btn); b.setAttribute('aria-selected', String(b === btn)); });
+      render(btn.dataset.step!);
+    });
+  });
+  render(steps[0]?.dataset.step ?? '1');
+
+  /* ---------------- screen carousel ---------------- */
+  /* Every screenshot was taken in one 1600×900 window, so the frames match.
+   * Which language they show is decided by the component. */
+  const SLIDES = I18N.slides;
+
+  const track = document.getElementById('car-track');
+  const dots = document.getElementById('car-dots');
+  if (track && dots) {
+    track.innerHTML = SLIDES.map((sl) => {
+      const top = sl.anns.filter((a) => a.side === 'top');
+      const bottom = sl.anns.filter((a) => a.side === 'bottom');
+      const band = (items: Ann[], side: string) => `
+        <div class="ann-band ann-band-${side}">
+          ${items.map((a, i) => `
+            <div class="ann" style="--ax:${a.x}%; --d:${0.15 + i * 0.18}s">${a.text}</div>
+            <span class="lead-out" style="--ax:${a.x}%; --d:${0.15 + i * 0.18}s"></span>`).join('')}
+        </div>`;
+      return `
+      <figure class="car-slide">
+        ${band(top, 'top')}
+        <div class="shot-frame">
+          <img src="${sl.src}" alt="${sl.alt}" loading="lazy" decoding="async"/>
+          ${sl.anns.map((a, i) => `
+            <span class="lead-in lead-in-${a.side}" style="--x:${a.x}%; --y:${a.y}%; --d:${0.22 + i * 0.18}s"></span>
+            <i class="ann-dot" style="--x:${a.x}%; --y:${a.y}%; --d:${0.32 + i * 0.18}s"></i>`).join('')}
+        </div>
+        ${band(bottom, 'bottom')}
+        <figcaption>${sl.caption}</figcaption>
+      </figure>`;
+    }).join('');
+    dots.innerHTML = SLIDES.map((_, i) => `<button type="button" data-slide="${i}" aria-current="${i === 0}" aria-label="${I18N.slideAria} ${i + 1}"></button>`).join('');
+
+    let idx = 0;
+    const slides = Array.from(track.querySelectorAll('.car-slide'));
+    const show = (n: number) => {
+      idx = (n + SLIDES.length) % SLIDES.length;
+      track.style.transform = `translateX(-${idx * 100}%)`;
+      dots.querySelectorAll('button').forEach((b, i) => b.setAttribute('aria-current', String(i === idx)));
+      slides.forEach((sl, i) => sl.classList.toggle('is-live', i === idx));
+    };
+    // the first slide comes alive when the section reaches the viewport
+    new IntersectionObserver((entries, obs) => {
+      entries.forEach((e) => { if (e.isIntersecting) { slides[0].classList.add('is-live'); obs.disconnect(); } });
+    }, { threshold: 0.3 }).observe(document.getElementById('carousel')!);
+    document.getElementById('car-prev')!.addEventListener('click', () => show(idx - 1));
+    document.getElementById('car-next')!.addEventListener('click', () => show(idx + 1));
+    dots.addEventListener('click', (e) => {
+      const b = (e.target as HTMLElement).closest<HTMLElement>('[data-slide]');
+      if (b) show(Number(b.dataset.slide));
+    });
+    document.getElementById('carousel')!.addEventListener('keydown', (e) => {
+      if ((e as KeyboardEvent).key === 'ArrowLeft') show(idx - 1);
+      if ((e as KeyboardEvent).key === 'ArrowRight') show(idx + 1);
+    });
+  }
+
+  // Callout leaders: start drawing when the figure enters the viewport
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll<HTMLElement>('.shot-annot').forEach((fig) => {
+    if (reduceMotion) { fig.classList.add('ann-go'); return; }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        fig.classList.add('ann-go');
+        io.disconnect();
+      });
+    }, { threshold: 0.35 });
+    io.observe(fig);
+  });
+
+  // «Сегодня / С Optimus»
+  const duo = document.getElementById('duo')!;
+  duo.querySelectorAll<HTMLButtonElement>('.duo-btn').forEach((b) => {
+    b.addEventListener('click', () => {
+      duo.classList.toggle('is-order', b.dataset.mode === 'order');
+      duo.querySelectorAll('.duo-btn').forEach((x) => { x.classList.toggle('is-on', x === b); x.setAttribute('aria-selected', String(x === b)); });
+    });
+  });
+</script>
+
+<style>
+  .prose-page { padding-top: clamp(40px, 6vh, 72px); }
+  .hero-grid { display: grid; grid-template-columns: minmax(420px, 1.1fr) 1fr; gap: clamp(24px, 4vw, 56px); align-items: end; padding-bottom: clamp(48px, 8vh, 96px); }
+  .hero-art { width: 100%; border-radius: 18px; }
+  .duo-art { position: absolute; left: 50%; top: 47%; transform: translate(-50%, -50%); width: 30%; mix-blend-mode: multiply; transition: opacity 0.45s; }
+  .duo.is-order .duo-art { opacity: 0; }
+  .flow-art { display: block; width: min(620px, 80%); margin: 0 auto 34px; border-radius: 16px; }
+  .h1-page {
+    font-family: var(--font-display); font-weight: 600;
+    font-size: clamp(36px, 5vw, 56px); line-height: 1.14; margin-bottom: 16px;
+  }
+  .lede { font-size: clamp(17px, 2vw, 20px); color: var(--text-secondary); max-width: 760px; line-height: 1.6; }
+  .cta-row { display: flex; gap: 14px; margin-top: 28px; flex-wrap: wrap; }
+  .section { padding: clamp(48px, 8vh, 96px) 0; }
+  .sec-lede { color: var(--text-secondary); max-width: 720px; line-height: 1.6; margin-bottom: 32px; }
+
+  /* 01 — «Сегодня / С Optimus» */
+  .section-problem { background: var(--surface-alt); }
+  .duo { position: relative; }
+  .duo-toggle { display: inline-flex; gap: 4px; background: var(--card); border: 1px solid var(--border); border-radius: 999px; padding: 4px; margin-bottom: 22px; }
+  .duo-btn { border: 0; background: transparent; cursor: pointer; font: 600 14px var(--font-display); color: var(--text-secondary); padding: 8px 18px; border-radius: 999px; transition: all 0.2s; }
+  .duo-btn.is-on { background: var(--text-primary); color: #fff; }
+  .duo.is-order .duo-btn.is-on { background: var(--accent-gradient); }
+  .duo-stage { position: relative; aspect-ratio: 1120 / 540; }
+  .duo-stage svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .lines path { fill: none; transition: opacity 0.5s; }
+  .lines-chaos path { stroke: var(--border-hover); stroke-width: 1.2; stroke-dasharray: 5 6; }
+  .lines-order path { stroke: var(--accent); stroke-width: 2; stroke-dasharray: 10 8; opacity: 0; }
+  .duo.is-order .lines-chaos path { opacity: 0; }
+  .duo.is-order .lines-order path { opacity: 1; animation: flow 1.2s linear infinite; }
+  @keyframes flow { to { stroke-dashoffset: -18; } }
+  .duo-art-happy { opacity: 0; }
+  .duo.is-order .duo-art-happy { opacity: 1; }
+  .duo.is-order .duo-art:not(.duo-art-happy) { opacity: 0; }
+  .pkt-layer { opacity: 0; transition: opacity 0.5s; }
+  .duo.is-order .pkt-layer { opacity: 1; }
+  .pkt-dot { fill: var(--accent); }
+  .pkt-halo { fill: var(--accent); opacity: 0.25; }
+  .duo.is-order .duo-core-order { animation: none; }
+  @keyframes corepulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255, 106, 0, 0.35); }
+    50% { box-shadow: 0 0 0 14px rgba(255, 106, 0, 0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .duo.is-order .lines-order path { animation: none; }
+    .pkt { display: none; }
+  }
+  .duo-node, .duo-core, .chip { position: absolute; left: var(--x); top: var(--y); transform: translate(-50%, -50%); }
+  .duo-node-accent {
+    background: linear-gradient(135deg, #FFF6F0 0%, #FFE9DC 100%) !important;
+    border-color: rgba(255, 106, 0, 0.38) !important;
+    box-shadow: 0 4px 14px rgba(255, 106, 0, 0.10) !important;
+  }
+  .duo-node {
+    background: var(--card); border: 1px solid var(--border); border-radius: 999px;
+    padding: 14px 26px; font: 600 16px var(--font-display); box-shadow: 0 6px 18px rgba(0,0,0,0.05); white-space: nowrap;
+  }
+  .duo-core { text-align: center; border-radius: 16px; padding: 12px 22px; transition: opacity 0.45s, transform 0.45s; white-space: nowrap; }
+  .duo-core b { display: block; font: 700 17px var(--font-display); }
+  .duo-core span { font-size: 12.5px; opacity: 0.75; }
+  .duo-core-chaos { background: var(--text-primary); color: #fff; }
+  .duo-core-order { background: var(--accent-gradient); color: #fff; opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+  .duo.is-order .duo-core-chaos { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+  .duo.is-order .duo-core-order { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  .chip {
+    background: var(--card); border: 1px solid var(--border); border-radius: 999px;
+    padding: 7px 14px 7px 26px; font: 500 13.5px var(--font-body); color: var(--text-secondary);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06); white-space: nowrap; transition: opacity 0.45s, transform 0.45s;
+  }
+  .chip::before { content: ''; position: absolute; left: 11px; top: 50%; transform: translateY(-50%); width: 8px; height: 8px; border-radius: 50%; }
+  .chip-a::before { background: #E5484D; }
+  .chip-b::before { background: #2E9E63; }
+  .chip-b { opacity: 0; transform: translate(-50%, -46%); }
+  .duo.is-order .chip-a { opacity: 0; transform: translate(-50%, -54%); }
+  .duo.is-order .chip-b { opacity: 1; transform: translate(-50%, -50%); }
+  .duo-strip { border-radius: 12px; padding: 14px 20px; font-size: 15px; color: var(--text-secondary); transition: opacity 0.45s; margin-top: 6px; }
+  .duo-strip b { color: var(--text-primary); }
+  .duo-strip-chaos { background: rgba(229, 72, 77, 0.07); border: 1px solid rgba(229, 72, 77, 0.25); }
+  .duo-strip-order { background: rgba(46, 158, 99, 0.07); border: 1px solid rgba(46, 158, 99, 0.3); display: none; }
+  .duo.is-order .duo-strip-chaos { display: none; }
+  .duo.is-order .duo-strip-order { display: block; }
+
+  /* 02 — процесс */
+  .proc { display: grid; grid-template-columns: minmax(300px, 380px) 1fr; gap: 28px; align-items: start; }
+  .proc-rail { display: flex; flex-direction: column; gap: 10px; }
+  .proc-step {
+    text-align: left; background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 16px 18px; cursor: pointer;
+    display: grid; grid-template-columns: 44px 1fr; grid-template-rows: auto auto; column-gap: 14px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .proc-step:hover { border-color: var(--border-hover); }
+  .proc-step.is-active { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
+  .proc-num {
+    grid-row: 1 / 3; width: 44px; height: 44px; border-radius: 50%;
+    background: var(--text-primary); color: #fff; display: flex; align-items: center; justify-content: center;
+    font: 600 17px var(--font-display);
+  }
+  .proc-step.is-active .proc-num { background: var(--accent-gradient); }
+  .proc-step-exc .proc-num { background: var(--accent); }
+  .proc-name { font: 600 16px var(--font-display); color: var(--text-primary); align-self: center; }
+  .proc-brief { grid-column: 2; font-size: 14px; color: var(--text-muted); line-height: 1.5; margin-top: 4px; }
+  .proc-panel {
+    background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+    padding: clamp(20px, 3vw, 32px); position: sticky; top: 90px;
+  }
+  .proc-panel :global(.pp-label) { font: 600 13px var(--font-display); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 6px; }
+  .proc-panel :global(.pp-title) { font: 600 clamp(20px, 2.4vw, 26px) var(--font-display); margin-bottom: 14px; }
+  .proc-panel :global(.pp-bullets) { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-bottom: 18px; }
+  .proc-panel :global(.pp-bullets li) { position: relative; padding-left: 22px; color: var(--text-secondary); line-height: 1.55; font-size: 15px; }
+  .proc-panel :global(.pp-bullets li::before) { content: ''; position: absolute; left: 0; top: 0.5em; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+  .proc-panel :global(.pp-fig) { margin-top: 16px; }
+  .proc-panel :global(.pp-fig img) { width: 100%; border: 1px solid var(--border); border-radius: 10px; }
+  .proc-panel :global(.pp-fig figcaption) { font-size: 13px; color: var(--text-muted); margin-top: 6px; }
+
+  .proc-note {
+    margin-top: 28px; padding: 14px 18px; border-left: 2px solid var(--border);
+    color: var(--text-muted); font-size: 14px; line-height: 1.55; max-width: 760px;
+  }
+
+
+  /* --- иллюстрации шагов --- */
+  .proc-panel :global(.pp-art) { margin: 18px 0 0; display: flex; justify-content: center; }
+  .proc-panel :global(.pp-art img) {
+    width: 100%; max-width: 340px; height: auto; display: block; mix-blend-mode: multiply;
+  }
+
+  /* --- потоки данных: подписи прямо на иллюстрации --- */
+  .dflow { position: relative; margin: 0 auto 34px; max-width: 1180px; }
+  .dflow-art { display: block; width: 66%; margin: 0 auto; mix-blend-mode: multiply; }
+  .dtag {
+    position: absolute; top: var(--y); transform: translateY(-50%); width: 16.5%;
+    background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 7px 11px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  }
+  .dtag b { display: block; font: 600 13.5px var(--font-display); }
+  .dtag span { font-size: 12px; color: var(--text-secondary); line-height: 1.35; }
+  .dtag::after {                       /* поводок к блоку на картинке */
+    content: ''; position: absolute; top: 50%; height: 1.5px; background: var(--accent);
+  }
+  .dtag-in  { left: 0; text-align: right; }
+  .dtag-in::after  { left: 100%; width: 48px; }
+  .dtag-out { right: 0; }
+  .dtag-out::after { right: 100%; width: 48px; }
+  .dcap {
+    position: absolute; top: -6px; font: 600 12px var(--font-display);
+    letter-spacing: .08em; text-transform: uppercase; color: var(--text-muted);
+  }
+  .dcap-in  { left: 0; }
+  .dcap-out { right: 0; }
+  .gains { list-style: none; display: grid; gap: 10px; max-width: 900px; }
+  .gains li { position: relative; padding-left: 30px; font-size: 15.5px; color: var(--text-secondary); line-height: 1.55; }
+  .gains li::before {
+    content: '✓'; position: absolute; left: 0; top: 0; width: 21px; height: 21px; border-radius: 50%;
+    background: var(--accent-dim); color: var(--accent-text); font-size: 12px; font-weight: 700;
+    display: grid; place-items: center;
+  }
+  .gains b { color: var(--text-primary); }
+
+  /* --- карусель экранов --- */
+  .carousel { position: relative; }
+  .car-viewport { overflow: hidden; border-radius: 16px; }
+  .car-track { display: flex; transition: transform .45s cubic-bezier(.32,.72,0,1); }
+  /* слайды вставляет скрипт → стили только через :global, иначе Astro их не применит */
+  .carousel :global(.car-slide) {
+    flex: 0 0 100%; box-sizing: border-box; padding: 0 4px 8px; position: relative; margin: 0;
+    display: grid; grid-template-rows: var(--band) auto var(--band) auto; --band: 96px;
+  }
+  /* все кадры одного размера независимо от исходника */
+  .carousel :global(.car-slide .shot-frame) {
+    position: relative; aspect-ratio: 16 / 9; background: var(--surface-alt);
+    border: 1px solid var(--border); border-radius: 14px; overflow: hidden;
+    box-shadow: 0 16px 44px rgba(0,0,0,0.09);
+  }
+  .carousel :global(.car-slide .shot-frame img) {
+    width: 100%; height: 100%; object-fit: contain; object-position: center top; display: block;
+  }
+  /* полосы для колаутов — колауты живут ЗА рамкой */
+  .carousel :global(.ann-band) { position: relative; }
+  .carousel :global(.ann-band-top) { grid-row: 1; }
+  .carousel :global(.ann-band-bottom) { grid-row: 3; }
+  .carousel :global(.lead-out) {
+    position: absolute; left: clamp(4px, var(--ax), calc(100% - 4px)); width: 1.5px; height: 26px;
+    background: var(--accent); transform: scaleY(0); transition: transform .4s ease var(--d);
+  }
+  .carousel :global(.ann-band-top .lead-out)    { bottom: 0; transform-origin: top; }
+  .carousel :global(.ann-band-bottom .lead-out) { top: 0;    transform-origin: bottom; }
+  .carousel :global(.car-slide.is-live .lead-out) { transform: scaleY(1); }
+  .carousel :global(.lead-in) {
+    position: absolute; left: var(--x); width: 1.5px; background: var(--accent); z-index: 1;
+    transform: scaleY(0); transition: transform .45s ease var(--d);
+  }
+  .carousel :global(.lead-in-top)    { top: 0;    height: var(--y); transform-origin: top; }
+  .carousel :global(.lead-in-bottom) { top: var(--y); bottom: 0; transform-origin: bottom; }
+  .carousel :global(.car-slide.is-live .lead-in) { transform: scaleY(1); }
+  .carousel :global(.car-slide figcaption) { text-align: center; color: var(--text-muted); font-size: 14px; margin-top: 16px; }
+  .carousel :global(.car-slide .ann) {
+    position: absolute; left: clamp(128px, var(--ax), calc(100% - 128px));
+    transform: translate(-50%, 6px); opacity: 0; transition: opacity .4s var(--d), transform .4s var(--d);
+    background: #FFF4ED; border: 1px solid rgba(255, 106, 0, 0.4); border-radius: 10px;
+    padding: 9px 13px; font: 500 13px/1.4 var(--font-body); color: #7C2D12;
+    box-shadow: 0 6px 20px rgba(255, 106, 0, 0.16); width: max-content; max-width: 250px; z-index: 2;
+  }
+  .carousel :global(.ann-band-top .ann)    { bottom: 34px; }
+  .carousel :global(.ann-band-bottom .ann) { top: 34px; }
+  .carousel :global(.car-slide.is-live .ann) { opacity: 1; transform: translate(-50%, 0); }
+  .carousel :global(.car-slide .ann-dot) {
+    position: absolute; left: var(--x); top: var(--y); width: 10px; height: 10px; margin: -5px 0 0 -5px;
+    border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px var(--accent-dim); z-index: 2;
+    transform: scale(0); transition: transform .35s cubic-bezier(.34,1.56,.64,1) var(--d);
+  }
+  .carousel :global(.car-slide.is-live .ann-dot) { transform: scale(1); }
+  @media (prefers-reduced-motion: reduce) {
+    .carousel :global(.ann), .carousel :global(.ann-dot), .carousel :global(.lead-out), .carousel :global(.lead-in) {
+      opacity: 1 !important; transform: none !important; transition: none !important;
+    }
+    .carousel :global(.ann) { transform: translateX(-50%) !important; }
+  }
+  .car-nav {
+    position: absolute; top: 44%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%;
+    background: var(--card); border: 1px solid var(--border); font-size: 22px; line-height: 1; color: var(--text-primary);
+    box-shadow: 0 6px 20px rgba(0,0,0,.10); cursor: pointer; z-index: 3;
+  }
+  .car-nav:hover { border-color: var(--accent); color: var(--accent-text); }
+  .car-prev { left: -14px; } .car-next { right: -14px; }
+  .car-dots { display: flex; gap: 7px; justify-content: center; margin-top: 18px; }
+  .car-dots button { width: 8px; height: 8px; border-radius: 50%; border: 0; background: var(--border-hover); cursor: pointer; padding: 0; }
+  .car-dots button[aria-current="true"] { background: var(--accent); width: 22px; border-radius: 999px; }
+  @media (max-width: 900px) {
+    .dflow-art { width: 100%; }
+    .dtag { position: static; transform: none; width: auto; text-align: left; margin-bottom: 8px; }
+    .dtag::after { display: none; }
+    .dcap { position: static; margin: 14px 0 8px; }
+    .car-prev { left: 2px; } .car-next { right: 2px; }
+  }
+
+  /* Аннотированные скриншоты (приём Titan) */
+  .section-shot-alt { background: var(--surface-alt); }
+  .shot-frame { position: relative; border: 1px solid var(--border); border-radius: 14px; box-shadow: 0 20px 60px rgba(0,0,0,0.08); }
+  .shot-frame img { width: 100%; display: block; border-radius: 14px; }
+  .shot-annot { position: relative; padding: 64px 0 118px; }
+  .ann {
+    position: absolute; left: var(--ax); transform: translate(calc(-50% + var(--nudge, 0px)), 0);
+    background: #FFF4ED; border: 1px solid rgba(255, 106, 0, 0.4); border-radius: 10px;
+    padding: 9px 13px; font: 500 13px/1.4 var(--font-body); color: #7C2D12;
+    box-shadow: 0 6px 20px rgba(255, 106, 0, 0.16); width: max-content; max-width: 270px; z-index: 2;
+  }
+  .ann-top { top: 0; }
+  .ann-bottom { bottom: 44px; }
+  .lead { position: absolute; background: var(--accent); pointer-events: none; transition: transform 0.45s ease var(--d, 0s); }
+  .lead-v { left: calc(var(--x) - 0.75px); top: var(--y1); height: calc(var(--y2) - var(--y1)); width: 1.5px; transform: scaleY(0); transform-origin: top; }
+  .lead-h { top: calc(var(--y) - 0.75px); left: var(--x1); width: calc(var(--x2) - var(--x1)); height: 1.5px; transform: scaleX(0); transform-origin: left; }
+  .ann-dot { position: absolute; left: var(--x); top: var(--y); width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px var(--accent-dim); transform: scale(0); transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+  .shot-annot figcaption { position: absolute; bottom: 0; left: 0; right: 0; }
+  .shot figcaption { text-align: center; color: var(--text-muted); font-size: 14px; margin-top: 14px; }
+  /* появление при прокрутке — классы ставит скрипт (Astro-скоуп не пускает .js/.in-view с html) */
+  .ann { opacity: 0; transform: translate(calc(-50% + var(--nudge, 0px)), 6px); transition: opacity 0.4s, transform 0.4s; }
+  .ann-go .ann { opacity: 1; transform: translate(calc(-50% + var(--nudge, 0px)), 0); }
+  .ann-go .ann:nth-of-type(2) { transition-delay: 0.2s; }
+  .ann-go .ann:nth-of-type(3) { transition-delay: 0.4s; }
+  .ann-go .ann:nth-of-type(4) { transition-delay: 0.6s; }
+  .ann-go .ann-dot { transform: scale(1); transition-delay: var(--d, 0s); }
+  .ann-go .lead-v { transform: scaleY(1); }
+  .ann-go .lead-h { transform: scaleX(1); }
+
+  @media (max-width: 900px) {
+    .shot-annot { padding: 0; }
+    .ann { position: static; transform: none !important; opacity: 1 !important; max-width: none; margin-bottom: 8px; }
+    .shot-annot figcaption { position: static; }
+    .lead, .ann-dot { display: none; }
+  }
+
+  /* 03 — потоки данных */
+  .flow { display: grid; grid-template-columns: 1fr auto 1fr; gap: 22px; align-items: center; margin-bottom: 40px; }
+  .flow-title { font: 600 13px var(--font-display); letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; }
+  .flow-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 12px 16px; margin-bottom: 10px; }
+  .flow-card b { display: block; font: 600 15px var(--font-display); }
+  .flow-card span { font-size: 13.5px; color: var(--text-secondary); line-height: 1.45; }
+  .flow-mid { display: flex; align-items: center; gap: 14px; }
+  .flow-arrow { font-size: 26px; color: var(--accent); }
+  .flow-core { background: var(--text-primary); color: #fff; border-radius: 16px; padding: 22px 24px; max-width: 300px; }
+  .flow-core-name { font: 700 22px var(--font-display); margin-bottom: 8px; }
+  .flow-core-sub { font-size: 13px; line-height: 1.5; opacity: 0.75; }
+  .analytics-row { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-bottom: 36px; }
+  .mini-shot img { width: 100%; border: 1px solid var(--border); border-radius: 12px; }
+  .mini-shot figcaption { font-size: 13px; color: var(--text-muted); margin-top: 8px; }
+  .benefits { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .benefit { background: var(--surface-alt); border-radius: 14px; padding: 22px 24px; }
+  .benefit-title { font: 600 17px var(--font-display); margin-bottom: 8px; }
+  .benefit p { color: var(--text-secondary); font-size: 15px; line-height: 1.55; }
+
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .proc { grid-template-columns: 1fr; }
+    .proc-panel { position: static; }
+    .flow { grid-template-columns: 1fr; }
+    .flow-mid { flex-direction: column; }
+    .flow-arrow { transform: rotate(90deg); }
+    .analytics-row, .benefits { grid-template-columns: 1fr; }
+    .callout span { max-width: 180px; font-size: 11px; }
+    .chip { font-size: 11px; padding: 5px 10px 5px 20px; } .duo-node { font-size: 12px; padding: 8px 14px; } .duo-core { padding: 10px 16px; } .duo-core b { font-size: 14px; }
+  }
+</style>
