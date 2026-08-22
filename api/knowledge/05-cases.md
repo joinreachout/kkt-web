@@ -71,26 +71,22 @@ case.
 - **Sector / region:** Fuel retail. Central Asia (Kyrgyzstan),
   2024–present. An independent fuel network: 220+ stations, 22 oil depots, 750,000 active customers, USD 600M+ revenue.
 - **Headline:** Days → minutes.
-- **Status:** Live — the broad data & AI program is in production; the
-  Optimus procurement-and-margin engine is in pilot. Be precise about
-  that split if asked.
+- **Status:** Live — the broad data & AI program is in production.
 - **Engagement:** A multi-year data & AI transformation across the
   network: AI-readiness and roadmap with leadership alignment; a DWH/BI
   foundation (24+ dashboards across 9 departments); customer
   segmentation of 380,000+ loyalty members; anti-fraud analytics over
   30M+ transactions; internal assistants (a natural-language analytics
   agent, internal RAG assistants); payment, logistics and procurement
-  automation, including a first procurement-optimisation product
-  (Optimus); plus hiring and training the client's in-house data team.
+  automation, including a first procurement-optimisation product; plus
+  hiring and training the client's in-house data team.
 - **What changed:** Most of the roadmap delivered; the in-house data
   team now runs independently; reporting that took days now takes
   minutes; first in-house ML models in production.
 
 This is KKT's largest deployment, but treat it as one strong case among
-several, not the headline. Optimus has its own surface in 04-optimus.md;
-don't conflate the program (in production) with the Optimus engine (in
-pilot). No revenue figure for Red Petroleum is published — don't state
-one.
+several, not the headline. ⛔ Do not tie this client to Optimus by name —
+where Optimus is deployed is not published (decision of 22.08.2026).
 
 ## Fuel retail loyalty — `/case-studies#loyalty-reactivation`
 
