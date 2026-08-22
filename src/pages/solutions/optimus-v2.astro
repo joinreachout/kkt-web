@@ -29,7 +29,7 @@ import CTA from '~/components/CTA.astro';
           <a href="/case-studies#red-petroleum" class="btn-ghost">Кейс внедрения</a>
         </div>
       </div>
-      <img class="hero-art" src="/screens/v2/optimus-network-iso.jpg"
+      <img class="hero-art" src="/screens/v2/optimus-network-iso-v2.jpg"
            alt="Сеть под управлением Optimus: нефтебаза, ЖД, бензовоз и станции, связанные в один контур"
            fetchpriority="high" decoding="async"/>
     </div>
@@ -93,8 +93,8 @@ import CTA from '~/components/CTA.astro';
             <div class="duo-node" style="--x:16%; --y:76%;">Порт / ЖД</div>
             <div class="duo-node" style="--x:84%; --y:76%;">Бензовозы</div>
 
-            <img class="duo-art" src="/screens/v2/optimus-dispatcher-iso.jpg" alt="" aria-hidden="true"/>
-            <img class="duo-art duo-art-happy" src="/screens/v2/optimus-dispatcher-happy-iso.jpg" alt="" aria-hidden="true"/>
+            <img class="duo-art" src="/screens/v2/optimus-dispatcher-iso-v2.jpg" alt="" aria-hidden="true"/>
+            <img class="duo-art duo-art-happy" src="/screens/v2/optimus-dispatcher-happy-iso-v2.jpg" alt="" aria-hidden="true"/>
             <div class="duo-core duo-core-chaos" style="--x:50%; --y:90%;">
               <b>Ручная сводка</b><span>Excel, звонки, почта</span>
             </div>
@@ -193,7 +193,7 @@ import CTA from '~/components/CTA.astro';
         </p>
 
         <div class="dflow">
-          <img class="dflow-art" src="/screens/v2/optimus-dataflow-iso.jpg"
+          <img class="dflow-art" src="/screens/v2/optimus-dataflow-iso-v2.jpg"
                alt="Четыре системы компании соединены с Optimus, а он возвращает результат в ERP и на дашборды"
                loading="lazy" decoding="async"/>
 
@@ -303,27 +303,27 @@ import CTA from '~/components/CTA.astro';
    * затем сюда подставляются пути к картинкам вместо блока-заглушки. */
   const PICTO: Record<string, { file: string; what: string; prompt: string }> = {
     '1': {
-      file: 'step-1-planning.jpg',
+      file: 'step-1-planning-v2.jpg',
       what: 'Монитор с растущим графиком остатка и линией критического уровня; рядом маленький значок «обновление в реальном времени».',
       prompt: 'Isometric 3D illustration, matte dark charcoal #1D1D1F objects, glowing orange #FF6A00 accent lines, pure white background, soft shadows. A single flat monitor on a small platform showing a simple line chart declining toward a marked threshold line. No text, no letters, no numbers, no people, no logos. Square composition.'
     },
     '2': {
-      file: 'step-2-approval.jpg',
+      file: 'step-2-approval-v2.jpg',
       what: 'Карточка заказа и крупная галочка подтверждения — единственный шаг, где нужен человек.',
       prompt: 'Isometric 3D illustration, matte dark charcoal #1D1D1F objects, glowing orange #FF6A00 accent lines, pure white background, soft shadows. A single document card on a small platform with a large glowing orange checkmark hovering above it. No text, no letters, no numbers, no people, no logos. Square composition.'
     },
     '3': {
-      file: 'step-3-supply.jpg',
+      file: 'step-3-supply-v2.jpg',
       what: 'Цистерна на рельсах в движении, оранжевая линия маршрута к нефтебазе.',
       prompt: 'Isometric 3D illustration, matte dark charcoal #1D1D1F objects, glowing orange #FF6A00 accent lines, pure white background, soft shadows. A single rail tank car on a short piece of track, with a glowing orange route line running ahead of it. No text, no letters, no numbers, no people, no logos. Square composition.'
     },
     'exc': {
-      file: 'step-exc-conflict.jpg',
+      file: 'step-exc-conflict-v2.jpg',
       what: 'Полный резервуар и ждущая рядом цистерна; сверху значок времени — груз приехал, а места нет.',
       prompt: 'Isometric 3D illustration, matte dark charcoal #1D1D1F objects, glowing orange #FF6A00 accent lines, pure white background, soft shadows. A storage tank filled to the top next to a waiting rail tank car, with a small glowing orange hourglass floating above. No text, no letters, no numbers, no people, no logos. Square composition.'
     },
     '4': {
-      file: 'step-4-receiving.jpg',
+      file: 'step-4-receiving-v2.jpg',
       what: 'Резервуар, который наполняется: уровень поднимается, стрелка вниз в горловину.',
       prompt: 'Isometric 3D illustration, matte dark charcoal #1D1D1F objects, glowing orange #FF6A00 accent lines, pure white background, soft shadows. A storage tank being filled, the fuel level glowing orange inside it and an arrow pointing down into its inlet. No text, no letters, no numbers, no people, no logos. Square composition.'
     }
@@ -362,12 +362,12 @@ import CTA from '~/components/CTA.astro';
   const shot = (n) => `/screens/v2/${n}-${SHOT_LANG}.jpg`;
 
   const SLIDES = [
-    { src: shot('ui-1-briefing'),
-      caption: 'Дашборд: система объясняет, что критично и почему',
-      alt: 'Дашборд Optimus: брифинг с критичными позициями и объяснением решения',
+    { src: shot('ui-1-action'),
+      caption: 'Дашборд: что заказать, у кого и почему именно так',
+      alt: 'Дашборд Optimus: разбор позиций, требующих действия, с расчётом сроков и поставщиков',
       anns: [
-        { x: 33, y: 47, side: 'top',    text: 'Решение объяснено словами, а не таблицей' },
-        { x: 10, y: 60, side: 'bottom', text: '31 позиция требует действия' }
+        { x: 30, y: 22, side: 'top',    text: 'Запас, срок до критического и объём заказа — в одной строке' },
+        { x: 46, y: 47, side: 'bottom', text: 'Почему не самый дешёвый: он не успевает по сроку' }
       ] },
     { src: shot('ui-2-matrix'),
       caption: 'Матрица нефтебаз: вся сеть × виды топлива на одном экране',
