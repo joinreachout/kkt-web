@@ -1,4 +1,9 @@
 // /solutions/optimus content. German careful; Estonian first pass (verify).
+//
+// ⛔ Nothing here names the network Optimus runs in. The pages are handed to
+// prospects directly, and where it is deployed is not ours to publish —
+// decision of 22.08.2026. The hero's second button and the "in pilot" section
+// went with it.
 import type { Locale, LocaleDict } from '../config';
 
 type NameBody = { name: string; body: string };
@@ -15,7 +20,7 @@ export type OptimusDict = {
   heroSub: string;
   lede: string;
   defPre: string; defLink: string; defPost: string;
-  ctaPrimary: string; ctaSecondary: string;
+  ctaPrimary: string;
   pulse: {
     erpT: string; erpS: string;
     forecastT: string; forecastS: string;
@@ -29,26 +34,24 @@ export type OptimusDict = {
   how: { label: string; h2: string; lede: string; clusters: Cluster[] };
   screens: { label: string; h2: string; lede: string };
   scenarios: { label: string; h2: string; lede: string; imgAlt: string; imgCaption: string; cards: TagBody[]; tail: string };
-  deployments: { label: string; h2: string; name: string; meta: string; stats: Stat[]; body: string; link: string };
   pullquote: string;
-  cta: { heading: string; body: string; primary: string; secondary: string };
+  cta: { heading: string; body: string; primary: string };
 };
 
 export const OPTIMUS: LocaleDict<OptimusDict> = {
   en: {
     meta: {
       title: 'Optimus — KKT',
-      description: 'The procurement-and-margin engine for fuel networks — buying on connected data, not experience. In pilot at Red Petroleum, Kyrgyzstan.',
+      description: 'The procurement-and-margin engine for fuel networks — buying on connected data, not experience.',
     },
     sectionLabel: 'Solutions — Optimus',
     h1: 'Optimus.',
     heroSub: 'The procurement-and-margin engine for fuel networks.',
     lede: 'Optimus turns fuel buying from a decision made on experience and availability into one made on data. Each morning it pulls live ERP data — current stocks, in-transit orders, station-level sales, supplier offers — forecasts when each station × fuel-type position will run critical, flags inbound delivery conflicts where arriving volume exceeds tank capacity, and produces concrete procurement recommendations: which supplier, how many tons, by what date, at what price.',
-    defPre: 'The user is the head of supply. The morning workflow is 10 to 15 minutes: read the briefing, close the critical positions, confirm or adjust the recommendations, issue the purchase orders. Optimus is in pilot at Red Petroleum — an independent fuel network in Kyrgyzstan, 220+ stations. It is one embodiment of how we work in fuel: the procurement-and-margin engine, on connected data — the wider network economy is on the ',
+    defPre: 'The user is the head of supply. The morning workflow is 10 to 15 minutes: read the briefing, close the critical positions, confirm or adjust the recommendations, issue the purchase orders. It is one embodiment of how we work in fuel: the procurement-and-margin engine, on connected data — the wider network economy is on the ',
     defLink: 'fuel-retail page',
     defPost: '.',
     ctaPrimary: 'Book a demo',
-    ctaSecondary: 'Read the Red Petroleum case',
     pulse: {
       erpT: 'ERP', erpS: 'stocks · in-transit · sales',
       forecastT: 'Forecast engine', forecastS: 'stockout × delivery',
@@ -85,7 +88,7 @@ export const OPTIMUS: LocaleDict<OptimusDict> = {
         { title: 'Procurement speed', body: 'Decisions that took half a day of reconciliation move to minutes. The operator sees the recommendation and the data behind it on the same screen.' },
         { title: 'Supplier consolidation', body: "Recommendation history makes supplier-by-supplier savings visible over time. The Procurement Advisor's defaults shift with what the data shows." },
       ],
-      note: "Numbers per deployment vary by network size, fuel mix, and baseline. We publish ranges from real deployments. See the Red Petroleum case for one deployment's actual movement.",
+      note: "Numbers per deployment vary by network size, fuel mix, and baseline. We publish ranges from real deployments.",
     },
     how: {
       label: 'How it works',
@@ -136,41 +139,27 @@ export const OPTIMUS: LocaleDict<OptimusDict> = {
       ],
       tail: 'Each mode produces a different recommendation set against the same operational reality — visible side-by-side. Mode comparison view in the screenshot above.',
     },
-    deployments: {
-      label: 'In pilot',
-      h2: 'In pilot at Red Petroleum.',
-      name: 'Red Petroleum',
-      meta: 'Kyrgyzstan · Pilot',
-      stats: [
-        { num: '220+', label: 'stations' },
-        { num: 'Pilot', label: 'live trial' },
-      ],
-      body: 'An independent fuel network piloting Optimus for procurement and margin — buying on connected data instead of experience and availability.',
-      link: 'Read the case →',
-    },
     pullquote: 'Numbers per deployment vary by network size, fuel mix, and baseline. We publish ranges from real deployments.',
     cta: {
       heading: 'See if Optimus fits your network.',
       body: 'A two-week diagnostic looks at your pricing posture, margin posture, and station-level operations — and tells you what shipping Optimus into your network would actually look like.',
       primary: 'Book a diagnostic',
-      secondary: 'Read the Red Petroleum case',
     },
   },
 
   de: {
     meta: {
       title: 'Optimus — KKT',
-      description: 'Die Beschaffungs- und Margen-Engine für Tankstellennetze — Einkauf auf vernetzten Daten statt aus Erfahrung. Im Pilotbetrieb bei Red Petroleum, Kirgisistan.',
+      description: 'Die Beschaffungs- und Margen-Engine für Tankstellennetze — Einkauf auf vernetzten Daten statt aus Erfahrung.',
     },
     sectionLabel: 'Lösungen — Optimus',
     h1: 'Optimus.',
     heroSub: 'Die Beschaffungs- und Margen-Engine für Tankstellennetze.',
     lede: 'Optimus macht aus dem Kraftstoffeinkauf eine datenbasierte Entscheidung statt einer, die auf Erfahrung und Verfügbarkeit beruht. Jeden Morgen zieht es Live-ERP-Daten — aktuelle Bestände, Bestellungen unterwegs, Verkäufe je Station, Lieferantenangebote — prognostiziert, wann jede Position aus Station × Kraftstoffsorte kritisch wird, kennzeichnet eingehende Lieferkonflikte, bei denen das ankommende Volumen die Tankkapazität übersteigt, und erstellt konkrete Beschaffungsempfehlungen: welcher Lieferant, wie viele Tonnen, bis wann, zu welchem Preis.',
-    defPre: 'Der Nutzer ist der Leiter der Versorgung. Der morgendliche Ablauf dauert 10 bis 15 Minuten: das Briefing lesen, die kritischen Positionen schließen, die Empfehlungen bestätigen oder anpassen, die Bestellungen auslösen. Optimus läuft im Pilotbetrieb bei Red Petroleum — einem unabhängigen Tankstellennetz in Kirgisistan mit 220+ Stationen. Es ist eine Ausprägung unserer Arbeitsweise im Kraftstoffgeschäft: die Beschaffungs- und Margen-Engine, auf vernetzten Daten — die umfassendere Netzwerk-Ökonomie steht auf der ',
+    defPre: 'Der Nutzer ist der Leiter der Versorgung. Der morgendliche Ablauf dauert 10 bis 15 Minuten: das Briefing lesen, die kritischen Positionen schließen, die Empfehlungen bestätigen oder anpassen, die Bestellungen auslösen. Es ist eine Ausprägung unserer Arbeitsweise im Kraftstoffgeschäft: die Beschaffungs- und Margen-Engine, auf vernetzten Daten — die umfassendere Netzwerk-Ökonomie steht auf der ',
     defLink: 'Tankstellen-Seite',
     defPost: '.',
     ctaPrimary: 'Demo buchen',
-    ctaSecondary: 'Den Red-Petroleum-Fall lesen',
     pulse: {
       erpT: 'ERP', erpS: 'Bestände · unterwegs · Verkäufe',
       forecastT: 'Prognose-Engine', forecastS: 'Fehlbestand × Lieferung',
@@ -207,7 +196,7 @@ export const OPTIMUS: LocaleDict<OptimusDict> = {
         { title: 'Beschaffungstempo', body: 'Entscheidungen, die einen halben Tag Abstimmung kosteten, dauern jetzt Minuten. Der Operator sieht die Empfehlung und die Daten dahinter auf demselben Bildschirm.' },
         { title: 'Lieferantenkonsolidierung', body: 'Die Empfehlungshistorie macht Einsparungen Lieferant für Lieferant über die Zeit sichtbar. Die Voreinstellungen des Beschaffungsberaters verschieben sich mit dem, was die Daten zeigen.' },
       ],
-      note: 'Die Zahlen je Einsatz variieren mit Netzgröße, Kraftstoffmix und Ausgangslage. Wir veröffentlichen Spannen aus echten Einsätzen. Der Red-Petroleum-Fall zeigt die tatsächliche Bewegung eines Einsatzes.',
+      note: 'Die Zahlen je Einsatz variieren mit Netzgröße, Kraftstoffmix und Ausgangslage. Wir veröffentlichen Spannen aus echten Einsätzen.',
     },
     how: {
       label: 'Wie es funktioniert',
@@ -258,41 +247,27 @@ export const OPTIMUS: LocaleDict<OptimusDict> = {
       ],
       tail: 'Jeder Modus erzeugt gegen dieselbe operative Realität einen anderen Empfehlungssatz — nebeneinander sichtbar. Die Modus-Vergleichsansicht zeigt der Screenshot oben.',
     },
-    deployments: {
-      label: 'Im Pilotbetrieb',
-      h2: 'Im Pilotbetrieb bei Red Petroleum.',
-      name: 'Red Petroleum',
-      meta: 'Kirgisistan · Pilot',
-      stats: [
-        { num: '220+', label: 'Stationen' },
-        { num: 'Pilot', label: 'Live-Testbetrieb' },
-      ],
-      body: 'Ein unabhängiges Tankstellennetz, das Optimus für Beschaffung und Marge pilotiert — Einkauf auf vernetzten Daten statt aus Erfahrung und Verfügbarkeit.',
-      link: 'Den Fall lesen →',
-    },
     pullquote: 'Die Zahlen je Einsatz variieren mit Netzgröße, Kraftstoffmix und Ausgangslage. Wir veröffentlichen Spannen aus echten Einsätzen.',
     cta: {
       heading: 'Prüfen Sie, ob Optimus zu Ihrem Netz passt.',
       body: 'Eine zweiwöchige Diagnose betrachtet Ihre Preis- und Margenhaltung sowie den Betrieb auf Stationsebene — und zeigt, wie es konkret aussähe, Optimus in Ihr Netz zu bringen.',
       primary: 'Diagnose buchen',
-      secondary: 'Den Red-Petroleum-Fall lesen',
     },
   },
 
   et: {
     meta: {
       title: 'Optimus — KKT',
-      description: 'Hanke- ja marginaalimootor kütusevõrkudele — ostmine ühendatud andmetel, mitte kogemusel. Piloodis Red Petroleumis, Kõrgõzstanis.',
+      description: 'Hanke- ja marginaalimootor kütusevõrkudele — ostmine ühendatud andmetel, mitte kogemusel.',
     },
     sectionLabel: 'Lahendused — Optimus',
     h1: 'Optimus.',
     heroSub: 'Hanke- ja marginaalimootor kütusevõrkudele.',
     lede: 'Optimus muudab kütuse ostmise kogemusel ja saadavusel põhinevast otsusest andmepõhiseks. Igal hommikul tõmbab see live ERP-andmeid — praegused laoseisud, teel olevad tellimused, jaamapõhine müük, tarnijate pakkumised — prognoosib, millal iga jaam × kütuseliik jõuab kriitilisele tasemele, märgib sissetulevad tarnekonfliktid, kus saabuv maht ületab paagi mahtu, ja koostab konkreetsed hankesoovitused: milline tarnija, mitu tonni, mis kuupäevaks, millise hinnaga.',
-    defPre: 'Kasutaja on varustusjuht. Hommikune töövoog kestab 10 kuni 15 minutit: loe briifing, sulge kriitilised positsioonid, kinnita või kohanda soovitused, väljasta tellimused. Optimus on piloodis Red Petroleumis — sõltumatus kütusevõrgus Kõrgõzstanis, 220+ jaama. See on üks kehastus sellest, kuidas me kütusevaldkonnas töötame: hanke- ja marginaalimootor ühendatud andmetel — laiem võrgumajandus on ',
+    defPre: 'Kasutaja on varustusjuht. Hommikune töövoog kestab 10 kuni 15 minutit: loe briifing, sulge kriitilised positsioonid, kinnita või kohanda soovitused, väljasta tellimused. See on üks kehastus sellest, kuidas me kütusevaldkonnas töötame: hanke- ja marginaalimootor ühendatud andmetel — laiem võrgumajandus on ',
     defLink: 'kütuse jaemüügi lehel',
     defPost: '.',
     ctaPrimary: 'Broneeri demo',
-    ctaSecondary: 'Loe Red Petroleumi juhtumit',
     pulse: {
       erpT: 'ERP', erpS: 'laoseisud · teel · müük',
       forecastT: 'Prognoosimootor', forecastS: 'laovähesus × tarne',
@@ -329,7 +304,7 @@ export const OPTIMUS: LocaleDict<OptimusDict> = {
         { title: 'Hankekiirus', body: 'Otsused, mis võtsid pool päeva kooskõlastust, võtavad nüüd minuteid. Operaator näeb soovitust ja selle taga olevaid andmeid samal ekraanil.' },
         { title: 'Tarnijate koondamine', body: 'Soovituste ajalugu teeb tarnijapõhise säästu aja jooksul nähtavaks. Hankenõustaja vaikeväärtused nihkuvad vastavalt sellele, mida andmed näitavad.' },
       ],
-      note: 'Numbrid juurutuse kohta sõltuvad võrgu suurusest, kütusevalikust ja lähtetasemest. Avaldame vahemikke päris juurutustest. Red Petroleumi juhtum näitab ühe juurutuse tegelikku liikumist.',
+      note: 'Numbrid juurutuse kohta sõltuvad võrgu suurusest, kütusevalikust ja lähtetasemest. Avaldame vahemikke päris juurutustest.',
     },
     how: {
       label: 'Kuidas see töötab',
@@ -380,24 +355,11 @@ export const OPTIMUS: LocaleDict<OptimusDict> = {
       ],
       tail: 'Iga režiim toodab sama tegevusreaalsuse vastu erineva soovituste komplekti — kõrvuti nähtavad. Režiimide võrdlusvaade on ülal oleval kuvatõmmisel.',
     },
-    deployments: {
-      label: 'Piloodis',
-      h2: 'Piloodis Red Petroleumis.',
-      name: 'Red Petroleum',
-      meta: 'Kõrgõzstan · Piloot',
-      stats: [
-        { num: '220+', label: 'jaama' },
-        { num: 'Piloot', label: 'live-katsetus' },
-      ],
-      body: 'Sõltumatu kütusevõrk, mis pilodib Optimust hanke ja marginaali jaoks — ostmine ühendatud andmetel kogemuse ja saadavuse asemel.',
-      link: 'Loe juhtumit →',
-    },
     pullquote: 'Numbrid juurutuse kohta sõltuvad võrgu suurusest, kütusevalikust ja lähtetasemest. Avaldame vahemikke päris juurutustest.',
     cta: {
       heading: 'Vaata, kas Optimus sobib su võrku.',
       body: 'Kahenädalane diagnostika vaatab su hinnastamise hoiakut, marginaali hoiakut ja jaamatasandi tegevust — ja ütleb, milline Optimuse toomine su võrku tegelikult välja näeks.',
       primary: 'Broneeri diagnostika',
-      secondary: 'Loe Red Petroleumi juhtumit',
     },
   },
 
@@ -405,17 +367,16 @@ export const OPTIMUS: LocaleDict<OptimusDict> = {
   th: {
     meta: {
       title: 'Optimus — KKT',
-      description: 'เอนจินการจัดซื้อและมาร์จินสำหรับเครือข่ายปั๊มน้ำมัน — ซื้อบนข้อมูลที่เชื่อมโยงกัน ไม่ใช่ประสบการณ์ อยู่ระหว่างนำร่องที่ Red Petroleum คีร์กีซสถาน',
+      description: 'เอนจินการจัดซื้อและมาร์จินสำหรับเครือข่ายปั๊มน้ำมัน — ซื้อบนข้อมูลที่เชื่อมโยงกัน ไม่ใช่ประสบการณ์',
     },
     sectionLabel: 'โซลูชัน — Optimus',
     h1: 'Optimus.',
     heroSub: 'เอนจินการจัดซื้อและมาร์จินสำหรับเครือข่ายปั๊มน้ำมัน',
     lede: 'Optimus เปลี่ยนการซื้อน้ำมันจากการตัดสินใจบนประสบการณ์และของที่มี ให้เป็นการตัดสินใจบนข้อมูล ทุกเช้ามันดึงข้อมูล ERP สด ๆ — สต็อกปัจจุบัน คำสั่งซื้อที่กำลังขนส่ง ยอดขายระดับสถานี ข้อเสนอของผู้จำหน่าย — พยากรณ์ว่าแต่ละคู่ สถานี × ชนิดน้ำมัน จะถึงระดับวิกฤตเมื่อไร ชี้ความขัดแย้งของการจัดส่งขาเข้าที่ปริมาณมาถึงเกินความจุถัง และสร้างคำแนะนำการจัดซื้อที่ชัดเจน: ผู้จำหน่ายรายไหน กี่ตัน ภายในวันไหน ราคาเท่าไร',
-    defPre: 'ผู้ใช้คือหัวหน้าฝ่ายจัดหา เวิร์กโฟลว์ตอนเช้าใช้เวลา 10 ถึง 15 นาที: อ่านบรีฟ ปิดตำแหน่งวิกฤต ยืนยันหรือปรับคำแนะนำ ออกใบสั่งซื้อ Optimus อยู่ระหว่างนำร่องที่ Red Petroleum — เครือข่ายปั๊มน้ำมันอิสระในคีร์กีซสถาน 220+ สถานี เป็นตัวอย่างหนึ่งของวิธีที่เราทำงานในธุรกิจน้ำมัน: เอนจินการจัดซื้อและมาร์จินบนข้อมูลที่เชื่อมโยงกัน — เศรษฐกิจของเครือข่ายในภาพกว้างอยู่ที่',
+    defPre: 'ผู้ใช้คือหัวหน้าฝ่ายจัดหา เวิร์กโฟลว์ตอนเช้าใช้เวลา 10 ถึง 15 นาที: อ่านบรีฟ ปิดตำแหน่งวิกฤต ยืนยันหรือปรับคำแนะนำ ออกใบสั่งซื้อ เป็นตัวอย่างหนึ่งของวิธีที่เราทำงานในธุรกิจน้ำมัน: เอนจินการจัดซื้อและมาร์จินบนข้อมูลที่เชื่อมโยงกัน — เศรษฐกิจของเครือข่ายในภาพกว้างอยู่ที่',
     defLink: 'หน้าค้าปลีกน้ำมัน',
     defPost: '',
     ctaPrimary: 'จองเดโม',
-    ctaSecondary: 'อ่านเคส Red Petroleum',
     pulse: {
       erpT: 'ERP', erpS: 'สต็อก · กำลังขนส่ง · ยอดขาย',
       forecastT: 'เอนจินพยากรณ์', forecastS: 'ของขาด × การจัดส่ง',
@@ -452,7 +413,7 @@ export const OPTIMUS: LocaleDict<OptimusDict> = {
         { title: 'ความเร็วการจัดซื้อ', body: 'การตัดสินใจที่เคยใช้เวลากระทบยอดครึ่งวัน เหลือไม่กี่นาที ผู้ปฏิบัติงานเห็นคำแนะนำและข้อมูลเบื้องหลังบนหน้าจอเดียวกัน' },
         { title: 'การรวมผู้จำหน่าย', body: 'ประวัติคำแนะนำทำให้เห็นการประหยัดรายผู้จำหน่ายเมื่อเวลาผ่านไป ค่าตั้งต้นของ Procurement Advisor ปรับตามที่ข้อมูลบอก' },
       ],
-      note: 'ตัวเลขต่อการติดตั้งแตกต่างตามขนาดเครือข่าย ส่วนผสมน้ำมัน และฐานเริ่มต้น เราเผยแพร่ช่วงตัวเลขจากการติดตั้งจริง ดูเคส Red Petroleum เพื่อความเคลื่อนไหวจริงของการติดตั้งหนึ่ง',
+      note: 'ตัวเลขต่อการติดตั้งแตกต่างตามขนาดเครือข่าย ส่วนผสมน้ำมัน และฐานเริ่มต้น เราเผยแพร่ช่วงตัวเลขจากการติดตั้งจริง',
     },
     how: {
       label: 'มันทำงานอย่างไร',
@@ -503,24 +464,11 @@ export const OPTIMUS: LocaleDict<OptimusDict> = {
       ],
       tail: 'แต่ละโหมดสร้างชุดคำแนะนำต่างกันบนความจริงเชิงปฏิบัติการเดียวกัน — มองเห็นเคียงข้างกัน มุมมองเปรียบเทียบโหมดอยู่ในภาพด้านบน',
     },
-    deployments: {
-      label: 'อยู่ระหว่างนำร่อง',
-      h2: 'นำร่องที่ Red Petroleum',
-      name: 'Red Petroleum',
-      meta: 'คีร์กีซสถาน · นำร่อง',
-      stats: [
-        { num: '220+', label: 'สถานี' },
-        { num: 'นำร่อง', label: 'ทดลองใช้งานจริง' },
-      ],
-      body: 'เครือข่ายปั๊มน้ำมันอิสระที่นำร่อง Optimus สำหรับการจัดซื้อและมาร์จิน — ซื้อบนข้อมูลที่เชื่อมโยงกันแทนประสบการณ์และของที่มี',
-      link: 'อ่านเคส →',
-    },
     pullquote: 'ตัวเลขต่อการติดตั้งแตกต่างตามขนาดเครือข่าย ส่วนผสมน้ำมัน และฐานเริ่มต้น เราเผยแพร่ช่วงตัวเลขจากการติดตั้งจริง',
     cta: {
       heading: 'ดูว่า Optimus เข้ากับเครือข่ายของคุณไหม',
       body: 'การวิเคราะห์สองสัปดาห์จะดูท่าทีการตั้งราคา ท่าทีมาร์จิน และการปฏิบัติงานระดับสถานีของคุณ — และบอกว่าการนำ Optimus เข้าเครือข่ายของคุณจะเป็นอย่างไรจริง ๆ',
       primary: 'จองเซสชันวิเคราะห์',
-      secondary: 'อ่านเคส Red Petroleum',
     },
   },
 };

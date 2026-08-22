@@ -13,7 +13,7 @@ const fuelRetailHref = localizePath('/industries/fuel-retail', locale);
 <BaseLayout
   title={t.meta.title}
   description={t.meta.description}
-  ogImage="/og/optimus.png"
+  ogImage="/og/optimus-v2.png"
 >
   <article class="prose-page">
     <div class="container">
@@ -27,7 +27,6 @@ const fuelRetailHref = localizePath('/industries/fuel-retail', locale);
 
       <div class="cta-row">
         <a href="/contact?subject=Optimus%20demo" class="btn-primary">{t.ctaPrimary}</a>
-        <a href="/case-studies#red-petroleum" class="btn-ghost">{t.ctaSecondary}</a>
       </div>
 
       <figure class="pulse" aria-label={t.pulse.ariaLabel}>
@@ -186,29 +185,6 @@ const fuelRetailHref = localizePath('/industries/fuel-retail', locale);
       </div>
     </section>
 
-    <section data-reveal class="section section-deployments">
-      <div class="container">
-        <div class="section-label">{t.deployments.label}</div>
-        <h2 class="h2-section">{t.deployments.h2}</h2>
-        <div class="deployments" data-reveal-stagger>
-          <div class="deployment">
-            <div class="deployment-name">{t.deployments.name}</div>
-            <div class="deployment-meta">{t.deployments.meta}</div>
-            <div class="deployment-stats">
-              {t.deployments.stats.map((s) => (
-                <div class="dep-stat">
-                  <span class="dep-stat-num">{s.num}</span>
-                  <span class="dep-stat-label">{s.label}</span>
-                </div>
-              ))}
-            </div>
-            <p>{t.deployments.body}</p>
-            <a href="/case-studies#red-petroleum" class="deployment-link">{t.deployments.link}</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section data-reveal class="section section-pullquote-optimus">
       <div class="container">
         <blockquote class="pullquote-optimus">
@@ -222,8 +198,7 @@ const fuelRetailHref = localizePath('/industries/fuel-retail', locale);
       body={t.cta.body}
       primaryLabel={t.cta.primary}
       primaryHref="/contact?subject=Optimus%20diagnostic"
-      secondaryLabel={t.cta.secondary}
-      secondaryHref="/case-studies#red-petroleum"
+      secondaryLabel={null}
     />
   </article>
 </BaseLayout>

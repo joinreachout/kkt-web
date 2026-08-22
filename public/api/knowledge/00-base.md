@@ -157,7 +157,7 @@ words for drop-doc audits. No markdown.
 <<<META>>>
 {
   "cited_pages": ["/solutions/optimus", "/case-studies#red-petroleum"],
-  "reasoning_summary": "Anchored to Optimus + the live Red Petroleum case because the user asked about fuel-network outcomes."
+  "reasoning_summary": "Anchored to Optimus and the fuel case work because the user asked about fuel-network outcomes."
 }
 ```
 

@@ -142,12 +142,12 @@ const MOCK_REPLIES: MockReply[] = [
   {
     pattern: /fuel.?retail|fuel network|network economy/i,
     reply:
-      "For fuel networks we work across the whole network economy, not one product. Seven connected fronts: fuel procurement, price & margin; logistics & supply (railcars, demurrage, depots, delivery); stations, stores & cafés; customers, loyalty & B2B; finance, money & control; supporting functions (HR, MTO procurement, contractors, back-office); and the data & process foundation under all of it.\n\nOptimus — the procurement-and-margin engine — is one embodiment of this (the first two fronts), in pilot at Red Petroleum. The diagnostic decides where your network starts.\n\nFull picture on /industries/fuel-retail.",
+      "For fuel networks we work across the whole network economy, not one product. Seven connected fronts: fuel procurement, price & margin; logistics & supply (railcars, demurrage, depots, delivery); stations, stores & cafés; customers, loyalty & B2B; finance, money & control; supporting functions (HR, MTO procurement, contractors, back-office); and the data & process foundation under all of it.\n\nOptimus — the procurement-and-margin engine — is one embodiment of this (the first two fronts). The diagnostic decides where your network starts.\n\nFull picture on /industries/fuel-retail.",
   },
   {
     pattern: /optimus|red petrol|alfa/i,
     reply:
-      "Optimus is the procurement-and-margin engine we built for fuel networks — one embodiment of the broader network economy, not the whole offering. It turns buying from a decision made on experience and availability into one made on data: each morning it pulls live ERP data, forecasts which station × fuel positions will run critical, surfaces inbound delivery conflicts, and produces concrete procurement recommendations — supplier, tonnage, deadline, price. The head of supply works through it in 10–15 minutes.\n\nIt is in pilot at Red Petroleum — an independent 220+ station fuel network in Kyrgyzstan that is currently testing it.\n\nFull surface on /solutions/optimus; the whole fuel economy on /industries/fuel-retail.",
+      "Optimus is the procurement-and-margin engine we built for fuel networks — one embodiment of the broader network economy, not the whole offering. It turns buying from a decision made on experience and availability into one made on data: each morning it pulls live ERP data, forecasts which station × fuel positions will run critical, surfaces inbound delivery conflicts, and produces concrete procurement recommendations — supplier, tonnage, deadline, price. The head of supply works through it in 10–15 minutes.\n\nFull surface on /solutions/optimus; the whole fuel economy on /industries/fuel-retail.",
   },
   {
     pattern: /diagnostic|how.*start|engagement|where.*begin/i,

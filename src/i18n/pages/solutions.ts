@@ -35,7 +35,7 @@ export const SOLUTIONS: LocaleDict<SolutionsDict> = {
       optimus: {
         kind: 'Fuel-distribution networks',
         body: 'Procurement, margin, stockouts and working capital in one operational picture. Optimus forecasts the shortage, recommends the order, manages distribution, and reconciles against the ERP.',
-        status: 'In pilot · Red Petroleum',
+        status: 'In pilot',
         link: 'See how Optimus works',
       },
       codoo: {
@@ -57,7 +57,7 @@ export const SOLUTIONS: LocaleDict<SolutionsDict> = {
       optimus: {
         kind: 'Tankstellennetze',
         body: 'Beschaffung, Marge, Fehlbestände und Working Capital in einem operativen Bild. Optimus prognostiziert den Engpass, empfiehlt die Bestellung, steuert die Verteilung und stimmt gegen das ERP ab.',
-        status: 'Im Pilotbetrieb · Red Petroleum',
+        status: 'Im Pilotbetrieb',
         link: 'So funktioniert Optimus',
       },
       codoo: {
@@ -79,7 +79,7 @@ export const SOLUTIONS: LocaleDict<SolutionsDict> = {
       optimus: {
         kind: 'Kütusevõrgud',
         body: 'Hanked, marginaal, laovähesus ja käibekapital ühes tegevuspildis. Optimus prognoosib puudujäägi, soovitab tellimuse, haldab jaotust ja võrdleb ERP-iga.',
-        status: 'Piloodis · Red Petroleum',
+        status: 'Piloodis',
         link: 'Vaata, kuidas Optimus töötab',
       },
       codoo: {
@@ -102,7 +102,7 @@ export const SOLUTIONS: LocaleDict<SolutionsDict> = {
       optimus: {
         kind: 'เครือข่ายปั๊มน้ำมัน',
         body: 'การจัดซื้อ มาร์จิ้น สินค้าขาด และเงินทุนหมุนเวียน ในภาพปฏิบัติการเดียว Optimus พยากรณ์การขาดแคลน แนะนำการสั่งซื้อ จัดการการกระจาย และกระทบยอดกับ ERP',
-        status: 'นำร่อง · Red Petroleum',
+        status: 'นำร่อง',
         link: 'ดูวิธีการทำงานของ Optimus',
       },
       codoo: {

@@ -117,7 +117,7 @@ export const CASE_STUDIES: LocaleDict<CaseStudiesDict> = {
       'red-petroleum': {
         focus: 'A multi-year data & AI transformation across the network',
         sector: 'Fuel', years: 'Central Asia · 2024–present',
-        image: 'Optimus — procurement advisor',
+        image: 'Procurement advisor — network view',
         what: 'AI-readiness and roadmap, a DWH/BI foundation, customer segmentation, anti-fraud analytics, internal assistants, and automation across payments, logistics and procurement.',
         scope: ['Roadmap and leadership alignment for the data & AI programme', 'DWH/BI foundation: 24+ dashboards across 9 departments', 'Segmentation of 380,000+ loyalty members; anti-fraud over 30M+ transactions', 'NL analytics agent, internal RAG assistants, payment/logistics automation, a first procurement-optimisation product', 'Hiring and training the client’s in-house data team'],
         outcome: ['Most of the roadmap delivered', 'In-house data team now runs independently', 'Reporting that took days now takes minutes', 'First in-house ML models in production'],
@@ -235,7 +235,7 @@ export const CASE_STUDIES: LocaleDict<CaseStudiesDict> = {
       'red-petroleum': {
         focus: 'Eine mehrjährige Daten- & KI-Transformation über das Netz',
         sector: 'Kraftstoff', years: 'Zentralasien · 2024–heute',
-        image: 'Optimus — Beschaffungsberater',
+        image: 'Beschaffungsberater — Netzansicht',
         what: 'KI-Readiness und Roadmap, ein DWH/BI-Fundament, Kundensegmentierung, Anti-Fraud-Analytik, interne Assistenten und Automatisierung über Zahlungen, Logistik und Beschaffung.',
         scope: ['Roadmap und Führungs-Alignment für das Daten- & KI-Programm', 'DWH/BI-Fundament: 24+ Dashboards über 9 Abteilungen', 'Segmentierung von 380.000+ Loyalty-Mitgliedern; Anti-Fraud über 30 Mio.+ Transaktionen', 'NL-Analytik-Agent, interne RAG-Assistenten, Zahlungs-/Logistik-Automatisierung, ein erstes Beschaffungsoptimierungsprodukt', 'Aufbau und Schulung des internen Datenteams des Kunden'],
         outcome: ['Der Großteil der Roadmap geliefert', 'Internes Datenteam arbeitet jetzt eigenständig', 'Reporting, das Tage dauerte, dauert jetzt Minuten', 'Erste interne ML-Modelle in Produktion'],
@@ -353,7 +353,7 @@ export const CASE_STUDIES: LocaleDict<CaseStudiesDict> = {
       'red-petroleum': {
         focus: 'Mitmeaastane andme- & TI-transformatsioon üle võrgu',
         sector: 'Kütus', years: 'Kesk-Aasia · 2024–praegu',
-        image: 'Optimus — hankenõustaja',
+        image: 'Hankenõustaja — võrgu vaade',
         what: 'TI-valmidus ja teekaart, DWH/BI-vundament, kliendisegmenteerimine, pettusevastane analüütika, sisemised assistendid ja automatiseerimine maksetes, logistikas ja hangetes.',
         scope: ['Teekaart ja juhtkonna joondamine andme- & TI-programmile', 'DWH/BI-vundament: 24+ töölauda üle 9 osakonna', '380 000+ lojaalsusliikme segmenteerimine; pettusevastane üle 30 mln+ tehingu', 'NL-analüütika agent, sisemised RAG-assistendid, makse-/logistika-automatiseerimine, esimene hankeoptimeerimise toode', 'Kliendi sisemise andmemeeskonna värbamine ja koolitamine'],
         outcome: ['Suurem osa teekaardist teostatud', 'Sisemine andmemeeskond töötab nüüd iseseisvalt', 'Aruandlus, mis võttis päevi, võtab nüüd minuteid', 'Esimesed sisemised ML-mudelid tootmises'],
@@ -472,7 +472,7 @@ export const CASE_STUDIES: LocaleDict<CaseStudiesDict> = {
       'red-petroleum': {
         focus: 'การทรานส์ฟอร์มด้านข้อมูลและ AI หลายปีทั่วทั้งเครือข่าย',
         sector: 'น้ำมัน', years: 'เอเชียกลาง · 2024–ปัจจุบัน',
-        image: 'Optimus — ที่ปรึกษาการจัดซื้อ',
+        image: 'ที่ปรึกษาการจัดซื้อ — มุมมองเครือข่าย',
         what: 'ความพร้อมด้าน AI และโรดแมป รากฐาน DWH/BI การแบ่งกลุ่มลูกค้า การวิเคราะห์ป้องกันทุจริต ผู้ช่วยภายใน และระบบอัตโนมัติทั้งการชำระเงิน โลจิสติกส์ และการจัดซื้อ',
         scope: ['โรดแมปและการจัดแนวผู้บริหารสำหรับโครงการข้อมูลและ AI', 'รากฐาน DWH/BI: แดชบอร์ด 24+ ทั่ว 9 แผนก', 'แบ่งกลุ่มสมาชิกสะสมแต้ม 380,000+ ราย; ป้องกันทุจริตกว่า 30 ล้านธุรกรรม', 'เอเจนต์วิเคราะห์ภาษาธรรมชาติ ผู้ช่วย RAG ภายใน ระบบอัตโนมัติการชำระเงิน/โลจิสติกส์ และผลิตภัณฑ์เพิ่มประสิทธิภาพการจัดซื้อชุดแรก', 'จ้างและฝึกอบรมทีมข้อมูลภายในของลูกค้า'],
         outcome: ['ส่งมอบโรดแมปได้เกือบทั้งหมด', 'ทีมข้อมูลภายในเดินงานได้เองแล้ว', 'รายงานที่เคยใช้เวลาหลายวัน ตอนนี้ใช้เวลาไม่กี่นาที', 'โมเดล ML ภายในชุดแรกขึ้นใช้งานจริง'],

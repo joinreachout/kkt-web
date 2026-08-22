@@ -2,6 +2,7 @@
 // Trust strip. Three deployable variants per V2 §3.3 / hero spec.
 // `variant` prop selects the line. Phase 1 currently runs C (full topline,
 // pending Red Petroleum consent — see WORK/briefs/alfa-oil-content-brief.md).
+// ⛔ No variant may say which network Optimus runs in — decision of 22.08.2026.
 // On consent change, swap the prop in index.astro — no rebuild required.
 type Variant = 'A' | 'B' | 'C';
 interface Props {
@@ -27,7 +28,7 @@ const logos = [
 
   {variant === 'C' && (
     <p class="trust-line">
-      Working with <strong>Red Petroleum</strong> — a 220+ station fuel network, Optimus in pilot.
+      Working with <strong>Red Petroleum</strong> — a 220+ station fuel network.
     </p>
   )}
 

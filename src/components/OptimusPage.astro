@@ -76,7 +76,6 @@ const clientData = {
         <p class="lede">{t.hero.lede}</p>
         <div class="cta-row">
           <a href="/contact?subject=Optimus%20demo" class="btn-primary">{t.hero.ctaDemo}</a>
-          <a href="/case-studies#red-petroleum" class="btn-ghost">{t.hero.ctaCase}</a>
         </div>
       </div>
       <img class="hero-art" src="/screens/v2/optimus-network-iso-v2.jpg"
@@ -252,8 +251,7 @@ const clientData = {
       body={t.cta.body}
       primaryLabel={t.cta.primary}
       primaryHref="/contact?subject=Optimus%20demo"
-      secondaryLabel={t.cta.secondary}
-      secondaryHref="/case-studies#red-petroleum"
+      secondaryLabel={null}
     />
 
     <script type="application/json" id="optimus-i18n" set:html={JSON.stringify(clientData)}></script>

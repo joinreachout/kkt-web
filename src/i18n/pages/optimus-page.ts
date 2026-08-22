@@ -6,6 +6,10 @@
 // rest of the structure stay in the component, so a translation can never
 // move a callout or drop a screen.
 //
+// ⛔ Nothing on this page ties Optimus to a named client. The page is handed
+// to prospects directly, and where it is deployed today is not ours to
+// publish — decision of 22.08.2026.
+//
 // ⛔ Optimus runs online. It receives the day's totals at night, and a new
 // input is recalculated in seconds — never describe it as a nightly recalc.
 import type { Locale } from '../config';
@@ -15,7 +19,7 @@ export type Slide = { caption: string; alt: string; anns: string[] };
 
 export type OptimusPageDict = {
   meta: { title: string; description: string };
-  hero: { label: string; h1: string; lede: string; ctaDemo: string; ctaCase: string; alt: string };
+  hero: { label: string; h1: string; lede: string; ctaDemo: string; alt: string };
   problem: {
     label: string; h2: string; lede: string;
     toggleAria: string; tabToday: string; tabOptimus: string;
@@ -46,7 +50,7 @@ export type OptimusPageDict = {
     prevAria: string; nextAria: string; slideAria: string;
     slides: Slide[];
   };
-  cta: { heading: string; body: string; primary: string; secondary: string };
+  cta: { heading: string; body: string; primary: string };
 };
 
 const EN: OptimusPageDict = {
@@ -59,7 +63,6 @@ const EN: OptimusPageDict = {
     h1: 'How Optimus works',
     lede: 'Optimus tracks fuel stock at every depot in real time, works out when and how much to order, and warns you in advance when the supply plan needs adjusting. All that is left to a person is approving the decision — the system does the rest.',
     ctaDemo: 'See the demo',
-    ctaCase: 'Deployment case',
     alt: 'A network run by Optimus: depot, rail, tanker truck and stations joined into one loop',
   },
   problem: {
@@ -234,7 +237,6 @@ const EN: OptimusPageDict = {
     heading: 'See Optimus on a live network',
     body: 'The demo runs on a full network model: depots, tanks, suppliers, live recalculation. We will walk it through on your scenarios.',
     primary: 'Request a demo',
-    secondary: 'Deployment case',
   },
 };
 
@@ -248,7 +250,6 @@ const RU: OptimusPageDict = {
     h1: 'Как работает Optimus',
     lede: 'Optimus в режиме реального времени отслеживает запасы топлива на каждой нефтебазе, рассчитывает, когда и в каком объёме заказать, и заранее предупреждает, если план поставки нужно скорректировать. Сотруднику остаётся только согласовать решение — остальное система делает сама.',
     ctaDemo: 'Посмотреть демо',
-    ctaCase: 'Кейс внедрения',
     alt: 'Сеть под управлением Optimus: нефтебаза, ЖД, бензовоз и станции, связанные в один контур',
   },
   problem: {
@@ -423,7 +424,6 @@ const RU: OptimusPageDict = {
     heading: 'Посмотрите Optimus на живой сети',
     body: 'Демо-стенд работает на полной модели сети: нефтебазы, резервуары, поставщики, живой пересчёт. Покажем на ваших сценариях.',
     primary: 'Запросить демо',
-    secondary: 'Кейс внедрения',
   },
 };
 
