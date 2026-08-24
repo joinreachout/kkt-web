@@ -28,7 +28,7 @@
   --font:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
   --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
   --pad:clamp(28px,5vw,88px);
-  --rail-h:64px;
+  --rail-h:80px;
 }
 *{box-sizing:border-box}
 html,body{height:100%}
@@ -45,10 +45,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   padding:0 var(--pad); background:rgba(255,255,255,.92);
   backdrop-filter:saturate(180%) blur(12px); border-bottom:1px solid var(--line);
 }
-.marks{display:flex;align-items:center;gap:9px;flex:none}
-.marks img.kkt{width:24px;height:24px;display:block}
-.marks .x{color:var(--text-3);font-size:12px}
-.marks img.partner{height:19px;display:block;border-radius:3px}
+.marks{display:flex;align-items:center;gap:14px;flex:none}
+.marks img.kkt{width:38px;height:38px;display:block}
+.marks .x{color:var(--text-3);font-size:14px}
+.marks img.partner{height:30px;display:block;border-radius:4px}
 .stops{display:flex;align-items:center;gap:0;flex:1;min-width:0}
 .stop-btn{
   display:flex;align-items:center;gap:9px;padding:6px 0;flex:1;min-width:0;
@@ -90,36 +90,53 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   will-change:transform;
 }
 /* the line the whole conversation runs along */
-.spine{
-  position:absolute;left:0;top:var(--spine-y);height:1px;width:100%;
-  background:var(--line);pointer-events:none;
+/* ---------- the route strip ----------
+   A road pinned to the foot of the screen. It travels with you: the active
+   waypoint always sits under the middle of the copy, the ones behind and
+   ahead stay in frame, and a pulse runs down the line on every move — so the
+   movement is visible even when the copy has already settled.            */
+.route{
+  position:fixed;left:0;right:0;bottom:0;height:clamp(74px,11vh,104px);z-index:19;
+  overflow:hidden;pointer-events:none;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
 }
-.spine-done{
-  position:absolute;left:0;top:var(--spine-y);height:2px;background:var(--text);
-  transition:width .78s cubic-bezier(.62,0,.14,1);pointer-events:none;
+.route-track{
+  position:absolute;top:50%;left:50%;height:0;display:flex;align-items:center;
+  transition:transform .78s cubic-bezier(.62,0,.14,1);
 }
-:root{--spine-y:72%;--stop-w:88vw}
+.route-line{position:absolute;top:0;left:0;height:1px;background:var(--line);transform:translateY(-50%)}
+.route-line-done{position:absolute;top:0;left:0;height:2px;background:var(--text);
+  transform:translateY(-50%);transition:width .78s cubic-bezier(.62,0,.14,1)}
+.route-pulse{position:absolute;top:0;left:0;width:9px;height:9px;border-radius:50%;
+  background:var(--accent);transform:translate(-50%,-50%);opacity:0;pointer-events:none}
+.route-pulse.go{animation:pulse .78s cubic-bezier(.62,0,.14,1)}
+@keyframes pulse{0%{opacity:1}100%{opacity:0}}
+.wp{
+  position:absolute;top:0;transform:translate(-50%,-50%);
+  display:flex;align-items:center;gap:11px;padding:0 14px;background:var(--bg);
+  pointer-events:auto;cursor:pointer;
+}
+.wp .pin{width:30px;height:30px;border-radius:50%;flex:none;display:grid;place-items:center;
+  border:1px solid var(--line-strong);font-family:var(--mono);font-size:11.5px;color:var(--text-3);
+  background:var(--bg);transition:background .45s ease,border-color .45s ease,color .45s ease,transform .45s ease}
+.wp .wl{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--text-3);white-space:nowrap;transition:color .45s ease}
+.wp.done .pin{background:var(--text);border-color:var(--text);color:#fff}
+.wp.here .pin{background:var(--accent);border-color:var(--accent);color:#fff;transform:scale(1.12)}
+.wp.here .wl{color:var(--text)}
+:root{--spine-y:72%;--stop-w:100vw}
 
 .stop{
   position:relative;width:var(--stop-w);flex:none;
-  padding:clamp(26px,4.4vh,52px) clamp(26px,4vw,66px) 0 0;
+  padding:clamp(26px,4.4vh,52px) var(--pad) 0;
   display:flex;flex-direction:column;
 }
-.stop:first-child{padding-left:0}
-.inner{width:100%;max-width:1180px;flex:1;display:flex;flex-direction:column;justify-content:center;
-  padding-bottom:calc(100% - var(--spine-y) - 4vh)}
-
-/* waypoint sitting on the line */
-.waypoint{position:absolute;top:var(--spine-y);left:0;transform:translateY(-50%);
-  display:flex;align-items:center;gap:12px;background:var(--bg);padding-right:18px}
-.waypoint .pin{width:34px;height:34px;border-radius:50%;flex:none;display:grid;place-items:center;
-  border:1px solid var(--line-strong);font-family:var(--mono);font-size:12px;color:var(--text-3);
-  background:var(--bg);transition:background .4s ease,border-color .4s ease,color .4s ease}
-.waypoint .wl{font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--text-3);
-  transition:color .4s ease}
-.stop.is-here .waypoint .pin{background:var(--accent);border-color:var(--accent);color:#fff}
-.stop.is-here .waypoint .wl{color:var(--text)}
-.stop.is-past .waypoint .pin{background:var(--text);border-color:var(--text);color:#fff}
+/* the copy is centred in the frame — it used to sit against the left edge
+   with the rest of the screen empty */
+.inner{width:100%;max-width:1180px;margin:0 auto;flex:1;
+  display:flex;flex-direction:column;justify-content:center;
+  padding-bottom:clamp(80px,14vh,150px)}
 
 /* content dims when the camera has moved on, so the eye stays where we are */
 .stop .inner{transition:opacity .6s ease}
@@ -195,7 +212,7 @@ h2{font-size:clamp(31px,3.9vw,56px);max-width:20ch}
 .chips span{font-size:13px;color:var(--text-2);border:1px solid var(--line);border-radius:100px;padding:6px 13px}
 
 /* ---------- arrows ---------- */
-.nav{position:fixed;bottom:clamp(18px,3vh,34px);right:var(--pad);display:flex;gap:8px;z-index:20}
+.nav{position:fixed;bottom:calc(clamp(74px,11vh,104px) + 14px);right:var(--pad);display:flex;gap:8px;z-index:20}
 .nav button{
   width:44px;height:44px;border-radius:50%;border:1px solid var(--line-strong);
   display:grid;place-items:center;font-size:17px;color:var(--text);
@@ -236,44 +253,49 @@ h2{font-size:clamp(31px,3.9vw,56px);max-width:20ch}
   <div class="marks">
     <img class="kkt" src="kkt-mark.svg" alt="Kitty Kat Technologies">
     <span class="x">×</span>
-    <img class="partner" src="homepro-logo.svg" alt="HomePro">
+    <img class="partner" id="partnerMark" src="" alt="">
   </div>
-  <nav class="stops" id="stops" aria-label="Conversation route"></nav>
-  <div class="tools"><button type="button" id="btn-overview">Whole route</button><button type="button" id="btn-print">Print</button></div>
+  <div class="tools" style="margin-left:auto"><button type="button" id="btn-print">Print</button></div>
 </header>
 <div class="progress" id="progress" style="width:20%"></div>
 
 <main class="road">
-  <div class="field" id="field">
-    <div class="spine"></div><div class="spine-done" id="spineDone" style="width:0"></div>
-  </div>
+  <div class="field" id="field"></div>
 </main>
 
-<div class="hint" id="hint"></div>
+<nav class="route" id="route" aria-label="Conversation route">
+  <div class="route-track" id="routeTrack">
+    <span class="route-line" id="routeLine"></span>
+    <span class="route-line-done" id="routeDone"></span>
+    <span class="route-pulse" id="routePulse"></span>
+  </div>
+</nav>
+
 <div class="nav">
   <button type="button" id="prev" aria-label="Previous">‹</button>
   <button type="button" id="next" aria-label="Next">›</button>
 </div>
 
-<script src="content.js?v=2"></script>
+<script src="content.js?v=5"></script>
 <script>
 (function () {
-  var C = window.HOMEPRO;
+  var C = window.CANVAS;
   var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
     return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]; }); };
   var field = document.getElementById('field');
-  var stopsNav = document.getElementById('stops');
-  var progress = document.getElementById('progress');
+    var progress = document.getElementById('progress');
+
+  /* the partner mark and the page title come from `client`, so a new company
+     needs no edit in this file at all */
+  var mark = document.getElementById('partnerMark');
+  mark.src = C.client.logo;
+  mark.alt = C.client.name;
+  document.title = C.client.name + ' × Kitty Kat Technologies';
 
   /* ---- the five stops, built in the order the conversation takes them ---- */
-  function waypoint(i) {
-    return '<div class="waypoint"><span class="pin">' + (i + 1) + '</span>' +
-           '<span class="wl">' + esc(C.stops[i].label) + '</span></div>';
-  }
-
   var html = '';
 
-  html += '<section class="stop" data-stop="kkt">' + waypoint(0) + '<div class="inner detail">' +
+  html += '<section class="stop" data-stop="kkt"><div class="inner detail">' +
     '<p class="eyebrow" data-in="1">' + esc(C.kkt.eyebrow) + '</p>' +
     '<h1 data-in="2">' + esc(C.kkt.headline) + '</h1>' +
     '<p class="sub" data-in="3">' + esc(C.kkt.sub) + '</p>' +
@@ -283,7 +305,7 @@ h2{font-size:clamp(31px,3.9vw,56px);max-width:20ch}
     }).join('') + '</div>' +
   '</div></section>';
 
-  html += '<section class="stop" data-stop="assume">' + waypoint(1) + '<div class="inner detail">' +
+  html += '<section class="stop" data-stop="assume"><div class="inner detail">' +
     '<p class="eyebrow" data-in="1">' + esc(C.assume.eyebrow) + '</p>' +
     '<h2 data-in="2">' + esc(C.assume.headline) + '</h2>' +
     '<p class="sub" data-in="2">' + esc(C.assume.sub) + '</p>' +
@@ -293,7 +315,7 @@ h2{font-size:clamp(31px,3.9vw,56px);max-width:20ch}
     '<p class="bridge" data-in="4">' + esc(C.assume.bridge) + '</p>' +
   '</div></section>';
 
-  html += '<section class="stop" data-stop="propose">' + waypoint(2) + '<div class="inner detail">' +
+  html += '<section class="stop" data-stop="propose"><div class="inner detail">' +
     '<p class="eyebrow" data-in="1">' + esc(C.propose.eyebrow) + '</p>' +
     '<h2 data-in="2">' + esc(C.propose.headline) + '</h2>' +
     '<div class="steps" data-in="3">' + C.propose.steps.map(function (s) {
@@ -304,7 +326,7 @@ h2{font-size:clamp(31px,3.9vw,56px);max-width:20ch}
     '<p class="foot" data-in="4">' + esc(C.propose.footnote) + '</p>' +
   '</div></section>';
 
-  html += '<section class="stop" data-stop="role">' + waypoint(3) + '<div class="inner detail">' +
+  html += '<section class="stop" data-stop="role"><div class="inner detail">' +
     '<p class="eyebrow" data-in="1">' + esc(C.role.eyebrow) + '</p>' +
     '<h2 data-in="2">' + esc(C.role.headline) + '</h2>' +
     '<div class="roles" data-in="3">' + C.role.items.map(function (r) {
@@ -313,7 +335,7 @@ h2{font-size:clamp(31px,3.9vw,56px);max-width:20ch}
     '<p class="foot" data-in="4">' + esc(C.role.footnote) + '</p>' +
   '</div></section>';
 
-  html += '<section class="stop" data-stop="next">' + waypoint(4) + '<div class="inner detail">' +
+  html += '<section class="stop" data-stop="next"><div class="inner detail">' +
     '<p class="eyebrow" data-in="1">' + esc(C.next.eyebrow) + '</p>' +
     '<h2 data-in="2">' + esc(C.next.headline) + '</h2>' +
     '<div class="next-grid" data-in="3">' +
@@ -327,70 +349,70 @@ h2{font-size:clamp(31px,3.9vw,56px);max-width:20ch}
 
   field.insertAdjacentHTML('beforeend', html);
 
-  stopsNav.innerHTML = C.stops.map(function (s, i) {
-    return '<button type="button" class="stop-btn" data-go="' + i + '">' +
-      '<span class="dot">' + (i + 1) + '</span><span class="nm">' + esc(s.label) + '</span></button>';
-  }).join('');
+  /* ---- the route strip ----
+     Waypoints are laid out at a fixed spacing and the whole strip is moved so
+     the current one sits in the middle of the screen. Neighbours stay in
+     frame, which is what makes it read as a road rather than a page count. */
+  var routeTrack = document.getElementById('routeTrack');
+  var GAP = 320;
+  routeTrack.insertAdjacentHTML('beforeend', C.stops.map(function (st, i) {
+    return '<button type="button" class="wp" data-go="' + i + '" style="left:' + (i * GAP) + 'px">' +
+      '<span class="pin">' + (i + 1) + '</span><span class="wl">' + esc(st.label) + '</span></button>';
+  }).join(''));
+  var line = document.getElementById('routeLine');
+  var done = document.getElementById('routeDone');
+  var pulse = document.getElementById('routePulse');
+  line.style.width = ((C.stops.length - 1) * GAP) + 'px';
 
-  /* ---- the camera ----
-     The field never cuts. `go` pans it so the chosen stop sits at the left
-     edge, which leaves the tail of the previous one behind and a slice of the
-     next one in frame. `overview` pulls back far enough to hold all five. */
   var sections = Array.prototype.slice.call(field.querySelectorAll('.stop'));
-  var btns = Array.prototype.slice.call(stopsNav.querySelectorAll('.stop-btn'));
-  var spineDone = document.getElementById('spineDone');
-  var at = 0, wide = false;
-
-  function paint() {
-    sections.forEach(function (s, i) {
-      s.classList.toggle('is-here', i === at && !wide);
-      s.classList.toggle('is-past', i < at);
-    });
-    btns.forEach(function (b, i) {
-      b.classList.toggle('here', i === at && !wide);
-      b.classList.toggle('done', i < at);
-      b.setAttribute('aria-current', String(i === at));
-    });
-    progress.style.width = ((at + 1) / C.stops.length * 100) + '%';
-    spineDone.style.width = (sections[at].offsetLeft + 34) + 'px';
-    document.getElementById('prev').disabled = at === 0 && !wide;
-    document.getElementById('next').disabled = at === C.stops.length - 1 && !wide;
-    document.getElementById('hint').textContent = wide
-      ? 'Whole route · press 0 to come back'
-      : (at + 1) + ' / ' + C.stops.length + ' · ' + C.stops[at].label;
-  }
+  var wps = Array.prototype.slice.call(routeTrack.querySelectorAll('.wp'));
+  var at = 0;
 
   function go(n) {
-    wide = false;
-    field.classList.remove('overview');
+    var from = at;
     at = Math.max(0, Math.min(C.stops.length - 1, n));
-    field.style.transform = 'translateX(-' + sections[at].offsetLeft + 'px)';
-    paint();
+    field.style.transform = 'translateX(-' + (at * 100) + 'vw)';
+    routeTrack.style.transform = 'translateX(-' + (at * GAP) + 'px)';
+    done.style.width = (at * GAP) + 'px';
+
+    sections.forEach(function (s, i) {
+      s.classList.toggle('is-here', i === at);
+      s.classList.toggle('is-past', i < at);
+    });
+    wps.forEach(function (w, i) {
+      w.classList.toggle('here', i === at);
+      w.classList.toggle('done', i < at);
+      w.setAttribute('aria-current', String(i === at));
+    });
+
+    if (from !== at) {
+      pulse.style.left = (from * GAP) + 'px';
+      pulse.classList.remove('go');
+      void pulse.offsetWidth;                      // restart the animation
+      pulse.style.transition = 'none';
+      requestAnimationFrame(function () {
+        pulse.style.transition = 'left .78s cubic-bezier(.62,0,.14,1)';
+        pulse.style.left = (at * GAP) + 'px';
+        pulse.classList.add('go');
+      });
+    }
+
+    progress.style.width = ((at + 1) / C.stops.length * 100) + '%';
+    document.getElementById('prev').disabled = at === 0;
+    document.getElementById('next').disabled = at === C.stops.length - 1;
   }
 
-  function overview() {
-    wide = !wide;
-    if (!wide) return go(at);
-    field.classList.add('overview');
-    var k = field.parentElement.clientWidth / field.scrollWidth;
-    field.style.setProperty('--wpscale', String(1 / k));
-    field.style.transform = 'scale(' + k + ')';
-    paint();
-  }
-
-  stopsNav.addEventListener('click', function (e) {
+  routeTrack.addEventListener('click', function (e) {
     var b = e.target.closest('[data-go]'); if (b) go(Number(b.dataset.go));
   });
   document.getElementById('prev').addEventListener('click', function () { go(at - 1); });
   document.getElementById('next').addEventListener('click', function () { go(at + 1); });
   document.getElementById('btn-print').addEventListener('click', function () { window.print(); });
-  document.getElementById('btn-overview').addEventListener('click', overview);
-  window.addEventListener('resize', function () { wide ? (wide = false, overview()) : go(at); });
+  window.addEventListener('resize', function () { go(at); });
 
   document.addEventListener('keydown', function (e) {
     if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); go(at + 1); }
     else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); go(at - 1); }
-    else if (e.key === '0' || e.key === 'Escape') { e.preventDefault(); overview(); }
     else if (e.key === 'Home') { go(0); }
     else if (e.key === 'End') { go(C.stops.length - 1); }
     else { var n = parseInt(e.key, 10); if (n >= 1 && n <= C.stops.length) go(n - 1); }
