@@ -276,7 +276,10 @@ h2{font-size:clamp(31px,3.9vw,56px);max-width:20ch}
   <button type="button" id="next" aria-label="Next">›</button>
 </div>
 
-<script src="content.js?v=5"></script>
+<!-- ⛔ The host serves content.js as immutable for a year, so a browser that
+     has fetched one ?v= will never look again. Bump this token on EVERY change
+     to content.js — otherwise the page keeps showing the previous text. -->
+<script src="content.js?v=2026-08-24-6"></script>
 <script>
 (function () {
   var C = window.CANVAS;
