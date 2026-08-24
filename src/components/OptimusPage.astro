@@ -27,6 +27,7 @@ const STEP_ART: Record<string, string> = {
   '3': 'step-3-supply-v2.jpg',
   'exc': 'step-exc-conflict-v2.jpg',
   '4': 'step-4-receiving-v2.jpg',
+  '5': 'step-5-scenarios.jpg',
 };
 
 // Callout anchors per slide: where the dot sits on the screenshot and which
@@ -87,7 +88,7 @@ const clientData = {
           <a href="/contact?subject=Optimus%20demo" class="btn-primary">{t.hero.ctaDemo}</a>
         </div>
       </div>
-      <img class="hero-art" src="/screens/v2/optimus-network-iso-v2.jpg"
+      <img class="hero-art" src="/screens/v2/optimus-hero-vertical.jpg"
            alt={t.hero.alt}
            fetchpriority="high" decoding="async"/>
     </div>
@@ -395,8 +396,10 @@ const clientData = {
   .checks svg { width: 21px; height: 21px; flex: none; margin-top: 1px; color: var(--accent); }
 
   .prose-page { padding-top: clamp(40px, 6vh, 72px); }
-  .hero-grid { display: grid; grid-template-columns: minmax(420px, 1.1fr) 1fr; gap: clamp(24px, 4vw, 56px); align-items: end; padding-bottom: clamp(48px, 8vh, 96px); }
-  .hero-art { width: 100%; border-radius: 18px; }
+  .hero-grid { display: grid; grid-template-columns: minmax(420px, 1.15fr) .85fr; gap: clamp(24px, 4vw, 56px); align-items: center; padding-bottom: clamp(48px, 8vh, 96px); }
+  /* The hero art is portrait: cap it against the viewport so the opening copy
+     and the demo button still fit on one screen. */
+  .hero-art { width: 100%; max-height: min(78vh, 760px); object-fit: contain; object-position: center; border-radius: 18px; }
   .duo-art { position: absolute; left: 50%; top: 47%; transform: translate(-50%, -50%); width: 30%; mix-blend-mode: multiply; transition: opacity 0.45s; }
   .duo.is-order .duo-art { opacity: 0; }
   .flow-art { display: block; width: min(620px, 80%); margin: 0 auto 34px; border-radius: 16px; }

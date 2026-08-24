@@ -191,6 +191,7 @@ const EN: OptimusPageDict = {
       '3': 'A rail tank car on the move, an orange route line running ahead of it to the depot',
       'exc': 'A full tank with a rail car waiting beside it and a time symbol above',
       '4': 'A tank being filled, the level rising and an arrow pointing into its inlet',
+      '5': 'A monitor showing a grid of data, with pipes running from it to smaller screens around it',
     },
   },
   data: {
@@ -397,6 +398,7 @@ const RU: OptimusPageDict = {
       '3': 'Цистерна в движении, оранжевая линия маршрута к нефтебазе',
       'exc': 'Полный резервуар и ждущая рядом цистерна, сверху значок времени',
       '4': 'Резервуар, который наполняется: уровень поднимается, стрелка вниз в горловину',
+      '5': 'Монитор с сеткой данных, от него трубы к экранам вокруг',
     },
   },
   data: {
