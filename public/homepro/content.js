@@ -45,10 +45,10 @@ window.CANVAS = {
     sub: 'A small team. We start from the problem: revenue, cost, or operational efficiency.',
     facts: [
       { value: '15+ years',        note: 'average, in enterprise operations and customer management' },
-      { value: 'Retail, fuel retail', note: 'the industries most of our work sits in' },
+      { value: 'Retail, fuel retail', note: 'the industries we work in most' },
       { value: 'Engineers and data scientists', note: 'the same team designs it and builds it' },
-      { value: 'USD 350,000',      note: 'added in month one by one reactivation campaign, at a retail group with ~1M active customers',
-        caveat: 'Measured against the pre-campaign baseline. No control group — for HomePro we would run one.' },
+      { value: 'USD 350,000',      note: 'added in the first month by a single reactivation campaign, at a retail group with about 1 million active customers',
+        caveat: 'Measured against the baseline before the campaign. There was no control group; for HomePro we would use one.' },
     ],
   },
 
@@ -60,11 +60,11 @@ window.CANVAS = {
     sub: 'Correct us where we are wrong.',
     items: [
       'Data and AI are already on the agenda — the VP role exists.',
-      'The foundation is in place: platforms, reporting, a team, vendors, or all of it.',
+      'The foundation is in place: platforms, reporting, a data team, vendors, or all of them.',
       'Some solutions are already running.',
       'Customers are central to the business — HomeCard, the app, LINE, the stores.',
     ],
-    bridge: 'In our experience customer data accumulates faster than it gets used. That is where we would look first.',
+    bridge: 'In our experience, companies collect more customer data than they use. That is where we would look first.',
   },
 
   /* 3 — mostly reusable; the wording of a step may need a light pass to match
@@ -75,18 +75,18 @@ window.CANVAS = {
     steps: [
       { n: '1', title: 'Analytics and segmentation',
         how: 'RFM, value and behaviour, ML segmentation',
-        outcome: 'Promotions aimed at the segment that responds, and measured.' },
+        outcome: 'Promotions go to the segments that respond, and the result is measured.' },
       { n: '2', title: 'Personalisation',
         how: 'Propensity models, RecSys',
         outcome: 'The next offer chosen for the individual customer.' },
       { n: '3', title: 'Customer intelligence',
         how: 'Shared definitions, features, scores, eligibility rules',
-        outcome: 'Commercial, marketing and data work from one customer picture.' },
+        outcome: 'Commercial, marketing and data teams use the same view of the customer.' },
       { n: '4', title: 'Agents',
         how: 'Routine analysis, campaign preparation, checks',
-        outcome: 'The routine runs without a person in the loop.' },
+        outcome: 'Routine work runs without a person.' },
     ],
-    footnote: 'You may already run parts of this. Tell us which, and we start from there.',
+    footnote: 'You may already run parts of this. Tell us which parts, and we start from there.',
   },
 
   /* 4 — reusable as-is. */
@@ -94,27 +94,27 @@ window.CANVAS = {
     eyebrow: 'Our role',
     headline: 'You have a team. There are vendors. What is left for us?',
     items: [
-      { title: 'One picture across the initiatives',
-        body: 'Internal owners each hold a piece; a vendor delivers a scope. We put the pieces into one order of priority — across commercial, marketing, IT and the vendors.' },
-      { title: 'From the commercial question down to the model, and back',
-        body: 'We start at the P&L question, build what answers it, and return with the measured effect — control group included.' },
-      { title: 'Pace, without adding headcount',
-        body: 'Capable teams are held by day-to-day load. We add capacity for the period, then hand the capability over.' },
+      { title: 'One view across all the initiatives',
+        body: 'Each internal owner has one part of the work, and a vendor delivers one defined scope. We put all the parts in a single order of priority, across commercial, marketing, IT and the vendors.' },
+      { title: 'From the business question to the model, and back to the result',
+        body: 'We start from the P&L question, build what answers it, and come back with the measured result, including a control group.' },
+      { title: 'Faster delivery, without new hires',
+        body: 'Strong internal teams are busy with day-to-day work. We add capacity for the length of the project, then hand the work over to your team.' },
     ],
-    footnote: 'Where your own team or a local vendor is stronger, that is where the work should sit.',
+    footnote: 'Where your own team or a local vendor is stronger, the work should stay with them.',
   },
 
   /* 5 — reusable as-is. No duration and no price on screen. */
   next: {
     eyebrow: 'Next step',
-    headline: 'A deep dive into where you are today.',
+    headline: 'A detailed review of where you are today.',
     items: [
       'What customer data exists, and what is connected',
       'What segmentation and activation already run',
       'How results are measured today',
       'Which gap is worth the most, and where to start',
     ],
-    ask: 'Where are you today, and which of this is already running?',
+    ask: 'Where are you today, and which of these do you already run?',
     beyondLabel: 'Beyond customers, we also do',
     beyond: ['AI in operations', 'Invoicing', 'Text-to-SQL', 'Anti-fraud', 'Logistics optimisation'],
   },
