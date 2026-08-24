@@ -59,7 +59,7 @@ window.CANVAS = {
     headline: 'What we assume about HomePro.',
     sub: 'Correct us where we are wrong.',
     items: [
-      'Data and AI are already on the agenda — the VP role exists.',
+      'Data and AI are already on the agenda.',
       'The foundation is in place: platforms, reporting, a data team, vendors, or all of them.',
       'Some solutions are already running.',
       'Customers are central to the business — HomeCard, the app, LINE, the stores.',
