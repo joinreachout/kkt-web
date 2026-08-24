@@ -34,7 +34,7 @@ export const SOLUTIONS: LocaleDict<SolutionsDict> = {
     items: {
       optimus: {
         kind: 'Fuel-distribution networks',
-        body: 'Procurement, margin, stockouts and working capital in one operational picture. Optimus forecasts the shortage, recommends the order, manages distribution, and reconciles against the ERP.',
+        body: 'An AI-based system that manages fuel stock for you in real time — across every depot and fuel type at once, taking demand, lead times and supplier reliability into account.',
         status: 'In pilot',
         link: 'See how Optimus works',
       },
@@ -56,7 +56,7 @@ export const SOLUTIONS: LocaleDict<SolutionsDict> = {
     items: {
       optimus: {
         kind: 'Tankstellennetze',
-        body: 'Beschaffung, Marge, Fehlbestände und Working Capital in einem operativen Bild. Optimus prognostiziert den Engpass, empfiehlt die Bestellung, steuert die Verteilung und stimmt gegen das ERP ab.',
+        body: 'Ein KI-gestütztes System, das Ihre Kraftstoffbestände in Echtzeit steuert — über alle Tanklager und Kraftstoffarten zugleich, unter Berücksichtigung von Nachfrage, Lieferzeiten und Zuverlässigkeit der Lieferanten.',
         status: 'Im Pilotbetrieb',
         link: 'So funktioniert Optimus',
       },
@@ -78,7 +78,7 @@ export const SOLUTIONS: LocaleDict<SolutionsDict> = {
     items: {
       optimus: {
         kind: 'Kütusevõrgud',
-        body: 'Hanked, marginaal, laovähesus ja käibekapital ühes tegevuspildis. Optimus prognoosib puudujäägi, soovitab tellimuse, haldab jaotust ja võrdleb ERP-iga.',
+        body: 'Tehisintellektil põhinev süsteem, mis haldab teie kütusevarusid reaalajas — korraga kõigis kütusebaasides ja kõigi kütuseliikide lõikes, arvestades nõudlust, tarneaegu ja tarnijate usaldusväärsust.',
         status: 'Piloodis',
         link: 'Vaata, kuidas Optimus töötab',
       },
@@ -101,7 +101,7 @@ export const SOLUTIONS: LocaleDict<SolutionsDict> = {
     items: {
       optimus: {
         kind: 'เครือข่ายปั๊มน้ำมัน',
-        body: 'การจัดซื้อ มาร์จิ้น สินค้าขาด และเงินทุนหมุนเวียน ในภาพปฏิบัติการเดียว Optimus พยากรณ์การขาดแคลน แนะนำการสั่งซื้อ จัดการการกระจาย และกระทบยอดกับ ERP',
+        body: 'ระบบบน AI ที่บริหารสต็อกน้ำมันแทนคุณแบบเรียลไทม์ — ครอบคลุมทุกคลังน้ำมันและทุกชนิดน้ำมันพร้อมกัน โดยคำนึงถึงความต้องการ ระยะเวลาส่งมอบ และความน่าเชื่อถือของผู้จำหน่าย',
         status: 'นำร่อง',
         link: 'ดูวิธีการทำงานของ Optimus',
       },

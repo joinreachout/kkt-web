@@ -32,7 +32,7 @@ const STEP_ART: Record<string, string> = {
 // Callout anchors per slide: where the dot sits on the screenshot and which
 // band the label hangs in. Order matches `ui.slides[n].anns`.
 // Step number shown on the rail; '!' marks the exception branch.
-const STEP_NUM: Record<string, string> = { '1': '01', '2': '02', '3': '03', 'exc': '!', '4': '04' };
+const STEP_NUM: Record<string, string> = { '1': '01', '2': '02', '3': '03', 'exc': '!', '4': '04', '5': '05' };
 
 // Where the eight "today" chips and the six "with Optimus" chips sit.
 const CHIPS_TODAY_POS = [[30, 19], [70, 19], [22, 41], [78, 41], [22, 61], [78, 61], [24, 90], [76, 90]];
@@ -73,7 +73,16 @@ const clientData = {
       <div>
         <div class="section-label">{t.hero.label}</div>
         <h1 class="h1-page">{t.hero.h1}</h1>
-        <p class="lede">{t.hero.lede}</p>
+        <p class="lede lede-lead">{t.hero.lede}</p>
+        <p class="how">{t.hero.how}</p>
+        <ul class="checks">
+          {t.hero.checks.map((c) => (
+            <li>
+              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>{c}</span>
+            </li>
+          ))}
+        </ul>
         <div class="cta-row">
           <a href="/contact?subject=Optimus%20demo" class="btn-primary">{t.hero.ctaDemo}</a>
         </div>
@@ -376,6 +385,15 @@ const clientData = {
 </script>
 
 <style>
+  /* Opening: what it is, set large; how it does it, set smaller; then the
+     five things a fuel network gets, as ticks big enough to read at a glance. */
+  .lede-lead { font-size: clamp(18px, 1.95vw, 23px); line-height: 1.45; color: var(--text-primary); font-weight: 500; max-width: 60ch; }
+  .how { font-size: clamp(15px, 1.5vw, 17px); line-height: 1.6; color: var(--text-secondary); margin: 18px 0 0; max-width: 62ch; }
+  .checks { list-style: none; padding: 0; margin: clamp(22px, 3vh, 32px) 0 0; display: grid; gap: 12px 28px; }
+  @media (min-width: 720px) { .checks { grid-template-columns: 1fr 1fr; } }
+  .checks li { display: flex; align-items: flex-start; gap: 11px; font-size: clamp(16px, 1.55vw, 18.5px); line-height: 1.35; font-weight: 500; color: var(--text-primary); }
+  .checks svg { width: 21px; height: 21px; flex: none; margin-top: 1px; color: var(--accent); }
+
   .prose-page { padding-top: clamp(40px, 6vh, 72px); }
   .hero-grid { display: grid; grid-template-columns: minmax(420px, 1.1fr) 1fr; gap: clamp(24px, 4vw, 56px); align-items: end; padding-bottom: clamp(48px, 8vh, 96px); }
   .hero-art { width: 100%; border-radius: 18px; }

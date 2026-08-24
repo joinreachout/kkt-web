@@ -19,7 +19,18 @@ export type Slide = { caption: string; alt: string; anns: string[] };
 
 export type OptimusPageDict = {
   meta: { title: string; description: string };
-  hero: { label: string; h1: string; lede: string; ctaDemo: string; alt: string };
+  hero: {
+    label: string;
+    h1: string;
+    /** What the system does. Яна's text, 24.08 — the opening George asked for. */
+    lede: string;
+    /** How it does it. Set smaller than the lede. */
+    how: string;
+    /** Shown as ticks, large enough to register from across a room. */
+    checks: string[];
+    ctaDemo: string;
+    alt: string;
+  };
   problem: {
     label: string; h2: string; lede: string;
     toggleAria: string; tabToday: string; tabOptimus: string;
@@ -60,8 +71,16 @@ const EN: OptimusPageDict = {
   },
   hero: {
     label: 'Optimus · fuel inventory management',
-    h1: 'How Optimus works',
-    lede: 'Optimus tracks fuel stock at every depot in real time, works out when and how much to order, and warns you in advance when the supply plan needs adjusting. All that is left to a person is approving the decision — the system does the rest.',
+    h1: 'What Optimus is',
+    lede: 'Optimus is an AI-based system that manages your fuel stock for you. It works out where fuel is about to run out, how much to order and from which supplier, and warns you in advance when a delivery needs adjusting. All the employee has to do is approve the finished decision.',
+    how: 'Optimus collects the data it needs from your systems and uses AI models to recalculate the whole picture in real time — across every depot and fuel type at once, taking demand, lead times and supplier reliability into account.',
+    checks: [
+      'AI demand forecast',
+      'Less money tied up in excess stock',
+      'A week-ahead forecast',
+      'Less idle time',
+      'A decision across several scenarios in minutes',
+    ],
     ctaDemo: 'See the demo',
     alt: 'A network run by Optimus: depot, rail, tanker truck and stations joined into one loop',
   },
@@ -107,6 +126,7 @@ const EN: OptimusPageDict = {
       { key: '3', name: 'Purchase and delivery', brief: 'The order goes to the supplier. Optimus tracks the fuel on its way and sees ahead of time if the depot will be short of room when it arrives.' },
       { key: 'exc', name: 'Exception: the fuel is on its way and there is no room', brief: 'Optimus sees this case coming and proposes distribution scenarios.' },
       { key: '4', name: 'Receiving at the depot', brief: 'The fuel is discharged into the tanks and the delivery is recorded. Stock is recalculated immediately.' },
+      { key: '5', name: 'Data analysis and scenarios', brief: 'The system builds purchasing scenarios, calculates the capital frozen in stock and shows where money is being lost.' },
     ],
     note: 'What the system can do, and how quickly its data refreshes, depends on the data available on the client side and on what can be integrated with their internal systems.',
     panels: {
@@ -117,7 +137,7 @@ const EN: OptimusPageDict = {
           'The order is raised far enough ahead for the new fuel to arrive while stock still lasts',
           'Fuel already on its way counts towards the stock',
           'Every order is a whole multiple of the rail-car volume you set',
-          'The supplier is chosen on price adjusted for lead time and delivery reliability',
+          'Builds purchasing scenarios: what happens if you order more, less, or from a different supplier',
           'An extra order can be placed by hand at any moment',
         ],
       },
@@ -152,6 +172,16 @@ const EN: OptimusPageDict = {
           'The delivery is recorded in the system',
           'Stock is updated and the network-wide calculation runs again',
           'The data goes back to the ERP and the dashboards',
+        ],
+      },
+      '5': {
+        label: 'Step 05', title: 'Data analysis and scenarios',
+        bullets: [
+          'Calculates how much money is frozen in stock, and proposes how to release it',
+          'Shows inventory turnover and coverage by fuel type and by region',
+          'Projects stock at stations, depots and tanks a week ahead',
+          'Compares supplier prices against market quotes',
+          'Results go to the dashboards — management sees where money is being lost',
         ],
       },
     },
@@ -247,8 +277,16 @@ const RU: OptimusPageDict = {
   },
   hero: {
     label: 'Optimus · управление запасами топлива',
-    h1: 'Как работает Optimus',
-    lede: 'Optimus в режиме реального времени отслеживает запасы топлива на каждой нефтебазе, рассчитывает, когда и в каком объёме заказать, и заранее предупреждает, если план поставки нужно скорректировать. Сотруднику остаётся только согласовать решение — остальное система делает сама.',
+    h1: 'Что такое Optimus',
+    lede: 'Optimus — система на базе AI, которая управляет запасами топлива за вас. Она сама считает, где топливо скоро закончится, сколько и у какого поставщика заказать, и предупреждает заранее, если поставку нужно скорректировать. Сотруднику остаётся только согласовать готовое решение.',
+    how: 'Optimus собирает все необходимые данные из ваших систем и с помощью AI-моделей пересчитывает всю картину в режиме реального времени — по всем нефтебазам и видам топлива одновременно, учитывая спрос, сроки и надёжность поставщиков.',
+    checks: [
+      'AI-прогноз спроса',
+      'Меньше денег в лишних запасах',
+      'Прогноз на неделю вперёд',
+      'Меньше простоев',
+      'Решение по нескольким сценариям за минуты',
+    ],
     ctaDemo: 'Посмотреть демо',
     alt: 'Сеть под управлением Optimus: нефтебаза, ЖД, бензовоз и станции, связанные в один контур',
   },
@@ -294,6 +332,7 @@ const RU: OptimusPageDict = {
       { key: '3', name: 'Закупка и поставка', brief: 'Заказ уходит поставщику. Optimus отслеживает движение топлива и заранее видит, если на нефтебазе не хватит места к приезду.' },
       { key: 'exc', name: 'Исключение: топливо едет, а места нет', brief: 'Optimus видит такой случай заранее и предлагает сценарии распределения.' },
       { key: '4', name: 'Приёмка на нефтебазе', brief: 'Топливо слито в резервуары, поставка зафиксирована. Остатки пересчитываются сразу.' },
+      { key: '5', name: 'Анализ данных и сценарии', brief: 'Система строит сценарии закупки, считает замороженный в запасах капитал и показывает, где теряются деньги.' },
     ],
     note: 'Функционал системы и скорость обновления данных определяются наличием данных на стороне клиента и возможностью интеграции с внутренними системами.',
     panels: {
@@ -304,7 +343,7 @@ const RU: OptimusPageDict = {
           'Заказ формируется настолько заранее, чтобы новое топливо успело приехать, пока запаса ещё хватает',
           'Топливо, которое уже в пути, также учитывается в остатках',
           'Заказ всегда кратен заданному объёму цистерны',
-          'Поставщик выбирается по цене с поправкой на сроки и надёжность поставки',
+          'Строит сценарии закупки: что будет, если заказать больше, меньше или у другого поставщика',
           'Дополнительный заказ можно разместить вручную в любой момент',
         ],
       },
@@ -339,6 +378,16 @@ const RU: OptimusPageDict = {
           'Факт доставки фиксируется в системе',
           'Остатки обновляются, и расчёт по сети выполняется заново',
           'Данные передаются обратно в ERP и на дашборды',
+        ],
+      },
+      '5': {
+        label: 'Шаг 05', title: 'Анализ данных и сценарии',
+        bullets: [
+          'Считает, сколько денег заморожено в запасах, и предлагает, как высвободить капитал',
+          'Показывает скорость оборота запасов и обеспеченность по видам топлива и регионам',
+          'Прогнозирует остатки по станциям, нефтебазам и резервуарам на неделю вперёд',
+          'Сравнивает цены поставщиков с рыночными котировками',
+          'Результаты уходят на дашборды — руководителю видно, где теряются деньги',
         ],
       },
     },
