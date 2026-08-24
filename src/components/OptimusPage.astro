@@ -71,8 +71,8 @@ const clientData = {
   <article class="prose-page">
     <!-- HERO -->
     <div class="container hero-grid">
-      <div>
-        <div class="section-label">{t.hero.label}</div>
+      <div class="section-label hero-eyebrow">{t.hero.label}</div>
+      <div class="hero-copy">
         <h1 class="h1-page">{t.hero.h1}</h1>
         <p class="lede lede-lead">{t.hero.lede}</p>
         <p class="how">{t.hero.how}</p>
@@ -88,9 +88,11 @@ const clientData = {
           <a href="/contact?subject=Optimus%20demo" class="btn-primary">{t.hero.ctaDemo}</a>
         </div>
       </div>
-      <img class="hero-art" src="/screens/v2/optimus-hero-vertical.jpg"
-           alt={t.hero.alt}
-           fetchpriority="high" decoding="async"/>
+      <div class="hero-art-box">
+        <img class="hero-art" src="/screens/v2/optimus-hero-vertical.jpg"
+             alt={t.hero.alt}
+             fetchpriority="high" decoding="async"/>
+      </div>
     </div>
 
     <!-- 01 · the process today -->
@@ -396,10 +398,18 @@ const clientData = {
   .checks svg { width: 21px; height: 21px; flex: none; margin-top: 1px; color: var(--accent); }
 
   .prose-page { padding-top: clamp(40px, 6vh, 72px); }
-  .hero-grid { display: grid; grid-template-columns: minmax(420px, 1.15fr) .85fr; gap: clamp(24px, 4vw, 56px); align-items: center; padding-bottom: clamp(48px, 8vh, 96px); }
-  /* The hero art is portrait: cap it against the viewport so the opening copy
-     and the demo button still fit on one screen. */
-  .hero-art { width: 100%; max-height: min(78vh, 760px); object-fit: contain; object-position: center; border-radius: 18px; }
+  /* Two rows: the eyebrow sits alone above, and the art occupies exactly the
+     second row — so its top lines up with the headline and its bottom with the
+     demo button, whatever the copy length does to the column height. */
+  .hero-grid { display: grid; grid-template-columns: minmax(420px, 1.15fr) .85fr; grid-template-rows: auto 1fr; column-gap: clamp(24px, 4vw, 56px); padding-bottom: clamp(48px, 8vh, 96px); }
+  .hero-eyebrow { grid-column: 1; grid-row: 1; margin-bottom: 14px; }
+  .hero-copy { grid-column: 1; grid-row: 2; }
+  .hero-art-box { grid-column: 2; grid-row: 2; position: relative; align-self: stretch; min-height: 0; }
+  .hero-art { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: center; border-radius: 18px; }
+  @media (max-width: 900px) {
+    .hero-art-box { position: static; height: auto; margin-top: 26px; }
+    .hero-art { position: static; height: auto; max-height: 60vh; }
+  }
   .duo-art { position: absolute; left: 50%; top: 47%; transform: translate(-50%, -50%); width: 30%; mix-blend-mode: multiply; transition: opacity 0.45s; }
   .duo.is-order .duo-art { opacity: 0; }
   .flow-art { display: block; width: min(620px, 80%); margin: 0 auto 34px; border-radius: 16px; }
