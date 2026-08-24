@@ -41,8 +41,8 @@ window.CANVAS = {
   /* 1 — 20 seconds. Facts with numbers in them, nothing else. */
   kkt: {
     eyebrow: 'Kitty Kat Technologies',
-    headline: 'A small team that builds data and AI into how a business runs.',
-    sub: 'We start from the business problem: revenue, cost, or operational efficiency.',
+    headline: 'We implement data and AI to solve business problems.',
+    sub: 'A small team. We start from the problem: revenue, cost, or operational efficiency.',
     facts: [
       { value: '15+ years',        note: 'average, in enterprise operations and customer management' },
       { value: 'Retail, fuel retail', note: 'the industries most of our work sits in' },
@@ -70,7 +70,7 @@ window.CANVAS = {
   /* 3 — mostly reusable; the wording of a step may need a light pass to match
    *     what the company already runs. */
   propose: {
-    eyebrow: 'Customers first',
+    eyebrow: 'Where we would start',
     headline: 'What we propose.',
     steps: [
       { n: '1', title: 'Analytics and segmentation',
@@ -91,7 +91,7 @@ window.CANVAS = {
 
   /* 4 — reusable as-is. */
   role: {
-    eyebrow: 'The fair question',
+    eyebrow: 'Our role',
     headline: 'You have a team. There are vendors. What is left for us?',
     items: [
       { title: 'One picture across the initiatives',
@@ -107,12 +107,12 @@ window.CANVAS = {
   /* 5 — reusable as-is. No duration and no price on screen. */
   next: {
     eyebrow: 'Next step',
-    headline: 'A deep dive into where you actually are.',
+    headline: 'A deep dive into where you are today.',
     items: [
       'What customer data exists, and what is connected',
       'What segmentation and activation already run',
       'How results are measured today',
-      'The gap that is worth money, and where to start',
+      'Which gap is worth the most, and where to start',
     ],
     ask: 'Where are you today, and which of this is already running?',
     beyondLabel: 'Beyond customers, we also do',
