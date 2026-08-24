@@ -1,4 +1,12 @@
-/* HomePro × KKT — the conversation map.
+/* The conversation map — a canvas that accompanies a first call.
+ *
+ * ⭐ REUSABLE. To run this with another company, copy the folder, drop in
+ *    their logo, and edit two things:
+ *      1. `client` — name, logo file, meeting line;
+ *      2. `assume.items` — what we assume about them, from public sources.
+ *    `propose` usually needs a light pass; `kkt`, `role` and `next` carry over
+ *    unchanged, because that part of the story is ours and does not move.
+ *
  *
  * Rebuilt from scratch 24.08.2026 to George's structure from the call. The
  * canvas accompanies what George says out loud: minimal words on screen, a
@@ -12,11 +20,13 @@
  *
  * Text lives here; layout and behaviour live in index.html.
  */
-window.HOMEPRO = {
+window.CANVAS = {
 
-  meeting: {
+  /* ── the only block that is truly per-client ───────────────────────── */
+  client: {
+    name: 'HomePro',
+    logo: 'homepro-logo.svg',            // sits next to index.html
     kicker: 'HomePro × Kitty Kat Technologies · 26 August 2026',
-    partner: 'HomePro',
   },
 
   /* The five stops. `label` is what the rail shows. */
@@ -42,7 +52,8 @@ window.HOMEPRO = {
     ],
   },
 
-  /* 2 — qualifications and assumptions, then the bridge into the proposal. */
+  /* 2 — CLIENT-SPECIFIC. Qualifications and assumptions from public sources,
+   *     then the bridge into the proposal. Rewrite `items` per company. */
   assume: {
     eyebrow: 'From public information only',
     headline: 'What we assume about HomePro.',
@@ -56,7 +67,8 @@ window.HOMEPRO = {
     bridge: 'In our experience customer data accumulates faster than it gets used. That is where we would look first.',
   },
 
-  /* 3 — four steps, each with the outcome it produces. */
+  /* 3 — mostly reusable; the wording of a step may need a light pass to match
+   *     what the company already runs. */
   propose: {
     eyebrow: 'Customers first',
     headline: 'What we propose.',
@@ -77,7 +89,7 @@ window.HOMEPRO = {
     footnote: 'You may already run parts of this. Tell us which, and we start from there.',
   },
 
-  /* 4 — the honest question, and three answers to it. */
+  /* 4 — reusable as-is. */
   role: {
     eyebrow: 'The fair question',
     headline: 'You have a team. There are vendors. What is left for us?',
@@ -92,7 +104,7 @@ window.HOMEPRO = {
     footnote: 'Where your own team or a local vendor is stronger, that is where the work should sit.',
   },
 
-  /* 5 — one step, no duration and no price. Then the floor is theirs. */
+  /* 5 — reusable as-is. No duration and no price on screen. */
   next: {
     eyebrow: 'Next step',
     headline: 'A deep dive into where you actually are.',
