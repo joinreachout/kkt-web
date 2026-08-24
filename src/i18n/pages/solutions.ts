@@ -34,7 +34,7 @@ export const SOLUTIONS: LocaleDict<SolutionsDict> = {
     items: {
       optimus: {
         kind: 'Fuel-distribution networks',
-        body: 'An AI-based system that manages fuel stock for you in real time — across every depot and fuel type at once, taking demand, lead times and supplier reliability into account.',
+        body: 'An AI-powered system that manages fuel inventory for you in real time — across every depot and every fuel grade at once, factoring in demand, supplier lead times and supplier reliability.',
         status: 'In pilot',
         link: 'See how Optimus works',
       },

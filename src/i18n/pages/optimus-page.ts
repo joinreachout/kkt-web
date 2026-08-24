@@ -67,19 +67,19 @@ export type OptimusPageDict = {
 const EN: OptimusPageDict = {
   meta: {
     title: 'Optimus — fuel inventory management — KKT',
-    description: 'Optimus tracks fuel stock at every depot, works out when and how much to order, and warns in advance when the supply plan needs adjusting.',
+    description: 'Optimus manages fuel inventory across every depot and fuel grade: it forecasts run-outs, works out how much to order and from which supplier, and warns in advance when a delivery needs to change.',
   },
   hero: {
     label: 'Optimus · fuel inventory management',
     h1: 'What Optimus is',
-    lede: 'Optimus is an AI-based system that manages your fuel stock for you. It works out where fuel is about to run out, how much to order and from which supplier, and warns you in advance when a delivery needs adjusting. All the employee has to do is approve the finished decision.',
-    how: 'Optimus collects the data it needs from your systems and uses AI models to recalculate the whole picture in real time — across every depot and fuel type at once, taking demand, lead times and supplier reliability into account.',
+    lede: 'Optimus is an AI-powered system that manages your fuel inventory for you. It works out where a run-out is coming, how much to order and from which supplier, and warns you in advance when a delivery needs to change. All your team has to do is approve the recommendation.',
+    how: 'Optimus pulls the data it needs from your systems and uses AI models to recalculate the whole picture in real time — across every depot and every fuel grade at once, factoring in demand, supplier lead times and supplier reliability.',
     checks: [
       'AI demand forecast',
-      'Less money tied up in excess stock',
-      'A week-ahead forecast',
+      'Less working capital tied up in excess inventory',
+      'A week-ahead stock forecast',
       'Less idle time',
-      'A decision across several scenarios in minutes',
+      'A decision across what-if scenarios in minutes',
     ],
     ctaDemo: 'See the demo',
     alt: 'A network run by Optimus: depot, rail, tanker truck and stations joined into one loop',
@@ -100,7 +100,7 @@ const EN: OptimusPageDict = {
       'Inaccurate data',
       'Unbalanced stock',
       'Manual work and delays',
-      'Capital frozen in stock',
+      'Working capital tied up in inventory',
       'Paper document flow',
       'Lost sales',
     ],
@@ -126,18 +126,18 @@ const EN: OptimusPageDict = {
       { key: '3', name: 'Purchase and delivery', brief: 'The order goes to the supplier. Optimus tracks the fuel on its way and sees ahead of time if the depot will be short of room when it arrives.' },
       { key: 'exc', name: 'Exception: the fuel is on its way and there is no room', brief: 'Optimus sees this case coming and proposes distribution scenarios.' },
       { key: '4', name: 'Receiving at the depot', brief: 'The fuel is discharged into the tanks and the delivery is recorded. Stock is recalculated immediately.' },
-      { key: '5', name: 'Data analysis and scenarios', brief: 'The system builds purchasing scenarios, calculates the capital frozen in stock and shows where money is being lost.' },
+      { key: '5', name: 'Data analysis and scenarios', brief: 'The system builds purchasing scenarios, calculates the working capital tied up in inventory, and shows where money is being lost.' },
     ],
     note: 'What the system can do, and how quickly its data refreshes, depends on the data available on the client side and on what can be integrated with their internal systems.',
     panels: {
       '1': {
         label: 'Step 01', title: 'Automatic planning',
         bullets: [
-          'Order urgency comes from configurable stock thresholds at the depot — separate ones for every depot and fuel type',
+          'Order urgency comes from configurable stock thresholds at the depot — separate ones for every depot and fuel grade',
           'The order is raised far enough ahead for the new fuel to arrive while stock still lasts',
           'Fuel already on its way counts towards the stock',
           'Every order is a whole multiple of the rail-car volume you set',
-          'Builds purchasing scenarios: what happens if you order more, less, or from a different supplier',
+          'Builds what-if purchasing scenarios: order more, order less, or buy from a different supplier',
           'An extra order can be placed by hand at any moment',
         ],
       },
@@ -177,11 +177,11 @@ const EN: OptimusPageDict = {
       '5': {
         label: 'Step 05', title: 'Data analysis and scenarios',
         bullets: [
-          'Calculates how much money is frozen in stock, and proposes how to release it',
-          'Shows inventory turnover and coverage by fuel type and by region',
+          'Calculates the working capital tied up in inventory, and where it can be freed up',
+          'Shows inventory turns and days of supply by fuel grade and by region',
           'Projects stock at stations, depots and tanks a week ahead',
-          'Compares supplier prices against market quotes',
-          'Results go to the dashboards — management sees where money is being lost',
+          'Compares supplier prices against market benchmarks',
+          'Results feed the dashboards — management sees where money is being lost',
         ],
       },
     },
@@ -231,8 +231,8 @@ const EN: OptimusPageDict = {
         ],
       },
       {
-        caption: 'Depot matrix: the whole network × fuel types on one screen',
-        alt: 'Optimus depot matrix: every depot and fuel type, coloured by urgency',
+        caption: 'Depot matrix: the whole network × fuel grades on one screen',
+        alt: 'Optimus depot matrix: every depot and fuel grade, coloured by urgency',
         anns: [
           'Critical · order · healthy — across the network',
           'Days to critical, fill level and stock in tonnes',
