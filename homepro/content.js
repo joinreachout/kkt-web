@@ -28,6 +28,10 @@
  *    grounds that George wrote this text himself. The control-group line
  *    stays regardless — a VP of Data & AI will ask how it was measured.
  *
+ * ⛔ 25.08 вечером George снял и эту оговорку: «уберите measured against the
+ *    baseline, there was no control group». Он ведёт встречу и отвечает на
+ *    вопрос «как мерили» голосом. На экране её больше нет.
+ *
  * Text lives here; layout and behaviour live in index.html.
  */
 window.CANVAS = {
@@ -120,10 +124,9 @@ window.CANVAS = {
     facts: [
       { value: '~7,000',       note: 'selected inactive customers' },
       { value: '47%',          note: 'returned in the first month' },
-      { value: '~USD 350,000', note: 'revenue above the previous baseline' },
+      { value: '+USD 350,000 / month', note: 'revenue above the previous baseline' },
       { value: 'Now monthly',  note: 'with campaigns expanding to other customer segments' },
     ],
-    caveat: 'Measured against the baseline before the campaign. There was no control group; for HomePro we would use one.',
   },
 
   /* 5 — the last thing they hear: our role, the ask, and the short list. */
