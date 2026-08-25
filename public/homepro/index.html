@@ -208,16 +208,22 @@ h2{font-size:clamp(31px,3.9vw,56px);max-width:20ch}
 .closing .beyond{margin-top:13px;padding-top:11px}
 .closing .beyond .chips span{font-size:11px;padding:5px 10px}
 
-/* The closing screen carries the most of any: role, example, ask, and the
-   short list. Its vertical rhythm is tightened so all of it stays above the
-   route strip at 1600×900, which is the screen the meeting runs on. */
-[data-stop="fit"] .roles{margin-top:clamp(18px,2.4vh,30px)}
-[data-stop="fit"] .proof{margin-top:clamp(13px,1.7vh,20px);
-  padding:clamp(15px,1.7vw,20px) clamp(20px,2.2vw,30px) clamp(12px,1.4vw,16px)}
-[data-stop="fit"] .proof .facts{margin-top:12px}
-[data-stop="fit"] .proof .fact{padding-top:12px}
-[data-stop="fit"] .proof .foot{margin-top:8px}
-[data-stop="fit"] .closing{margin-top:clamp(11px,1.4vh,16px)}
+/* The example screen: the size of the company reads first and large, then
+   what was done, then what came out of it. */
+.scale{margin-top:clamp(20px,2.8vh,34px);border-top:1px solid var(--line);padding-top:16px;
+  display:grid;grid-template-columns:auto 1fr;gap:clamp(24px,3vw,56px);align-items:baseline}
+.scale .who{margin:0;font-size:clamp(15px,1.3vw,18px);line-height:1.4;color:var(--text-2);white-space:nowrap}
+.scale-nums{display:flex;gap:clamp(28px,3.4vw,64px)}
+.scale .big .v{margin:0;font-size:clamp(26px,2.6vw,38px);font-weight:600;letter-spacing:-.03em;line-height:1.05}
+.scale .big:first-child .v{color:var(--accent-text)}
+.scale .big .n{margin:5px 0 0;font-size:13px;line-height:1.4;color:var(--text-2)}
+.did{margin-top:clamp(18px,2.4vh,30px)}
+.did .txt{margin:8px 0 0;font-size:clamp(15px,1.35vw,19px);line-height:1.5;letter-spacing:-.01em;max-width:92ch}
+.result{margin-top:clamp(18px,2.4vh,30px)}
+.result .facts{margin-top:12px}
+.result .foot{margin-top:10px;font-size:11.5px;line-height:1.45;color:var(--text-3)}
+.did .lbl,.result .lbl{margin:0;font-family:var(--mono);font-size:10px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--accent-text)}
 
 .beyond{margin-top:clamp(20px,2.8vh,36px);border-top:1px solid var(--line);padding-top:16px}
 .beyond .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);margin:0 0 11px}
@@ -267,7 +273,7 @@ h2{font-size:clamp(31px,3.9vw,56px);max-width:20ch}
     <img class="partner" id="partnerMark" src="" alt="">
   </div>
 </header>
-<div class="progress" id="progress" style="width:25%"></div>
+<div class="progress" id="progress" style="width:20%"></div>
 
 <main class="road">
   <div class="field" id="field"></div>
@@ -289,7 +295,7 @@ h2{font-size:clamp(31px,3.9vw,56px);max-width:20ch}
 <!-- ⛔ The host serves content.js as immutable for a year, so a browser that
      has fetched one ?v= will never look again. Bump this token on EVERY change
      to content.js — otherwise the page keeps showing the previous text. -->
-<script src="content.js?v=2026-08-25-1"></script>
+<script src="content.js?v=2026-08-25-2"></script>
 <script>
 (function () {
   var C = window.CANVAS;
@@ -305,7 +311,7 @@ h2{font-size:clamp(31px,3.9vw,56px);max-width:20ch}
   mark.alt = C.client.name;
   document.title = C.client.name + ' × Kitty Kat Technologies';
 
-  /* ---- the four stops, built in the order the conversation takes them ---- */
+  /* ---- the five stops, built in the order the conversation takes them ---- */
   var html = '';
 
   var quad = function (arr) {
@@ -337,9 +343,30 @@ h2{font-size:clamp(31px,3.9vw,56px);max-width:20ch}
     '<p class="bridge" data-in="4">' + esc(C.growth.note) + '</p>' +
   '</div></section>';
 
-  /* The closing screen carries three things — our role, the one example we
-     are allowed to quote, and the ask. The example sits in its own band so
-     the numbers do not read as part of the role copy. */
+  /* The example gets a screen of its own: the size of the company first,
+     then what was done, then what came out of it. George talks over it. */
+  var E = C.example;
+  html += '<section class="stop" data-stop="example"><div class="inner detail">' +
+    '<p class="eyebrow" data-in="1">' + esc(E.eyebrow) + '</p>' +
+    '<h2 data-in="2">' + esc(E.headline) + '</h2>' +
+    '<div class="scale" data-in="3">' +
+      '<p class="who">' + esc(E.who) + '</p>' +
+      '<div class="scale-nums">' + E.scale.map(function (f) {
+        return '<div class="big"><p class="v">' + esc(f.value) + '</p><p class="n">' + esc(f.note) + '</p></div>';
+      }).join('') + '</div>' +
+    '</div>' +
+    '<div class="did" data-in="4"><p class="lbl">' + esc(E.didLabel) + '</p>' +
+      '<p class="txt">' + esc(E.did) + '</p></div>' +
+    '<div class="result" data-in="4"><p class="lbl">' + esc(E.resultLabel) + '</p>' +
+      '<div class="facts">' + E.facts.map(function (f) {
+        return '<div class="fact"><p class="v">' + esc(f.value) + '</p><p class="n">' + esc(f.note) + '</p></div>';
+      }).join('') + '</div>' +
+      '<p class="foot">' + esc(E.caveat) + '</p>' +
+    '</div>' +
+  '</div></section>';
+
+  /* The last thing they hear — role, the ask, and the short list. The
+     example used to sit here too, and George called the screen crowded. */
   var F = C.fit;
   html += '<section class="stop" data-stop="fit"><div class="inner detail">' +
     '<p class="eyebrow" data-in="1">' + esc(F.eyebrow) + '</p>' +
@@ -347,18 +374,6 @@ h2{font-size:clamp(31px,3.9vw,56px);max-width:20ch}
     '<div data-in="3"><div class="roles">' + F.items.map(function (r) {
       return '<div class="role"><h3>' + esc(r.title) + '</h3><p>' + esc(r.body) + '</p></div>';
     }).join('') + '</div></div>' +
-    '<div class="proof" data-in="4">' +
-      '<p class="lbl">' + esc(F.proof.label) + '</p>' +
-      '<h3>' + esc(F.proof.headline) + '</h3>' +
-      '<p class="ctx">' + esc(F.proof.context) + '</p>' +
-      '<div class="facts">' + F.proof.facts.map(function (f) {
-        return '<div class="fact"><p class="v">' + esc(f.value) + '</p><p class="n">' + esc(f.note) + '</p></div>';
-      }).join('') + '</div>' +
-      '<p class="foot">' + esc(F.proof.caveat) + '</p>' +
-    '</div>' +
-    /* the ask on the left, and on the right the answer to "why you" followed
-       by the short list of everything else — it rides in this column because
-       a band of its own pushes the screen past the fold */
     '<div class="closing" data-in="4">' +
       '<p class="ask-line">' + esc(F.next) + '</p>' +
       '<div>' +

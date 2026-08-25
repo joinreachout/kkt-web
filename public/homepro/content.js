@@ -5,14 +5,17 @@
  *      1. `client` — name, logo file, meeting line;
  *      2. `understand.items` — what we understand about them, from public
  *         sources, plus the `open` line naming what we still do not know.
- *    `growth` needs a light pass; `kkt`, `fit` and the proof block carry over
+ *    `growth` needs a light pass; `kkt`, `example` and `fit` carry over
  *    unchanged, because that part of the story is ours and does not move.
  *
  *
- * Texts replaced 25.08.2026 with George's final wording
- * (`HomePro_Meeting_Canvas_Final.md`). Four screens now, not five: the next
- * step folded into the closing screen, and the proposal became one loop
- * instead of a list of workstreams.
+ * Texts from George's final wording (`HomePro_Meeting_Canvas_Final.md`),
+ * put in 25.08.2026. The proposal is one loop rather than a list of
+ * workstreams, and the next step sits on the closing screen.
+ *
+ * Same evening, George read screen 4 and called it crowded. The example now
+ * has a screen to itself, ahead of the closing one, and leads with the size
+ * of the company — his ask: show 1 bln USD revenue and ~1 mln B2C customers.
  *
  * ⛔ No marketing phrasing, no sales headlines. The person on the other side
  *    runs Data & AI at a USD 2bn retailer; he wants specifics.
@@ -20,7 +23,7 @@
  * ⛔ ×22 / ×18 stay out until the denominator is defined.
  * ⛔ Never name the network Optimus runs in.
  *
- * ⚠️ The proof block carries 47% and ~7,000, which §6.2 of George's own spec
+ * ⚠️ The example carries 47% and ~7,000, which §6.2 of George's own spec
  *    had held back pending approval. Dennis released both on 25.08 on the
  *    grounds that George wrote this text himself. The control-group line
  *    stays regardless — a VP of Data & AI will ask how it was measured.
@@ -36,11 +39,15 @@ window.CANVAS = {
     kicker: 'HomePro × Kitty Kat Technologies · 26 August 2026',
   },
 
-  /* The four stops. `label` is what the rail shows. */
+  /* The five stops. `label` is what the rail shows.
+     George, 25.08: the closing screen was carrying too much at once. The
+     example moved out to a screen of its own so he can talk to it, and
+     "where we fit" became the last thing they hear. */
   stops: [
     { id: 'kkt',        label: 'Who we are' },
     { id: 'understand', label: 'What we understand' },
     { id: 'growth',     label: 'Customer growth' },
+    { id: 'example',    label: 'Relevant example' },
     { id: 'fit',        label: 'Where we fit' },
   ],
 
@@ -93,7 +100,33 @@ window.CANVAS = {
     note: 'The value comes from the full loop. One model on its own does not deliver it. AI agents can help run parts of it; business owners stay in control.',
   },
 
-  /* 4 — reusable as-is. Role, then the example, then the next step. */
+  /* 4 — the one case we are allowed to quote, on a screen of its own.
+   *     George narrates the detail; the screen only gives him the pegs.
+   *
+   * ⚠️ `did` is my wording, assembled from what the numbers already state.
+   *    If George wants the actual campaign mechanics named, he supplies them.
+   * ⚠️ 47% and ~7,000 released by Dennis 25.08 over §6.2 of the spec. */
+  example: {
+    eyebrow: 'Relevant example',
+    headline: 'One customer segment. One campaign. One repeatable process.',
+    who: 'An independent retail group.',
+    scale: [
+      { value: '~USD 1 billion', note: 'annual revenue' },
+      { value: '~1 million',     note: 'active B2C customers' },
+    ],
+    didLabel: 'What we did',
+    did: 'Selected one segment of customers who had stopped buying, built the offer for that segment, ran the campaign, and measured the result against the baseline before it.',
+    resultLabel: 'What came out of it',
+    facts: [
+      { value: '~7,000',       note: 'selected inactive customers' },
+      { value: '47%',          note: 'returned in the first month' },
+      { value: '~USD 350,000', note: 'revenue above the previous baseline' },
+      { value: 'Now monthly',  note: 'with campaigns expanding to other customer segments' },
+    ],
+    caveat: 'Measured against the baseline before the campaign. There was no control group; for HomePro we would use one.',
+  },
+
+  /* 5 — the last thing they hear: our role, the ask, and the short list. */
   fit: {
     eyebrow: 'Where KKT fits',
     headline: "Alongside HomePro's business and technology teams.",
@@ -105,20 +138,6 @@ window.CANVAS = {
       { title: 'Stay until it works',
         body: 'Stay involved until the new process is part of daily work and the result is visible.' },
     ],
-    proof: {
-      label: 'Relevant example',
-      headline: 'One customer segment. One campaign. One repeatable process.',
-      context: 'Retail group with close to 1 million active customers',
-      facts: [
-        { value: '~7,000',       note: 'selected inactive customers' },
-        { value: '47%',          note: 'returned in the first month' },
-        { value: '~USD 350,000', note: 'revenue above the previous baseline' },
-        { value: 'Now monthly',  note: 'with campaigns expanding to other customer segments' },
-      ],
-      /* Kept even though the source text dropped it — §6.2 of George's spec
-         requires it, and the question comes up unprompted with this audience. */
-      caveat: 'Measured against the baseline before the campaign. There was no control group; for HomePro we would use one.',
-    },
     next: 'Next step: one working session around a current HomePro priority, with the relevant business and Data/AI owners.',
     close: 'HomePro or a Thai technology partner can build the technology. KKT helps shape the business solution and supports implementation and daily use.',
     beyondLabel: 'Beyond customers, we also do',
