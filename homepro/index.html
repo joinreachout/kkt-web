@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
 <style>
 /* ---------------------------------------------------------------------------
-   One route, five stops. The screen travels left as the conversation moves;
+   One route, four stops. The screen travels left as the conversation moves;
    the rail at the top says where we are and how much is left.
 
    The register is deliberately flat: figures, nouns, outcomes. Anything that
@@ -182,14 +182,6 @@ h2{font-size:clamp(31px,3.9vw,56px);max-width:20ch}
   font-size:clamp(16px,1.5vw,21px);line-height:1.42;letter-spacing:-.015em;max-width:70ch}
 
 /* ---------- 3 · the four steps ---------- */
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,1.5vw,24px);margin-top:clamp(24px,3.4vh,44px)}
-.step{display:flex;flex-direction:column;border-top:2px solid var(--text);padding-top:14px}
-.step .n{font-family:var(--mono);font-size:11.5px;color:var(--text-3);margin:0 0 9px}
-.step h3{font-size:clamp(16px,1.45vw,21px);font-weight:600;letter-spacing:-.02em;line-height:1.2;margin:0}
-.step .how{font-size:13px;line-height:1.45;color:var(--text-3);margin:8px 0 0}
-.step .out{margin-top:auto;padding-top:14px;font-size:14px;line-height:1.45;color:var(--text)}
-.step .out b{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--accent-text);font-weight:600;margin-bottom:5px}
 .foot{font-size:13.5px;color:var(--text-2);margin:clamp(18px,2.6vh,30px) 0 0}
 
 /* ---------- 4 · role ---------- */
@@ -199,13 +191,41 @@ h2{font-size:clamp(31px,3.9vw,56px);max-width:20ch}
 .role p{font-size:14px;line-height:1.55;color:var(--text-2);margin:11px 0 0}
 
 /* ---------- 5 · next ---------- */
-.next-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(26px,3.4vw,62px);align-items:start;margin-top:clamp(22px,3.2vh,44px)}
-.deliv{list-style:none;padding:0;margin:0}
-.deliv li{font-size:clamp(14.5px,1.25vw,17px);line-height:1.45;padding:11px 0 11px 22px;border-top:1px solid var(--line);position:relative}
-.deliv li:last-child{border-bottom:1px solid var(--line)}
-.deliv li::before{content:'';position:absolute;left:0;top:1.05em;width:7px;height:7px;border-radius:50%;background:var(--accent)}
-.ask{background:var(--text);color:#fff;border-radius:16px;padding:clamp(20px,2.6vw,34px);
-  font-size:clamp(18px,1.8vw,26px);font-weight:600;letter-spacing:-.025em;line-height:1.22}
+/* four-up variant of the role grid — screens 1 and 3 carry four blocks */
+.roles.four{grid-template-columns:repeat(4,1fr)}
+
+/* the one example we are allowed to quote, set apart from the role copy */
+.proof{margin-top:clamp(20px,2.8vh,34px);border:1px solid var(--line-strong);border-radius:16px;
+  padding:clamp(18px,2vw,26px) clamp(20px,2.2vw,30px) clamp(16px,1.8vw,22px)}
+.proof .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--accent-text);margin:0 0 10px}
+.proof h3{font-size:clamp(15px,1.35vw,19px);font-weight:600;letter-spacing:-.02em;line-height:1.25;margin:0}
+.proof .ctx{font-size:13px;line-height:1.45;color:var(--text-2);margin:7px 0 0}
+.proof .facts{margin-top:clamp(14px,1.8vh,20px)}
+.proof .fact{padding:14px 20px 0 0}
+.proof .foot{margin-top:12px;font-size:11.5px;line-height:1.45;color:var(--text-3)}
+
+.closing{margin-top:clamp(16px,2.2vh,26px);display:grid;grid-template-columns:1.05fr .95fr;
+  gap:clamp(18px,2.4vw,38px);align-items:start}
+.ask-line{margin:0;background:var(--text);color:#fff;border-radius:14px;
+  padding:clamp(14px,1.6vw,20px) clamp(16px,1.8vw,24px);
+  font-size:clamp(14px,1.2vw,16.5px);line-height:1.45;letter-spacing:-.01em}
+.close-line{margin:0;font-size:clamp(13.5px,1.15vw,15.5px);line-height:1.55;color:var(--text-2);
+  padding-top:4px}
+.closing .beyond{margin-top:13px;padding-top:11px}
+.closing .beyond .chips span{font-size:11px;padding:5px 10px}
+
+/* The closing screen carries the most of any: role, example, ask, and the
+   short list. Its vertical rhythm is tightened so all of it stays above the
+   route strip at 1600×900, which is the screen the meeting runs on. */
+[data-stop="fit"] .roles{margin-top:clamp(18px,2.4vh,30px)}
+[data-stop="fit"] .proof{margin-top:clamp(13px,1.7vh,20px);
+  padding:clamp(15px,1.7vw,20px) clamp(20px,2.2vw,30px) clamp(12px,1.4vw,16px)}
+[data-stop="fit"] .proof .facts{margin-top:12px}
+[data-stop="fit"] .proof .fact{padding-top:12px}
+[data-stop="fit"] .proof .foot{margin-top:8px}
+[data-stop="fit"] .closing{margin-top:clamp(11px,1.4vh,16px)}
+
 .beyond{margin-top:clamp(20px,2.8vh,36px);border-top:1px solid var(--line);padding-top:16px}
 .beyond .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);margin:0 0 11px}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
@@ -224,10 +244,8 @@ h2{font-size:clamp(31px,3.9vw,56px);max-width:20ch}
   font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);z-index:20}
 
 @media (max-width:1080px){
-  .facts,.steps{grid-template-columns:repeat(2,1fr)}
-  .fact{border-right:0;padding-right:0}
-  .roles,.next-grid{grid-template-columns:1fr}
-  .stop-btn .nm{display:none}
+  .facts,  .fact{border-right:0;padding-right:0}
+  .roles,  .stop-btn .nm{display:none}
   .stops{flex:none;gap:10px}
   .stop-btn{flex:none}
 }
@@ -279,7 +297,7 @@ h2{font-size:clamp(31px,3.9vw,56px);max-width:20ch}
 <!-- ⛔ The host serves content.js as immutable for a year, so a browser that
      has fetched one ?v= will never look again. Bump this token on EVERY change
      to content.js — otherwise the page keeps showing the previous text. -->
-<script src="content.js?v=2026-08-24-6"></script>
+<script src="content.js?v=2026-08-25-1"></script>
 <script>
 (function () {
   var C = window.CANVAS;
@@ -295,58 +313,68 @@ h2{font-size:clamp(31px,3.9vw,56px);max-width:20ch}
   mark.alt = C.client.name;
   document.title = C.client.name + ' × Kitty Kat Technologies';
 
-  /* ---- the five stops, built in the order the conversation takes them ---- */
+  /* ---- the four stops, built in the order the conversation takes them ---- */
   var html = '';
+
+  var quad = function (arr) {
+    return '<div class="roles four">' + arr.map(function (r) {
+      return '<div class="role"><h3>' + esc(r.title) + '</h3><p>' + esc(r.body) + '</p></div>';
+    }).join('') + '</div>';
+  };
 
   html += '<section class="stop" data-stop="kkt"><div class="inner detail">' +
     '<p class="eyebrow" data-in="1">' + esc(C.kkt.eyebrow) + '</p>' +
     '<h1 data-in="2">' + esc(C.kkt.headline) + '</h1>' +
     '<p class="sub" data-in="3">' + esc(C.kkt.sub) + '</p>' +
-    '<div class="facts" data-in="4">' + C.kkt.facts.map(function (f) {
-      return '<div class="fact"><p class="v">' + esc(f.value) + '</p><p class="n">' + esc(f.note) + '</p>' +
-        (f.caveat ? '<p class="c">' + esc(f.caveat) + '</p>' : '') + '</div>';
-    }).join('') + '</div>' +
+    '<div data-in="4">' + quad(C.kkt.method) + '</div>' +
   '</div></section>';
 
-  html += '<section class="stop" data-stop="assume"><div class="inner detail">' +
-    '<p class="eyebrow" data-in="1">' + esc(C.assume.eyebrow) + '</p>' +
-    '<h2 data-in="2">' + esc(C.assume.headline) + '</h2>' +
-    '<p class="sub" data-in="2">' + esc(C.assume.sub) + '</p>' +
-    '<ul class="asm" data-in="3">' + C.assume.items.map(function (t, i) {
+  html += '<section class="stop" data-stop="understand"><div class="inner detail">' +
+    '<p class="eyebrow" data-in="1">' + esc(C.understand.eyebrow) + '</p>' +
+    '<h2 data-in="2">' + esc(C.understand.headline) + '</h2>' +
+    '<ul class="asm" data-in="3">' + C.understand.items.map(function (t, i) {
       return '<li><span class="i">' + ('0' + (i + 1)) + '</span><span class="t">' + esc(t) + '</span></li>';
     }).join('') + '</ul>' +
-    '<p class="bridge" data-in="4">' + esc(C.assume.bridge) + '</p>' +
+    '<p class="bridge" data-in="4">' + esc(C.understand.open) + '</p>' +
   '</div></section>';
 
-  html += '<section class="stop" data-stop="propose"><div class="inner detail">' +
-    '<p class="eyebrow" data-in="1">' + esc(C.propose.eyebrow) + '</p>' +
-    '<h2 data-in="2">' + esc(C.propose.headline) + '</h2>' +
-    '<div class="steps" data-in="3">' + C.propose.steps.map(function (s) {
-      return '<div class="step"><p class="n">Step ' + esc(s.n) + '</p><h3>' + esc(s.title) + '</h3>' +
-        '<p class="how">' + esc(s.how) + '</p>' +
-        '<p class="out"><b>Outcome</b>' + esc(s.outcome) + '</p></div>';
-    }).join('') + '</div>' +
-    '<p class="foot" data-in="4">' + esc(C.propose.footnote) + '</p>' +
+  html += '<section class="stop" data-stop="growth"><div class="inner detail">' +
+    '<p class="eyebrow" data-in="1">' + esc(C.growth.eyebrow) + '</p>' +
+    '<h2 data-in="2">' + esc(C.growth.headline) + '</h2>' +
+    '<div data-in="3">' + quad(C.growth.steps) + '</div>' +
+    '<p class="bridge" data-in="4">' + esc(C.growth.note) + '</p>' +
   '</div></section>';
 
-  html += '<section class="stop" data-stop="role"><div class="inner detail">' +
-    '<p class="eyebrow" data-in="1">' + esc(C.role.eyebrow) + '</p>' +
-    '<h2 data-in="2">' + esc(C.role.headline) + '</h2>' +
-    '<div class="roles" data-in="3">' + C.role.items.map(function (r) {
+  /* The closing screen carries three things — our role, the one example we
+     are allowed to quote, and the ask. The example sits in its own band so
+     the numbers do not read as part of the role copy. */
+  var F = C.fit;
+  html += '<section class="stop" data-stop="fit"><div class="inner detail">' +
+    '<p class="eyebrow" data-in="1">' + esc(F.eyebrow) + '</p>' +
+    '<h2 data-in="2">' + esc(F.headline) + '</h2>' +
+    '<div data-in="3"><div class="roles">' + F.items.map(function (r) {
       return '<div class="role"><h3>' + esc(r.title) + '</h3><p>' + esc(r.body) + '</p></div>';
-    }).join('') + '</div>' +
-    '<p class="foot" data-in="4">' + esc(C.role.footnote) + '</p>' +
-  '</div></section>';
-
-  html += '<section class="stop" data-stop="next"><div class="inner detail">' +
-    '<p class="eyebrow" data-in="1">' + esc(C.next.eyebrow) + '</p>' +
-    '<h2 data-in="2">' + esc(C.next.headline) + '</h2>' +
-    '<div class="next-grid" data-in="3">' +
-      '<ul class="deliv">' + C.next.items.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>' +
-      '<div class="ask">' + esc(C.next.ask) + '</div>' +
+    }).join('') + '</div></div>' +
+    '<div class="proof" data-in="4">' +
+      '<p class="lbl">' + esc(F.proof.label) + '</p>' +
+      '<h3>' + esc(F.proof.headline) + '</h3>' +
+      '<p class="ctx">' + esc(F.proof.context) + '</p>' +
+      '<div class="facts">' + F.proof.facts.map(function (f) {
+        return '<div class="fact"><p class="v">' + esc(f.value) + '</p><p class="n">' + esc(f.note) + '</p></div>';
+      }).join('') + '</div>' +
+      '<p class="foot">' + esc(F.proof.caveat) + '</p>' +
     '</div>' +
-    '<div class="beyond" data-in="4"><p class="lbl">' + esc(C.next.beyondLabel) + '</p>' +
-      '<div class="chips">' + C.next.beyond.map(function (b) { return '<span>' + esc(b) + '</span>'; }).join('') + '</div>' +
+    /* the ask on the left, and on the right the answer to "why you" followed
+       by the short list of everything else — it rides in this column because
+       a band of its own pushes the screen past the fold */
+    '<div class="closing" data-in="4">' +
+      '<p class="ask-line">' + esc(F.next) + '</p>' +
+      '<div>' +
+        '<p class="close-line">' + esc(F.close) + '</p>' +
+        '<div class="beyond"><p class="lbl">' + esc(F.beyondLabel) + '</p>' +
+          '<div class="chips">' + F.beyond.map(function (b) { return '<span>' + esc(b) + '</span>'; }).join('') + '</div>' +
+        '</div>' +
+      '</div>' +
     '</div>' +
   '</div></section>';
 
