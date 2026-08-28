@@ -478,10 +478,223 @@ const RU: OptimusPageDict = {
   },
 };
 
-// The page exists in English and Russian. Any other locale that reaches it
-// (the German, Estonian and Thai Optimus pages are still the earlier design)
-// would fall back to English.
-export const OPTIMUS_PAGE: Partial<Record<Locale, OptimusPageDict>> = { en: EN, ru: RU };
+// Deutsch, 28.08.2026. Übersetzt aus dem russischen Original (Яна), nicht aus
+// dem Englischen — Russisch ist die Quelle, Englisch die zweite Übersetzung.
+// Glossar-Entscheidungen von Dennis (10.08): нефтебаза → Tanklager · AI → KI
+// durchgängig · working capital bleibt englisch · procurement → Einkauf ·
+// Standzeit/Standgeld · Anrede durchgängig Sie. Dashboard, ERP, TMS, DWH
+// bleiben englisch, weil die Zielgruppe sie so verwendet.
+const DE: OptimusPageDict = {
+  meta: {
+    title: 'Optimus — Kraftstoff-Bestandsmanagement',
+    description: 'Optimus verfolgt die Kraftstoffbestände in jedem Tanklager, berechnet, wann und in welcher Menge zu bestellen ist, und warnt frühzeitig, wenn der Lieferplan angepasst werden muss.',
+  },
+  hero: {
+    label: 'Optimus · Kraftstoff-Bestandsmanagement',
+    h1: 'Was Optimus ist',
+    lede: 'Optimus ist ein KI-gestütztes System, das Ihre Kraftstoffbestände für Sie steuert. Es berechnet selbst, wo der Bestand demnächst zur Neige geht, wie viel und bei welchem Lieferanten zu bestellen ist, und warnt frühzeitig, wenn eine Lieferung angepasst werden muss. Ihren Mitarbeitern bleibt, die fertige Entscheidung freizugeben.',
+    how: 'Optimus holt sich alle benötigten Daten aus Ihren Systemen und rechnet mit KI-Modellen das gesamte Bild in Echtzeit neu durch — über alle Tanklager und Kraftstoffsorten gleichzeitig, unter Berücksichtigung von Bedarf, Lieferzeiten und Zuverlässigkeit der Lieferanten.',
+    checks: [
+      'KI-Bedarfsprognose',
+      'Weniger Working Capital in Überbeständen',
+      'Bestandsprognose eine Woche im Voraus',
+      'Weniger Standzeiten',
+      'Entscheidung über mehrere Szenarien in Minuten',
+    ],
+    ctaDemo: 'Demo ansehen',
+    alt: 'Ein von Optimus gesteuertes Netz: Tanklager, Bahn, Tankwagen und Stationen zu einem Kreislauf verbunden',
+  },
+  problem: {
+    label: '01 · Der heutige Prozess',
+    h2: 'Wie der Prozess heute aussieht',
+    lede: 'Lieferanten, Hafen, Tanklager und Spediteure arbeiten jeweils nach ihrem eigenen Prozess, und der Einkauf führt alles von Hand zusammen. Die Probleme sind meist die bekannten — und sie kosten viel Zeit. Schalten Sie auf „Mit Optimus“, um denselben Prozess mit eingeführtem System zu sehen.',
+    toggleAria: 'Heute oder mit Optimus',
+    tabToday: 'Wie es heute ist',
+    tabOptimus: 'Mit Optimus',
+    nodes: { office: 'Einkauf', depot: 'Tanklager', supplier: 'Lieferant', port: 'Hafen / Bahn', trucks: 'Tankwagen' },
+    coreChaos: { title: 'Manuelle Zusammenführung', sub: 'Excel, Anrufe, E-Mail' },
+    coreOrder: { title: 'Optimus', sub: 'das gesamte Netz in Echtzeit neu berechnet' },
+    chipsToday: [
+      'Getrennte Systeme',
+      'Menschliche Fehler',
+      'Ungenaue Daten',
+      'Unausgewogene Bestände',
+      'Handarbeit und Verzögerungen',
+      'Gebundenes Working Capital',
+      'Papierbasierter Belegfluss',
+      'Entgangene Verkäufe',
+    ],
+    chipsOptimus: [
+      'Eine einzige Datenquelle',
+      'Prognose für jeden Tank',
+      'Bestellung in ganzen Kesselwagen',
+      'Lieferant nach Preis und Termin',
+      'Konflikte frühzeitig sichtbar',
+      'Weniger gebundenes Kapital',
+    ],
+    stripToday: { lead: 'Folgen:', rest: ' geringere Effizienz · finanzielle Verluste · verpasste Chancen · steigende operative Risiken' },
+    stripOptimus: { lead: 'Ihren Mitarbeitern bleibt die Entscheidung', rest: ' — den Rest erledigt das System selbst' },
+  },
+  process: {
+    label: '02 · Der Prozess',
+    h2: 'Vom Bestand im Tanklager bis zur nächsten Lieferung',
+    lede: 'Der übliche Weg ist kurz: Das System ermittelt den Bedarf → ein Mitarbeiter gibt frei → der Lieferant liefert → der Kraftstoff wird im Tanklager übernommen. Klicken Sie auf einen Schritt, um zu sehen, wie er aufgebaut ist.',
+    railAria: 'Prozessschritte',
+    steps: [
+      { key: '1', name: 'Automatische Planung', brief: 'Optimus erhält aktuelle Bestände und Verbräuche in Echtzeit, berechnet, wann der Bestand den kritischen Wert erreicht, und erstellt einen Bestellvorschlag.' },
+      { key: '2', name: 'Freigabe der Bestellung', brief: 'Ein Mitarbeiter prüft den Vorschlag und bestätigt ihn — der einzige Schritt im gesamten Prozess, der einen Menschen erfordert.' },
+      { key: '3', name: 'Einkauf und Lieferung', brief: 'Die Bestellung geht an den Lieferanten. Optimus verfolgt den Kraftstoff unterwegs und erkennt frühzeitig, wenn im Tanklager bei Ankunft der Platz fehlt.' },
+      { key: 'exc', name: 'Ausnahme: Der Kraftstoff ist unterwegs, es fehlt der Platz', brief: 'Optimus erkennt diesen Fall im Voraus und schlägt Verteilungsszenarien vor.' },
+      { key: '4', name: 'Übernahme im Tanklager', brief: 'Der Kraftstoff ist in die Tanks abgefüllt, die Lieferung ist erfasst. Die Bestände werden sofort neu berechnet.' },
+      { key: '5', name: 'Datenanalyse und Szenarien', brief: 'Das System bildet Einkaufsszenarien, berechnet das in Beständen gebundene Kapital und zeigt, wo Geld verloren geht.' },
+    ],
+    note: 'Der Funktionsumfang des Systems und die Aktualisierungsgeschwindigkeit der Daten hängen davon ab, welche Daten auf Kundenseite vorliegen und wie weit sich interne Systeme anbinden lassen.',
+    panels: {
+      '1': {
+        label: 'Schritt 01', title: 'Automatische Planung',
+        bullets: [
+          'Die Dringlichkeit einer Bestellung ergibt sich aus konfigurierbaren Bestandsschwellen im Tanklager — eigene je Tanklager und Kraftstoffsorte',
+          'Die Bestellung wird so früh ausgelöst, dass der neue Kraftstoff eintrifft, solange der Bestand noch reicht',
+          'Kraftstoff, der bereits unterwegs ist, zählt ebenfalls zum Bestand',
+          'Jede Bestellung ist ein ganzes Vielfaches des festgelegten Kesselwagenvolumens',
+          'Bildet Einkaufsszenarien: was passiert, wenn Sie mehr, weniger oder bei einem anderen Lieferanten bestellen',
+          'Eine zusätzliche Bestellung lässt sich jederzeit von Hand auslösen',
+        ],
+      },
+      '2': {
+        label: 'Schritt 02', title: 'Freigabe der Bestellung',
+        bullets: [
+          'Der Mitarbeiter bewertet die vorgeschlagene Menge, den Lieferanten und die Gesamtkosten der Bestellung',
+          'Der Vorschlag lässt sich vor der Bestätigung von Hand anpassen',
+          'Dies ist der einzige Schritt im gesamten Prozess, der einen Menschen erfordert',
+        ],
+      },
+      '3': {
+        label: 'Schritt 03', title: 'Einkauf und Lieferung',
+        bullets: [
+          'Optimus verfolgt die Lieferung und bewertet im Voraus die Tankauslastung, einschließlich des Kraftstoffs, der bereits unterwegs ist',
+          'Abfüllgeschwindigkeit und Probenahmezeit werden berücksichtigt, damit diese Zeit nicht als Standzeit zählt',
+          'Ist der Tank bei Ankunft voll, schlägt das System Verteilungsszenarien vor',
+        ],
+      },
+      'exc': {
+        label: 'Ausnahme', title: 'Was, wenn der Kraftstoff eintrifft und kein Platz da ist?',
+        bullets: [
+          'Optimus berechnet den Bestand viele Tage im Voraus und erkennt frühzeitig, dass der Tank zum Zeitpunkt der Ankunft voll sein wird',
+          'Dann schlägt das System vor, den Kraftstoff auf andere Tanklager zu verteilen, damit weder Standzeiten noch Standgeld entstehen',
+          'Für jeden Fall berechnet es: nach wie vielen Tagen Platz frei wird, wie viele Kesselwagen nicht hineinpassen, wie lange sie stehen und was das kostet',
+          'Liegt in einem Tanklager ein Überbestand und in einem anderen eine Unterdeckung, ist eine Umfuhr zwischen beiden günstiger als eine Neubestellung',
+        ],
+      },
+      '4': {
+        label: 'Schritt 04', title: 'Übernahme im Tanklager',
+        bullets: [
+          'Die erfolgte Lieferung wird im System erfasst',
+          'Die Bestände werden aktualisiert und die Berechnung für das Netz läuft erneut',
+          'Die Daten gehen zurück ins ERP und auf die Dashboards',
+        ],
+      },
+      '5': {
+        label: 'Schritt 05', title: 'Datenanalyse und Szenarien',
+        bullets: [
+          'Berechnet, wie viel Geld in Beständen gebunden ist, und schlägt vor, wie sich Kapital freisetzen lässt',
+          'Zeigt die Umschlagsgeschwindigkeit der Bestände und die Reichweite je Kraftstoffsorte und Region',
+          'Prognostiziert Bestände für Stationen, Tanklager und Tanks eine Woche im Voraus',
+          'Vergleicht Lieferantenpreise mit Marktnotierungen',
+          'Die Ergebnisse gehen auf die Dashboards — die Geschäftsführung sieht, wo Geld verloren geht',
+        ],
+      },
+    },
+    picto: {
+      '1': 'Monitor mit einer Bestandslinie, die auf den markierten kritischen Wert absinkt',
+      '2': 'Bestellkarte und ein großer Haken zur Bestätigung darüber',
+      '3': 'Kesselwagen in Bewegung, orange Routenlinie zum Tanklager',
+      'exc': 'Voller Tank und daneben ein wartender Kesselwagen, darüber ein Uhrsymbol',
+      '4': 'Ein Tank, der befüllt wird: der Füllstand steigt, ein Pfeil zeigt nach unten in den Stutzen',
+      '5': 'Monitor mit einem Datengitter, von dort Leitungen zu den umstehenden Bildschirmen',
+    },
+  },
+  data: {
+    label: '03 · Integration',
+    h2: 'Datenflüsse',
+    lede: 'Optimus führt keine eigenen Stammdaten — es holt die Daten aus den Systemen des Unternehmens, berechnet die Entscheidung und gibt das fertige Ergebnis zurück.',
+    alt: 'Vier Unternehmenssysteme sind mit Optimus verbunden, das Ergebnis geht zurück ins ERP und auf die Dashboards',
+    inputs: [
+      { name: 'ERP', note: 'Bestände und Bestellungen' },
+      { name: 'TMS', note: 'Logistikdaten' },
+      { name: 'DWH', note: 'Strukturierte Daten' },
+      { name: 'Marktpreise', note: 'Externe Notierungen' },
+    ],
+    outputs: [
+      { name: 'ERP', note: 'Aktualisierte Bestände und Bestellungen' },
+      { name: 'Dashboards', note: 'Bestandsprognose, Umschlag, Kapital' },
+    ],
+    capIn: 'Eingang', capOut: 'Ausgang',
+    gains: [
+      { lead: 'Geld gespart.', rest: ' Das System rechnet die Entscheidung entlang der von Ihnen gesetzten Szenarien neu und berücksichtigt das in Überbeständen gebundene Geld.' },
+      { lead: 'Weniger Standzeiten.', rest: ' Geringere Verluste durch stehende Tanklager und stehende Transporte.' },
+      { lead: 'Schnellere Entscheidungen.', rest: ' Der gesamte Prozess ist automatisiert — ein Mitarbeiter bewertet einen fertigen Vorschlag, statt Dutzende Kombinationen aus Tanklagern und Kraftstoffsorten von Hand zu rechnen.' },
+      { lead: 'Bessere Datenqualität.', rest: ' Sauberere Datenflüsse senken die Risiken, die mit manuellen Berechnungen und Dateien einhergehen.' },
+    ],
+  },
+  ui: {
+    label: 'Die Oberfläche',
+    h2: 'Wie es im System aussieht',
+    lede: 'Sechs Arbeitsbildschirme von Optimus. Blättern Sie mit den Pfeilen oder den Punkten.',
+    prevAria: 'Vorheriger Bildschirm', nextAria: 'Nächster Bildschirm', slideAria: 'Bildschirm',
+    slides: [
+      {
+        caption: 'Dashboard: was zu bestellen ist, bei wem und warum genau so',
+        alt: 'Optimus-Dashboard: Aufschlüsselung der Positionen mit Handlungsbedarf, mit Terminen und Lieferanten',
+        anns: [
+          'Bestand, Frist bis zum kritischen Wert und Bestellmenge in einer Zeile',
+          'Warum der günstigste Lieferant verliert: er hält den Termin nicht',
+        ],
+      },
+      {
+        caption: 'Tanklager-Matrix: das gesamte Netz × Kraftstoffsorten auf einem Bildschirm',
+        alt: 'Optimus-Tanklagermatrix: alle Tanklager und Kraftstoffsorten, Farbe nach Dringlichkeit',
+        anns: [
+          'Kritisch · bestellen · im Normbereich — über das gesamte Netz',
+          'Tage bis zum kritischen Wert, Füllgrad und Bestand in Tonnen',
+        ],
+      },
+      {
+        caption: 'Empfehlungen: wie viel zu bestellen ist und bei welchem Lieferanten',
+        alt: 'Optimus-Empfehlungsverlauf: Bestand, Tage bis zum kritischen Wert, empfohlene Menge',
+        anns: ['Empfohlene Menge und bester Lieferant'],
+      },
+      {
+        caption: 'Chancen: Umfuhren und Kapital, das sich freisetzen lässt',
+        alt: 'Optimus-Chancenbildschirm: vorgeschlagene Umfuhren und Freisetzung von Working Capital',
+        anns: [
+          'Umfuhren, die niemand angefragt hat',
+          'Wie viel Kapital über dem Ziel gebunden ist',
+        ],
+      },
+      {
+        caption: 'Bestellungen: alles, was bereits unterwegs ist, mit Terminen und Lieferanten',
+        alt: 'Optimus-Bestellungen: Lieferungen unterwegs aus dem ERP, mit Status und Lieferterminen',
+        anns: ['234 Lieferungen unterwegs, Status direkt aus dem ERP'],
+      },
+      {
+        caption: 'Strategie: fünf Einkaufsmodi im Vergleich',
+        alt: 'Optimus-Strategie und -Szenarien: Vergleich von fünf Optimierungsmodi',
+        anns: ['Eine Berechnung, fünf Strategien — und der Preis jeder einzelnen'],
+      },
+    ],
+  },
+  cta: {
+    heading: 'Sehen Sie Optimus an einem echten Netz',
+    body: 'Der Demo-Stand läuft auf einem vollständigen Netzmodell: Tanklager, Tanks, Lieferanten, Neuberechnung in Echtzeit. Wir zeigen es an Ihren Szenarien.',
+    primary: 'Demo anfragen',
+  },
+};
+
+// The page exists in English, Russian and German. Estonian and Thai still
+// carry the earlier design with their own dictionary (i18n/pages/optimus.ts)
+// and fall back to English if they ever reach this component.
+export const OPTIMUS_PAGE: Partial<Record<Locale, OptimusPageDict>> = { en: EN, ru: RU, de: DE };
 
 export function useOptimusPage(locale: string | undefined): OptimusPageDict {
   return OPTIMUS_PAGE[(locale as Locale)] ?? EN;
