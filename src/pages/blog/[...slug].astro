@@ -112,6 +112,16 @@ const t = useInsights(Astro.currentLocale);
     margin: 0 0 14px 1.4em;
   }
   .prose :global(li) { margin-bottom: 6px; }
+  /* Images in a post carry their intrinsic width (a 1280px LinkedIn cover would
+     blow the column open), so cap them to the measure and keep the ratio. */
+  .prose :global(img) {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 28px 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
   .prose :global(code) {
     font-family: var(--font-mono);
     font-size: 13px;
