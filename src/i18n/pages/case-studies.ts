@@ -43,13 +43,19 @@ export const CASE_STUDIES: LocaleDict<CaseStudiesDict> = {
       lede: "More work we've delivered, across industries.",
       items: {
         'clubtek': { region: 'Phuket, Thailand', blurb: 'Audio-visual systems integration — sound, video, intelligent lighting and unified automation for hotels, clubs and villas.' },
-        'khaos-marani': { region: 'Kakheti, Georgia', blurb: 'Winery. Advanced analytics and predictive ML to forecast wine demand, optimise pricing, and segment consumers for targeted marketing.' },
-        'gagra-plus': { region: 'Tbilisi, Georgia', blurb: 'Food-ingredients and confectionery manufacturer and retailer (Buona Sera shops). A heuristic and Operations-Research model that optimises product distribution between suppliers and stores — accounting for demand, availability, supplier constraints, and store-level needs. Better inventory allocation, less manual planning, and clearer visibility over logistics decisions.' },
         'fuel-loyalty': { region: 'Fuel retail', blurb: 'Reactivating dormant customers through a hybrid RFM + clustering segmentation — ~12,000 reactivated, refreshed by an automatic ML pipeline.' },
         'enterprise-agent': { region: 'Enterprise AI', blurb: 'A natural-language analytics agent for the executive team — business semantic layer, KPI grounding, 90%+ answer accuracy in production.' },
       },
     },
     cases: {
+      'gagra-plus': {
+        focus: 'Distribution and replenishment optimisation across the store network',
+        sector: 'Logistics', years: 'Tbilisi, Georgia',
+        image: 'Distribution model — suppliers to stores',
+        what: 'A food-ingredients and confectionery manufacturer and retailer (Buona Sera shops). A heuristic and Operations-Research model that optimises product distribution between suppliers and stores, accounting for demand, availability, supplier constraints, and store-level needs.',
+        scope: ['Demand and availability modelling across the store network', 'A heuristic and Operations-Research model for distribution between suppliers and stores', 'Supplier constraints and store-level needs encoded into the allocation logic'],
+        outcome: ['Better inventory allocation across stores', 'Less manual planning', 'Clearer visibility over logistics decisions'],
+      },
       'tic-iso': {
         focus: 'Prototype of an AI audit-preparation assistant',
         sector: 'Testing, Inspection & Certification', years: '2025',
@@ -159,13 +165,19 @@ export const CASE_STUDIES: LocaleDict<CaseStudiesDict> = {
       lede: 'Weitere von uns gelieferte Arbeit, über Branchen hinweg.',
       items: {
         'clubtek': { region: 'Phuket, Thailand', blurb: 'Audio-Video-Systemintegration — Ton, Video, intelligente Beleuchtung und einheitliche Automatisierung für Hotels, Clubs und Villen.' },
-        'khaos-marani': { region: 'Kachetien, Georgien', blurb: 'Weingut. Advanced Analytics und Predictive ML zur Prognose der Weinnachfrage, Preisoptimierung und Konsumentensegmentierung für gezieltes Marketing.' },
-        'gagra-plus': { region: 'Tiflis, Georgien', blurb: 'Hersteller und Händler von Lebensmittelzutaten und Konditoreiwaren (Buona-Sera-Läden). Ein heuristisches und Operations-Research-Modell zur Optimierung der Produktverteilung zwischen Lieferanten und Filialen — unter Berücksichtigung von Nachfrage, Verfügbarkeit, Lieferantenrestriktionen und Filialbedarf. Bessere Bestandszuteilung, weniger manuelle Planung und klarere Sicht auf Logistikentscheidungen.' },
         'fuel-loyalty': { region: 'Tankstellengeschäft', blurb: 'Reaktivierung inaktiver Kunden durch eine hybride RFM- + Clustering-Segmentierung — ~12.000 reaktiviert, aktualisiert durch eine automatische ML-Pipeline.' },
         'enterprise-agent': { region: 'Enterprise-KI', blurb: 'Ein natürlichsprachlicher Analytik-Agent für das Führungsteam — geschäftliche semantische Schicht, KPI-Grounding, 90%+ Antwortgenauigkeit in Produktion.' },
       },
     },
     cases: {
+      'gagra-plus': {
+        focus: 'Optimierung von Distribution und Nachschub über das Filialnetz',
+        sector: 'Logistik', years: 'Tiflis, Georgien',
+        image: 'Distributionsmodell — Lieferanten zu Filialen',
+        what: 'Hersteller und Händler von Lebensmittelzutaten und Konditoreiwaren (Buona-Sera-Läden). Ein heuristisches und Operations-Research-Modell zur Optimierung der Produktverteilung zwischen Lieferanten und Filialen — unter Berücksichtigung von Nachfrage, Verfügbarkeit, Lieferantenrestriktionen und Filialbedarf.',
+        scope: ['Modellierung von Nachfrage und Verfügbarkeit über das Filialnetz', 'Heuristisches und Operations-Research-Modell für die Verteilung zwischen Lieferanten und Filialen', 'Lieferantenrestriktionen und Filialbedarf in der Zuteilungslogik abgebildet'],
+        outcome: ['Bessere Bestandszuteilung über die Filialen', 'Weniger manuelle Planung', 'Klarere Sicht auf Logistikentscheidungen'],
+      },
       'tic-iso': {
         name: 'Großes TIC-Unternehmen',
         focus: 'Prototyp eines KI-Assistenten zur Audit-Vorbereitung',
@@ -277,13 +289,19 @@ export const CASE_STUDIES: LocaleDict<CaseStudiesDict> = {
       lede: 'Veel meie tehtud tööd, üle erinevate valdkondade.',
       items: {
         'clubtek': { region: 'Phuket, Tai', blurb: 'Audio-video süsteemide integratsioon — heli, video, intelligentne valgustus ja ühtne automatiseerimine hotellidele, klubidele ja villadele.' },
-        'khaos-marani': { region: 'Kahheetia, Gruusia', blurb: 'Veinitööstus. Edasijõudnud analüütika ja ennustav ML veininõudluse prognoosimiseks, hinnastamise optimeerimiseks ja tarbijate segmenteerimiseks suunatud turunduse jaoks.' },
-        'gagra-plus': { region: 'Thbilisi, Gruusia', blurb: 'Toiduainete ja kondiitritoodete tootja ja jaemüüja (Buona Sera poed). Heuristiline ja operatsioonianalüüsi (OR) mudel toodete jaotuse optimeerimiseks tarnijate ja poodide vahel — arvestades nõudlust, saadavust, tarnijapiiranguid ja poodide vajadusi. Parem laojaotus, vähem käsitsi planeerimist ja selgem nähtavus logistikaotsuste üle.' },
         'fuel-loyalty': { region: 'Kütuse jaemüük', blurb: 'Uinunud klientide taasaktiveerimine hübriidse RFM + klasterdamise segmenteerimisega — ~12 000 taasaktiveeritud, värskendab automaatne ML-konveier.' },
         'enterprise-agent': { region: 'Ettevõtte TI', blurb: 'Loomuliku keele analüütika agent juhtkonnale — äriline semantiline kiht, KPI maandamine, 90%+ vastuste täpsus tootmises.' },
       },
     },
     cases: {
+      'gagra-plus': {
+        focus: 'Jaotuse ja täiendamise optimeerimine poodide võrgus',
+        sector: 'Logistika', years: 'Thbilisi, Gruusia',
+        image: 'Jaotusmudel — tarnijatelt poodidesse',
+        what: 'Toiduainete ja kondiitritoodete tootja ja jaemüüja (Buona Sera poed). Heuristiline ja operatsioonianalüüsi (OR) mudel toodete jaotuse optimeerimiseks tarnijate ja poodide vahel — arvestades nõudlust, saadavust, tarnijapiiranguid ja poodide vajadusi.',
+        scope: ['Nõudluse ja saadavuse modelleerimine poodide võrgus', 'Heuristiline ja operatsioonianalüüsi mudel jaotuseks tarnijate ja poodide vahel', 'Tarnijapiirangud ja poodide vajadused jaotusloogikas'],
+        outcome: ['Parem laojaotus poodide vahel', 'Vähem käsitsi planeerimist', 'Selgem nähtavus logistikaotsuste üle'],
+      },
       'tic-iso': {
         name: 'Suur TIC-ettevõte',
         focus: 'TI-põhise auditi-ettevalmistuse assistendi prototüüp',
@@ -396,13 +414,19 @@ export const CASE_STUDIES: LocaleDict<CaseStudiesDict> = {
       lede: 'งานอื่น ๆ ที่เราส่งมอบ ครอบคลุมหลายอุตสาหกรรม',
       items: {
         'clubtek': { region: 'ภูเก็ต ประเทศไทย', blurb: 'การผสานระบบภาพและเสียง — เสียง วิดีโอ ระบบไฟอัจฉริยะ และระบบอัตโนมัติแบบรวมศูนย์ สำหรับโรงแรม คลับ และวิลล่า' },
-        'khaos-marani': { region: 'คาเคติ จอร์เจีย', blurb: 'โรงบ่มไวน์ การวิเคราะห์ขั้นสูงและ ML เชิงพยากรณ์ เพื่อพยากรณ์อุปสงค์ไวน์ เพิ่มประสิทธิภาพการตั้งราคา และแบ่งกลุ่มผู้บริโภคสำหรับการตลาดแบบเจาะจง' },
-        'gagra-plus': { region: 'ทบิลิซี จอร์เจีย', blurb: 'ผู้ผลิตและค้าปลีกวัตถุดิบอาหารและขนม (ร้าน Buona Sera) โมเดลฮิวริสติกและ Operations Research ที่เพิ่มประสิทธิภาพการกระจายสินค้าระหว่างซัพพลายเออร์และร้านค้า — คำนึงถึงอุปสงค์ ความพร้อม ข้อจำกัดของซัพพลายเออร์ และความต้องการระดับร้าน จัดสรรสต็อกดีขึ้น วางแผนด้วยมือน้อยลง และเห็นการตัดสินใจด้านโลจิสติกส์ชัดขึ้น' },
         'fuel-loyalty': { region: 'ค้าปลีกน้ำมัน', blurb: 'กระตุ้นลูกค้าที่หายไปกลับมาผ่านการแบ่งกลุ่มแบบไฮบริด RFM + clustering — ราว 12,000 รายกลับมา รีเฟรชด้วยไปป์ไลน์ ML อัตโนมัติ' },
         'enterprise-agent': { region: 'AI ระดับองค์กร', blurb: 'เอเจนต์วิเคราะห์ภาษาธรรมชาติสำหรับทีมผู้บริหาร — ชั้นความหมายเชิงธุรกิจ การอิงกับ KPI ความแม่นยำคำตอบ 90%+ ในการใช้งานจริง' },
       },
     },
     cases: {
+      'gagra-plus': {
+        focus: 'เพิ่มประสิทธิภาพการกระจายและเติมสินค้าทั่วเครือข่ายร้าน',
+        sector: 'โลจิสติกส์', years: 'ทบิลิซี จอร์เจีย',
+        image: 'โมเดลการกระจายสินค้า — ซัพพลายเออร์สู่ร้านค้า',
+        what: 'ผู้ผลิตและค้าปลีกวัตถุดิบอาหารและขนม (ร้าน Buona Sera) โมเดลฮิวริสติกและ Operations Research ที่เพิ่มประสิทธิภาพการกระจายสินค้าระหว่างซัพพลายเออร์และร้านค้า — คำนึงถึงอุปสงค์ ความพร้อม ข้อจำกัดของซัพพลายเออร์ และความต้องการระดับร้าน',
+        scope: ['สร้างโมเดลอุปสงค์และความพร้อมของสินค้าทั่วเครือข่ายร้าน', 'โมเดลฮิวริสติกและ Operations Research สำหรับการกระจายสินค้าระหว่างซัพพลายเออร์และร้านค้า', 'ใส่ข้อจำกัดของซัพพลายเออร์และความต้องการระดับร้านเข้าไปในตรรกะการจัดสรร'],
+        outcome: ['จัดสรรสต็อกระหว่างร้านได้ดีขึ้น', 'วางแผนด้วยมือน้อยลง', 'เห็นการตัดสินใจด้านโลจิสติกส์ชัดขึ้น'],
+      },
       'tic-iso': {
         name: 'บริษัท TIC ขนาดใหญ่',
         focus: 'ต้นแบบผู้ช่วย AI เตรียมการตรวจประเมิน',

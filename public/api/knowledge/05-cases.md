@@ -159,18 +159,16 @@ where Optimus is deployed is not published (decision of 22.08.2026).
 - Also appears in "Other engagements" as audio-visual systems integration (sound,
   video, intelligent lighting, unified automation for hotels, clubs and villas).
 
-## Khaos Marani — `/case-studies` (Other engagements)
+## Gagra+ — `/case-studies#gagra-plus`
 
-- **Sector / region:** Winery. Kakheti, Georgia.
-- **Engagement:** advanced analytics and predictive ML to forecast wine demand,
-  optimise pricing, and segment consumers for targeted marketing.
-
-## Gagra+ — `/case-studies` (Other engagements)
-
-- **Sector / region:** Food-ingredients & confectionery supply (Buona Sera shops).
-  Tbilisi, Georgia.
-- **Engagement:** a dynamic ordering and demand model for replenishment across the
-  store network.
+- **Sector / region:** Logistics — food-ingredients & confectionery manufacturer
+  and retailer (Buona Sera shops). Tbilisi, Georgia.
+- **Headline:** Distribution decided by a model, not by hand.
+- **Engagement:** A heuristic and Operations-Research model that optimises product
+  distribution between suppliers and stores, accounting for demand, availability,
+  supplier constraints, and store-level needs.
+- **What changed:** Better inventory allocation across stores, less manual
+  planning, and clearer visibility over logistics decisions.
 
 ## Clients vs partners — don't confuse them
 

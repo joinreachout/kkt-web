@@ -19,6 +19,7 @@ const CASES = [
   { id: 'tic-iso', name: 'Major TIC company', logo: '/logos/certiqa-dark.png', img: '/cases/tic-certiqa.jpg' },
   { id: 'tic-strategy', name: 'Major TIC company', logo: null, img: '/cases/tic-strategy.jpg' },
   { id: 'clubtek', name: 'Clubtek', logo: '/logos/clubtek.png', img: '/cases/clubtek.jpg' },
+  { id: 'gagra-plus', name: 'Gagra+', logo: '/logos/gagraplus.png', img: undefined },
 ];
 const cases = CASES.map((c) => {
   const tx = t.cases[c.id];
@@ -27,10 +28,7 @@ const cases = CASES.map((c) => {
 const initials = (n) => n.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join('').toUpperCase();
 
 // Smaller / earlier engagements — structural data only; region+blurb localized.
-const SMALLER = [
-  { id: 'khaos-marani', name: 'Khaos Marani', logo: '/logos/khaos-marani.png', monogram: 'KM' },
-  { id: 'gagra-plus', name: 'Gagra+', logo: '/logos/gagraplus.png', monogram: null },
-];
+const SMALLER: { id: string; name: string; logo: string | null; monogram: string | null }[] = [];
 const smaller = SMALLER.map((s) => ({ ...s, ...t.smaller.items[s.id] }));
 ---
 
