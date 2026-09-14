@@ -64,10 +64,10 @@ export const STRINGS: PartialLocaleDict<Dict> = {
   },
 
   de: {
-    // Nav uses the short "Tankstellen" — the full "Tankstellengeschäft" pushed the
-    // German header into a second line at ~1024px. The full term stays in page
-    // titles, meta and sector labels.
-    nav: { retail: 'Einzelhandel', fuel: 'Tankstellen', solutions: 'Unsere Lösungen', cases: 'Fallstudien', insights: 'Blog', about: 'Über uns' },
+    // Nav keeps "Fuel-Retail" and "Case Studies" in English on Dennis's call (Sep 2026).
+    // Keep it short: "Tankstellengeschäft" pushed the German header into a second
+    // line at ~1024px. The German terms stay in page titles, meta and sector labels.
+    nav: { retail: 'Einzelhandel', fuel: 'Fuel-Retail', solutions: 'Unsere Lösungen', cases: 'Case Studies', insights: 'Blog', about: 'Über uns' },
     actions: { advisor: 'KI-Berater fragen', diagnostic: 'Diagnose buchen', menu: 'Menü öffnen', switchLang: 'Sprache' },
     footer: {
       tag: 'Daten, KI und Automatisierung, die in Ihrem Betrieb laufen.',
