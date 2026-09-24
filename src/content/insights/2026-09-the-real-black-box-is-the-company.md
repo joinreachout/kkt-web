@@ -1,6 +1,7 @@
 ---
 title: "The real black box isn't AI. It's the company."
 summary: "An AI agent can't run on 'everyone knows'. Before it can run any part of your company, it forces you to decide how the company actually runs — and that alone can be worth as much as the automation."
+cover: "/blog/real-black-box-v1.png"
 author: "George Shevardenidze"
 publishedAt: "2026-09-23"
 draft: false
