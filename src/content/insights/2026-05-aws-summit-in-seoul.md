@@ -1,6 +1,7 @@
 ---
 title: "AWS Summit in Seoul"
 summary: "Last week I attended AWS Summit in Seoul with one main objective: to understand how large, global-scale companies outside the usual tech bubble are actually implementing AI in their operations."
+cover: "/blog/aws-summit-seoul.jpg"
 author: "George Shevardenidze"
 publishedAt: "2026-05-31"
 draft: false
